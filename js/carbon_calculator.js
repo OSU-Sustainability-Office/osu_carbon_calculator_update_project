@@ -175,7 +175,7 @@ function consumption_recreation_conv(input)        //source: http://www.carbonfo
   var amount_spent_activities = $("#recreation_per_month").val();
   if (input=='year') {year_or_day=52;} else {year_or_day = 1/7;}
   result = amount_spent * .2212 / 4 * year_or_day;
-  result = result + (amount_spent_2 * .3871 / 4 * year_or_day);
+  result = result + (amount_spent_activities * .3871 / 4 * year_or_day);
   return result;
 }
 
