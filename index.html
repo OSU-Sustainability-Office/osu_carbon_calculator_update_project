@@ -88,13 +88,9 @@
          <div class="panel-body">
            <p>To get started, please choose which of the following describes you: <a href="#" data-toggle="tooltip" title="Press a button to continue."><span class="glyphicon glyphicon-question-sign"></span></a><br />
              <div class="radio">
-               <label><button type="button" name="radio_commuter" class="btn btn-default" value="on_campus" data-toggle="collapse" data-parent="#accordion" href="#collapse2"/>On Campus student</label>
-             </div>
-             <div class="radio">
-               <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2"/>Off Campus Full-time Commuter Student or Staff</label>
-             </div>
-             <div class="radio">
-               <label><button type="button" name="radio_commuter" class="btn btn-default" value="part_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2"/>Part-time Commuter Student or Staff</label>
+               <label><button type="button" name="radio_commuter" class="btn btn-default" value="on_campus" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('on_campus')"/>On Campus student</button></label><br />
+               <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('full_commuter')"/>Off Campus Full-time Commuter Student or Staff</button></label><br />
+               <label><button type="button" name="radio_commuter" class="btn btn-default" value="part_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('part_commuter')"/>Part-time Commuter Student or Staff</button></label>
              </div>
            </p>
          </div>
@@ -210,8 +206,8 @@
               <input id="hotels_per_month" type="text"  size="2" maxlength="4"/> dollars/month
             </p>
 
-            <p>How much do you spend on other recreational activities per month?<br /><a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-question-sign"></span></a>
-              <input id="recreation_per_month" type="text"  size="2" maxlength="4"/> dollars/month
+            <p>How much do you spend on other recreational activities per month?<br />
+              <input id="recreation_per_month" type="text"  size="2" maxlength="4"/> dollars/month <a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-question-sign"></span></a>
             </p>
 
       			<p>If you drink your water from nonrefillable plastic bottles, how many do you buy/week?<br />

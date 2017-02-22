@@ -9,8 +9,17 @@ var graph_waste_total;
 var graph_water_total;
 var data = new Array(6);
 var graph_carbon_num_total = new Array(6);
+var user_type = "on_campus";
+var user_num = 1;
 window.myPie1;
 window.myPie2;
+
+function set_user_type(input) {
+  user_type = input;
+  if (user_type =="on_campus") {user_num= 1;}
+		else if (user_type =="full_commuter") {user_num = 0.75;}
+		else if (user_type =="part_commuter") {user_num = 0.5;}
+}
 
 
 window.onload = function() {
@@ -411,8 +420,7 @@ function energy_baseline_conv(input)
 {
 	var year_or_day = 0;
 	var result =0;
-	var user_type= $("input[name='radio_commuter']:checked").val();
-	var user_num = 0;
+	//var user_type= $("input[name='radio_commuter']:checked").val();
   	//var totalInKWH = 0;
 	//var totalDormInKWH = 0;
 	//var popOfOSU = 0;
@@ -421,9 +429,10 @@ function energy_baseline_conv(input)
 
 	if (input=='year') {year_or_day=1;} else {year_or_day = 1/ (365);}
 
-	if (user_type =="on_campus") {user_num= 1;}
-		else if (user_type =="full_commuter") {user_num = 0.75;}
-		else if (user_type =="part_commuter") {user_num = 0.5;}
+	/*if (user_type =="on_campus") {user_num= 1;console.log("1");}
+		else if (user_type =="full_commuter") {user_num = 0.75;console.log("2");}
+		else if (user_type =="part_commuter") {user_num = 0.5;console.log("3");}
+    else {console.log("4");}*/
 
 	//I dont know what any of this is. -PK
     //result = ((((53384936 * user_num) / 30492) + 0.5579*electricity_dorms_kwh())* 0.7294 * year_or_day)+((((42311306 * user_num) / 30492) + 0.4421*electricity_dorms_kwh())* 0.1676 * year_or_day) + simple_option();
@@ -445,13 +454,12 @@ function energy_gas_baseline_conv(input)
 
   var year_or_day = 0;
   var result =0;
-  var user_type= $("input[name='radio_commuter']:checked").val();
-  var user_num=0;
+  //var user_type= $("input[name='radio_commuter']:checked").val();
 
   if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
-  if (user_type =="on_campus") {user_num= 1;}
+  /*if (user_type =="on_campus") {user_num= 1;}
     else if (user_type =="full_commuter") {user_num = 0.75;}
-    else if (user_type =="part_commuter") {user_num = 0.5;}
+    else if (user_type =="part_commuter") {user_num = 0.5;}*/
   var popOfOSU = 36059;
   var totalOSUGasTherms =  562929.30;
   var convertFromThermToKgCO2e = 6.103
@@ -573,12 +581,12 @@ function waste_conv(input)
 function water_conv(input)
 {
   var year_or_day = 0;
-  var baseline =0;
+  var baseline = user_num;
   var multiplier = 1;
   var gallonsperdayperperson = 21.402;
   result =1;
 
-  var user_type = $("input[name='radio_commuter']:checked").val();
+  //var user_type = $("input[name='radio_commuter']:checked").val();
   var shower_duration = $("#water_showers_duration").val();
   var total_shower = $("#water_showers_times").val();
   var total_laundry = $("#water_laundry").val();
@@ -588,9 +596,9 @@ function water_conv(input)
 
   if (input=='year') {year_or_day=365;} else {year_or_day=1;}
 
-  if(user_type =="student"){baseline = gallonsperdayperperson;}
+  /*if(user_type =="student"){baseline = gallonsperdayperperson;}
     else if (user_type =="full_commuter") {baseline = 0.75 * gallonsperdayperperson;}
-    else if (user_type =="part_commuter") {baseline = 0.5 * gallonsperdayperperson;}
+    else if (user_type =="part_commuter") {baseline = 0.5 * gallonsperdayperperson;}*/
 
   result = baseline + (total_shower * 1.5 * year_or_day) + (13.1 * total_laundry / 30 * year_or_day) + (1.6*total_flush * year_or_day) + (total_cups * 0.0625 * year_or_day);
   result = (result * 0.00284 ); //soruce: UK Environment Agency
