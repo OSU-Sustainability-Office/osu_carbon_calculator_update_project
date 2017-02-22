@@ -21,7 +21,7 @@ window.onload = function() {
 
 function showResult() {
   var trans_total = parseFloat(trans_car_conv('year')) + parseFloat(trans_short_bus_conv('year')) + parseFloat(trans_long_bus_conv('year'))+ parseFloat(trans_train_conv('year')) + parseFloat(trans_airplane_conv('year'));
-  var cons_total = parseFloat(consumption_textbook_conv('year')) + parseFloat(consumption_clothing_conv('year')) + parseFloat(consumption_cellphone_conv('year')) + parseFloat(consumption_eReader_conv('year')) + parseFloat(consumption_plastic_bottle_conv('year'));// + parseFloat(consumption_ipod_conv('year'));
+  var cons_total = parseFloat(consumption_textbook_conv('year')) + parseFloat(consumption_clothing_conv('year')) + parseFloat(consumption_recreation_conv('year')) + parseFloat(consumption_cellphone_conv('year')) + parseFloat(consumption_eReader_conv('year')) + parseFloat(consumption_plastic_bottle_conv('year'));// + parseFloat(consumption_ipod_conv('year'));
   var energy_total= parseFloat(energy_audit_dorm_conv('year')) + parseFloat(energy_gas_baseline_conv('year')) +parseFloat(energy_baseline_conv('year'));
   var food_total = parseFloat(food_conv('year'))+parseFloat(consumption_coffee_conv('year'));
   var waste_total = parseFloat(waste_conv('year'));
@@ -164,6 +164,18 @@ function consumption_clothing_conv(input)        //source: http://www.carbonfoot
   var amount_spent = $("#clothing_per_month").val();
   if (input=='year') {year_or_day=52;} else {year_or_day = 1/7;}
   result = amount_spent * .30 * 0.79 / 4 * year_or_day;
+  return result;
+}
+
+function consumption_recreation_conv(input)        //source: http://www.carbonfootprint.com/calculatorfaqs.html
+{
+  var result=0;
+  var year_or_day=0;
+  var amount_spent = $("#hotels_per_month").val();
+  var amount_spent_activities = $("#recreation_per_month").val();
+  if (input=='year') {year_or_day=52;} else {year_or_day = 1/7;}
+  result = amount_spent * .2212 / 4 * year_or_day;
+  result = result + (amount_spent_2 * .3871 / 4 * year_or_day);
   return result;
 }
 
