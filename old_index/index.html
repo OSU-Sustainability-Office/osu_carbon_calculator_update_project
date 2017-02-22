@@ -1,0 +1,804 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Content Copyright Santa Clara University -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><!-- #BeginTemplate "/Templates/standarda_wide.dwt" --><!-- DW6 -->
+<head>
+	<title>Oregon State University - Carbon Footprint Calculator</title>
+	<meta name="Description" content="Carbon Footprint Calculator for Oregon State University" />
+	<meta name="Keywords" content="carboon footprint calculator campus" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="http://osucarboncalculator.co.nf/images/favicon.ico">
+
+	<!-- Scripts included for Carbon Footprint -->
+	<link rel="stylesheet" type="text/css" href="carbon_style.css"/>
+	<link rel="stylesheet" type="text/css" href="tipsy.css" />
+	<script language="javascript" type="text/javascript" src="carbon_calculator.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.msAccordion.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.tipsy.js"></script>
+	<script language="javascript" type="text/javascript" src="highchart.js"></script>
+</head>
+
+
+
+
+<body>
+	<form method="POST" action="process.php">
+
+	<!-- #BeginEditable "Content" -->
+<div id="accordion" class="accordionWrapper" style="width:1230px;">
+	<div class="set calc_introduction">
+		<div class="title">Introduction</div>
+		<div class="content">
+			<table>
+				<tr>
+					<td><img src="http://w3.campusexplorer.com/media/560x420/Oregon-State-University-Corvallis-704BE15E.jpg" align="left" width="200px" style="padding:10px;"></td>
+					<td style="vertical-align:middle;"><h1>Welcome to <br>Oregon State University's <br>Carbon Footprint Calculator<br> created by OSU students. </h1></td>
+				</tr>
+			</table>
+			<p>This carbon footprint calculator has been developed to help you understand the connection between your everyday actions and your carbon emissions.  This is an important step in Oregon State University’s campus initiative to be carbon neutral by 2025.</p>
+			<p>This project was done with the support from SCU who wrote the code which we based our calculator on. If you want to build your own carbon calculator, please visit <a href="http://www.scu.edu/ethics/practicing/focusareas/environmental_ethics/carbon-footprint/create_calc.html" target="_blank" color="white";> their website.</a></p>
+			<p>To get started, please choose which of the following describes you:<br />
+				<input type="radio" name="radio_commuter" value="on_campus" onclick="display_tabs('show')" />On Campus student<br/>
+				<input type="radio" name="radio_commuter" value="full_commuter" onclick="display_tabs('show')" />Off Campus Full-time Commuter Student or Staff<br/>
+				<input type="radio" name="radio_commuter" value="part_commuter" onclick="display_tabs('show')" />Part-time Commuter Student or Staff<br />
+			</p>
+			<p> And then click on the headings below to answer the questions required to calculate your carbon footprint </p>
+		</div>
+	</div>
+
+	<div class="set transportation" id="transportation_tab">
+		<div class="title">Transportation</div>
+		<div class="content">
+			<br/>
+			<form>
+			   <!-- <p>Do you longboard, skateboard, or bike to class? <br />
+				<input type="radio" name="trans_radio_lsb" value="yes" onclick="display_comment('comment_transportation_lsb','Great decision! You are not only staying healthy, but you are reducing your carbon emissions.')"/>Yes
+				<input type="radio" name="trans_radio_lsb" value="no" onclick="display_comment('comment_transportation_lsb_negative', Airplane travel has a high carbon emissions. Did you know you produce 40% more carbon emissions if you were to travel across the country in an airplane than if you drove by yourself!')"/>No
+				</p>
+				<p class="pop_up_comment" id="comment_transportation_lsb"></p>
+			   -->
+			   <!-- combining a couple of questions for clarity -->
+				<p>Do you drive a car?<br />
+					<select id="trans_select_car" onchange="trans_car_select_handler()">
+						<option value="no_car">Walk, bike, skateboard, etc (Excellent MPG)</option>
+						<option value="car40_plusMPG">40+ MPG </option>
+						<option value="car30_40MPG">30-40 MPG </option>
+						<option value="car20_30MPG">20-30 MPG</option>
+						<option value="carhybrid_electric">Hybrid or Electric car</option>
+						<!-- <option value="diesel">diesel</option>   -->  <!--possible addition, needs data-->
+					</select>
+				</p>
+
+				<p id="trans_input_car_miles_q" style="display:none;">
+					Approximately how many miles do you drive/month? <a class="help" id="help" title="<u>Oregon State University to: </u> <br>Eugene:48.4 miles<br>Portland:85.4 miles<br>Albany:11.6 miles <br>Seattle:257.8 miles <br>Salem:36.9 miles" href="#"><img src="images/help.gif" width="20px" /></a><br />
+					<input id="trans_input_car_miles" type="text"  size="4" maxlength="4" /> miles
+				</p>
+
+				<p>Do you commute using the Corvallis or Albany Transit?<br />
+					<input type="radio" name="trans_radio_short_use_bus" value="yes" onclick="display_question('show','trans_input_short_bus_miles')">Yes
+					<input type="radio" name="trans_radio_short_use_bus" value="no" onclick="display_question('hide','trans_input_short_bus_miles')">No
+				</p>
+
+				<p id="trans_input_short_bus_miles_q" style="display:none;">
+					Approximately how many miles/month do you travel on Corvallis or Albany Transit?<a class="help" id="help" title="<u&gt;Oregon State University to: </u&gt; <br&gt;WinCo:2.0 miles<br&gt;Carmike:2.8 miles<br&gt;Fred Meyers:0.9 miles <br&gt;Philomath:5.4 miles <br&gt;Albany:11.6 miles" href="http://osucarboncalculator.co.nf/#"><img src="images/help.gif" width="20px"></a> <br>
+					<input name="trans_input_short_bus_miles" type="text"  size="4" maxlength="4"/> miles
+				</p>
+
+				<p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?<br />
+					<input type="radio" name="trans_radio_long_use_bus" value="yes" onclick="display_question('show','trans_input_long_bus_miles')">Yes
+					<input type="radio" name="trans_radio_long_use_bus" value="no" onclick="display_question('hide','trans_input_long_bus_miles')">No
+				</p>
+
+				<p id="trans_input_long_bus_miles_q" style="display:none;">
+					Approximately how many miles/year do you travel on these buses? <a class="help" id="help" title="<u>Oregon State University to: </u> <br>Eugene:48.4 miles<br>Portland:85.4 miles<br>Albany:11.6 miles <br>Seattle:257.8 miles <br>Salem:36.9 miles" href="#"><img src="images/help.gif" width="20px" /></a><br />
+					<input id="trans_input_long_bus_miles" type="text"  size="4" maxlength="4"/> miles
+				</p>
+
+				<p>Do you use the train?<br />
+					<input type="radio" name="trans_train_use_bus" value="yes" onclick="display_question('show','trans_input_train_miles')">Yes
+					<input type="radio" name="trans_train_use_bus" value="no" onclick="display_question('hide','trans_input_train_miles')">No
+				</p>
+
+				<p id="trans_input_train_miles_q" style="display:none;">
+					Approximately how many miles/year do you travel on train? <a class="help" id="help" title="<u>Oregon State University to: </u> <br>Eugene:48.4 miles<br>Portland:85.4 miles<br>Albany:11.6 miles <br>Seattle:257.8 miles <br>Salem:36.9 miles" href="#"><img src="images/help.gif" width="20px" /></a><br />
+					<input id="trans_input_train_miles" type="text"  size="4" maxlength="4"/> miles
+				</p>
+
+
+			   <p>
+					Have you traveled or do you plan to travel by airplane this year?<br>
+					<input type="radio" name="trans_radio_use_plane" value="yes" onclick="display_question('show','trans_input_plane_miles'); display_comment('comment_transportation_plane_negative','Airplane travel adds a heavy amount to your carbon footprint. Did you know flying across the country produces 40% more emissions than driving in a car by yourself?')">Yes
+					<input type="radio" name="trans_radio_use_plane" value="no" onclick="display_question('hide','trans_input_plane_miles') ; display_comment('comment_transportation_plane','Great decision! Riding in an airplane adds a heavy amount to your transportation footprint.')">No
+				</p>
+
+				<p class="pop_up_comment" id="comment_transportation_plane"></p>
+
+				<p id="trans_input_plane_miles_q" style="display:none;">
+					How many miles have you traveled or do you plan to travel this year? This <a href="http://www.webflyer.com/travel/mileage_calculator/" target="_blank"> flight distance calculator </a> might be helpful in determining this amount <a class="help" id="help" title="Average Flight Mileage for Time Zones:<u> PDX Airport to: </u> <br> New York : 2,450 miles<br>Seattle : 129 miles<br>Denver : 989 miles<br>Chicago : 1730 miles<br>Los Angeles : 834 miles" href="#"> <img src="images/help.gif" width="20px"> </a><br>
+					<input id="trans_input_plane_miles" type="text" size="5" maxlength="5"> miles
+				</p>
+
+				<p>
+					Do you know all the different ways to get to the OSU campus?
+					<input type="radio" name="transport_options" value="yes" onclick="display_comment('comment_transport_options', 'Are you sure? <a href=http://parking.oregonstate.edu/transportation-options target=%22_blank%22> Go here</a> to find out more.')">Yes
+					<input type="radio" name="transport_options" value="no" onclick="display_comment('comment_transport_options', 'Check out <a href=http://parking.oregonstate.edu/transportation-options target=%22_blank%22>this page</a> to learn more.')">No
+				</p>
+				<p class="pop_up_comment" id="comment_transport_options"></p>
+
+
+
+
+			</form>
+		</div>
+	</div>
+
+	<div class="set recreation" id="recreation_tab">
+		<div class="title">Recreation</div>
+		<div class="content">
+			<form>
+				<!--No math associated with this question - removing it<p>How many nights a week do you go out?
+				<input id="nights_partying" type="text"  size="1" maxlength="1"/>nights
+				</p>
+				-->
+
+				<p>How many alcoholic drinks do you drink on average per night?
+					<input id="partying_alcohol" type="text"  size="3" maxlength="3"/>beers
+				</p>
+
+				<p>How many red cups do you use on average per night?
+					<input id="amount_red_cups" type="text"  size="3" maxlength="3"/>red cups
+				</p>
+
+				<p>How many nights do you pre-game?
+					<input id="nights_pregame" type="text"  size="4" maxlength="4"/>nights per week
+				</p>
+
+<!-- 	No math associated with this question - removing it			<p>Do you play drinking games?
+					<input type="radio" name="is_play_drinking_games" value="yes"/>Yes
+					<input type="radio" name="is_play_drinking_games" value="no"  onclick="display_comment('comment_partying_drinking_games','This may help keep your carbon footprint smaller')"/>No
+				</p> -->
+
+				<p class="pop_up_comment" id="comment_partying_drinking_games"></p>
+
+				<p>Do you use reusable cups?
+					<input type="radio" name="is_use_reusable_cups" value="yes" onclick="display_comment('comment_partying_reusable_cups','Way to go! Just make sure you wash them well! ')"/>Yes
+					<input type="radio" name="is_use_reusable_cups" value="no" onclick="display_comment('comment_partying_reusable_cups_negative','Using 100 solo cups (five games of beer pong) is equal to nearly using a gallon of gasoline.')"/>No
+				</p>
+
+				<p class="pop_up_comment" id="comment_partying_reusable_cups"></p>
+
+				<p>How many campfires did you make this year? <!--assuming the average campfire uses 10 lbs of wood and half is converted into CO2-->
+					<input id="campfires" type="text" size="2" maxlength="2">nights
+				</p>
+
+				<p>How many hours a week do you play video games?     <!--Dummy variable, taken into account in the electricity part-->
+					<input id="hours_videogames" type="text" size="2" maxlength="2">hours
+				</p>
+
+				<p>How many times do you go skiing or snowboarding in a year?
+					<input id="mountain_year" type="text" size="2" maxlength="2">times
+				</p>
+
+				<p>How many football games did you go to this year?     <!--Can get electricity amount from OofS-->
+					<input id="football_games" type="text" size="2" maxlength="2">games
+				</p>
+
+				<p>How many gymanistics meets or basketball games did you go to this year?     <!--Can get electricity amount from OofS-->
+					<input id="basketball_games" type="text" size="2" maxlength="2">meets/games
+				</p>
+
+				<p>How many baseball or softball games did you go to this year?     <!--Can get electricity amount from OofS-->
+					<input id="baseball_games" type="text" size="2" maxlength="2">games
+				</p>
+			  <!--    Removing this section. Cannot find any peer reviewed info on carbon footprint impact of pets.
+			   <p>Do you own:     <!--Need conversion factor--/>
+				 <input type="checkbox" name="dog" onclick="display_question('show','number_of_dogs')"/>Dog &nbsp;&nbsp;
+				 <input type="checkbox" name="cat" onclick="display_question('show','number_of_cats')"/>Cat &nbsp;&nbsp;
+				 <input type="checkbox" name="none" onclick="display_question('hide','number_of_dogs') ; display_question('hide','number_of_cats')"/>None
+			 </p>
+
+			 <p id="number_of_dogs_q" style="display:none;">
+			 How many dogs do you have?
+			   <input id="number_of_dogs" type="text" size="1" maxlength="1">dogs
+			   </p>
+
+			   <p id="number_of_cats_q" style="display:none;">
+			 How many cats do you have?
+			   <input id="number_of_cats" type="text" size="1" maxlength="1">cats
+			   </p> -->
+
+
+			</form>
+		</div>
+	</div>
+
+	<div class="set consumption" id="consumption_tab">
+		<div class="title">Consumption</div>
+		<div class="content">
+			<p>Approximately how many reading books do you a year?<br />
+				<input id="reading_book_per_year" type="text"  size="2" maxlength="4"/> books
+			</p>
+
+			<p>Approximately how many text books do you a year?<br />
+				<input id="text_book_per_year" type="text"  size="2" maxlength="4"/> books
+			</p>
+
+			<p>How much do you spend on new clothing in a given month?<br />
+				<input id="clothing_per_month" type="text"  size="2" maxlength="4"/> times/month
+			</p>
+
+			<p>If you drink your water from nonrefillable plastic bottles, how many do you buy/week?<br />
+				<input id="consumption_plastic_bottle" type="text"  size="5" maxlength="4"/> bottles
+			</p>
+
+			<p>Do you own a:
+				<input type="radio" name="is_phone" value="smart_phone" onclick="display_question('show','duration_owning_cell_phone'); ">Smart Phone &nbsp;&nbsp;
+				<input type="radio" name="is_phone" value="mobile_phone" onclick="display_question('show','duration_owning_cell_phone'); "> Mobile Phone &nbsp;&nbsp;
+				<input type="radio" name="is_phone" value="no" onclick="display_question('hide','duration_owning_cell_phone'); "> Neither
+			</p>
+
+			<p id="duration_owning_cell_phone_q" style="display:none;">
+				How long have you had your current cell phone?  Please approximate in years.<br>
+				<input id="duration_owning_cell_phone" type="text" size="2" maxlength="4"> years
+			</p>
+
+<!--       <p>Do you own a:
+			<input type="radio" name="is_eReader" value="tablet" onclick="display_question('show','duration_owning_tablet'); ">Tablet &nbsp;&nbsp;
+			<input type="radio" name="is_eReader" value="kindle" onclick="display_question('show','duration_owning_tablet'); "> Kindle &nbsp;&nbsp;
+			<input type="radio" name="is_eReader" value="no" onclick="display_question('hide','duration_owning_tablet'); "> Neither
+			</p>
+
+			<p id="duration_owning_tablet_q" style="display:none;">
+			How long have you had your current ereader?  Please approximate in years.<br>
+			<input id="duration_owning_tablet" type="text" size="2" maxlength="4"> years
+			</p> -->
+			<p>Do you own a:
+				<input id="tablet" type="checkbox" name="is_eReader" value="tablet" onclick="display_question('show','duration_owning_tablet'); ">Tablet &nbsp;&nbsp;
+				<input id="kindle" type="checkbox" name="is_eReader" value="kindle" onclick="display_question('show','duration_owning_kindle'); "> Kindle &nbsp;&nbsp;
+				<input id="noereader" type="checkbox" name="is_eReader" value="no" onclick="display_question('hide','duration_owning_tablet'); display_question('hide','duration_owning_kindle');"> Neither
+			</p>
+
+			<p id="duration_owning_tablet_q" style="display:none;">
+				How long have you had your current Tablet?  Please approximate in years.<br>
+				<input id="duration_owning_tablet" type="text" size="2" maxlength="4"> years
+			</p>
+
+			<p id="duration_owning_kindle_q" style="display:none;">
+				How long have you had your current Kindle?  Please approximate in years.<br>
+				<input id="duration_owning_kindle" type="text" size="2" maxlength="4"> years
+			</p>
+
+			<p>Do you own an iPod?
+				<input type="radio" name="consumption_radio_ipod" value="yes" onclick="display_question('show','consumption_ipod_duration'); ">Yes &nbsp;&nbsp;
+				<input type="radio" name="consumption_radio_ipod" value="no" onclick="display_question('hide','consumption_ipod_duration'); "> No
+			</p>
+
+			<p id="consumption_ipod_duration_q" style="display:none;">
+				How long have you had your current iPod?  Please approximate in years.<br>
+				<input id="consumption_ipod_duration" type="text" size="2" maxlength="4"> years
+			</p>
+
+			<p>How often do you turn out the lights when you leave a room?
+				<input type="radio" name="lightsquestion" value="Almost Never"/>Almost Never
+				<input type="radio" name="lightsquestion" value="Sometimes"/>Sometimes
+				<input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')">Almost Always
+			</p>
+			<p class="pop_up_comment" id="commentLightsQuestion"></p>
+		</div>
+	</div>
+
+	<div class="set energy" id="energy_tab">
+		<div class="title">Energy and Heating</div>
+		<div class="content">
+			<p>If you're an on campus resident choose from the following dorms:
+				<select id="energy_campus_resident">
+					<option value="none">None</option>
+					<option value="bloss">Bloss</option>
+					<option value="buxton">Buxton</option>
+					<option value="callahan">Callahan </option>
+					<option value="cauthorn">Cauthorn</option>
+					<option value="finley">Finley</option>
+					<option value="halsell">Halsell</option>
+					<option value="hawley">Hawley</option>
+					<option value="ILLC">ILLC </option>
+					<option value="mcnary">McNary</option>
+					<option value="poling">Poling</option>
+					<option value="sackett">Sackett</option>
+					<option value="weatherford">Weatherford</option>
+					<option value="west">West</option>
+					<option value="wilson">Wilson</option>
+					<option value="tebeau">Tebeau</option>
+				</select>
+			</p>
+
+			<p>If you receive energy bills, select the "Simple" option.  If not, select the "Complex" option.<br> Note: If you live in the dorms, you need to pick the "Complex" option.
+				<input type="radio" name="simple_complex" value="simple" onclick="display_question('show','electricity_usage'); display_question('show','heat_usage'); display_question('hide','energy_complex'); display_question('hide','energy_complex_table') ">Simple &nbsp;&nbsp;
+				<input type="radio" name="simple_complex" value="complex" onclick="display_question('show','energy_complex'); display_question('show','energy_complex_table');display_question('hide','electricity_usage'); display_question('hide','heat_usage') "> Complex &nbsp;&nbsp;
+			</p>
+
+			<p id="electricity_usage_q" style="display:none;">
+				How much do you usually pay for electricity each month?<br>
+				<input id="electricity_usage" type="text" size="2" maxlength="4"> dollars/month
+			</p>
+
+			<p id="heat_usage_q" style="display:none;">
+				How much do you usually pay for gas each month? <br>
+				<input id="heat_usage" type="text" size="2" maxlength="4"> dollars/month
+			</p>
+
+			<p id="energy_complex_" style="display:none;">
+				From the following list of appliances, electronics, lighting, etc, input how many of each item are in your room and how many hours a day each item is <strong>in use</strong> or <strong>plugged in</strong>. If you own an item not listed below please be sure to fill in extra fields: What is the item and wattage?  You can find the wattage on the bottom of most appliances.  Be sure to multiply by 1000 if the wattage is given in kilowatts.<br>
+			</p>
+
+			<table id="energy_complex_table_q" style="display:none;" style="width:100%;" >
+				<tr style="font-weight:bold; border-color:black; border-style:dashed; border:1px;">
+					<td id="energy_header">ITEM</td>
+					<td># of items</td>
+					<td>Watts</td>
+					<td>Active Use:<br/> hrs/day in use</td>
+					<td>Standby: <br/>hrs/day plugged in</td>
+				</tr>
+
+				<tr id="row1">
+					<td>Refrigerator</td>
+					<td><input id="appliance_1_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_1_watts" type="hidden"  value="160" />160</td>
+					<td><input id="appliance_1_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_1_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row2">
+					<td>Microwave</td>
+					<td><input id="appliance_2_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_2_watts" type="hidden"  value="1000" />1000</td>
+					<td><input id="appliance_2_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_2_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row1">
+					<td>Clock radio</td>
+					<td><input id="appliance_3_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_3_watts" type="hidden"  value="10" />10</td>
+					<td><input id="appliance_3_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_3_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+		<!--           <tr>
+					<td>Coffee maker</td>
+					<td><input id="appliance_4_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_4_watts" type="hidden"  value="1200" />1200</td>
+					<td><input id="appliance_4_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_4_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				  </tr> -->
+
+				<tr id="row2">
+					<td>IPod dock</td>
+					<td><input id="appliance_4_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_4_watts" type="hidden"  value="100" />100</td>
+					<td><input id="appliance_4_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_4_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row1">
+					<td>Stereo sound system</td>
+					<td><input id="appliance_5_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_5_watts" type="hidden"  value="150" />150</td>
+					<td><input id="appliance_5_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_5_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row2">
+					<td>Computer desktop</td>
+					<td><input id="appliance_6_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_6_watts" type="hidden"  value="225" />225</td>
+					<td><input id="appliance_6_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_6_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row1">
+					<td>Computer monitor 15"</td>
+					<td><input id="appliance_7_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_7_watts" type="hidden"  value="35" />35</td>
+					<td><input id="appliance_7_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_7_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row2">
+					<td>Computer, laptop</td>
+					<td><input id="appliance_8_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_8_watts" type="hidden"  value="60" />60</td>
+					<td><input id="appliance_8_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_8_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row1">
+					<td>Printer</td>
+					<td><input id="appliance_9_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_9_watts" type="hidden"  value="100" />100</td>
+					<td><input id="appliance_9_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_9_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+				<tr id="row2">
+					<td>TV</td>
+					<td><input id="appliance_10_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_10_watts" type="hidden"  value="115" />115</td>
+					<td><input id="appliance_10_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_10_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+		<!--           <tr>
+					<td>DVD/CD player</td>
+					<td><input id="appliance_12_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_12_watts" type="hidden"  value="30" />30</td>
+					<td><input id="appliance_12_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_12_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				  </tr>
+
+				  <tr>
+					<td>Air conditioner</td>
+					<td><input id="appliance_13_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_13_watts" type="hidden"  value="1100" />1,100</td>
+					<td><input id="appliance_13_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_13_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				  </tr>
+				   -->
+				<tr id="row1">
+					<td>Portable fan</td>
+					<td><input id="appliance_11_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_11_watts" type="hidden"  value="115" />115</td>
+					<td><input id="appliance_11_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_11_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+		<!--           <tr>
+					<td>Space heater</td>
+					<td><input id="appliance_15_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_15_watts" type="hidden"  value="1000" />1000</td>
+					<td><input id="appliance_15_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_15_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				  </tr> -->
+
+				<tr id="row2">
+					<td>Floor lamp</td>
+					<td><input id="appliance_12_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_12_watts" type="hidden"  value="300" />300</td>
+					<td><input id="appliance_12_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_12_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				</tr>
+
+		<!--           <tr>
+					<td>Incandescent light bulb</td>
+					<td><input id="appliance_17_total" type="text"  size="4" maxlength="4" value ="1"/></td>
+					<td><input id="appliance_17_watts" type="hidden"  value="75" />75</td>
+					<td><input id="appliance_17_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_17_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				  </tr>
+
+				  <tr>
+					<td>Compact fluorescent light bulb</td>
+					<td><input id="appliance_18_total" type="text"  size="4" maxlength="4" value ="1"/></td>
+					<td><input id="appliance_18_watts" type="hidden"  value="20" />20</td>
+					<td><input id="appliance_18_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_18_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				  </tr> -->
+
+		<!--           <tr>
+					<td>Vacuum cleaner</td>
+					<td><input id="appliance_19_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_19_watts" type="hidden"  value="1440" />1440</td>
+					<td><input id="appliance_19_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_19_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+				  </tr> -->
+
+				<tr id="row1">
+					<td>Game Console</td>
+					<td><input id="appliance_13_total" type="text" size="4" maxlength="1" value ="1"/></td>
+					<td><input id="appliance_13_watts" type="hidden" value="245">1440</td>
+					<td><input id="appliance_13_active_usage" type="text" size="4" maxlength="4"></td>
+					<td><input id="appliance_13_passive_usage" type="text" size="4" maxlength="4" value="24"></td>
+				</tr>
+
+				<tr id="row2">
+					<td>Other <input id="other_energy_source" type="text"  size="20" maxlength="20"/></td>
+					<td><input id="appliance_20_total" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_20_watts" type="text"  size="4" maxlength="5"/></td>
+					<td><input id="appliance_20_active_usage" type="text"  size="4" maxlength="4"/></td>
+					<td><input id="appliance_20_passive_usage" type="text"  size="4" maxlength="4"/></td>
+				</tr>
+
+			</table>
+
+		</div>
+	</div>
+
+	<div class="set food" id="food_tab">
+		<div class="title">Food</div>
+		<div class="content">
+			<p> This <a href="http://caloriecount.about.com/" target="_blank"> calorie counter </a> might be useful for the next few questions. </p>
+			<p>How many servings of red meat do you eat in a week on average? <a class="help" id="help" title="100% Beef Patty: 159 calories<br> Franks Hot Dogs: 180 calories <br> Can of Tuna: 191 calories <br> 3 oz Top Sirloin Steak: 158 calories" href="#"><img src="images/help.gif" width="20px" /></a><br>
+				<input type="text" id="meat_serv" size="4" maxlength="4">
+			</p>
+
+			<p>How many servings of dairy products or eggs do you eat in a week on average?<a class="help" id="help" title="1 cup of 2% milk: 122 calories<br> 1 slice (1 oz) cheddar cheese: 113 calories <br> 1 cup plain yogurt: 149 calories <br> 1 tbsp Butter: 100 calories" href="#"><img src="images/help.gif" width="20px" /></a><br>
+				<input type="text" id="dairy_serv" size="4" maxlength="4">
+			</p>
+
+			<p>How many servings of fruits and vegetables do you eat in a week on average? <a class="help" id="help" title="Red Apple: 90 calories<br> Navel Orange: 69 calories <br> Small Tomato: 16 calories <br> 1 cup Iceburg Lettuce: 8 calories" href="#"><img src="images/help.gif" width="20px" /></a><br>
+				<input type="text" id="fruits_vegetables_serv" size="4" maxlength="4">
+			</p>
+
+			<p>How many servings of grains and baked products do you eat in a week on average? <a class="help" id="help" title="Slice of White Bread: 67 calories<br> 1 cup of Rice: 205 calories <br> 1 cup of Oatmeal: 166 calories <br> 1 Cup of Spaghetti: 221 calories" href="#"><img src="images/help.gif" width="20px" /></a><br>
+				<input type="text" id="grains_serv" size="4" maxlength="4">
+			</p>
+
+			<p>How many servings of other poultry do you eat in a week on average? <a class="help" id="help" title="8 fl oz Coca-Cola: 97 calories<br> 20 Lay's original chips: 130 calories <br> 1 cup of Trail Mix: 693 calories <br> 8 fl oz Gatorade: 50 calories" href="#"><img src="images/help.gif" width="20px" /></a><br>
+				<input type="text" id="poultry_serv" size="4" maxlength="4">
+			</p>
+
+			<p> How often do you eat processed food? (The average person eats 22 pounds of processed food a week)<br>  <!--need conversion factor for processed food and avg pounds per week. Dummy question for now-->
+				<input type="radio" name="radio_recycle" value="below_avg_processed" onclick="display_comment('comment_processed_food','Great decision! Processed foods often require a larger amount of energy than fresh produce')">Below Average<br>
+				<input type="radio" name="radio_recycle" value="avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Average<br>
+				<input type="radio" name="radio_recycle" value="above_avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Above Average<br>
+			</p>
+
+			<p class="pop_up_comment" id="comment_processed_food"></p>
+
+			<p>If you drink coffee please select from the following options: <br />
+				<select id="food_coffee_type" onchange="food_coffee_select_handler()">
+					<option value="none">-Select-</option>
+					<option value="black_coffee">Black Coffee</option>
+					<option value="cream_sugar">Black Coffee + cream or sugar</option>
+					<option value="latte">Latte</option>
+				</select>
+			</p>
+
+			<p id="food_coffee_frequency_q" style="display:none;">About how many times a week do you drink coffee? <br />
+				<input id="food_coffee_frequency" type="text"  size="2" maxlength="4"/> times
+			</p>
+
+			<p>Do you buy food at farmers markets?<br />
+				<input type="radio" name="food_farmers_market" value="yes" onclick="display_comment('comment_farmers_market','Great decision! Buying locally grown food lowers your carbon emissions')" /> yes &nbsp;
+				<input type="radio" name="food_farmers_market" value="no" onclick="display_comment('comment_farmers_market','You might want to check out the farmers market!')" /> no
+			</p>
+
+			<p class="pop_up_comment" id="comment_farmers_market"></p>
+
+		</div>
+	</div>
+
+	<div class="set waste" id="waste_tab">
+		<div class="title">Waste</div>
+		<div class="content">
+
+			<p>From the following scale decide how much of your waste is recycled (the average person recycles around 25% of their waste)<br />
+				<input type="radio" name="radio_recycle" value="below_avg" />Below Average<br />
+				<input type="radio" name="radio_recycle" value="avg" />Average<br />
+				<input type="radio" name="radio_recycle" value="above_avg" />Above Average<br />
+			</p>
+
+			<p>From the following scale choose the amount of trash you accumulate/day (A bag of sugar weighs 4 lbs. The average person accumulates 4lbs trash/day)<br/>
+				<input type="radio" name="radio_trash" value="less_4lb" />Less than 4lbs<br/>
+				<input type="radio" name="radio_trash" value="4lb" />About 4lbs<br/>
+				<input type="radio" name="radio_trash" value="more_4lb" />Greater than 4lbs<br />
+			</p>
+
+			<p>From the following scale choose the amount you compost/day (A 16 oz soda weights 1 lb. The average person composts 1 lb/day)<br> <!--need conversion factor for composting-->
+				<input type="radio" name="radio_compost" value="less_1lb">Less than 1lbs<br>
+				<input type="radio" name="radio_compost" value="1lb">About 1lbs<br>
+				<input type="radio" name="radio_compost" value="more_1lb">Greater than 1lbs<br>
+			</p>
+		</div>
+	</div>
+
+	<div class="set water" id="water_tab"> <!--same as SCU-->
+		<div class="title">Water</div>
+		<div class="content">
+			<p>On average how long are your showers? <input id="water_showers_duration" type="text"  size="5" maxlength="4"/> minutes</p>
+			<p>On average how many showers/week? <input id="water_showers_times" type="text"  size="5" maxlength="4"/> times</p>
+			<p>On average how many loads of laundry/month? <input id="water_laundry" type="text"  size="5" maxlength="4"/> times</p>
+			<p>Average toilet flushes/day? <input id="water_flush" type="text"  size="5" maxlength="4"/> flushes</p>
+			<p>Average cups of water you drink/day from tap or water fountain? <input id="water_cups" type="text"  size="5" maxlength="4"/> cups <a class="help" id="help" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><img src="images/help.gif" width="18px" /></a></p>
+
+			<p>Do you use a refillable water bottle?
+				<input type="radio" name="water_bottle_refill" value="yes" onclick="display_comment('comment_water_bottle','Way to go! Every time you use your refillable water bottle instead of buying a plastic bottle you are saving as much carbon as driving 30 miles in an average sized car. That could get you to Albany and back!')" />yes
+				<input type="radio" name="water_bottle_refill" value="no" onclick="display_comment('comment_water_bottle_negative','A refillable water bottle is around $10 -$20 dollars and in the long run will save you hundreds of dollars.')" />no
+			</p>
+
+			<p class="pop_up_comment" id="comment_water_bottle"></p>
+
+			<p>&nbsp;</p>
+		</div>
+	</div>
+
+	<div class="set result" id="result_tab">
+		<div class="title" onclick="showResult()">Result</div>
+		<div class="content">
+
+			<!--Your pie chart-->
+			<br><h4>Your result:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average individual footprint in the US:</h4>
+			<div id="result_pie_avg" style="z-index:100; position:relative; left:-90px;"></div>
+			<div id="pie_container" style="width: 450px; height: 350px;"></div>
+
+			<!--US average pie chart-->
+			<div id="pie_container_avg" style="width: 500px; height: 350px; float:right; position: relative; right:90px"></div>
+
+			<!--Your table-->
+			<p>&nbsp;</p>
+			<table cellpadding="0" cellspacing="0">
+				<tr style="border-bottom:solid thin #000">
+					<th width="150px">Category</th>
+					<th>kgCO<sub>2</sub>e / year<a class="help" id="help" title="The tacked on &quot;e&quot; to kg CO2 means the carbon dioxide equivalent and is most widely used to measure greenhouse emissions.  All greenhouse gases have potential to warm the atmosphere, thus accounted for when you see emissions in terms of CO2e"> <img src="images/help.gif" width="18px" /></a></th>
+					<th>Percentage</th>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Transportation</td>
+					<td id="transportation_tab_total">empty</td>
+					<td id="transportation_tab_percentage">empty</td>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Recreation</td>
+					<td id="recreation_tab_total">empty</td>
+					<td id="recreation_tab_percentage">empty</td>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Consumption</td>
+					<td id="consumption_tab_total">empty</td>
+					<td id="consumption_tab_percentage">empty</td>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Energy and Heat</td>
+					<td id="energy_tab_total">empty</td>
+					<td id="energy_tab_percentage">empty</td>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Food</td>
+					<td id="food_tab_total">empty</td>
+					<td id="food_tab_percentage">empty</td>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Waste</td>
+					<td id="waste_tab_total">empty</td>
+					<td id="waste_tab_percentage">empty</td>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Water</td>
+					<td id="water_tab_total">empty</td>
+					<td id="water_tab_percentage">empty</td>
+				</tr>
+
+				<tr>
+					<td style="font-weight:bold;">Total::</td>
+					<td style="font-weight:bold;" id="carbon_total">empty</td>
+					<td style="font-weight:bold;" id="carbon_total_percentage">empty</td>
+				</tr>
+			</table>
+			<br>
+			<br>
+
+			<br><h4>Your result compared to the carbon emissions of the average citizen in the following countries:</h4>
+
+			<div id="result_bar" style="z-index:100; position:relative; left:-25px;"></div>
+
+			<!-- <input type="submit" name="submitbutton" value="Click here to save your results!" />  -->
+		</div>
+	</div>
+
+	<div class="set nextsteps" id="nextsteps_tab">
+		<div class="title">Next Steps</div>
+		<div class="content">
+
+			<p>
+				Oregon State University is partnering with many wonderful Non-Governmental Organizations to help empower you to enact positive change. If you would like to volunteer time or money, or even just learn more about how to live sustainably, please visit their webpages.
+			</p>
+
+			<p>
+				Visit our partners at the Corvallis Sustainability Coaltion to volunteer your time as a Block Captain, to increase overall sustainability in Corvallis. Or you can donate to preserve lands in the mid-Willamette valley with our partners at the Greenbelt Land Trust. Energize Corvallis can teach and empower you to modify your own behaviors to reduce carbon emissions.
+			</p>
+			<p>
+				<div  class="partners" align="center">
+						<a href="http://sustainablecorvallis.org/action-teams/waste-prevention/recycling-block-captain-program/" target="_blank">
+							<img src="images/corvallisSustainabilityModified3.png" style="width:300px;border:0">
+						</a>
+
+						<a href="http://greenbeltlandtrust.org/carboncalculatorchallenge" target="_blank">
+							<img src="images/greenbeltEnergyModified2.png" style="width:300px;border:0">
+						</a>
+
+						<a href="http://energizecorvallis.org/takecharge/" target="_blank">
+							<img src="images/energizeCorvallisModified2.png" style="width:300px;border:0">
+						</a>
+				</div>
+			</p>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<p>
+				Why does sustainability even matter?
+			</p>
+
+			<p>
+				The concept of sustainability is used pretty often. We've found ourselves tuning it out. But sustainability, when you strip away all the rhetoric and politics, poses a pretty good question:  Do we have an obligation to hand on to the next generation a world that will allow them to have at least as good a life as the one we have?
+			</p>
+
+			<p>
+				We can give it a try, by engaging in small changes. Even the smallest changes can make a difference. For example:
+				<ul style="list-style:disc;">
+					<li>Giving up meat once a week yields a significant reduction in CO<sub>2</sub> emissions</li>
+					<li>Buy our own re-usable water bottle and drink from the tap.</li>
+					<li>Buy carbon offsets to account for the high emissions generated by our airplane travel.</li>
+					<li>Or these changes can be things that we do: Buy our own re-usable water bottle and drink from the tap. Or buy carbon offsets – they're pretty cheap – to account for the high emissions generated by our airplane travel.</li>
+					<li> Volunteer! Plant trees, restore habitat, etc.</li>
+					<li> Donate to groups that work for a more sustainable future.</li>
+				</ul>
+			</p>
+
+		</div>
+	</div>
+
+
+
+	<div class="set references" id="references_tab">
+		<div class="title">References</div>
+		<div class="content">
+
+			<p>
+				A large portion of the data used in this calculator came from <a href="http://www.scu.edu/ethics/practicing/focusareas/environmental_ethics/carbon-footprint/calculator.html" target="_blank" color="white";>SCU's carbon footprint calculator.</a> A link to our Math and Methodologies as well as the difference between ours and theirs can be found <a href="http://osucarboncalculator.co.nf/Math_and_Methodologies_Behind_This_Calculator.doc" target='_blank'> here</a>.
+			</p>
+
+			<p>
+				The following is a list of references and articles of interest:
+			</p>
+
+			<p>
+				Transit buses, intercity buses as well as train data came here from this <a href ="http://www.buses.org/files/2008ABAFoundationComparativeFuelCO2.pdf" target="_blank";> study</a>.
+			</p>
+
+			<p class="pop_up_comment" id="comment_transportation_plane_negative" style="color:black">
+				Flying will most likely be the biggest portion of your carbon footprint if you fly over 10,000 miles a year. <a href= "http://environment.about.com/od/greenlivingdesign/a/fly_vs_drive.htm" target="_blank";>This article </a> does a good job at summarizing the difference between driving and flying and, even though driving is not always an option, it is still something to consider.
+			</p>
+
+			<p>
+				All of the partying questions were kept the same from SCU. <p class="pop_up_comment" id="comment_partying_reusable_cups_negative" style="color:black"></p> Data on skiing and snowboarding can be found <a href ="http://www.mountain-riders.org/telecharg/Pole_environnement/Bilan/bilan_ges_mr_synthese.pdf" target="_blank" color="white";> here. </a>
+			</p>
+
+			<p>
+				This <a href="http://seattletimes.com/html/localnews/2010183212_dogcarbon02m.html" target="_blank";>article</a> examines how owning a pet can have as big of a similar carbon footprint as a car.
+			</p>
+
+			<p>
+				Electricity data for the campus and dorms came from OSU's Office of Sustainability. The rest of this sections data came from <a href="https://www.mjbradley.net/_benchmarking/benchmarking_table1_2011.asp" target="_blank";> Portland Electric Electric</a>, <a href=" http://cms.oregon.egov.com/puc/Pages/ngpricehistory.aspx" target="_blank";>Northwest Natural</a> and <a href="http://www.pge.com/about/environment/calculator/assumptions.shtml" target="_blank";> Pacific Gas and Electric Company</a>.
+			</p>
+
+			<p>
+				Waste, recycling and composting data came from the office of sustainability as well.
+			</p>
+
+			<p>
+				Calorie data came from <a href="http://www.coolcalifornia.org/calculator-documentation" target="_blank";> Berkeley's carbon calculator documentation page.</a> <p class="pop_up_comment" id="comment_processed_food_negative" style="color:black">
+			</p>
+
+        </div>
+	</div>
+
+	<script language="javascript" type="text/javascript">
+		$('#help[title]').tipsy({gravity:'w', html:true, fade:true, fallback: ''});
+		$(document).ready(function(){
+			$("#accordion").msAccordion({vertical:true});
+			display_tabs('hide');
+		})
+	</script>
+
+
+</body>
+</html>
