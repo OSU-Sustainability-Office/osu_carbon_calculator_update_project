@@ -88,6 +88,7 @@ function trans_car_conv(input)                 //source: http://shrinkthatfootpr
   var car30_40MPG=0.3547;  //in kg C02e/mi
   var car20_30MPG=0.4817; //in kg C02e/mi
   var carhybrid_electric=0.202; //in kg C02e/mi source: http://shrinkthatfootprint.com/wp-content/uploads/2013/02/Shades-of-Green-Full-Report.pdf
+  var motorcycle=0.197//in kg C02e/mi
   var result=0;
   var year_or_day=0;
   var car_type= $("#trans_select_car").val();
@@ -97,6 +98,7 @@ function trans_car_conv(input)                 //source: http://shrinkthatfootpr
   else if (car_type=="car30_40MPG"){  result = $("#trans_input_car_miles").val() * car30_40MPG / 4 * year_or_day; }
   else if (car_type=="car20_30MPG")    {  result = $("#trans_input_car_miles").val() * car20_30MPG / 4 * year_or_day; }
   else if (car_type=="carhybrid_electric") {  result = $("#trans_input_car_miles").val() * carhybrid_electric / 4 * year_or_day; }
+  else if (car_type=="motorcycle") {  result = $("#trans_input_car_miles").val() * motorcycle / 4 * year_or_day; }
   return result;
 }
 
