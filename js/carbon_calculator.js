@@ -197,6 +197,8 @@ function consumption_eReader_conv(input)         //same as SCU, may need fact ch
   var result = 0;
   var years_owned_tablet = $("#duration_owning_tablet").val();
   var years_owned_kindle = $("#duration_owning_kindle").val();
+  var years_owned_macbook = $("#duration_owning_macbook").val();
+  var years_owned_laptop = $("#duration_owning_laptop").val();
   if (input=='year') {year_or_day=1/52;} else {year_or_day = 1/365;}
   if (document.getElementById('tablet').checked || $("is_ereader_cons_q").is(":checked")) {
     result += ( 270 / years_owned_tablet * year_or_day);;
@@ -209,6 +211,18 @@ function consumption_eReader_conv(input)         //same as SCU, may need fact ch
     display_question('show','duration_owning_kindle');
   } else {
     display_question('hide','duration_owning_kindle');
+  }
+  if (document.getElementById('macbook').checked) {
+    result += ( 400 * year_or_day);
+    display_question('show','duration_owning_macbook');
+  } else {
+    display_question('hide','duration_owning_macbook');
+  }
+  if (document.getElementById('windows_laptop').checked) {
+    result += ( 238 * year_or_day);
+    display_question('show','duration_owning_laptop');
+  } else {
+    display_question('hide','duration_owning_laptop');
   }
   return result;
 }
