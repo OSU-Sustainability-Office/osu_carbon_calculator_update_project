@@ -9,6 +9,7 @@ var graph_waste_total;
 var graph_water_total;
 var data = new Array(6);
 var graph_carbon_num_total = new Array(6);
+var graph_carbon_total = new Array(6);
 var user_type = "on_campus";
 var user_num = 1;
 window.myPie1;
@@ -54,9 +55,9 @@ function showResult() {
 
   var carbon_num_total = trans_total + cons_total + energy_total + food_total + waste_total + water_total;
   for (var i = 0; i < 6; i++) {
+    graph_carbon_total[i] = parseFloat(carbon_num_total.toFixed(2));
     graph_carbon_num_total[i] = trans_total + cons_total + energy_total + food_total + waste_total + water_total;
   }
-  var graph_carbon_total = parseFloat(carbon_num_total.toFixed(2));
 
 
   $("#transportation_tab_total").html(trans_total.toFixed(2));
@@ -99,11 +100,11 @@ function trans_car_conv(input)                 //source: http://shrinkthatfootpr
   var carhybrid_electric=0.202; //in kg C02e/mi source: http://shrinkthatfootprint.com/wp-content/uploads/2013/02/Shades-of-Green-Full-Report.pdf
   var motorcycle=0.197//in kg C02e/mi
   var result=0;
-  var year_or_day=0;
+  var year_or_day=1;
   var car_type= $("#trans_select_car").val();
-  if (input=='year') {year_or_day=52;} else {year_or_day = 1/7;}
+  if (input=='year') {year_or_day=12;} else {year_or_day = 1/30;}
   if (car_type == "no_car") {result = 0;}
-  if(car_type=="car_40plusMPG")     {  result = $("#trans_input_car_miles").val() * car40_plusMPG / 4 * year_or_day; }
+  if(car_type=="car40_plusMPG")     {  result = $("#trans_input_car_miles").val() * car40_plusMPG / 4 * year_or_day; }
   else if (car_type=="car30_40MPG"){  result = $("#trans_input_car_miles").val() * car30_40MPG / 4 * year_or_day; }
   else if (car_type=="car20_30MPG")    {  result = $("#trans_input_car_miles").val() * car20_30MPG / 4 * year_or_day; }
   else if (car_type=="carhybrid_electric") {  result = $("#trans_input_car_miles").val() * carhybrid_electric / 4 * year_or_day; }
@@ -116,8 +117,10 @@ function trans_short_bus_conv(input)         //source: https://www.buses.org/ass
   var shortbus = 0.136 //in kg C02e/(passenger mile)
   var result=0;
   var year_or_day=0;
-  if (input=='year') {year_or_day=52;} else {year_or_day = 1/7;}
-  result = $("#trans_input_long_bus_miles").val() * (1 / 0.62137) * shortbus * (1/4) * year_or_day;
+  if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
+  result = $("#trans_input_short_bus_miles").val();
+  console.log(result);
+  result = result * shortbus * year_or_day;
   return result;
 }
 
@@ -126,8 +129,8 @@ function trans_long_bus_conv(input)       //source: https://www.buses.org/assets
   var longbus=0.043 //in kg C02e/(passenger mile)
   var result=0;
   var year_or_day=0;
-  if (input=='year') {year_or_day=52;} else {year_or_day = 1/7;}
-  result = $("#trans_input_long_bus_miles").val() * (1 / 0.62137) * longbus * (1/4) * year_or_day;
+  if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
+  result = $("#trans_input_long_bus_miles").val() * longbus * year_or_day;
   return result;
 }
 
@@ -137,7 +140,7 @@ function trans_train_conv(input)          //source: https://www.buses.org/assets
   var result=0;
   var year_or_day=0;
   if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
-  result = $("#trans_input_train_miles").val() * (1 / 0.62137) * train  * year_or_day;
+  result = $("#trans_input_train_miles").val() * train  * year_or_day;
   return result;
 }
 
@@ -147,7 +150,7 @@ function trans_airplane_conv(input)      //source: https://www.epa.gov/sites/pro
   var result=0;
   var year_or_day=0;
   if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
-  result = $("#trans_input_plane_miles").val() * (1 / 0.62137) * 1.09 * airtravel * year_or_day;
+  result = $("#trans_input_plane_miles").val() * 1.09 * airtravel * year_or_day;
   return result;
 }
 
@@ -161,7 +164,8 @@ function consumption_textbook_conv(input)       //source: http://www.tkearth.com
   var year_or_day=0;
   var reading_book = $("#reading_book_per_year").val();
   var text_book = $("#text_book_per_year").val();
-  if (input=='year') {year_or_day=3;} else {year_or_day = 1/7 * 1/52;}
+  if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
+  //if (input=='year') {year_or_day=3;} else {year_or_day = 1/7 * 1/52;}
   result = ((reading_book* 7.46)+(text_book* 10.9)) * year_or_day;
   return result;
 }
@@ -201,7 +205,8 @@ function consumption_cellphone_conv(input)
   }
   var result = 0;
   var years_owned = $("#duration_owning_cell_phone").val();
-  if (input=='year') {year_or_day=1/52;} else {year_or_day = 1/7 * 1/52;}
+  if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
+  //if (input=='year') {year_or_day=1/52;} else {year_or_day = 1/7 * 1/52;}
   if (which_cell == "smart_phone"){result = ( 49 / years_owned * year_or_day);}     //source:  https://www.fairphone.com/wp-content/uploads/2014/06/FULLTEXT01.pdf
   else if (which_cell =="mobile_phone"){result = ( 112 * year_or_day);} else {
     result = 0;
@@ -220,7 +225,7 @@ function consumption_eReader_conv(input)         //same as SCU, may need fact ch
   var years_owned_kindle = $("#duration_owning_kindle").val();
   var years_owned_macbook = $("#duration_owning_macbook").val();
   var years_owned_laptop = $("#duration_owning_laptop").val();
-  if (input=='year') {year_or_day=1/52;} else {year_or_day = 1/365;}
+  if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
   if (document.getElementById('tablet').checked || $("is_ereader_cons_q").is(":checked")) {
     result += ( 270 / years_owned_tablet * year_or_day);;
     display_question('show','duration_owning_tablet');
@@ -407,11 +412,12 @@ function simple_option()
   var year_or_day=0;
   var electricity= $("#electricity_usage").val();
   var gas=$("#heat_usage").val();
+  var year_or_day = 1;
   var simple_complex=$("input[name='simple_complex']:checked").val();
   if (simple_complex=='complex') {complex=0;} else {complex=1;}
 
 
-  result = (complex*((electricity*.3821/.1078)+(gas*6.103/1.08)));
+  result = (complex*((electricity*.3821/.1078)+(gas*6.103/1.08))*year_or_day);
 
   return result;
 }
@@ -429,10 +435,9 @@ function energy_baseline_conv(input)
 
 	if (input=='year') {year_or_day=1;} else {year_or_day = 1/ (365);}
 
-	/*if (user_type =="on_campus") {user_num= 1;console.log("1");}
-		else if (user_type =="full_commuter") {user_num = 0.75;console.log("2");}
-		else if (user_type =="part_commuter") {user_num = 0.5;console.log("3");}
-    else {console.log("4");}*/
+	if (user_type =="on_campus") {user_num= 1;}
+		else if (user_type =="full_commuter") {user_num = 0.75;}
+		else if (user_type =="part_commuter") {user_num = 0.5;}
 
 	//I dont know what any of this is. -PK
     //result = ((((53384936 * user_num) / 30492) + 0.5579*electricity_dorms_kwh())* 0.7294 * year_or_day)+((((42311306 * user_num) / 30492) + 0.4421*electricity_dorms_kwh())* 0.1676 * year_or_day) + simple_option();
@@ -497,6 +502,9 @@ function food_conv(input)
   var fruits_vegetables=$("#fruits_vegetables_serv").val();
   var grains=$("#grains_serv").val();
   var poultry=$("#poultry_serv").val();
+  var pork=$("#pork_serv").val();
+  var seafood=$("#seafood_serv").val();
+  var nuts=$("#nuts_serv").val();
 
   if (input=='year') {year_or_day=52;} else {year_or_day=1/7;}
 
@@ -504,7 +512,7 @@ function food_conv(input)
    // else if (processed_food_input =="avg_processed"){processed_food_num = .05;}    //dummy question for now
    // else{processed_food_num = -0.05;}
 
-  result = year_or_day*((redmeat*0.125*27.91)+(eggs_dairy*0.200*6.096)+(fruits_vegetables*0.125*0.778)+(grains*.100*1.595)+(poultry*0.125*4.12))*(1/1000); //source for emissions: http://www.sciencedirect.com/science/article/pii/S0959652616303584
+  result = year_or_day*((redmeat*0.125*27.91)+(eggs_dairy*0.200*6.096)+(fruits_vegetables*0.125*0.778)+(grains*.100*1.595)+(poultry*0.125*4.12)+(pork*0.125*5.85)+(seafood*0.125*4.41)+(nuts*0.03*1.42)); //source for emissions: http://www.sciencedirect.com/science/article/pii/S0959652616303584
 
 
   return result;
@@ -557,9 +565,6 @@ function waste_conv(input)
   if (compost_input =="below_avg"){compost_num = 0.25;}
     else if (recycle_input =="avg"){compost_num = 0.35;}
     else{compost_num = 0.45;}
-    console.log(recycle_num);
-    console.log(trash_num);
-    console.log(compost_num);
 
   result1 = 10296.75 / osuPopulation * recycle_num * commuter_num * year_or_day * 2.79;                      //left as original coefficient, needs fact checking
   result2 = 10296.75 / osuPopulation * compost_num * commuter_num * year_or_day * 0.4443;                    //source: https://www3.epa.gov/ttnchie1/efpac/ghg/GHG_Biogenic_Report_draft_Dec1410.pdf
@@ -596,11 +601,10 @@ function water_conv(input)
 
   if (input=='year') {year_or_day=365;} else {year_or_day=1;}
 
-  /*if(user_type =="student"){baseline = gallonsperdayperperson;}
+  if(user_type =="on_campus"){baseline = gallonsperdayperperson;}
     else if (user_type =="full_commuter") {baseline = 0.75 * gallonsperdayperperson;}
-    else if (user_type =="part_commuter") {baseline = 0.5 * gallonsperdayperperson;}*/
-
-  result = baseline + (total_shower * 1.5 * year_or_day) + (13.1 * total_laundry / 30 * year_or_day) + (1.6*total_flush * year_or_day) + (total_cups * 0.0625 * year_or_day);
+    else if (user_type =="part_commuter") {baseline = 0.5 * gallonsperdayperperson;}
+  result = (baseline * year_or_day) + (total_shower * 1.5 * year_or_day) + (13.1 * total_laundry / 30 * year_or_day) + (1.6*total_flush * year_or_day) + (total_cups * 0.0625 * year_or_day);
   result = (result * 0.00284 ); //soruce: UK Environment Agency
 
   return result;
@@ -613,6 +617,35 @@ function water_conv(input)
 var randomScalingFactor = function() {
     return Math.round(Math.random() * 100);
 };
+
+var data = [
+    {
+        value: 11,
+        color:"#DD6600",
+        highlight: "#DD6600",
+        label: "UK Growth Assets"
+    },
+    {
+        value: 30,
+        color: "#555",
+        highlight: "#555",
+        label: "International Growth Assets"
+    },
+    {
+        value: 11,
+        percent:"22%",
+        color: "#777",
+        highlight: "#777",
+        label: "Real Assets"
+    },
+    {
+        value: 48,
+        percent:"22%",
+        color: "#999",
+        highlight: "#999",
+        label: "Defensive Assets"
+    }
+]
 
 var user_config = {
     type: 'pie',
@@ -637,7 +670,15 @@ var user_config = {
         ]
     },
     options: {
-        responsive: true
+        responsive: true,
+        tooltips : {
+
+                callbacks : { // HERE YOU CUSTOMIZE THE LABELS
+                    label : function(tooltipItem, data) {
+                        return data.labels[tooltipItem.index] + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
+                    },
+                }
+      }
     }
 };
 
@@ -678,7 +719,15 @@ function draw_user_result() {
           ]
       },
       options: {
-          responsive: true
+          responsive: true,
+          tooltips : {
+
+                  callbacks : { // HERE YOU CUSTOMIZE THE LABELS
+                      label : function(tooltipItem, data) {
+                          return data.labels[tooltipItem.index] + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
+                      },
+                  }
+        }
       }
     };
 
@@ -702,7 +751,7 @@ var horizontalBarChartData = {
         label: 'You',
         backgroundColor: window.chartColors.blue,
         borderColor: window.chartColors.blue,
-        data: graph_carbon_num_total
+        data: graph_carbon_total
     }]
 
 };
@@ -726,7 +775,15 @@ function draw_world_avg() {
           title: {
               display: true,
               text: ''
-          }
+          },
+          tooltips : {
+
+                  callbacks : { // HERE YOU CUSTOMIZE THE LABELS
+                      label : function(tooltipItem, data) {
+                          return data.datasets[tooltipItem.datasetIndex].label + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
+                      },
+                  }
+        }
       }
   });
 }
