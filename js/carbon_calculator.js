@@ -1,12 +1,18 @@
 //Link to SCU's original code: https://docs.google.com/file/d/0B66G3LFpAvamc1RwQ29HLWg2dms/edit?usp=sharing
 
-var graph_trans_total;
-var graph_recreation_total;
-var graph_cons_total;
-var graph_energy_total;
-var graph_food_total;
-var graph_waste_total;
-var graph_water_total;
+/*var graph_trans_total = 0;
+var graph_recreation_total = 0;
+var graph_cons_total = 0;
+var graph_energy_total = 0;
+var graph_food_total = 0;
+var graph_waste_total = 0;
+var graph_water_total = 0;*/
+var trans_total;
+var cons_total;
+var energy_total;
+var food_total;
+var waste_total;
+var water_total;
 var data = new Array(6);
 var graph_carbon_num_total = new Array(6);
 var graph_carbon_total = new Array(6);
@@ -30,12 +36,12 @@ window.onload = function() {
 }
 
 function showResult() {
-  var trans_total = parseFloat(trans_car_conv('year')) + parseFloat(trans_short_bus_conv('year')) + parseFloat(trans_long_bus_conv('year'))+ parseFloat(trans_train_conv('year')) + parseFloat(trans_airplane_conv('year'));
-  var cons_total = parseFloat(consumption_textbook_conv('year')) + parseFloat(consumption_clothing_conv('year')) + parseFloat(consumption_recreation_conv('year')) + parseFloat(consumption_cellphone_conv('year')) + parseFloat(consumption_eReader_conv('year')) + parseFloat(consumption_plastic_bottle_conv('year'));// + parseFloat(consumption_ipod_conv('year'));
-  var energy_total= parseFloat(energy_audit_dorm_conv('year')) + parseFloat(energy_gas_baseline_conv('year')) +parseFloat(energy_baseline_conv('year'));
-  var food_total = parseFloat(food_conv('year'))+parseFloat(consumption_coffee_conv('year'));
-  var waste_total = parseFloat(waste_conv('year'));
-  var water_total = parseFloat(water_conv('year'));
+  trans_total = parseFloat(trans_car_conv('year')) + parseFloat(trans_short_bus_conv('year')) + parseFloat(trans_long_bus_conv('year'))+ parseFloat(trans_train_conv('year')) + parseFloat(trans_airplane_conv('year'));
+  cons_total = parseFloat(consumption_textbook_conv('year')) + parseFloat(consumption_clothing_conv('year')) + parseFloat(consumption_recreation_conv('year')) + parseFloat(consumption_cellphone_conv('year')) + parseFloat(consumption_eReader_conv('year')) + parseFloat(consumption_plastic_bottle_conv('year'));// + parseFloat(consumption_ipod_conv('year'));
+  energy_total= parseFloat(energy_audit_dorm_conv('year')) + parseFloat(energy_gas_baseline_conv('year')) +parseFloat(energy_baseline_conv('year'));
+  food_total = parseFloat(food_conv('year'))+parseFloat(consumption_coffee_conv('year'));
+  waste_total = parseFloat(waste_conv('year'));
+  water_total = parseFloat(water_conv('year'));
 
   graph_trans_total = parseFloat(trans_total.toFixed(1));
   data[0] = parseFloat(trans_total.toFixed(1));
@@ -76,7 +82,48 @@ function showResult() {
   $("#water_tab_percentage").html((water_total/carbon_num_total*100).toFixed(2));
   $("#carbon_total_percentage").html((1*100).toFixed(2));
   update_graphs();
+
+  save_anonymous_data();
 };
+
+
+/*******************************************
+  Save Anonymous User Data
+  Data is saved into a CSV file in this format:
+*******************************************/
+function save_anonymous_data()
+{
+  // Save results to text file
+  // Ajax request to php script
+  $.ajax({
+    data: {
+      trans_total: trans_total.toString(),
+        trans_car_conv: parseFloat(trans_car_conv('year')).toString(),
+        trans_short_bus_conv: parseFloat(trans_short_bus_conv('year')).toString(),
+        trans_long_bus_conv: parseFloat(trans_long_bus_conv('year')).toString(),
+        trans_train_conv: parseFloat(trans_train_conv('year')).toString(),
+        trans_airplane_conv: parseFloat(trans_airplane_conv('year')).toString(),
+      cons_total: cons_total.toString(),
+        consumption_textbook_conv: parseFloat(consumption_textbook_conv('year')).toString(),
+        consumption_clothing_conv: parseFloat(consumption_clothing_conv('year')).toString(),
+        consumption_cellphone_conv: parseFloat(consumption_cellphone_conv('year')).toString(),
+        consumption_eReader_conv: parseFloat(consumption_eReader_conv('year')).toString(),
+        consumption_plastic_bottle_conv: parseFloat(consumption_plastic_bottle_conv('year')).toString(),
+      energy_total: energy_total.toString(),
+        energy_audit_dorm_conv: parseFloat(energy_audit_dorm_conv('year')).toString(),
+        energy_gas_baseline_conv: parseFloat(energy_gas_baseline_conv('year')).toString(),
+        energy_baseline_conv: parseFloat(energy_baseline_conv('year')).toString(),
+      food_total: food_total.toString(),
+        food_conv: parseFloat(food_conv('year')).toString(),
+        consumption_coffee_conv: parseFloat(consumption_coffee_conv('year')).toString(),
+      waste_total: waste_total.toString(),
+      water_total: water_total.toString(),
+    },
+    url: "../php/save_anonymous_input.php",
+    type: "POST"
+  });
+  //$.get("../php/save_anonymous_input.php?time="+time+"&graph_trans_total="+graph_trans_total+"&trans_car_conv="+trans_car_conv('year')+"&graph_cons_total="+graph_cons_total+"&graph_energy_total="+graph_energy_total+"&graph_food_total="+graph_food_total+"&graph_waste_total="+graph_waste_total+"&graph_water_total="+graph_water_total);
+}
 
 /*******************************************
   TRANSPORTATION
@@ -119,7 +166,6 @@ function trans_short_bus_conv(input)         //source: https://www.buses.org/ass
   var year_or_day=0;
   if (input=='year') {year_or_day=1;} else {year_or_day = 1/365;}
   result = $("#trans_input_short_bus_miles").val();
-  console.log(result);
   result = result * shortbus * year_or_day;
   return result;
 }
@@ -735,7 +781,7 @@ function draw_user_result() {
 var horizontalBarChartData = {
     labels: ["Brazil", "Burkina Faso", "China", "United States", "France", "Oregon"],
     datasets: [{
-        label: 'Average Carbon Emissions Per Person',
+        label: 'Average',
         backgroundColor: window.chartColors.red,
         borderColor: window.chartColors.red,
         borderWidth: 1,

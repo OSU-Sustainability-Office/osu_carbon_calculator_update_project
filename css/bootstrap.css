@@ -28,7 +28,10 @@ summary {
   display: block;
 }
 audio,
-canvas,
+canvas{
+  max-height: 500px;
+  max-width: 500px;
+  },
 progress,
 video {
   display: inline-block;
