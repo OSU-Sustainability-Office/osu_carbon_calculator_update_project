@@ -1,0 +1,239 @@
+/*
+ * Style file for the quiz script.
+ * Copyright 2013 Google Inc.
+ * Written by Michal Nazarewicz <mina86@mina86.com>
+ *
+ * This is not a Google product.
+ *
+ * Licensed under the terms of of Creative Commons Attribution 3.0
+ * Unported License which can be found at
+ *
+ *     http://creativecommons.org/licenses/by/3.0/deed.en
+ *
+ * or in LICENSE.CC-BY-3 file.
+ */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Helvetica, sans;
+    font-size: 14pt;
+    background: #999;
+}
+
+table {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    padding: 1em;
+}
+
+table, tr, td, th {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 1em;
+    border-collapse: separate;
+    cursor: default;
+    border-spacing: 0.2em;
+}
+
+thead tr.title {
+    height: 3em;
+}
+thead tr.categories {
+    height: 5em;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.categories th {
+    border: 0.2em solid #000;
+    background: #3F51B5;
+    color: #FF0;
+    font-weight: bold;
+}
+
+.btn_select {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    border-radius: 4px;
+    text-shadow: 1px 1px 3px #666666;
+    box-shadow: 2px 2px 2px #666666;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.btn_select:hover {
+    background: #3cb0fd;
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+.btn_blue_light {
+    background: #4da6ff;
+    background-image: linear-gradient(to bottom, #4da6ff, #3c95ef);
+}
+
+.btn_blue_light:hover {
+    background: #66b3ff;
+    background-image: linear-gradient(to bottom, #66b3ff, #56a3ef);
+}
+
+tbody td {
+    border: 0.2em solid #888;
+    background: #889;
+    color: #999;
+    font-weight: bold;
+}
+tbody td.active {
+    border-color: #000;
+    background: #69F;
+    color: #FF0;
+    cursor: pointer;
+}
+tbody td.active:hover {
+    color: #000;
+    background: #4dd2ff;
+}
+
+div.q > p {
+    text-align: center;
+}
+div.a > p {
+    text-align: center;
+}
+
+tfoot {
+    height: 2em;
+}
+tfoot div + div {
+    font-weight: bold;
+}
+
+
+#m {
+    display: none;
+}
+#m.show {
+    display: table;
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(128, 128, 128, 0.75);
+    vertical-align: middle;
+}
+#m > div {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 2em;
+}
+#m > div > div {
+    background: #FFF;
+    border: 0.1em solid #000;
+}
+
+#m ul {
+    display: block;
+    list-style: none;
+    text-align: center;
+}
+#m ul + ul {
+    display: none;
+}
+
+#m li {
+    display: inline-block;
+    margin: 1em 2em;
+}
+#m a, #m a:visited {
+    text-align: center;
+    text-decoration: none;
+    color: #009;
+    cursor: default;
+}
+#m a:active, #m a:focus, #m a:hover {
+    color: #00F;
+}
+
+#x {
+    float: right;
+    font-size: 0.5em;
+    font-weight: bold;
+    padding: 0.1em 0.5em;
+    border-bottom: 0.1em solid #000;
+    border-left: 0.1em solid #000;
+}
+#x:hover, #x:focus {
+    background: #F00;
+}
+
+#m div {
+    overflow: auto;
+}
+#m p {
+    margin: 1em 2em;
+    line-height: 1.5em;
+}
+.q div {
+    text-align: center;
+}
+.q img {
+    height: 5em
+}
+p {
+    text-align: justify;
+}
+
+#m .a { visibility: hidden; }
+#m.showAnswer .a { visibility: visible; }
+#m.showAnswer ul { display: none; }
+#m.showAnswer ul + ul { display: block; }
+#m.showAnswer #x { visibility: hidden; }
+
+
+@media print {
+    body {
+        color: #000;
+        background: #FFF;
+        font-size: 18pt;
+    }
+    #questions {
+        display: block !important;
+    }
+
+    h2 {
+        page-break-before: always;
+    }
+    .q {
+        margin-bottom: 0.5em;
+        border-top: 1px dotted #000;
+        padding-top: 0.5em;
+        margin-top: 2em;
+    }
+    h2 + .q {
+        margin-top: 1em;
+    }
+    .a {
+        padding-left: 2em;
+        padding-bottom: 0.5em;
+        border-bottom: 1px dotted #000;
+        margin-bottom: 2em;
+        font-style: italic;
+    }
+
+    table, #m, h1, img {
+        display: none;
+    }
+}

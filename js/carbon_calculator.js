@@ -782,8 +782,8 @@ var horizontalBarChartData = {
     labels: ["Brazil", "Burkina Faso", "China", "United States", "France", "Oregon"],
     datasets: [{
         label: 'Average',
-        backgroundColor: window.chartColors.red,
-        borderColor: window.chartColors.red,
+        backgroundColor: window.chartColors.yellow,
+        borderColor: window.chartColors.yellow,
         borderWidth: 1,
         data: [
             2500,
@@ -795,8 +795,8 @@ var horizontalBarChartData = {
         ]
     }, {
         label: 'You',
-        backgroundColor: window.chartColors.blue,
-        borderColor: window.chartColors.blue,
+        backgroundColor: window.chartColors.green,
+        borderColor: window.chartColors.green,
         data: graph_carbon_total
     }]
 
