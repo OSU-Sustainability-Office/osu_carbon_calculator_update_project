@@ -20,9 +20,9 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   /* Must be two. */
-  var teams = ['Team 1', 'Team 2'];
+  var teams = ['Score:', 'Team 2'];
 
-  var strTie = 'Tie';
+  var strShowAnswer = 'Show Answer';
   var strClose = 'Close';
 
   /***********************************************/
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     linksList = addNewElement(div, 'ul');
     linksList.id = 'links';
     team0Link = addNewElement(addNewElement(linksList, 'li'), 'button', teams[0]);
-    tieLink   = addNewElement(addNewElement(linksList, 'li'), 'button', strTie);
+    tieLink   = addNewElement(addNewElement(linksList, 'li'), 'button', strShowAnswer);
     team1Link = addNewElement(addNewElement(linksList, 'li'), 'button', teams[1]);
     addNewClass(team0Link, 'btn_select');
     addNewClass(tieLink, 'btn_select btn_blue_light');

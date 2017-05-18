@@ -38,35 +38,53 @@
 
           <div class="row">
             <div class="card">
-              <a onclick="openSOWeb()"><img class="img-rounded" src="img/sustainability_office.jpg" height="267" alt="Card image cap"><br />
-                <h4>Sustainability Office Homepage</h4></a>
+              <a href="http://fa.oregonstate.edu/sustainability"><img class="img-rounded" src="img/sustainability_office.jpg" height="267" alt="Card image cap"><br />
+              <h4>Sustainability Office Homepage</h4></a>
             </div>
-            <div class="overlay" id="so_web">
-              <div class="overlay-content">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeSOWeb()">X</a>
-                <iframe src="http://isitchristmas.com" width="95%" height="95%" style="border:none"></iframe>
+            <div class="card">
+              <a onclick="openOverlay('lucid')"><img class="img-rounded" src="img/metering.jpg" height="267" alt="Card image cap"><br />
+              <h4>Real Time Energy Usage</h4></a>
+              <div class="overlay" id="lucid">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('lucid')">X</a>
+                <div class="overlay-content">
+                  <iframe src="https://buildingos.com/s/oregonstate/storyboard252/?chapterId=1082" width="95%" height="85%" style="border:none"></iframe>
+                </div>
               </div>
             </div>
             <div class="card">
-              <a href="https://buildingos.com/s/oregonstate/storyboard252/?chapterId=1082"><img class="img-rounded" src="img/metering.jpg" height="267" alt="Card image cap"><br />
-                <h4>Real Time Energy Usage</h4></a>
-            </div>
-            <div class="card">
-              <a href="http://carbon.campusops.oregonstate.edu"><img class="img-rounded" src="img/carbon_calc.jpg" height="267" alt="Card image cap"><br />
-                <h4>Carbon Calculator</h4></a>
+              <a onclick="openOverlay('carbon_calculator')"><img class="img-rounded" src="img/carbon_calc.jpg" height="267" alt="Card image cap"><br />
+              <h4>Carbon Calculator</h4></a>
+              <div class="overlay" id="carbon_calculator">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('carbon_calculator')">X</a>
+                <div class="overlay-content">
+                  <iframe src="./index.html" width="95%" height="85%" style="border:none"></iframe>
+                </div>
+              </div>
             </div>
 
             <div class="card">
-              <a href="https://buildingos.com/s/oregonstate/storyboard212/?chapterId=848"><img class="img-rounded" src="img/kc.jpg" height="267" alt="Card image cap"><br />
-                <h4>Kilowatt Crackdown</h4></a>
+              <a onclick="openOverlay('kilowatt')"><img class="img-rounded" src="img/kc.jpg" height="267" alt="Card image cap"><br />
+              <h4>Kilowatt Crackdown</h4></a>
+              <div class="overlay" id="kilowatt">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('kilowatt')">X</a>
+                <div class="overlay-content">
+                  <iframe src="https://buildingos.com/s/oregonstate/storyboard212/?chapterId=848" width="95%" height="85%" style="border:none"></iframe>
+                </div>
+              </div>
             </div>
             <div class="card">
               <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/green-office-certification"><img class="img-rounded" src="img/green_office.jpg" height="267" alt="Card image cap"><br />
-                <h4>Green Office Certification</h4></a>
+              <h4>Green Office Certification</h4></a>
             </div>
             <div class="card">
-              <a href="https://mysolarcity.com/Share/007c9349-72ba-450c-aa1f-4e5a77b68f79#/monitoring/historical/day"><img class="img-rounded" src="img/solar.jpg" height="267" alt="Card image cap"><br />
-                <h4>Solar Power Generation</h4></a>
+              <a onclick="openOverlay('solar')"><img class="img-rounded" src="img/solar.jpg" height="267" alt="Card image cap"><br />
+              <h4>Solar Power Generation</h4></a>
+              <div class="overlay" id="solar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('solar')">X</a>
+                <div class="overlay-content">
+                  <iframe src="https://mysolarcity.com/Share/007c9349-72ba-450c-aa1f-4e5a77b68f79#/monitoring/historical/day" width="95%" height="85%" style="border:none"></iframe>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -6,14 +6,14 @@
 /* Links */
 
 a, a:focus, a:hover {
-  color: #333;
+  color: #000;
 }
 
 
 /* Custom default button */
 
 .btn-secondary, .btn-secondary:hover, .btn-secondary:focus {
-  color: #333;
+  color: #000;
   text-shadow: none;
   /* Prevent inheritance from `body` */
   background-color: #fff;
@@ -27,11 +27,11 @@ a, a:focus, a:hover {
 
 html, body {
   height: 100%;
-  background-color: #333;
+  background-color: #000;
 }
 
 body {
-  color: #333;
+  color: #000;
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 }
@@ -47,7 +47,8 @@ body {
   min-height: 100%;
   -webkit-box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-  background-image: url("../img/background_tabling.png");
+  background-color: #DC4405;
+  /*background-image: url("../../img/background_tabling.png");*/
 }
 
 .site-wrapper-inner {
@@ -62,7 +63,7 @@ body {
 
 .cover-heading {
   font-family: "StratumNo2-Bold";
-  color: #333
+  color: #000
 }
 
 
@@ -203,7 +204,7 @@ body {
   border-radius: 10px;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: rgba(198, 218, 231, 0.8);
+  background-color: #fff;/*rgba(198, 218, 231, 0.8);*/
 }
 
 .card {
@@ -250,10 +251,10 @@ footer p {
 /* Position the content inside the overlay */
 .overlay-content {
    position: relative;
-   top: 0%; /* 25% from the top */
+   top: 10%; /* 10% from the top */
    width: 100%; /* 100% width */
    text-align: center; /* Centered text/links */
-   margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+   margin-top: 0px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
 /* The navigation links inside the overlay */
@@ -261,7 +262,7 @@ footer p {
    padding: 8px;
    text-decoration: none;
    font-size: 36px;
-   color: #818181;
+   color: #337ab7;
    display: block; /* Display block instead of inline */
    transition: 0.3s; /* Transition effects on hover (color) */
 }
@@ -274,17 +275,17 @@ footer p {
 /* Position the close button (top right corner) */
 .overlay .closebtn {
    position: absolute;
-   top: 20px;
-   right: 45px;
-   font-size: 60px;
+   top: 10px;
+   right: 25px;
+   font-size: 30px;
 }
 
 /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
 @media screen and (max-height: 450px) {
    .overlay a {font-size: 20px}
    .overlay .closebtn {
-       font-size: 40px;
-       top: 15px;
-       right: 35px;
+       font-size: 20px;
+       top: 8px;
+       right: 17px;
    }
 }

@@ -13,15 +13,24 @@
  * or in LICENSE.CC-BY-3 file.
  */
 
+ @font-face {
+   font-family: 'StratumNo2-Bold';
+   src: url('../../fonts/StratumNo2-Bold.eot?#iefix') format('embedded-opentype'),  url('../../fonts/StratumNo2-Bold.otf')  format('opentype'),
+        url('../../fonts/StratumNo2-Bold.woff') format('woff'), url('../../fonts/StratumNo2-Bold.ttf')  format('truetype'), url('../../fonts/StratumNo2-Bold.svg#StratumNo2-Bold') format('svg');
+   font-weight: normal;
+   font-style: normal;
+ }
+
 * {
     padding: 0;
     margin: 0;
 }
 
 body {
-    font-family: Helvetica, sans;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14pt;
-    background: #999;
+    background: #000;
+    color: #fff;
 }
 
 table {
@@ -45,6 +54,10 @@ table, tr, td, th {
 
 thead tr.title {
     height: 3em;
+    font-family: 'StratumNo2-Bold';
+    font-size: 20pt;
+    background: #000;
+    color: #fff;
 }
 thead tr.categories {
     height: 5em;
@@ -55,9 +68,9 @@ h1 {
 }
 
 .categories th {
-    border: 0.2em solid #000;
-    background: #3F51B5;
-    color: #FF0;
+    border: 0.1em solid #fff;
+    background: #000;
+    color: #DC4405;
     font-weight: bold;
 }
 
@@ -90,20 +103,19 @@ h1 {
 }
 
 tbody td {
-    border: 0.2em solid #888;
-    background: #889;
-    color: #999;
+    border: 0.1em solid #fff;
+    background: #DC4405;
+    color: #fff;
     font-weight: bold;
 }
 tbody td.active {
-    border-color: #000;
-    background: #69F;
-    color: #FF0;
+    border: 0.1em solid #fff;
+    background: #DC4405;
+    color: #fff;
     cursor: pointer;
 }
 tbody td.active:hover {
-    color: #000;
-    background: #4dd2ff;
+    text-decoration: underline;
 }
 
 div.q > p {
@@ -131,8 +143,9 @@ tfoot div + div {
     left: 0; right: 0;
     width: 100%;
     height: 100%;
-    background: rgba(128, 128, 128, 0.75);
+    background: rgba(0, 0, 0, 0.8);
     vertical-align: middle;
+    border: 0.1em solid #fff;
 }
 #m > div {
     display: table-cell;
@@ -140,8 +153,8 @@ tfoot div + div {
     padding: 2em;
 }
 #m > div > div {
-    background: #FFF;
-    border: 0.1em solid #000;
+    background: #000;
+    border: 0.1em solid #fff;
 }
 
 #m ul {
