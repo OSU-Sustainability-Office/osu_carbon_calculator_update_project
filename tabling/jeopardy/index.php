@@ -12,7 +12,7 @@
   }
 
   // Open file.
-  $file = fopen("questions.csv", "r") or die("Unable to open file!");
+  $file = fopen("https://docs.google.com/spreadsheets/u/1/d/1M4UFNRymQbhFIgKE22nZ2SlTaYaRZKVmAJL9fhGc_7M/export?format=csv&id=1M4UFNRymQbhFIgKE22nZ2SlTaYaRZKVmAJL9fhGc_7M&gid=0", "r") or die("Unable to open file!");
   // Create initial arrays.
   $titles = array();
   $questions = array();
@@ -120,97 +120,62 @@
     <div id="questions">
       <h1>FOSS Quiz!</h1>
 
-      <h2><?php print $titles[0]; ?></h2>
-
-      <p><?php print $questions[0][0]; ?></p>
-      <p>Even thought Linus Torvalds is Finnish, his native language is
-      Swedish.</p>
-
-      <p><?php print $questions[1][0]; ?></p>
-      <p>It's Alan Cox.</p>
-
-      <p><?php print $questions[2][0]; ?></p>
-      <p>RMS refers to Richard Stallman, and M stands for his middle
-      name which is Matthew.</p>
-
-      <p><?php print $questions[3][0]; ?></p>
-      <p>Marshall Kirk McKusick was born that day.</p>
-
-      <p><?php print $questions[4][0]; ?></p>
-      <p>Bradley M. Kuhn is the first FSF Associate Member.</p>
-
 
       <h2><?php print $titles[1]; ?></h2>
 
       <p><?php print $questions[0][1]; ?></p>
-      <p>Freax, but mirror maintainer where it has been first
-      distributed decided that Linux is better.</p>
+      <p><?php print $factsLine[0][1]; ?></p>
 
-      <div>
-        <p><?php print $questions[1][1]; ?></p>
-        <div><img src="img/puffy.png" alt="Puffy" /></div>
-      </div>
-      <p>Puffy is OpenBSD's mascot.</p>
 
-      <div>
-        <p><?php print $questions[2][1]; ?></p>
-        <div><img src="img/tux-with-pipe.jpg" alt="Tux smoking a pipe" /></div>
-      </div>
-      <p>The oldest still distribution still being maintained is
-      Slackware.</p>
+      <p><?php print $questions[1][1]; ?></p>
+      <p><?php print $factsLine[1][1]; ?></p>
+
+      <p><?php print $questions[2][1]; ?></p>
+      <p><?php print $factsLine[2][1]; ?></p>
 
       <p><?php print $questions[3][1]; ?></p>
-      <p>Two followup BSD 4.3 releases are Tahoe and Reno.</p>
+      <p><?php print $factsLine[3][1]; ?></p>
 
-      <div>
-        <p><?php print $questions[4][1]; ?></p>
-        <div><img src="img/beastie.png" alt="Beastie" /></div>
-      </div>
-      <p>Even though McKussick holds the copyright it's John Alan
-      Lasseter who drew it.</p>
+
+      <p><?php print $questions[4][1]; ?></p>
+      <p><?php print $factsLine[4][1]; ?></p>
 
 
       <h2><?php print $titles[2]; ?></h2>
 
       <p><?php print $questions[0][2]; ?></p>
-      <p>GNU General Public License.</p>
+      <p><?php print $factsLine[0][2]; ?></p>
 
       <p><?php print $questions[1][2]; ?></p>
-      <p>Even though a lot of Android uses more permissive license,
-      the kernel is based on Linux and thus distributed under the
-      terms of the GNU General Public License version 2.</p>
+      <p><?php print $factsLine[1][2]; ?></p>
 
       <p><?php print $questions[2][2]; ?></p>
-      <p>Do What The Fuck you want to Public License.</p>
+      <p><?php print $factsLine[2][2]; ?></p>
 
       <p><?php print $questions[3][2]; ?></p>
-      <p>CERN.</p>
+      <p><?php print $factsLine[3][2]; ?></p>
 
       <p><?php print $questions[4][2]; ?></p>
-      <p>AGPL includes a clause requiring source code distribution of
-      software run as a service (eg. web applications).</p>
+      <p><?php print $factsLine[4][2]; ?></p>
 
 
       <h2><?php print $titles[3]; ?></h2>
 
       <p><?php print $questions[0][3]; ?></p>
-      <p>The initial Linux release happened on September 1991.</p>
+      <p><?php print $factsLine[0][3]; ?></p>
 
       <p><?php print $questions[1][3]; ?></p>
-      <p>Linus Torvalds was born on the year of Moon landing,
-      1969.</p>
+      <p><?php print $factsLine[1][3]; ?></p>
 
       <p><?php print $questions[2][3]; ?></p>
-      <p>PDP-11.</p>
+      <p><?php print $factsLine[2][3]; ?></p>
 
-      <div>
-        <p><?php print $questions[3][3]; ?></p>
-        <div><img src="img/watson.jpg" alt="Watson's avatar" /></div>
-      </div>
-      <p>It's IBM's Watson.</p>
+
+      <p><?php print $questions[3][3]; ?></p>
+      <p><?php print $factsLine[3][3]; ?></p>
 
       <p><?php print $questions[4][3]; ?></p>
-      <p>Xerox 9700.</p>
+      <p><?php print $factsLine[4][3]; ?></p>
     </div>
   </body>
 </html>

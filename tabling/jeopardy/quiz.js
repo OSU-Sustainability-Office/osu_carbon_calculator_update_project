@@ -18,6 +18,14 @@
  * limitations under the License.
  */
 
+/*
+ * Quiz Script Modified by Jack Woods for the OSU Sustainability Office
+ * Last Updated: May 2017
+ * For more information regarding specific changes, consult the github repo!
+ * https://github.com/jackrwoods/osu_carbon_calculator_update_project
+ * All of the changes to Jeopardy should be recorded there.
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
   /* Must be two. */
   var teams = ['Score:', 'Team 2'];
@@ -120,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     linksList = addNewElement(div, 'ul');
     linksList.id = 'links';
+    //TODO: I think this is where the buttons are.
     team0Link = addNewElement(addNewElement(linksList, 'li'), 'button', teams[0]);
     tieLink   = addNewElement(addNewElement(linksList, 'li'), 'button', strShowAnswer);
     team1Link = addNewElement(addNewElement(linksList, 'li'), 'button', teams[1]);
@@ -133,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
   })();
 
 
-  /* Build table with quesitons. */
+  /* Build table with questions. */
 
   var makeClickHandler = (function() {
     var questionShown = false;
