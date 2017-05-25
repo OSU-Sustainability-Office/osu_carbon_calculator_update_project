@@ -1,4 +1,5 @@
 <?php
+  //TODO: do while loop is detecting commas and is resetting "questionOrFact" to zero.
 
   // Since strpos returns false if the char is not found, I created a Function
   // that returns the location of the end of the string. This allows me to
@@ -12,7 +13,7 @@
   }
 
   // Open file.
-  $file = fopen("https://docs.google.com/spreadsheets/u/1/d/1M4UFNRymQbhFIgKE22nZ2SlTaYaRZKVmAJL9fhGc_7M/export?format=csv&id=1M4UFNRymQbhFIgKE22nZ2SlTaYaRZKVmAJL9fhGc_7M&gid=0", "r") or die("Unable to open file!");
+  $file = fopen("questions.csv", "r") or die("Unable to open file!");
   // Create initial arrays.
   $titles = array();
   $questions = array();
@@ -42,23 +43,45 @@
     $line = substr($line, stringLoc($line, ',') + 1); // Delete current element from line
   }
 
-  // Load questions, facts, and answers.
+  // Load questions, facts, and answers. There are 6 rows, but the first row is
+  // read by the for loop above.
   for($y = 0; $y < 5; $y++) {
     $line = fgets($file);
+    $line = substr($line, 4); // Eliminate first column, which is used for excel formatting.
+
     // Create new arrays for the row
     $questionsLine = array();
     $factsLine = array();
     $answerLine = array();
-    for($x = 0; $x < 5; $x++) {
+
+    $quotes = 0;
+
+    for($x = 0; $x < 3; $x++) {
       $answersInCell = array();
       $questionOrFact = 0; // This helps the loop (below) determine if the currently
                            // scrutinized element is a question, fact, or answer.
       // Add questions, facts, and answers into their respective arrays.
+
       do {
-        $load = substr($line, 0, stringLoc($line, ';')); // Whichever comes first.
-        while ($load[0] == ',') {
-          $load = substr($load, 1); // Delete the left over comma.
+        $load = substr($line, 0, stringLoc($line, ';'));
+        echo($questionOrFact);
+        echo ($load);
+        echo("\n");
+
+        // Eliminate leftover syntax characters and check for quotes.
+        while ($load[0] == ',' || $load[0] == '"') {
+          if ($load[0] == '"') {
+            echo ("Quotes\n");
+            $quotes = 1;
+          }
+          $load = substr($load, 1); // Delete the left over syntactical elements.
         }
+
+        // Eliminate leftover syntax characters.
+        while ($load[0] == ',' || $load[0] == '"') {
+          $load = substr($load, 1); // Delete the left over syntactical elements.
+        }
+
         switch ($questionOrFact){
           case 0: // Current element is a question.
             $questionsLine[] =  $load; // Add question to current line.
@@ -74,7 +97,9 @@
         $line = substr($line, stringLoc($line, ';') + 1);
         // If the length to the next ';' is greater than or equal to the length
         //  to the next comma, then end this cell and start a new one.
-      } while (stringLoc($line, ';') < stringLoc($line, ','));
+
+      } while ((stringLoc($line, ';') < stringLoc($line, ',') && $quotes == 0) || ($quotes == 1 && (stringLoc($line, ';') < stringLoc($line, '"'))));
+      echo ("Break\n");
       $answerLine[] =  $answersInCell; // Add cell to current row.
     }
     $questions[] = $questionsLine;
@@ -123,59 +148,59 @@
 
       <h2><?php print $titles[1]; ?></h2>
 
-      <p><?php print $questions[0][1]; ?></p>
-      <p><?php print $factsLine[0][1]; ?></p>
+      <p><?php print $questions[0][0]; ?></p>
+      <p><?php print $facts[0][0]; ?></p>
 
 
-      <p><?php print $questions[1][1]; ?></p>
-      <p><?php print $factsLine[1][1]; ?></p>
+      <p><?php print $questions[1][0]; ?></p>
+      <p><?php print $facts[1][0]; ?></p>
 
-      <p><?php print $questions[2][1]; ?></p>
-      <p><?php print $factsLine[2][1]; ?></p>
+      <p><?php print $questions[2][0]; ?></p>
+      <p><?php print $facts[2][0]; ?></p>
 
-      <p><?php print $questions[3][1]; ?></p>
-      <p><?php print $factsLine[3][1]; ?></p>
+      <p><?php print $questions[3][0]; ?></p>
+      <p><?php print $facts[3][0]; ?></p>
 
 
-      <p><?php print $questions[4][1]; ?></p>
-      <p><?php print $factsLine[4][1]; ?></p>
+      <p><?php print $questions[4][0]; ?></p>
+      <p><?php print $facts[4][0]; ?></p>
 
 
       <h2><?php print $titles[2]; ?></h2>
 
-      <p><?php print $questions[0][2]; ?></p>
-      <p><?php print $factsLine[0][2]; ?></p>
+      <p><?php print $questions[0][1]; ?></p>
+      <p><?php print $facts[0][1]; ?></p>
 
-      <p><?php print $questions[1][2]; ?></p>
-      <p><?php print $factsLine[1][2]; ?></p>
+      <p><?php print $questions[1][1]; ?></p>
+      <p><?php print $facts[1][1]; ?></p>
 
-      <p><?php print $questions[2][2]; ?></p>
-      <p><?php print $factsLine[2][2]; ?></p>
+      <p><?php print $questions[2][1]; ?></p>
+      <p><?php print $facts[2][1]; ?></p>
 
-      <p><?php print $questions[3][2]; ?></p>
-      <p><?php print $factsLine[3][2]; ?></p>
+      <p><?php print $questions[3][1]; ?></p>
+      <p><?php print $facts[3][1]; ?></p>
 
-      <p><?php print $questions[4][2]; ?></p>
-      <p><?php print $factsLine[4][2]; ?></p>
+      <p><?php print $questions[4][1]; ?></p>
+      <p><?php print $facts[4][1]; ?></p>
 
 
       <h2><?php print $titles[3]; ?></h2>
 
-      <p><?php print $questions[0][3]; ?></p>
-      <p><?php print $factsLine[0][3]; ?></p>
+      <p><?php print $questions[0][2]; ?></p>
+      <p><?php print $facts[0][2]; ?></p>
 
-      <p><?php print $questions[1][3]; ?></p>
-      <p><?php print $factsLine[1][3]; ?></p>
+      <p><?php print $questions[1][2]; ?></p>
+      <p><?php print $facts[1][2]; ?></p>
 
-      <p><?php print $questions[2][3]; ?></p>
-      <p><?php print $factsLine[2][3]; ?></p>
+      <p><?php print $questions[2][2]; ?></p>
+      <p><?php print $facts[2][2]; ?></p>
 
 
-      <p><?php print $questions[3][3]; ?></p>
-      <p><?php print $factsLine[3][3]; ?></p>
+      <p><?php print $questions[3][2]; ?></p>
+      <p><?php print $facts[3][2]; ?></p>
 
-      <p><?php print $questions[4][3]; ?></p>
-      <p><?php print $factsLine[4][3]; ?></p>
+      <p><?php print $questions[4][2]; ?></p>
+      <p><?php print $facts[4][2]; ?></p>
     </div>
   </body>
 </html>
