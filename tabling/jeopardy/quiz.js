@@ -1,3 +1,4 @@
+
 /*
  * Quiz script.
  * Copyright 2013 Google Inc.
@@ -18,19 +19,11 @@
  * limitations under the License.
  */
 
-/*
- * Quiz Script Modified by Jack Woods for the OSU Sustainability Office
- * Last Updated: May 2017
- * For more information regarding specific changes, consult the github repo!
- * https://github.com/jackrwoods/osu_carbon_calculator_update_project
- * All of the changes to Jeopardy should be recorded there.
- */
-
 document.addEventListener('DOMContentLoaded', function() {
   /* Must be two. */
-  var teams = ['Score:', 'Team 2'];
+  var teams = ['Your Score:'];
 
-  var strShowAnswer = 'Show Answer';
+  var strTie = 'Tie';
   var strClose = 'Close';
 
   /***********************************************/
@@ -115,26 +108,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* Create the question board. */
 
-  var mDiv, linksList, xLink, tieLink, team0Link, team1link, closeLink;
+  var mDiv, div, makeTeamClickHandler, linksList, xLink, answer2Link, correctAnswerLink, answer3Link, answer4Link, closeLink;
 
   (function() {
     mDiv = addNewElement(D.getElementsByTagName('body')[0], 'div');
     mDiv.id = 'm';
 
-    var div = addNewElement(addNewElement(mDiv, 'div'), 'div');
+    div = addNewElement(addNewElement(mDiv, 'div'), 'div');
 
     xLink = addNewElement(div, 'a', 'x');
     xLink.id = 'x';
 
     linksList = addNewElement(div, 'ul');
     linksList.id = 'links';
-    //TODO: I think this is where the buttons are.
-    team0Link = addNewElement(addNewElement(linksList, 'li'), 'button', teams[0]);
-    tieLink   = addNewElement(addNewElement(linksList, 'li'), 'button', strShowAnswer);
-    team1Link = addNewElement(addNewElement(linksList, 'li'), 'button', teams[1]);
-    addNewClass(team0Link, 'btn_select');
-    addNewClass(tieLink, 'btn_select btn_blue_light');
-    addNewClass(team1Link, 'btn_select');
+
+    correctAnswerLink = addNewElement(addNewElement(linksList, 'li'), 'button', 'One');
+    answer2Link   = addNewElement(addNewElement(linksList, 'li'), 'button', 'Two');
+    answer3Link = addNewElement(addNewElement(linksList, 'li'), 'button', 'Three');
+    answer4Link = addNewElement(addNewElement(linksList, 'li'), 'button', 'Four');
+    addNewClass(correctAnswerLink, 'btn_select');
+    addNewClass(answer2Link, 'btn_select');
+    addNewClass(answer3Link, 'btn_select');
+    addNewClass(answer4Link, 'btn_select');
 
     var el = addNewElement(div, 'ul');
     closeLink = addNewElement(addNewElement(el, 'li'), 'button', strClose);
@@ -142,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
   })();
 
 
-  /* Build table with questions. */
+  /* Build table with quesitons. */
 
   var makeClickHandler = (function() {
     var questionShown = false;
@@ -157,28 +152,36 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     xLink.onclick = close;
-    tieLink.onclick = function() {
+    answer2Link.onclick = function() {
+      m.className += ' showAnswer';
+      return false;
+    };
+    answer3Link.onclick = function() {
+      m.className += ' showAnswer';
+      return false;
+    };
+    answer4Link.onclick = function() {
       m.className += ' showAnswer';
       return false;
     };
 
     (function() {
-      var makeTeamClickHandler = function(team) {
+      makeTeamClickHandler = function(team) {
         return function() {
           if (team !== -1) {
             scores[team][0] += points;
             nukeChildren(scores[team][1]);
             addText(scores[team][1], '' + scores[team][0]);
           }
+          m.className += ' showAnswer';
           td.className = '';
           td.onclick = null;
-          close();
+          if (team !== 0) close();
           return false;
         };
       };
 
-      team0Link.onclick = makeTeamClickHandler(0);
-      team1Link.onclick = makeTeamClickHandler(1);
+      correctAnswerLink.onclick = makeTeamClickHandler(0);
       closeLink.onclick = makeTeamClickHandler(-1);
     })();
 
@@ -191,6 +194,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
           question[0] = question[0].cloneNode(true);
           question[1] = question[1].cloneNode(true);
+
+          // Populate Questions with the Correct Answers
+          nukeChildren(mDiv);
+
+          div = addNewElement(addNewElement(mDiv, 'div'), 'div');
+
+          xLink = addNewElement(div, 'a', 'x');
+          xLink.id = 'x';
+
+          linksList = addNewElement(div, 'ul');
+          linksList.id = 'links';
+
+          var col = this.cellIndex;
+          var row = this.parentNode.rowIndex;
+
+          correctAnswerLink = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][0]);
+          console.log(col);
+          console.log(row-2);
+          answer2Link   = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][1]);
+          answer3Link = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][2]);
+          answer4Link = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][3]);
+          addNewClass(correctAnswerLink, 'btn_select');
+          addNewClass(answer2Link, 'btn_select');
+          addNewClass(answer3Link, 'btn_select');
+          addNewClass(answer4Link, 'btn_select');
+
+          var el = addNewElement(div, 'ul');
+          closeLink = addNewElement(addNewElement(el, 'li'), 'button', strClose);
+          addNewClass(closeLink, 'btn_select btn_blue_light');
+
+          xLink.onclick = close;
+          answer2Link.onclick = function() {
+            m.className += ' showAnswer';
+            return false;
+          };
+          answer3Link.onclick = function() {
+            m.className += ' showAnswer';
+            return false;
+          };
+          answer4Link.onclick = function() {
+            m.className += ' showAnswer';
+            return false;
+          };
+
+          correctAnswerLink.onclick = makeTeamClickHandler(0);
+          closeLink.onclick = makeTeamClickHandler(-1);
+
           linksList.parentNode.insertBefore(question[0], linksList);
           linksList.parentNode.insertBefore(question[1], linksList);
           m.className = 'show';
@@ -282,6 +332,5 @@ document.addEventListener('DOMContentLoaded', function() {
       cell.setAttribute('colspan', '' + categories.length - 2);
       row.appendChild(cell);
     }
-    scores.push([0, addScoreCell(1)]);
   })();
 });

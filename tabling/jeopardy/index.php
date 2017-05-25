@@ -127,6 +127,10 @@
     <title>Sustainability Jeopardy</title>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="quiz.css" />
+    <?php
+      // Load answers array into Javascript (quiz.js) for HTML generation.
+      echo '<script>var answers = '.json_encode($answers) .';</script>';
+    ?>
     <script type="text/javascript" src="quiz.js"></script>
     <style type="text/css">
       #questions {
