@@ -19,6 +19,26 @@
  * limitations under the License.
  */
 
+// Shuffle Code from StackOverflow
+function shuffle(array) {
+var currentIndex = array.length, temporaryValue, randomIndex;
+
+// While there remain elements to shuffle...
+while (0 !== currentIndex) {
+
+  // Pick a remaining element...
+  randomIndex = Math.floor(Math.random() * currentIndex);
+  currentIndex -= 1;
+
+  // And swap it with the current element.
+  temporaryValue = array[currentIndex];
+  array[currentIndex] = array[randomIndex];
+  array[randomIndex] = temporaryValue;
+}
+
+return array;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   /* Must be two. */
   var teams = ['Your Score:'];
@@ -209,12 +229,21 @@ document.addEventListener('DOMContentLoaded', function() {
           var col = this.cellIndex;
           var row = this.parentNode.rowIndex;
 
-          correctAnswerLink = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][0]);
-          console.log(col);
-          console.log(row-2);
-          answer2Link   = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][1]);
-          answer3Link = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][2]);
-          answer4Link = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][3]);
+          var randomOrder = [0,1,2,3];
+          randomOrder = shuffle(randomOrder);
+          var buttons = [];
+          var j = 0;
+          for (var i = 0; i < 4; i++) {
+            if (randomOrder[i] == 0) {
+              correctAnswerLink = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][randomOrder[i]]);
+            } else {
+              buttons[j] = addNewElement(addNewElement(linksList, 'li'), 'button', answers[row-2][col][randomOrder[i]]);
+              j++;
+            }
+          }
+          answer2Link = buttons[0];
+          answer3Link = buttons[1];
+          answer4Link = buttons[2];
           addNewClass(correctAnswerLink, 'btn_select');
           addNewClass(answer2Link, 'btn_select');
           addNewClass(answer3Link, 'btn_select');
