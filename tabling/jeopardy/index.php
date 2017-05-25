@@ -64,14 +64,10 @@
 
       do {
         $load = substr($line, 0, stringLoc($line, ';'));
-        echo($questionOrFact);
-        echo ($load);
-        echo("\n");
 
         // Eliminate leftover syntax characters and check for quotes.
         while ($load[0] == ',' || $load[0] == '"') {
           if ($load[0] == '"') {
-            echo ("Quotes\n");
             $quotes = 1;
           }
           $load = substr($load, 1); // Delete the left over syntactical elements.
@@ -99,7 +95,6 @@
         //  to the next comma, then end this cell and start a new one.
 
       } while ((stringLoc($line, ';') < stringLoc($line, ',') && $quotes == 0) || ($quotes == 1 && (stringLoc($line, ';') < stringLoc($line, '"'))));
-      echo ("Break\n");
       $answerLine[] =  $answersInCell; // Add cell to current row.
     }
     $questions[] = $questionsLine;
