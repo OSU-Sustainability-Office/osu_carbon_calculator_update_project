@@ -121,7 +121,7 @@
           <div id="trans_input_car_miles_q" class="collapse">
             Approximately how many miles do you drive per month?
             <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles, Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></a>
-     					<input id="trans_input_car_miles" type="text"  size="4" maxlength="4" /> miles
+     					<input id="trans_input_car_miles" type="number" size="4" maxlength="4" /> miles
      				</div>
 
      				<p>Do you commute using the Corvallis or Albany Transit?<br />
@@ -132,7 +132,7 @@
      				<p id="trans_input_short_bus_miles_q" style="display:none;">
      					Approximately how many miles per month do you travel on Corvallis or Albany Transit? <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
             />
-            <input name="trans_input_short_bus_miles" id="trans_input_short_bus_miles" type="text" size="4" maxlength="4" /> miles
+            <input name="trans_input_short_bus_miles" id="trans_input_short_bus_miles" type="number" size="4" maxlength="4" /> miles
             </p>
 
             <p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?<br />
@@ -143,7 +143,7 @@
             <p id="trans_input_long_bus_miles_q" style="display:none;">
               Approximately how many miles/year do you travel on these buses?
               <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br />
-              <input id="trans_input_long_bus_miles" type="text" size="4" maxlength="4" /> miles
+              <input id="trans_input_long_bus_miles" type="number" size="4" maxlength="4" /> miles
             </p>
 
             <p>Do you use the train?<br />
@@ -154,7 +154,7 @@
             <p id="trans_input_train_miles_q" style="display:none;">
               Approximately how many miles/year do you travel on train? <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
               />
-              <input id="trans_input_train_miles" type="text" size="4" maxlength="4" /> miles
+              <input id="trans_input_train_miles" type="number" size="4" maxlength="4" /> miles
             </p>
 
 
@@ -170,7 +170,7 @@
               How many miles have you traveled or do you plan to travel this year? This <a href="http://www.webflyer.com/travel/mileage_calculator/" target="_blank"> flight distance calculator </a> might be helpful in determining this amount <a href="#"
                 data-toggle="tooltip" title="Average Flight Mileage for Time Zones: PDX Airport to: New York: 2,450 miles, Seattle: 129 miles, Denver: 989 miles, Chicago: 1730 miles, Los Angeles: 834 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
               />
-              <input id="trans_input_plane_miles" type="text" size="5" maxlength="5"> miles
+              <input id="trans_input_plane_miles" type="number" size="5" maxlength="5"> miles
             </p>
 
             <p class="pop_up_comment" id="comment_transport_options"></p>
@@ -195,27 +195,27 @@
         <div id="collapse3" class="panel-collapse collapse">
           <div class="panel-body">
             <p>Approximately how many reading books do you buy a year?<br />
-              <input id="reading_book_per_year" type="text" size="2" maxlength="4" /> books
+              <input id="reading_book_per_year" type="number" size="2" maxlength="4" /> books
             </p>
 
             <p>Approximately how many text books do you buy each year?<br />
-              <input id="text_book_per_year" type="text" size="2" maxlength="4" /> books
+              <input id="text_book_per_year" type="number" size="2" maxlength="4" /> books
             </p>
 
             <p>How much do you spend on new clothing in a given month?<br />
-              <input id="clothing_per_month" type="text" size="2" maxlength="4" /> dollars per month
+              <input id="clothing_per_month" type="number" size="2" maxlength="4" /> dollars per month
             </p>
 
             <p>How much do you spend on eating out and hotels per month?<br />
-              <input id="hotels_per_month" type="text" size="2" maxlength="4" /> dollars per month
+              <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
             </p>
 
             <p>How much do you spend on entertainment and other recreational activities per month?<br />
-              <input id="recreation_per_month" type="text" size="2" maxlength="4" /> dollars per month <a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-question-sign"></span></a>
+              <input id="recreation_per_month" type="number" size="2" maxlength="4" /> dollars per month <a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-question-sign"></span></a>
             </p>
 
             <p>If you drink your water from nonrefillable plastic bottles, how many do you buy per week?<br />
-              <input id="consumption_plastic_bottle" type="text" size="5" maxlength="4" /> bottles
+              <input id="consumption_plastic_bottle" type="number" size="5" maxlength="4" /> bottles
             </p>
 
             <p>Do you own a:
@@ -226,7 +226,7 @@
 
             <p id="duration_owning_cell_phone_q" style="display:none;">
               How long have you had your current cell phone? Please approximate in years.<br>
-              <input id="duration_owning_cell_phone" type="text" size="2" maxlength="4" value="0"> years
+              <input id="duration_owning_cell_phone" type="number" size="2" maxlength="4" value="0"> years
             </p>
 
             <p>Do you own a:
@@ -238,23 +238,23 @@
 
             <p id="duration_owning_tablet_q" style="display:none;">
               How long have you had your current Tablet? Please approximate in years.<br>
-              <input id="duration_owning_tablet" type="text" size="2" maxlength="4" value="0"> years
+              <input id="duration_owning_tablet" type="number" size="2" maxlength="4" value="0"> years
             </p>
 
             <p id="duration_owning_kindle_q" style="display:none;">
               How long have you had your current Kindle? Please approximate in years.<br>
-              <input id="duration_owning_kindle" type="text" size="2" maxlength="4"> years
+              <input id="duration_owning_kindle" type="number" size="2" maxlength="4"> years
             </p>
 
 
             <p id="duration_owning_macbook_q" style="display:none;">
               How long have you had your current Macbook? Please approximate in years.<br>
-              <input id="duration_owning_macbook" type="text" size="2" maxlength="4" value="0"> years
+              <input id="duration_owning_macbook" type="number" size="2" maxlength="4" value="0"> years
             </p>
 
             <p id="duration_owning_laptop_q" style="display:none;">
               How long have you had your current laptop? Please approximate in years.<br>
-              <input id="duration_owning_laptop" type="text" size="2" maxlength="4"> years
+              <input id="duration_owning_laptop" type="number" size="2" maxlength="4"> years
             </p>
 
             <p>Do you own an iPod?
@@ -264,7 +264,7 @@
 
             <p id="consumption_ipod_duration_q" style="display:none;">
               How long have you had your current iPod? Please approximate in years.<br>
-              <input id="consumption_ipod_duration" type="text" size="2" maxlength="4"> years
+              <input id="consumption_ipod_duration" type="number" size="2" maxlength="4"> years
             </p>
 
             <div class="row">
@@ -328,12 +328,12 @@
             <div id="energy_simple" class="collapse">
               <p>
                 How much do you usually pay for electricity each month?<br>
-                <input id="electricity_usage" type="text" size="2" maxlength="4"> dollars per month
+                <input id="electricity_usage" type="number" size="2" maxlength="4"> dollars per month
               </p>
 
               <p>
                 How much do you usually pay for gas each month? <br>
-                <input id="heat_usage" type="text" size="2" maxlength="4"> dollars per month
+                <input id="heat_usage" type="number" size="2" maxlength="4"> dollars per month
               </p>
 
               <p>How often do you turn out the lights when you leave a room?
@@ -364,170 +364,170 @@
                   <tbody>
                     <tr id="row1">
                       <td>Refrigerator</td>
-                      <td><input id="appliance_1_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_1_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_1_watts" type="hidden" value="160" />160</td>
-                      <td><input id="appliance_1_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_1_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row2">
                       <td>Microwave</td>
-                      <td><input id="appliance_2_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_2_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_2_watts" type="hidden" value="1000" />1000</td>
-                      <td><input id="appliance_2_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_2_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_2_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_2_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row1">
                       <td>Clock radio</td>
-                      <td><input id="appliance_3_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_3_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_3_watts" type="hidden" value="10" />10</td>
-                      <td><input id="appliance_3_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_3_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <!--           <tr>
            					<td>Coffee maker</td>
-           					<td><input id="appliance_4_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+           					<td><input id="appliance_4_total" type="number"  size="4" maxlength="1" value ="1"/></td>
            					<td><input id="appliance_4_watts" type="hidden"  value="1200" />1200</td>
-           					<td><input id="appliance_4_active_usage" type="text"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_4_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+           					<td><input id="appliance_4_active_usage" type="number"  size="4" maxlength="4"/></td>
+           					<td><input id="appliance_4_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
            				  </tr> -->
 
                     <tr id="row2">
                       <td>IPod dock</td>
-                      <td><input id="appliance_4_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_4_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_4_watts" type="hidden" value="100" />100</td>
-                      <td><input id="appliance_4_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_4_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_4_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_4_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row1">
                       <td>Stereo sound system</td>
-                      <td><input id="appliance_5_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_5_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_5_watts" type="hidden" value="150" />150</td>
-                      <td><input id="appliance_5_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_5_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_5_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_5_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row2">
                       <td>Computer desktop</td>
-                      <td><input id="appliance_6_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_6_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_6_watts" type="hidden" value="225" />225</td>
-                      <td><input id="appliance_6_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_6_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_6_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_6_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row1">
                       <td>Computer monitor 15"</td>
-                      <td><input id="appliance_7_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_7_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_7_watts" type="hidden" value="35" />35</td>
-                      <td><input id="appliance_7_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_7_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_7_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_7_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row2">
                       <td>Computer, laptop</td>
-                      <td><input id="appliance_8_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_8_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_8_watts" type="hidden" value="60" />60</td>
-                      <td><input id="appliance_8_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_8_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_8_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_8_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row1">
                       <td>Printer</td>
-                      <td><input id="appliance_9_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_9_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_9_watts" type="hidden" value="100" />100</td>
-                      <td><input id="appliance_9_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_9_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_9_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_9_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <tr id="row2">
                       <td>TV</td>
-                      <td><input id="appliance_10_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_10_watts" type="hidden" value="115" />115</td>
-                      <td><input id="appliance_10_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_10_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <!--           <tr>
            					<td>DVD/CD player</td>
-           					<td><input id="appliance_12_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+           					<td><input id="appliance_12_total" type="number"  size="4" maxlength="1" value ="1"/></td>
            					<td><input id="appliance_12_watts" type="hidden"  value="30" />30</td>
-           					<td><input id="appliance_12_active_usage" type="text"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_12_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+           					<td><input id="appliance_12_active_usage" type="number"  size="4" maxlength="4"/></td>
+           					<td><input id="appliance_12_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
            				  </tr>
 
            				  <tr>
            					<td>Air conditioner</td>
-           					<td><input id="appliance_13_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+           					<td><input id="appliance_13_total" type="number"  size="4" maxlength="1" value ="1"/></td>
            					<td><input id="appliance_13_watts" type="hidden"  value="1100" />1,100</td>
-           					<td><input id="appliance_13_active_usage" type="text"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_13_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+           					<td><input id="appliance_13_active_usage" type="number"  size="4" maxlength="4"/></td>
+           					<td><input id="appliance_13_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
            				  </tr>
            				   -->
                     <tr id="row1">
                       <td>Portable fan</td>
-                      <td><input id="appliance_11_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_11_watts" type="hidden" value="115" />115</td>
-                      <td><input id="appliance_11_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_11_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_11_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <!--           <tr>
            					<td>Space heater</td>
-           					<td><input id="appliance_15_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+           					<td><input id="appliance_15_total" type="number"  size="4" maxlength="1" value ="1"/></td>
            					<td><input id="appliance_15_watts" type="hidden"  value="1000" />1000</td>
-           					<td><input id="appliance_15_active_usage" type="text"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_15_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+           					<td><input id="appliance_15_active_usage" type="number"  size="4" maxlength="4"/></td>
+           					<td><input id="appliance_15_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
            				  </tr> -->
 
                     <tr id="row2">
                       <td>Floor lamp</td>
-                      <td><input id="appliance_12_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_12_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_12_watts" type="hidden" value="300" />300</td>
-                      <td><input id="appliance_12_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_12_passive_usage" type="text" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <!--           <tr>
            					<td>Incandescent light bulb</td>
-           					<td><input id="appliance_17_total" type="text"  size="4" maxlength="4" value ="1"/></td>
+           					<td><input id="appliance_17_total" type="number"  size="4" maxlength="4" value ="1"/></td>
            					<td><input id="appliance_17_watts" type="hidden"  value="75" />75</td>
-           					<td><input id="appliance_17_active_usage" type="text"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_17_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+           					<td><input id="appliance_17_active_usage" type="number"  size="4" maxlength="4"/></td>
+           					<td><input id="appliance_17_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
            				  </tr>
 
            				  <tr>
            					<td>Compact fluorescent light bulb</td>
-           					<td><input id="appliance_18_total" type="text"  size="4" maxlength="4" value ="1"/></td>
+           					<td><input id="appliance_18_total" type="number"  size="4" maxlength="4" value ="1"/></td>
            					<td><input id="appliance_18_watts" type="hidden"  value="20" />20</td>
-           					<td><input id="appliance_18_active_usage" type="text"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_18_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+           					<td><input id="appliance_18_active_usage" type="number"  size="4" maxlength="4"/></td>
+           					<td><input id="appliance_18_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
            				  </tr> -->
 
                     <!--           <tr>
            					<td>Vacuum cleaner</td>
-           					<td><input id="appliance_19_total" type="text"  size="4" maxlength="1" value ="1"/></td>
+           					<td><input id="appliance_19_total" type="number"  size="4" maxlength="1" value ="1"/></td>
            					<td><input id="appliance_19_watts" type="hidden"  value="1440" />1440</td>
-           					<td><input id="appliance_19_active_usage" type="text"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_19_passive_usage" type="text"  size="4" maxlength="4" value="24"/></td>
+           					<td><input id="appliance_19_active_usage" type="number"  size="4" maxlength="4"/></td>
+           					<td><input id="appliance_19_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
            				  </tr> -->
 
                     <tr id="row1">
                       <td>Game Console</td>
-                      <td><input id="appliance_13_total" type="text" size="4" maxlength="1" value="1" /></td>
+                      <td><input id="appliance_13_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_13_watts" type="hidden" value="245">1440</td>
-                      <td><input id="appliance_13_active_usage" type="text" size="4" maxlength="4"></td>
-                      <td><input id="appliance_13_passive_usage" type="text" size="4" maxlength="4" value="24"></td>
+                      <td><input id="appliance_13_active_usage" type="number" size="4" maxlength="4"></td>
+                      <td><input id="appliance_13_passive_usage" type="number" size="4" maxlength="4" value="24"></td>
                     </tr>
 
                     <tr id="row2">
-                      <td>Other <input id="other_energy_source" type="text" size="20" maxlength="20" /></td>
-                      <td><input id="appliance_20_total" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_20_watts" type="text" size="4" maxlength="5" /></td>
-                      <td><input id="appliance_20_active_usage" type="text" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_20_passive_usage" type="text" size="4" maxlength="4" /></td>
+                      <td>Other <input id="other_energy_source" type="number" size="20" maxlength="20" /></td>
+                      <td><input id="appliance_20_total" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_20_watts" type="number" size="4" maxlength="5" /></td>
+                      <td><input id="appliance_20_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_20_passive_usage" type="number" size="4" maxlength="4" /></td>
                     </tr>
                   </tbody>
                 </table>
@@ -638,35 +638,35 @@
                 <center>
                   <h4>Questions (Continued):</h4></center><br />
                 <p>How many servings of red meat do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="meat_serv" size="4" maxlength="4">
+                  <input type="number" id="meat_serv" size="4" maxlength="4">
                 </p>
 
                 <p>How many servings of dairy products or eggs do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="dairy_serv" size="4" maxlength="4">
+                  <input type="number" id="dairy_serv" size="4" maxlength="4">
                 </p>
 
                 <p>How many servings of fruits and vegetables do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="fruits_vegetables_serv" size="4" maxlength="4">
+                  <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
                 </p>
 
                 <p>How many servings of grains and baked products do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="grains_serv" size="4" maxlength="4">
+                  <input type="number" id="grains_serv" size="4" maxlength="4">
                 </p>
 
                 <p>How many servings of poultry do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="poultry_serv" size="4" maxlength="4">
+                  <input type="number" id="poultry_serv" size="4" maxlength="4">
                 </p>
 
                 <p>How many servings of pork do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="pork_serv" size="4" maxlength="4">
+                  <input type="number" id="pork_serv" size="4" maxlength="4">
                 </p>
 
                 <p>How many servings of seafood do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="seafood_serv" size="4" maxlength="4">
+                  <input type="number" id="seafood_serv" size="4" maxlength="4">
                 </p>
 
                 <p>How many servings of nuts do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="text" id="nuts_serv" size="4" maxlength="4">
+                  <input type="number" id="nuts_serv" size="4" maxlength="4">
                 </p>
 
                 <p> How often do you eat processed food? (The average person eats 22 pounds of processed food a week)<br>
@@ -693,7 +693,7 @@
 
                 <div id="food_coffee_frequency_q" class="collapse">
                   <p id="food_coffee_frequency_q">About how many times a week do you drink a cup or more? <br />
-                    <input id="food_coffee_frequency" type="text" size="2" maxlength="4" /> times
+                    <input id="food_coffee_frequency" type="number" size="2" maxlength="4" /> times
                   </p>
                 </div>
 
@@ -764,11 +764,11 @@
         </div>
         <div id="collapse7" class="panel-collapse collapse">
           <div class="panel-body">
-            <p>On average how long are your showers? <input id="water_showers_duration" type="text" size="5" maxlength="4" /> minutes</p>
-            <p>On average how many showers per week? <input id="water_showers_times" type="text" size="5" maxlength="4" /> times</p>
-            <p>On average how many loads of laundry per month? <input id="water_laundry" type="text" size="5" maxlength="4" /> times</p>
-            <p>Average toilet flushes per day? <input id="water_flush" type="text" size="5" maxlength="4" /> flushes</p>
-            <p>Average cups of water you drink per day from tap or water fountain? <input id="water_cups" type="text" size="5" maxlength="4" /> cups
+            <p>On average how long are your showers? <input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes</p>
+            <p>On average how many showers per week? <input id="water_showers_times" type="number" size="5" maxlength="4" /> times</p>
+            <p>On average how many loads of laundry per month? <input id="water_laundry" type="number" size="5" maxlength="4" /> times</p>
+            <p>Average toilet flushes per day? <input id="water_flush" type="number" size="5" maxlength="4" /> flushes</p>
+            <p>Average cups of water you drink per day from tap or water fountain? <input id="water_cups" type="number" size="5" maxlength="4" /> cups
               <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-question-sign"></span></a>
             </p>
 
