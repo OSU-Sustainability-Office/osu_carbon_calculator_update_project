@@ -345,40 +345,6 @@ function heat_dorms_lbs() {
   var dorms_heat = 0;
   var result = 0;
   // dorms at OSU are not currently heated with gas. 0 for all values.
-  if (dorms == "bloss") {
-    dorms_heat = 0;
-  } else if (dorms == "buxton") {
-    dorms_heat = 0;
-  } else if (dorms == "callahan") {
-    dorms_heat = 0;
-  } else if (dorms == "cauthorn") {
-    dorms_heat = 0;
-  } else if (dorms == "finley") {
-    dorms_heat = 0;
-  } else if (dorms == "halsell") {
-    dorms_heat = 0;
-  } else if (dorms == "hawley") {
-    dorms_heat = 0;
-  } else if (dorms == "ILLC") {
-    dorms_heat = 0;
-  } else if (dorms == "mcnary") {
-    dorms_heat = 0;
-  } else if (dorms == "poling") {
-    dorms_heat = 0;
-  } else if (dorms == "sackett") {
-    dorms_heat = 0;
-  } else if (dorms == "weatherford") {
-    dorms_heat = 0;
-  } else if (dorms == "west") {
-    dorms_heat = 0;
-  } else if (dorms == "wilson") {
-    dorms_heat = 0;
-  } else if (dorms == "tebeau") {
-    dorms_heat = 0;
-  } else if (dorms == "none") {
-    dorms_heat = 0;
-  }
-
   result = dorms_heat;
   return result;
 }
@@ -386,10 +352,8 @@ function heat_dorms_lbs() {
 function simple_option() {
   var result = 0;
   var complex = 0;
-  var year_or_day = 0;
   var electricity = $("#electricity_usage").val();
   var gas = $("#heat_usage").val();
-  var year_or_day = 1;
   var simple_complex = $("input[name='simple_complex']:checked").val();
   if (simple_complex == 'complex') {
     complex = 0;
@@ -397,19 +361,13 @@ function simple_option() {
     complex = 1;
   }
 
-  result = (complex * ((electricity * .3821 / .1078) + (gas * 6.103 / 1.08)) * year_or_day);
+  result = (complex * ((electricity * .3821 / .1078) + (gas * 6.103 / 1.08)));
 
   return result;
 }
 
 function energy_baseline_conv() {
   var result = 0;
-  //var user_type= $("input[name='radio_commuter']:checked").val();
-  //var totalInKWH = 0;
-  //var totalDormInKWH = 0;
-  //var popOfOSU = 0;
-  //var conversionFromKWHtoKgCO2e = 0;
-
   if (user_type == "on_campus") {
     user_num = 1;
   } else if (user_type == "full_commuter") {
@@ -418,18 +376,13 @@ function energy_baseline_conv() {
     user_num = 0.5;
   }
 
-  //I dont know what any of this is. -PK
-  //result = ((((53384936 * user_num) / 30492) + 0.5579*electricity_dorms_kwh())* 0.7294 * year_or_day)+((((42311306 * user_num) / 30492) + 0.4421*electricity_dorms_kwh())* 0.1676 * year_or_day) + simple_option();
-  //result = ((59170102 - 51831492) * user_num / 31406 + electricity_dorms_kwh()) * 0.7294 * year_or_day + simple_option();
-  //result = ((((59170102 * user_num) / 30492) + 0.5579*electricity_dorms_kwh())* 0.7294 * year_or_day) + simple_option();
-
   //New, simpler baseline calculation
   var totalInKWH = 332010527.1; // 1/28/17 updated by KC
   var totalDormInKWH = 11059974;
   var popOfOSU = 36059;
   var conversionFromKWHtoKgCO2e = 0.3821;
 
-  result = ((totalInKWH - totalDormInKWH) * user_num / popOfOSU + electricity_dorms_kwh()) * conversionFromKWHtoKgCO2e * +simple_option();
+  result = (((totalInKWH - totalDormInKWH) * user_num / popOfOSU + electricity_dorms_kwh()) +simple_option()) * conversionFromKWHtoKgCO2e;
   return result;
 }
 
@@ -437,18 +390,11 @@ function energy_gas_baseline_conv() {
 
 
   var result = 0;
-  //var user_type= $("input[name='radio_commuter']:checked").val();
-
-
-  /*if (user_type =="on_campus") {user_num= 1;}
-    else if (user_type =="full_commuter") {user_num = 0.75;}
-    else if (user_type =="part_commuter") {user_num = 0.5;}*/
   var popOfOSU = 36059;
   var totalOSUGasTherms = 562929.30;
   var convertFromThermToKgCO2e = 6.103
 
   result = (totalOSUGasTherms / popOfOSU) * user_num * convertFromThermToKgCO2e;
-  //result = (((300130036 / 30492)* user_num) + heat_dorms_lbs())*970*259/1000000;
 
   return result;
 }
@@ -678,7 +624,7 @@ var us_avg_config = {
         4100,
         3181.6,
         3755.6,
-        1197.2,
+        1197.2
       ],
       backgroundColor: [
         window.chartColors.red,
@@ -710,7 +656,70 @@ var us_avg_config = {
   }
 };
 
-//Bar graph
+//Bar graph - You vs. US Average
+var horizontalBarChartData2 = {
+  labels: ["Transportation",
+    "Consumption",
+    "Energy and Heating",
+    "Food",
+    "Waste and Water"
+  ],
+  datasets: [{
+    label: 'Average',
+    backgroundColor: window.chartColors.yellow,
+    borderColor: window.chartColors.yellow,
+    borderWidth: 1,
+    data: [
+      4165.6,
+      4100,
+      3181.6,
+      3755.6,
+      1197.2
+    ]
+  }, {
+    label: "Your Result",
+    backgroundColor: window.chartColors.green,
+    borderColor: window.chartColors.green,
+    borderWidth: 1,
+    data: data
+  }]
+
+};
+
+function draw_you_vs_us_avg() {
+  var ctx3 = document.getElementById("you_vs_us_avg").getContext("2d");
+  window.myHorizontalBar2 = new Chart(ctx3, {
+    type: 'horizontalBar',
+    data: horizontalBarChartData2,
+    options: {
+      // Elements options apply to all of the options unless overridden in a dataset
+      // In this case, we are setting the border of each horizontal bar to be 2px wide
+      elements: {
+        rectangle: {
+          borderWidth: 2,
+        }
+      },
+      responsive: true,
+      legend: {
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: ''
+      },
+      tooltips: {
+
+        callbacks: {
+          label: function(tooltipItem, data) {
+            return data.datasets[tooltipItem.datasetIndex].label + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
+          },
+        }
+      }
+    }
+  });
+}
+
+//Bar graph - World Averages
 var horizontalBarChartData = {
   labels: ["Brazil", "Burkina Faso", "China", "United States", "France", "Oregon"],
   datasets: [{
@@ -758,7 +767,7 @@ function draw_world_avg() {
       },
       tooltips: {
 
-        callbacks: { // HERE YOU CUSTOMIZE THE LABELS
+        callbacks: {
           label: function(tooltipItem, data) {
             return data.datasets[tooltipItem.datasetIndex].label + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
           },
@@ -779,6 +788,7 @@ function update_graphs() {
   window.myPie.update();
   window.myPie2.update();
   window.myHorizontalBar.update();
+  window.myHorizontalBar2.update();
 }
 
 /*******************************************
@@ -854,6 +864,7 @@ window.onload = function() {
   draw_user_result();
   draw_us_result();
   draw_world_avg();
+  draw_you_vs_us_avg();
 }
 
 // Computes and shows the result to the user.

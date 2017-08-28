@@ -19,6 +19,9 @@
   $questions = array();
   $facts = array();
   $answers = array(); // 3D array containing answers. The X/Y plane looks as follows:
+  $answerl = array();
+  $answers[] = $answerl; // Add an extra line such that answers match up with
+                         // corresponding cells in table.
   /************************************************************************************************
    * Array of Answers | Array of Answers | Array of Answers | Array of Answers | Array of Answers
    * ---------------------------------------------------------------------------------------------
@@ -142,7 +145,7 @@
   </head>
   <body>
     <div id="questions">
-      <h1>FOSS Quiz!</h1>
+      <h1>FOSS Quiz!</h1><br />
 
 
       <h2><?php print $titles[1]; ?></h2>

@@ -1,1 +1,0 @@
-Trans:593.2, Cons:1277.9, Energy:4521.1, Food:2168.4, Waste:139.8, Water:44.2

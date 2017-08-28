@@ -1,1 +1,0 @@
-Trans:790.1, Cons:Infinity, Energy:1748.1, Food:0, Waste:148, Water:11.1

@@ -28,6 +28,17 @@
     });
   </script>
 
+  <!-- Facebook Share SDK-->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
   <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">-->
   <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
 
@@ -73,9 +84,9 @@
   <!--Carbon Calculator Introduction-->
   <div class="well well-md">
     <h1>About the Calculator</h1><br />
-    <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in Oregon State University’s
-      campus initiative to be carbon neutral by 2025.</p>
-    <p>This calculator is based on on one developed at Santa Clara University. For more information, please visit <a href="http://www.scu.edu/ethics/practicing/focusareas/environmental_ethics/carbon-footprint/create_calc.html">their website</a>.</p>
+    <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in
+      <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025.</a></p>
+    <p>This calculator is based on a calculator developed by Santa Clara University. For more information, please visit <a href="http://www.scu.edu/ethics/practicing/focusareas/environmental_ethics/carbon-footprint/create_calc.html">their website</a>.</p>
   </div>
 
   <!--Begin Carbon Calculator Questions-->
@@ -819,7 +830,7 @@
                     <tr>
                       <th>Category</th>
                       <th>kgCO<sub>2</sub>e / year
-                        <a href="#" data-toggle="tooltip" title="The tacked on &quot;e&quot; to kg CO2 means the carbon dioxide equivalent and is most widely used to measure greenhouse emissions.  All greenhouse gases have potential to warm the atmosphere, thus accounted for when you see emissions in terms of CO2e"><span class="glyphicon glyphicon-question-sign"></span></a>
+                        <a href="#" data-toggle="tooltip" title="The additional&quot;e&quot; to kg CO2 means the carbon dioxide equivalent and is most widely used to measure greenhouse emissions.  All greenhouse gases have potential to warm the atmosphere, thus accounted for when you see emissions in terms of CO2e"><span class="glyphicon glyphicon-question-sign"></span></a>
                       </th>
                       <th>Percentage</th>
                     </tr>
@@ -871,16 +882,21 @@
                 <center>
                   <h4>United States Average:</h4>
                   <canvas id="chart_area_us_avg" /></canvas>
-                  <h4>Your result compared to the carbon emissions of the average citizen in the following locations:</h4>
-                  <canvas id="world_avg_graph"></canvas>
+                  <h4>Your result compared to the United States average:</h4>
+                  <canvas id="you_vs_us_avg"></canvas>
                 </center>
 
               </div>
             </div>
+            <div class="row">
+              <center>
+                <h4>Your result compared to the carbon emissions of the average citizen in the following locations:</h4>
+                <canvas id="world_avg_graph"></canvas>
+              </center>
+            </div>
             <!-- <input type="submit" name="submitbutton" value="Click here to save your results!" />  -->
             <div class="row">
               <div class="col-md-12"><br />
-
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse7">Previous</button>
                   <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse9">Next</button>
@@ -899,56 +915,30 @@
         <div id="collapse9" class="panel-collapse collapse">
           <div class="panel-body">
             <p>
-              Oregon State University is partnering with many wonderful Non-Governmental Organizations to help empower you to enact positive change. If you would like to volunteer time or money, or even just learn more about how to live sustainably, please visit their
-              webpages.
+              Now that you have your results, how can you reduce emissions? Fortunately, there are some simple choices most people can make to easily reduce their individual carbon emissions. Collectively, these contributions will help our community do its part.
             </p>
 
             <p>
-              Visit our partners at the Corvallis Sustainability Coaltion to volunteer your time as a Block Captain, to increase overall sustainability in Corvallis. Or you can donate to preserve lands in the mid-Willamette valley with our partners at the Greenbelt
-              Land Trust. Energize Corvallis can teach and empower you to modify your own behaviors to reduce carbon emissions.
-            </p>
-            <p>
-              <div class="partners" align="center">
-                <a href="http://sustainablecorvallis.org/action-teams/waste-prevention/recycling-block-captain-program/" target="_blank">
-                  <img src="img/corvallisSustainabilityModified3.png" style="width:300px;border:0">
-                </a>
-
-                <a href="http://greenbeltlandtrust.org/carboncalculatorchallenge" target="_blank">
-                  <img src="img/greenbeltEnergyModified2.png" style="width:300px;border:0">
-                </a>
-
-                <a href="http://energizecorvallis.org/takecharge/" target="_blank">
-                  <img src="img/energizeCorvallisModified2.png" style="width:300px;border:0">
-                </a>
-              </div>
-            </p>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <p>
-              Why does sustainability even matter?
+              Think about trying some of the following actions. Start with the easiest one or two, and challenge yourself to add additional actions each month.
             </p>
 
             <p>
-              The concept of sustainability is used pretty often. We've found ourselves tuning it out. But sustainability, when you strip away all the rhetoric and politics, poses a pretty good question: Do we have an obligation to hand on to the next generation a
-              world that will allow them to have at least as good a life as the one we have?
-            </p>
-
-            <p>
-              We can give it a try, by engaging in small changes. Even the smallest changes can make a difference. For example:
               <ul style="list-style:disc;">
-                <li> Have a meat free day once a week, this yields a significant reduction in CO<sub>2</sub> emissions.</li>
-                <li> Carpool or take public transit to reduce your transportation emissions!</li>
-                <li> Buy thrifted clothing to minimize your contribution to the large emissions associated with the clothing industry.</li>
-                <li> Buy our own re-usable water bottle and drink from the tap.</li>
-                <li> Buy carbon offsets to account for the high emissions generated by our airplane travel.</li>
-                <li> Wash your clothes in cold water in large loads to be more efficien with your water and energy use.</li>
-                <li> Volunteer! Plant trees, restore habitat, etc.</li>
-                <li> Donate to groups that work for a more sustainable future.</li>
+                <li>Have a meat free day once a week.</li>
+                <li>Use a re-usable water bottle to drink tap water.</li>
+                <li>Carpool or take public transit for a few commute trips each week.</li>
+                <li>Buy second-hand clothing to minimize your supply chain emissions.</li>
+                <li>Purchase carbon offsets to account for airplane travel.</li>
+                <li>Wash your clothes in cold water and run large loads to save both water and energy.</li>
+                <li>Volunteer on campus and in the community! Plant trees, restore habitat, etc.</li>
+                <li>Swap out incandescent lights for LEDs or CFLs to see up to 83% energy savings! Use natural light whenever possible.</li>
+                <li>Turn off lights, TVs, and other electronics when they aren't in use.</li>
+                <li>Clean the lint trap in your dryer after every load.</li>
+                <li>Enable energy saving options on your computer and cell phone.</li>
               </ul>
+            </p>
+            <p>
+              In addition to individual action to reduce carbon emissions, <b>collective action is important</b>!  The OSU Sustainability Office has launched a <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Carbon Planning Toolkit</a> to assist OSU departments in planning to reduce carbon emissions and strengthening climate awareness through education, research and outreach.  You can participate by establishing a team within your department to implement the toolkit. <a href="mailto:sustainability@oregonstate.edu">For more information or help with the Toolkit, or day to day actions, contact the Sustainability Office at sustainability@oregonstate.edu.</a>
             </p>
             <div class="row">
               <div class="col-md-12"><br />

@@ -41,7 +41,7 @@ return array;
 
 document.addEventListener('DOMContentLoaded', function() {
   /* Must be two. */
-  var teams = ['Your Score:'];
+  var teams = ['Current Score: '];
 
   var strTie = 'Tie';
   var strClose = 'Close';
@@ -192,9 +192,9 @@ document.addEventListener('DOMContentLoaded', function() {
             scores[team][0] += points;
             nukeChildren(scores[team][1]);
             addText(scores[team][1], '' + scores[team][0]);
+            td.className = 'correct';
           }
           m.className += ' showAnswer';
-          td.className = '';
           td.onclick = null;
           if (team !== 0) close();
           return false;
@@ -256,14 +256,17 @@ document.addEventListener('DOMContentLoaded', function() {
           xLink.onclick = close;
           answer2Link.onclick = function() {
             m.className += ' showAnswer';
+            td.className = 'incorrect';
             return false;
           };
           answer3Link.onclick = function() {
             m.className += ' showAnswer';
+            td.className = 'incorrect';
             return false;
           };
           answer4Link.onclick = function() {
             m.className += ' showAnswer';
+            td.className = 'incorrect';
             return false;
           };
 
@@ -297,6 +300,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     table = D.createElementNS(NS, 'table');
     mDiv.parentNode.insertBefore(table, mDiv);
+
+    // Titles for categories
     rowset = addNewElement(table, 'thead');
     row = addNewElement(rowset, 'tr');
     row.className = 'title';
@@ -307,6 +312,37 @@ document.addEventListener('DOMContentLoaded', function() {
     var title = D.getElementsByTagNameNS(NS, 'title')[0];
     addNewElement(cell, 'h1', title.textContent);
 
+    // Score
+    row = addNewElement(rowset, 'tr');
+    var addScoreCell = function(team) {
+      cell = addNewElement(row, 'td');
+      cell.colspan= "1";
+      cell = addNewElement(row, 'td');
+
+      var divP = D.createElementNS(NS, 'div');
+      divP.className= 'centerElements';
+      cell.appendChild(divP);
+
+      var div = D.createElementNS(NS, 'div');
+      div.className= 'scoreTitle';
+      divP.appendChild(div);
+      div.appendChild(D.createTextNode(teams[team]));
+
+      div = D.createElementNS(NS, 'div');
+      div.className= 'score';
+      divP.appendChild(div);
+      div.appendChild(D.createTextNode('0'));
+      div.onclick = makeScoreHandler(team);
+      return div;
+    };
+
+    scores.push([0, addScoreCell(0)]);
+    if (categories.length > 2) {
+      cell = D.createElementNS(NS, 'td');
+      cell.setAttribute('colspan', '' + categories.length - 2);
+      row.appendChild(cell);
+    }
+
     row = addNewElement(rowset, 'tr');
     row.className = 'categories';
 
@@ -314,6 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
       cell = addNewElement(row, 'th', cat.title);
     });
 
+    // Questions
     rowset = addNewElement(table, 'tbody');
 
     var max = 0;
@@ -336,30 +373,6 @@ document.addEventListener('DOMContentLoaded', function() {
           addText(cell, '\u00A0');
         }
       });
-    }
-
-    rowset = addNewElement(table, 'tfoot');
-    row = addNewElement(rowset, 'tr');
-
-    var addScoreCell = function(team) {
-      cell = addNewElement(row, 'td');
-
-      var div = D.createElementNS(NS, 'div');
-      cell.appendChild(div);
-      div.appendChild(D.createTextNode(teams[team]));
-
-      div = D.createElementNS(NS, 'div');
-      cell.appendChild(div);
-      div.appendChild(D.createTextNode('0'));
-      div.onclick = makeScoreHandler(team);
-      return div;
-    };
-
-    scores.push([0, addScoreCell(0)]);
-    if (categories.length > 2) {
-      cell = D.createElementNS(NS, 'td');
-      cell.setAttribute('colspan', '' + categories.length - 2);
-      row.appendChild(cell);
     }
   })();
 });
