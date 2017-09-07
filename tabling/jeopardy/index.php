@@ -1,9 +1,4 @@
 <?php
-  //TODO: do while loop is detecting commas and is resetting "questionOrFact" to zero.
-
-  // Since strpos returns false if the char is not found, I created a Function
-  // that returns the location of the end of the string. This allows me to
-  // iterate through the strings easier. -JW
   function stringLoc($string, $c) {
     if (strpos($string, $c) !== false) {
       return strpos($string, $c);

@@ -83,11 +83,11 @@ table, tr, td, th {
 }
 
 thead tr.title {
-    height: 3em;
-    font-family: 'StratumNo1';
-    font-size: 20pt;
-    background: #fff;
-    color: #DC4405;
+  height: 3em;
+  font-family: 'StratumNo1';
+  font-size: 20pt;
+  background: #fff;
+  color: #DC4405;
 }
 thead tr.categories {
   padding-top: 1em;
