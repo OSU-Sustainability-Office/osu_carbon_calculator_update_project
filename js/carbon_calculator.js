@@ -26,7 +26,7 @@
  * For more information about the calculator, visit:
  * http://carbon.campusops.oregonstate.edu/
  *
- * For general inquiries regarding this script, email: woodjack@oregonstate.edu
+ * For general inquiries regarding this script, email: jack.woods@oregonstate.edu
  ******************************************************************************/
 
 /*******************************************************************************
