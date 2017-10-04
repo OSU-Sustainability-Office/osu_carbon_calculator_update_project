@@ -19,6 +19,37 @@
  * limitations under the License.
  */
 
+ // First, enable email list signup.
+function postToMailList() {
+  $.ajax({
+    url: "/joinMailingList.php",
+    type: 'POST',
+    data: {
+        'email': document.getElementById("email").value,
+        'fullname': document.getElementById("name").value,
+        'pw': '1234567',
+        'pw-conf': '1234567',
+        'language': 'en',
+        'digest': '0'
+    },
+    headers: {
+        'Referer': 'http://lists.oregonstate.edu/mailman/listinfo/sustainability_at_osu'
+    },
+    contentType: 'application/json; charset=utf-8',
+    success: function (result) {
+       // CallBack(result);
+    },
+    error: function (error) {
+
+    }
+  });
+  closeEmailPopup();
+}
+ // Also, allow users to close the email_popup div.
+function closeEmailPopup() {
+  document.getElementById("popup").style.visibility = "hidden";
+}
+
 // Shuffle Code from StackOverflow
 function shuffle(array) {
 var currentIndex = array.length, temporaryValue, randomIndex;

@@ -129,6 +129,7 @@
       // Load answers array into Javascript (quiz.js) for HTML generation.
       echo '<script>var answers = '.json_encode($answers) .';</script>';
     ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="quiz.js"></script>
     <style type="text/css">
       #questions {
@@ -199,5 +200,13 @@
       <p><?php print $questions[4][2]; ?></p>
       <p><?php print $facts[4][2]; ?></p>
     </div>
+    <div class="email_popup" id="popup">
+      <center><h2>Subscribe to the Sustainability Newsletter</h3><br />
+      Email: <input type="email" name="email" id="email" size="30" value="Your_Email@oregonstate.edu"><br />
+      Name: <input type="text" name="fullname" id="name" size="30" value="Your Name"><br /><br />
+      <button onclick="postToMailList()" class="btn_select" name="email-button">Subscribe</button>&nbsp;
+      <button class="btn_select" onclick="closeEmailPopup()">No Thanks</button>
+    </div>
+
   </body>
 </html>

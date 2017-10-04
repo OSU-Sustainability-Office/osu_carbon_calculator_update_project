@@ -132,6 +132,19 @@ h1 {
   text-align:center;
 }
 
+.email_popup {
+  position: absolute;
+  width: 50%;
+  top: 25%;
+  left: 25%;
+  z-index: 100;
+  background-color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #000;
+  padding-bottom: 0.4em;
+}
+
 .correct{
     border: 0.2em solid #898989;
     background: #fff;
