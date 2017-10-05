@@ -415,7 +415,7 @@ function food_conv() {
   var processed_food_input = $("input[name='radio_processed_food']:checked").val(); //source for kg: https://www.eatforhealth.gov.au/food-essentials/how-much-do-we-need-each-day/serve-sizes
   var processed_food_num = 0;
   var result = 0;
-  var year_or_day = 1;
+  var year_or_day = 52;
   var redmeat = $("#meat_serv").val();
   var eggs_dairy = $("#dairy_serv").val();
   var fruits_vegetables = $("#fruits_vegetables_serv").val();
@@ -449,7 +449,7 @@ function waste_conv()
 
 //KC waste numbers updated (1/27/16). Compost calculation changed to follow same process as recycling. Waste total in kg per day.
 {
-  var year_or_day = 1;
+  var year_or_day = 365;
   var commuter_input = $("input[name='radio_commuter']:checked").val();
   var recycle_input = $("input[name='radio_recycle']:checked").val();
   var compost_input = $("input[name='radio_compost']:checked").val();
@@ -510,7 +510,7 @@ function waste_conv()
   WATER
 *******************************************/
 function water_conv() {
-  var year_or_day = 0;
+  var year_or_day = 365;
   var baseline = user_num;
   var multiplier = 1;
   var gallonsperdayperperson = 21.402;
