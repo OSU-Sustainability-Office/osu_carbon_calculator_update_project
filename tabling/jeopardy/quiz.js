@@ -22,7 +22,7 @@
  // First, enable email list signup.
 function postToMailList() {
   $.ajax({
-    url: "/joinMailingList.php",
+    url: "./joinMailingList.php",
     type: 'POST',
     data: {
         'email': document.getElementById("email").value,
@@ -32,15 +32,14 @@ function postToMailList() {
         'language': 'en',
         'digest': '0'
     },
-    headers: {
-        'Referer': 'http://lists.oregonstate.edu/mailman/listinfo/sustainability_at_osu'
-    },
     contentType: 'application/json; charset=utf-8',
     success: function (result) {
        // CallBack(result);
+       console.log(result);
+       console.log("Success!")
     },
     error: function (error) {
-
+       console.log(error);
     }
   });
   closeEmailPopup();
