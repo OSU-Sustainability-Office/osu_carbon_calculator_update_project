@@ -42,6 +42,15 @@ var waste_total;
 var water_total;
 var graph_carbon_num_total;
 
+// Old Totals for Each Category
+var old_trans_total;
+var old_cons_total;
+var old_energy_total;
+var old_food_total;
+var old_waste_total;
+var old_water_total;
+var old_data = new Array(5);
+
 // Charts.JS requires that data be placed into an array.
 var data = new Array(6);
 
@@ -50,7 +59,6 @@ var data = new Array(6);
 // Charts.JS requires a new entry in the array for each bar drawn.
 var graph_carbon_total = new Array(6);
 
-//TODO
 var user_type = "on_campus";
 var user_num = 1;
 
@@ -62,7 +70,13 @@ window.myPie2;
 /*******************************************************************************
                                TRANSPORTATION
  All of the conversions in the transportation category are calculated
- seperately, and then combined in showResult().
+ seperately, and then combined in showResult().var old_trans_total;
+var old_cons_total;
+var old_energy_total;
+var old_food_total;
+var old_waste_total;
+var old_water_total;
+var old_graph_carbon_num_total;
 *******************************************************************************/
 
 // This performs no calcuation. It just shows/hides a question.
@@ -686,13 +700,14 @@ var horizontalBarChartData2 = {
 
 };
 
+//Bar graph - You vs US Average
 function draw_you_vs_us_avg() {
   var ctx3 = document.getElementById("you_vs_us_avg").getContext("2d");
   window.myHorizontalBar2 = new Chart(ctx3, {
     type: 'horizontalBar',
     data: horizontalBarChartData2,
     options: {
-      // Elements options apply to all of the options unless overridden in a dataset
+      // Elements optBar graph - Youions apply to all of the options unless overridden in a dataset
       // In this case, we are setting the border of each horizontal bar to be 2px wide
       elements: {
         rectangle: {
@@ -749,6 +764,62 @@ function draw_world_avg() {
   window.myHorizontalBar = new Chart(ctx3, {
     type: 'horizontalBar',
     data: horizontalBarChartData,
+    options: {
+      // Elements options apply to all of the options unless overridden in a dataset
+      // In this case, we are setting the border of each horizontal bar to be 2px wide
+      elements: {
+        rectangle: {
+          borderWidth: 2,
+        }
+      },
+      responsive: true,
+      legend: {
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: ''
+      },
+      tooltips: {
+
+        callbacks: {
+          label: function(tooltipItem, data) {
+            return data.datasets[tooltipItem.datasetIndex].label + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
+          },
+        }
+      }
+    }
+  });
+}
+
+//Bar graph - Comparison
+var horizontalBarChartData3 = {
+  labels: ["Transportation",
+    "Consumption",
+    "Energy and Heating",
+    "Food",
+    "Waste and Water"
+  ],
+  datasets: [{
+    label: 'Previous',
+    backgroundColor: window.chartColors.yellow,
+    borderColor: window.chartColors.yellow,
+    borderWidth: 1,
+    data: old_data
+  }, {
+    label: 'Current',
+    backgroundColor: window.chartColors.green,
+    borderColor: window.chartColors.green,
+    data: data
+  }]
+
+};
+
+function draw_comparison_graph() {
+  var ctx3 = document.getElementById("comparison_graph").getContext("2d");
+  window.myHorizontalBar2 = new Chart(ctx3, {
+    type: 'horizontalBar',
+    data: horizontalBarChartData3,
     options: {
       // Elements options apply to all of the options unless overridden in a dataset
       // In this case, we are setting the border of each horizontal bar to be 2px wide
@@ -865,6 +936,7 @@ window.onload = function() {
   draw_us_result();
   draw_world_avg();
   draw_you_vs_us_avg();
+  showOldData();
 }
 
 // Computes and shows the result to the user.
@@ -920,4 +992,70 @@ function showResult() {
 
   // Update the user's information in the CSV file
   save_anonymous_data();
-};
+
+  // Save cookies on user's computer
+  saveData();
+  showOldData();
+}
+
+/*******************************************
+  Save/Retrieve User Data
+*******************************************/
+// User data from previous visits is saved in a cookie on their machine for up to a year.
+
+function setCookie(name, data) {
+    var date = new Date(); // Get new Date object
+    date.setTime(date.getTime() + (364*24*60*60*1000)); // Save cookie for 1 year.
+    var expires = "expires="+ date.toUTCString(); // Convert to UTC for cookie
+    document.cookie = name + "=" + data + ";" + expires + ";";
+}
+
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }console.log("TRUE!");
+  }
+  return "";
+}
+
+function saveData() {
+  // Save each total into memory for future comparisons.
+  setCookie("osu_trans", trans_total.toFixed(2));
+  setCookie("osu_cons", cons_total.toFixed(2));
+  setCookie("osu_energy",energy_total.toFixed(2));
+  setCookie("osu_food",food_total.toFixed(2));
+  setCookie("osu_waste",waste_total.toFixed(2));
+  setCookie("osu_water",water_total.toFixed(2));
+}
+
+function retrieveData() {
+  old_trans_total = getCookie("osu_trans");
+  old_cons_total = getCookie("osu_cons");
+  old_energy_total = getCookie("osu_energy");
+  old_food_total = getCookie("osu_food");
+  old_waste_total = getCookie("osu_waste");
+  old_water_total = getCookie("osu_water");
+  old_graph_carbon_num_total = old_trans_total + old_cons_total + old_energy_total + old_food_total + old_water_total + old_waste_total;
+}
+
+// Returns a boolean, which determines whether or not the user has used the calculator before.
+function showOldData() {
+  var cookie = getCookie("osu_trans");
+  if (cookie != "") {
+    retrieveData();
+    old_data[0] = old_trans_total;
+    old_data[1] = old_cons_total;
+    old_data[2] = old_energy_total;
+    old_data[3] = old_food_total;
+    old_data[4] = old_waste_total + old_water_total;
+    draw_comparison_graph();
+  }
+}
