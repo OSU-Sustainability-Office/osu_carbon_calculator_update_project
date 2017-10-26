@@ -554,10 +554,6 @@ function water_conv() {
 
 // Draw Pie/Bar Charts
 
-var randomScalingFactor = function() {
-  return Math.round(Math.random() * 100);
-};
-
 var data = [{
     value: 11,
     color: "#DD6600",
