@@ -823,8 +823,34 @@
                   <h4>Your Result:</h4>
                   <canvas id="chart_area_user" /></canvas>
                 </center>
+              </div>
+              <div class="col-md-6">
                 <center>
-                  <h4>Your totals (by category):</h4></center>
+                  <h4>United States Average:</h4>
+                  <canvas id="chart_area_us_avg" /></canvas>
+                </center>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                  <h4>Your result compared to your previous result:</h4>
+                  <canvas id="comparison_graph"></canvas>
+              </div>
+              <div class="col-md-4">
+                  <h4>Your result compared to the carbon emissions of the average citizen in the following locations:</h4>
+                  <canvas id="world_avg_graph"></canvas>
+              </div>
+              <div class="col-md-4">
+                <h4>Your result compared to the United States average:</h4>
+                <canvas id="you_vs_us_avg"></canvas>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class=col-md-2><!-- Spacer -->
+              </div>
+              <div class="col-md-8">
+                <center><h4>Your totals (by category):</h4></center>
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <tr>
@@ -850,7 +876,7 @@
                       <td style="font-weight:bold;">Energy and Heat</td>
                       <td id="energy_tab_total">empty</td>
                       <td id="energy_tab_percentage">empty</td>
-                    </tr>Your result
+                    </tr>
 
                     <tr>
                       <td style="font-weight:bold;">Food</td>
@@ -871,34 +897,12 @@
                     </tr>
 
                     <tr>
-                      <td style="font-weight:bold;">Total::</td>
+                      <td style="font-weight:bold;">Total</td>
                       <td style="font-weight:bold;" id="carbon_total">empty</td>
                       <td style="font-weight:bold;" id="carbon_total_percentage">empty</td>
                     </tr>
                   </table>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <center>
-                  <h4>United States Average:</h4>
-                  <canvas id="chart_area_us_avg" /></canvas>
-                  <h4>Your result compared to the United States average:</h4>
-                  <canvas id="you_vs_us_avg"></canvas>
-                </center>
-
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <center>
-                  <h4>Your result compared to your previous result:</h4>
-                  <canvas id="comparison_graph"></canvas>
-                </center>
-              </div>
-              <div class="col-md-6">
-                <h4>Your result compared to the carbon emissions of the average citizen in the following locations:</h4>
-                <canvas id="world_avg_graph"></canvas>
-              </center>
               </div>
             </div>
             <!-- <input type="submit" name="submitbutton" value="Click here to save your results!" />  -->

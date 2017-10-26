@@ -582,6 +582,9 @@ var data = [{
   }
 ]
 
+var randomScalingFactor = function() {
+  return Math.round(Math.random() * 100);
+};
 var user_config = {
   type: 'pie',
   data: {
@@ -713,6 +716,8 @@ function draw_you_vs_us_avg() {
       responsive: true,
       legend: {
         position: 'right',
+        fontfamily: "Open Sans",
+        fontSize: 20
       },
       title: {
         display: true,
@@ -771,6 +776,8 @@ function draw_world_avg() {
       responsive: true,
       legend: {
         position: 'right',
+        fontfamily: "Open Sans",
+        fontSize: 20
       },
       title: {
         display: true,
@@ -827,6 +834,8 @@ function draw_comparison_graph() {
       responsive: true,
       legend: {
         position: 'right',
+        fontfamily: "Open Sans",
+        fontSize: 20
       },
       title: {
         display: true,
