@@ -812,7 +812,7 @@ var horizontalBarChartData3 = {
 };
 
 function draw_comparison_graph() {
-  var ctx3 = document.getElementById("comparison_graph").getContext("2d");
+  var ctx3 = document.getElementsByClassName("comparisongraph")[0].getContext("2d");
   window.myHorizontalBar2 = new Chart(ctx3, {
     type: 'horizontalBar',
     data: horizontalBarChartData3,
@@ -1053,5 +1053,10 @@ function showOldData() {
     old_data[3] = old_food_total;
     old_data[4] = old_waste_total + old_water_total;
     draw_comparison_graph();
+  } else {
+    var prevRes = document.getElementById("result_table");
+    while (prevRes.firstChild) {
+      prevRes.removeChild(prevRes.firstChild);
+    }
   }
 }

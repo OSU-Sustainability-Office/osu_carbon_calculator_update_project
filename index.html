@@ -19,7 +19,7 @@
   <script src="js/bootstrap.js"></script>
   <script src="js/Chart.bundle.js"></script>
   <script src="js/utils-chart.js"></script>
-  <script language="javascript" type="text/javascript" src="js/carbon_calculator.js"></script>
+  <script language="javascript" type="text/javascript" src="js/carbon_calculator.js" defer></script>
 
   <!--Enable Tooltips-->
   <script>
@@ -832,9 +832,9 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4" id="result_table">
                   <h4>Your result compared to your previous result:</h4>
-                  <canvas id="comparison_graph"></canvas>
+                  <canvas id="comparisongraph" class="comparisongraph"></canvas>
               </div>
               <div class="col-md-4">
                   <h4>Your result compared to the carbon emissions of the average citizen in the following locations:</h4>
