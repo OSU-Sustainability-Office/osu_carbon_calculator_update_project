@@ -284,8 +284,8 @@
               }
             </script>
             <p>If you receive energy bills, select the "Simple" option. If not, select the "Complex" option.<br> Note: If you live in the dorms, you need to pick the "Complex" option.
-              <input type="radio" name="simple_complex" value="simple" onclick="show_simple()">Simple &nbsp;&nbsp;
-              <input type="radio" name="simple_complex" value="complex" onclick="show_complex()"> Complex &nbsp;&nbsp;
+              <input type="radio" id="simple_complex_simple" value="simple" onclick="show_simple()">Simple &nbsp;&nbsp;
+              <input type="radio" id="simple_complex_complex" value="complex" onclick="show_complex()"> Complex &nbsp;&nbsp;
             </p>
 
             <div id="energy_simple" class="collapse">
@@ -332,6 +332,7 @@
                       <td><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></td>
                       <td><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
+  console.log(simple_complex);
 
                     <tr id="row2">
                       <td>Microwave</td>
@@ -348,14 +349,6 @@
                       <td><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></td>
                       <td><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
-
-                    <!--           <tr>
-           					<td>Coffee maker</td>
-           					<td><input id="appliance_4_total" type="number"  size="4" maxlength="1" value ="1"/></td>
-           					<td><input id="appliance_4_watts" type="hidden"  value="1200" />1200</td>
-           					<td><input id="appliance_4_active_usage" type="number"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_4_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
-           				  </tr> -->
 
                     <tr id="row2">
                       <td>IPod dock</td>
@@ -413,22 +406,6 @@
                       <td><input id="appliance_10_passive_u<p class="pop_up_comment" id="comment_processed_food"></p>sage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
-                    <!--           <tr>
-           					<td>DVD/CD player</td>
-           					<td><input id="appliance_12_total" type="number"  size="4" maxlength="1" value ="1"/></td>
-           					<td><input id="appliance_12_watts" type="hidden"  value="30" />30</td>
-           					<td><input id="appliance_12_active_usage" type="number"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_12_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
-           				  </tr>
-
-           				  <tr>
-           					<td>Air conditioner</td>
-           					<td><input id="appliance_13_total" type="number"  size="4" maxlength="1" value ="1"/></td>
-           					<td><input id="appliance_13_watts" type="hidden"  value="1100" />1,100</td>
-           					<td><input id="appliance_13_active_usage" type="number"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_13_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
-           				  </tr>
-           				   -->
                     <tr id="row1">
                       <td>Portable fan</td>
                       <td><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></td>
@@ -437,13 +414,6 @@
                       <td><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
-                    <!--           <tr>
-           					<td>Space heater</td>
-           					<td><input id="appliance_15_total" type="number"  size="4" maxlength="1" value ="1"/></td>
-           					<td><input id="appliance_15_watts" type="hidden"  value="1000" />1000</td>
-           					<td><input id="appliance_15_active_usage" type="number"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_15_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
-           				  </tr> -->
 
                     <tr id="row2">
                       <td>Floor lamp</td>
@@ -452,30 +422,6 @@
                       <td><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></td>
                       <td><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
-
-                    <!--           <tr>
-           					<td>Incandescent light bulb</td>
-           					<td><input id="appliance_17_total" type="number"  size="4" maxlength="4" value ="1"/></td>
-           					<td><input id="appliance_17_watts" type="hidden"  value="75" />75</td>
-           					<td><input id="appliance_17_active_usage" type="number"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_17_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
-           				  </tr>
-
-           				  <tr>
-           					<td>Compact fluorescent light bulb</td>
-           					<td><input id="appliance_18_total" type="number"  size="4" maxlength="4" value ="1"/></td>
-           					<td><input id="appliance_18_watts" type="hidden"  value="20" />20</td>
-           					<td><input id="appliance_18_active_usage" type="number"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_18_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
-           				  </tr> -->
-
-                    <!--           <tr>
-           					<td>Vacuum cleaner</td>
-           					<td><input id="appliance_19_total" type="number"  size="4" maxlength="1" value ="1"/></td>
-           					<td><input id="appliance_19_watts" type="hidden"  value="1440" />1440</td>
-           					<td><input id="appliance_19_active_usage" type="number"  size="4" maxlength="4"/></td>
-           					<td><input id="appliance_19_passive_usage" type="number"  size="4" maxlength="4" value="24"/></td>
-           				  </tr> -->
 
                     <tr id="row1">
                       <td>Game Console</td>
@@ -487,10 +433,10 @@
 
                     <tr id="row2">
                       <td>Other <input id="other_energy_source" type="number" size="20" maxlength="20" /></td>
-                      <td><input id="appliance_20_total" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_20_watts" type="number" size="4" maxlength="5" /></td>
-                      <td><input id="appliance_20_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_20_passive_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_14_total" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_14_watts" type="number" size="4" maxlength="5" /></td>
+                      <td><input id="appliance_14_active_usage" type="number" size="4" maxlength="4" /></td>
+                      <td><input id="appliance_14_passive_usage" type="number" size="4" maxlength="4" /></td>
                     </tr>
                   </tbody>
                 </table>
