@@ -102,8 +102,7 @@
           <p>To get started, please choose which of the following describes you:
             <div class="radio">
               <label><button type="button" name="radio_commuter" class="btn btn-default" value="on_campus" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('on_campus')"/>On Campus student</button></label><br />
-              <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('full_commuter')"/>Off Campus Full-time Commuter Student or Staff</button></label><br
-              />
+              <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('full_commuter')"/>Off Campus Full-time Commuter Student or Staff</button></label><br />
               <label><button type="button" name="radio_commuter" class="btn btn-default" value="part_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('part_commuter')"/>Part-time Commuter Student or Staff</button></label>
             </div>
           </p>
@@ -205,20 +204,22 @@
         </div>
         <div id="collapse3" class="panel-collapse collapse">
           <div class="panel-body">
-            <p>Approximately how many reading books do you buy a year?<br />
-              <input id="reading_book_per_year" type="number" size="2" maxlength="4" /> books
+            <p>How much money do you spend on furniture and appliances each year?<br />
+              <input id="furniture_appliance_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year
+            </p>
+            <p>How much money do you spend on paper products (newspapers, books, textbooks, magazines etc.) each month?<br />
+              <input id="paper_products_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
+            </p>
+            <p>How much money do you spend on personal care and cleaning supplies each month?<br />
+              <input id="personal_care_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
+            </p>
+            <p>How much money do you spend on computers, tablets, phones, and other electronics in a year?<br />
+              <input id="reading_book_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year <a href="#" data-toggle="tooltip" title="" data-original-title="If you've owned these goods for more than a year, approximate how much it's costed you each year. ex. if you've had a $800 laptop for 4 years, that's $200 a year."><span class="glyphicon glyphicon-question-sign"></span></a>
             </p>
 
-            <p>Approximately how many text books do you buy each year?<br />
-              <input id="text_book_per_year" type="number" size="2" maxlength="4" /> books
-            </p>
 
             <p>How much do you spend on new clothing in a given month?<br />
               <input id="clothing_per_month" type="number" size="2" maxlength="4" /> dollars per month
-            </p>
-
-            <p>How much do you spend on eating out and hotels per month?<br />
-              <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
             </p>
 
             <p>How much do you spend on entertainment and other recreational activities per month?<br />
@@ -226,56 +227,7 @@
             </p>
 
             <p>If you drink your water from nonrefillable plastic bottles, how many do you buy per week?<br />
-              <input id="consumption_plastic_bottle" type="number" size="5" maxlength="4" /> bottles
-            </p>
-
-            <p>Do you own a:
-              <input type="radio" id="smart_phone_q" name="is_phone" value="smart_phone" onclick="display_question('show','duration_owning_cell_phone'); ">Smart Phone &nbsp;&nbsp;
-              <input type="radio" id="mobile_phone_q" name="is_phone" value="mobile_phone" onclick="display_question('show','duration_owning_cell_phone'); "> Mobile Phone &nbsp;&nbsp;
-              <input type="radio" id="no_q" name="is_phone" value="no" checked="checked" onclick="display_question('hide','duration_owning_cell_phone'); "> Neither
-            </p>
-
-            <p id="duration_owning_cell_phone_q" style="display:none;">
-              How long have you had your current cell phone? Please approximate in years.<br>
-              <input id="duration_owning_cell_phone" type="number" size="2" maxlength="4" value="0"> years
-            </p>
-
-            <p>Do you own a:
-              <input id="tablet" type="checkbox" name="is_eReader" value="tablet" onclick="showResult();">Tablet &nbsp;&nbsp;
-              <input id="kindle" type="checkbox" name="is_kindle" value="kindle" onclick="showResult();"> Kindle &nbsp;&nbsp;
-              <input id="macbook" type="checkbox" name="macbook" value="Macbook" onclick="showResult();"> Macbook &nbsp;&nbsp;
-              <input id="windows_laptop" type="checkbox" name="windows_laptop" value="Windows Laptop" onclick="showResult();"> Windows Laptop &nbsp;&nbsp;
-            </p>
-
-            <p id="duration_owning_tablet_q" style="display:none;">
-              How long have you had your current Tablet? Please approximate in years.<br>
-              <input id="duration_owning_tablet" type="number" size="2" maxlength="4" value="0"> years
-            </p>
-
-            <p id="duration_owning_kindle_q" style="display:none;">
-              How long have you had your current Kindle? Please approximate in years.<br>
-              <input id="duration_owning_kindle" type="number" size="2" maxlength="4"> years
-            </p>
-
-
-            <p id="duration_owning_macbook_q" style="display:none;">
-              How long have you had your current Macbook? Please approximate in years.<br>
-              <input id="duration_owning_macbook" type="number" size="2" maxlength="4" value="0"> years
-            </p>
-
-            <p id="duration_owning_laptop_q" style="display:none;">
-              How long have you had your current laptop? Please approximate in years.<br>
-              <input id="duration_owning_laptop" type="number" size="2" maxlength="4"> years
-            </p>
-
-            <p>Do you own an iPod?
-              <input type="radio" name="consumption_radio_ipod" value="yes" onclick="display_question('show','consumption_ipod_duration'); ">Yes &nbsp;&nbsp;
-              <input type="radio" name="consumption_radio_ipod" value="no" onclick="display_question('hide','consumption_ipod_duration'); "> No
-            </p>
-
-            <p id="consumption_ipod_duration_q" style="display:none;">
-              How long have you had your current iPod? Please approximate in years.<br>
-              <input id="consumption_ipod_duration" type="number" size="2" maxlength="4"> years
+              <input id="consumption_plastic_bottle" type="number" size="5" maxlength="4" /> bottles per week
             </p>
 
             <div class="row">
@@ -458,7 +410,7 @@
                       <td><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></td>
                       <td><input id="appliance_10_watts" type="hidden" value="115" />115</td>
                       <td><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                      <td><input id="appliance_10_passive_u<p class="pop_up_comment" id="comment_processed_food"></p>sage" type="number" size="4" maxlength="4" value="24" /></td>
                     </tr>
 
                     <!--           <tr>
@@ -690,6 +642,10 @@
 
                 <p class="pop_up_comment" id="comment_processed_food"></p>
 
+                <p>How much do you spend on eating out each month?<br />
+                  <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
+                </p>
+
                 <p>If you drink coffee or tea please select from the following options: <br />
                   <select id="food_coffee_type" onchange="food_coffee_select_handler()">
                					<option value="none">-Select-</option>
@@ -775,11 +731,11 @@
         </div>
         <div id="collapse7" class="panel-collapse collapse">
           <div class="panel-body">
-            <p>On average how long are your showers? <input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes</p>
-            <p>On average how many showers per week? <input id="water_showers_times" type="number" size="5" maxlength="4" /> times</p>
-            <p>On average how many loads of laundry per month? <input id="water_laundry" type="number" size="5" maxlength="4" /> times</p>
-            <p>Average toilet flushes per day? <input id="water_flush" type="number" size="5" maxlength="4" /> flushes</p>
-            <p>Average cups of water you drink per day from tap or water fountain? <input id="water_cups" type="number" size="5" maxlength="4" /> cups
+            <p>On average, how long are your showers? <input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes</p>
+            <p>On average, how many times do you shower every week? <input id="water_showers_times" type="number" size="5" maxlength="4" /> times</p>
+            <p>On average, how many loads of laundry do you wash every month? <input id="water_laundry" type="number" size="5" maxlength="4" /> times</p>
+            <p>On average, how many times do you flush a toilet every day? <input id="water_flush" type="number" size="5" maxlength="4" /> flushes</p>
+            <p>On average, how many cups of water do you drink every day (from the tap or a water fountain)? <input id="water_cups" type="number" size="5" maxlength="4" /> cups
               <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-question-sign"></span></a>
             </p>
 
