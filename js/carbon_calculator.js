@@ -27,6 +27,14 @@
  * http://carbon.campusops.oregonstate.edu/
  *
  * For general inquiries regarding this script, email: jack.woods@oregonstate.edu
+ *
+ * Other Notes:
+ * A lot of the code was previously written by some grad students for a project.
+ * JW and KC have updated this script on an "as-needed" basis, so portions of
+ * the code are not optimized. Some code is purposely NOT optimized to
+ * maintain the original code structure & style, and some stylistic
+ * choices have been made to improve code readability for non-technical staff
+ * at the Sustainability Office (who don't have backgrounds in CS).
  ******************************************************************************/
 
 /*******************************************************************************
@@ -147,15 +155,6 @@ function trans_airplane_conv() {
 /*******************************************************************************
                                   CONSUMPTION
 *******************************************************************************/
-// Source: http://www.tkearth.com/downloads/thoughts_ereaders.pdf
-function consumption_textbook_conv() {
-  var reading_book = $("#reading_book_per_year").val();
-  var text_book = $("#text_book_per_year").val();
-  return (reading_book * 7.46) + (text_book * 10.9);
-  // KC:
-  // 5kg co2 per kg of textbook, average mass of textbook 2.18kg (multiplied
-  // together for calculation). Average book 7.46 kg of co2 over lifetime
-}
 
 // Source: http://www.carbonfootprint.com/calculatorfaqs.html
 function consumption_clothing_conv() {
@@ -164,86 +163,40 @@ function consumption_clothing_conv() {
   return amount_spent * .30 * 0.77 * 12;
 }
 
+// Source: Carbon Calculator Spreadsheet:
+// https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=1428571633
+function furniture_appliance_per_year() {
+  var money_spent = $('#furniture_appliance_per_year').val();
+  return 0.614 * money_spent;
+}
+
+// Source: Carbon Calculator Spreadsheet:
+// https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=1428571633
+function paper_products_per_month() {
+  var money_spent = $('#paper_products_per_month').val();
+  return 2.1 * money_spent;
+}
+
+// Source: Carbon Calculator Spreadsheet:
+// https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=1428571633
+function personal_care_per_month() {
+  var money_spent = $('#personal_care_per_month').val();
+  return 0.954 * money_spent;
+}
+
+// Source: Carbon Calculator Spreadsheet:
+// https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=1428571633
+function electronics_per_year() {
+  var money_spent = $('#electronics_per_year').val();
+  return 0.396 * money_spent;
+}
+
 // Source: http://www.carbonfootprint.com/calculatorfaqs.html
 function consumption_recreation_conv() {
   var amount_spent = $("#hotels_per_month").val();
   var amount_spent_activities = $("#recreation_per_month").val();
   // No description for this calculation. KC provided source.
   return (amount_spent * .2212 / 4 * 52) + (amount_spent_activities * .3871 / 4 * 52);
-}
-
-function consumption_cellphone_conv() {
-  var years_owned = $("#duration_owning_cell_phone").val(); // How long they've
-  // owned the phone
-  if (document.getElementById("smart_phone_q").checked) {
-    //source:  https://www.fairphone.com/wp-content/uploads/2014/06/FULLTEXT01.pdf
-
-    return 49 / years_owned;
-
-  } else if (document.getElementById("mobile_phone_q").checked) {
-    // http://fatknowledge.blogspot.com/2007/01/carbon-footprint-of-mobile-phone.html
-    // Approximately 112 kg co2e per year
-    return 112 / years_owned;
-  } else {
-    return 0;
-  }
-}
-
-// From original SCU calculator.
-function consumption_eReader_conv() {
-  var result = 0;
-
-  var years_owned_tablet = $("#duration_owning_tablet").val();
-  var years_owned_kindle = $("#duration_owning_kindle").val();
-  var years_owned_macbook = $("#duration_owning_macbook").val();
-  var years_owned_laptop = $("#duration_owning_laptop").val();
-
-  // When the user checks a box, a secondary question appears and asks them
-  // how long they've owned their tablet. If they answer no, the second
-  // question is hidden.
-
-  if (document.getElementById('tablet').checked || $("is_ereader_cons_q").is(":checked")) {
-    result += (270 / years_owned_tablet);
-    display_question('show', 'duration_owning_tablet');
-  } else {
-    display_question('hide', 'duration_owning_tablet');
-  }
-
-  if (document.getElementById('kindle').checked || $("is_kindle_cons_q").is(":checked")) {
-    result += (168);
-    display_question('show', 'duration_owning_kindle');
-  } else {
-    display_question('hide', 'duration_owning_kindle');
-  }
-
-  if (document.getElementById('macbook').checked) {
-    result += (400);
-    display_question('show', 'duration_owning_macbook');
-  } else {
-    display_question('hide', 'duration_owning_macbook');
-  }
-
-  if (document.getElementById('windows_laptop').checked) {
-    result += (238);
-    display_question('show', 'duration_owning_laptop');
-  } else {
-    display_question('hide', 'duration_owning_laptop');
-  }
-
-  return result;
-}
-
-function consumption_ipod_conv() {
-  var ipod_duration = 0; // In years.
-
-  ipod_duration = $("#consumption_ipod_duration").val();
-
-  if ($("input[name='consumption_radio_ipod']:checked").val() == 'yes') {
-    return 47.5 / ipod_duration;
-    // Source: http://www.apple.com/environment/reports/
-  }
-
-  return 0;
 }
 
 // http://www.co2list.org/files/carbon.htm
@@ -275,13 +228,13 @@ function consumption_coffee_conv() {
 /*******************************************
   ENERGY
 *******************************************/
-
+//TODO: fix this one. Iteration not working.
 function energy_audit_dorm_conv() //kwh to kg source: https://www.epa.gov/sites/production/files/2015-07/documents/emission-factors_2014.pdf
 {
   var result = 0;
-  var total_appliance = 13;
+  var total_appliance = 14;
   var complex = 0;
-  var simple_complex = $("input[name='simple_complex']:checked").val();
+  var simple_complex = $("#simple_complex_complex").val();
   if (simple_complex == 'complex') {
     complex = 1;
   } else {
@@ -351,6 +304,7 @@ function electricity_dorms_kwh() {
     dorms_electricity = 0;
   }
   result = dorms_electricity;
+  console.log(result);
   return result;
 }
 
@@ -360,6 +314,7 @@ function heat_dorms_lbs() {
   var result = 0;
   // dorms at OSU are not currently heated with gas. 0 for all values.
   result = dorms_heat;
+  console.log(result);
   return result;
 }
 
@@ -377,6 +332,7 @@ function simple_option() {
 
   result = (complex * ((electricity * .3821 / .1078) + (gas * 6.103 / 1.08)));
 
+  console.log(result);
   return result;
 }
 
@@ -397,6 +353,7 @@ function energy_baseline_conv() {
   var conversionFromKWHtoKgCO2e = 0.3821;
 
   result = (((totalInKWH - totalDormInKWH) * user_num / popOfOSU + electricity_dorms_kwh()) +simple_option()) * conversionFromKWHtoKgCO2e;
+  console.log(result);
   return result;
 }
 
@@ -409,7 +366,7 @@ function energy_gas_baseline_conv() {
   var convertFromThermToKgCO2e = 6.103
 
   result = (totalOSUGasTherms / popOfOSU) * user_num * convertFromThermToKgCO2e;
-
+  console.log(result);
   return result;
 }
 
@@ -530,7 +487,6 @@ function water_conv() {
   var gallonsperdayperperson = 21.402;
   var result = 1;
 
-  //var user_type = $("input[name='radio_commuter']:checked").val();
   var shower_duration = $("#water_showers_duration").val();
   var total_shower = $("#water_showers_times").val();
   var total_laundry = $("#water_laundry").val();
@@ -544,7 +500,8 @@ function water_conv() {
   } else if (user_type == "part_commuter") {
     baseline = 0.5 * gallonsperdayperperson;
   }
-  result = (baseline * year_or_day) + (total_shower * 1.5 * year_or_day) + (13.1 * total_laundry / 30 * year_or_day) + (1.6 * total_flush * year_or_day) + (total_cups * 0.0625 * year_or_day);
+
+  result = (baseline * year_or_day) +  ((total_shower * shower_duration * 2.1 ) / 7 )* year_or_day + (30 * total_laundry / 30 * year_or_day) + (3.6 * total_flush * year_or_day) + (total_cups * 0.0625 * year_or_day);
   result = (result * 0.00284); //soruce: UK Environment Agency
 
   return result;
@@ -812,7 +769,7 @@ var horizontalBarChartData3 = {
 };
 
 function draw_comparison_graph() {
-  var ctx3 = document.getElementsByClassName("comparisongraph")[0].getContext("2d");
+  var ctx3 = document.getElementById("comparisongraph").getContext("2d");
   window.myHorizontalBar2 = new Chart(ctx3, {
     type: 'horizontalBar',
     data: horizontalBarChartData3,
@@ -892,10 +849,10 @@ function save_anonymous_data() {
       trans_train_conv: parseFloat(trans_train_conv()).toString(),
       trans_airplane_conv: parseFloat(trans_airplane_conv()).toString(),
       cons_total: cons_total.toString(),
-      consumption_textbook_conv: parseFloat(consumption_textbook_conv()).toString(),
+      consumption_textbook_conv: "Textbook question was removed.",
       consumption_clothing_conv: parseFloat(consumption_clothing_conv()).toString(),
-      consumption_cellphone_conv: parseFloat(consumption_cellphone_conv()).toString(),
-      consumption_eReader_conv: parseFloat(consumption_eReader_conv()).toString(),
+      consumption_cellphone_conv: "Cell phone question was removed.",
+      consumption_eReader_conv: "E-Reader question was removed.",
       consumption_plastic_bottle_conv: parseFloat(consumption_plastic_bottle_conv()).toString(),
       energy_total: energy_total.toString(),
       energy_audit_dorm_conv: parseFloat(energy_audit_dorm_conv()).toString(),
@@ -911,6 +868,7 @@ function save_anonymous_data() {
     type: "POST"
   });
 }
+
 
 // Determines whether the user is an on-campus student, full-commuter, or
 // part-commuter. These values are used for the final carbon footprint
@@ -940,7 +898,7 @@ function showResult() {
 
   // Compute Result
   trans_total = parseFloat(trans_car_conv()) + parseFloat(trans_short_bus_conv()) + parseFloat(trans_long_bus_conv()) + parseFloat(trans_train_conv()) + parseFloat(trans_airplane_conv());
-  cons_total = parseFloat(consumption_textbook_conv()) + parseFloat(consumption_clothing_conv()) + parseFloat(consumption_recreation_conv()) + parseFloat(consumption_cellphone_conv()) + parseFloat(consumption_eReader_conv()) + parseFloat(consumption_plastic_bottle_conv()); // + parseFloat(consumption_ipod_conv());
+  cons_total = parseFloat(electronics_per_year()) + parseFloat(personal_care_per_month()) + parseFloat(paper_products_per_month()) + parseFloat(furniture_appliance_per_year()) + parseFloat(consumption_clothing_conv()) + parseFloat(consumption_recreation_conv()) + parseFloat(consumption_plastic_bottle_conv());
   energy_total = parseFloat(energy_audit_dorm_conv()) + parseFloat(energy_gas_baseline_conv()) + parseFloat(energy_baseline_conv());
   food_total = parseFloat(food_conv()) + parseFloat(consumption_coffee_conv());
   waste_total = parseFloat(waste_conv());
