@@ -7,11 +7,12 @@
     left: 0;
 }
 .panel-login {
-  position: absolute;
-  width: 26%;
+  position: relative;
+  width: 30em;
   height: 22em;
   top: 29%;
-  left: 37%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .hidden {
   display: none;
