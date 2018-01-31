@@ -59,6 +59,10 @@ var old_waste_total;
 var old_water_total;
 var old_data = new Array(5);
 
+// ONID Variables
+var uid;
+var firstName;
+
 // Charts.JS requires that data be placed into an array.
 var data = new Array(6);
 
@@ -304,7 +308,6 @@ function electricity_dorms_kwh() {
     dorms_electricity = 0;
   }
   result = dorms_electricity;
-  console.log(result);
   return result;
 }
 
@@ -314,7 +317,6 @@ function heat_dorms_lbs() {
   var result = 0;
   // dorms at OSU are not currently heated with gas. 0 for all values.
   result = dorms_heat;
-  console.log(result);
   return result;
 }
 
@@ -332,7 +334,6 @@ function simple_option() {
 
   result = (complex * ((electricity * .3821 / .1078) + (gas * 6.103 / 1.08)));
 
-  console.log(result);
   return result;
 }
 
@@ -353,7 +354,6 @@ function energy_baseline_conv() {
   var conversionFromKWHtoKgCO2e = 0.3821;
 
   result = (((totalInKWH - totalDormInKWH) * user_num / popOfOSU + electricity_dorms_kwh()) +simple_option()) * conversionFromKWHtoKgCO2e;
-  console.log(result);
   return result;
 }
 
@@ -366,7 +366,6 @@ function energy_gas_baseline_conv() {
   var convertFromThermToKgCO2e = 6.103
 
   result = (totalOSUGasTherms / popOfOSU) * user_num * convertFromThermToKgCO2e;
-  console.log(result);
   return result;
 }
 
@@ -890,7 +889,21 @@ window.onload = function() {
   draw_us_result();
   draw_world_avg();
   draw_you_vs_us_avg();
-  showOldData();
+
+  // Verify ONID Login
+  var ticket = location.search.substring(8);
+  if (ticket.length > 0) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "../php/CASValidate.php?ticket="+ticket, false); // false for synchronous request
+    xmlHttp.send(null);
+    var res = xmlHttp.responseText;
+    console.log(res);
+    if (res.includes("Success")) {
+      updateUserVariables(res);
+      closeONIDWindow();
+      showOldData();
+    }
+  }
 }
 
 // Computes and shows the result to the user.
@@ -955,8 +968,34 @@ function showResult() {
 /*******************************************
   Save/Retrieve User Data
 *******************************************/
-// User data from previous visits is saved in a cookie on their machine for up to a year.
+var closeONIDWindow = function closeONIDWindow() {
+  document.getElementById("overlay").classList.add("hidden");
+}
+// Close ONID Login Window listener
+document.getElementById("close-btn").addEventListener("click", closeONIDWindow);
 
+// Update user variables, such as UID and name
+function updateUserVariables(res) {
+  var parser;
+  var doc;
+  if (window.DOMParser) {
+    parser = new DOMParser();
+    doc = parser.parseFromString(res, "text/xml");
+  } else { // IE uses ActiveX
+    parser = new ActiveXObject("Microsoft.XMLDOM");
+    doc.async = false;
+    doc.loadXML(res);
+  }
+
+  // Set global Variables
+  firstName = doc.getElementsByTagName("cas:firstname")[0].childNodes[0].nodeValue;
+  console.log(firstName);
+
+  uid = doc.getElementsByTagName("cas:uid")[0].childNodes[0].nodeValue;
+  console.log(uid);
+}
+
+// User data from previous visits is saved in a cookie on their machine for up to a year.
 function setCookie(name, data) {
     var date = new Date(); // Get new Date object
     date.setTime(date.getTime() + (364*24*60*60*1000)); // Save cookie for 1 year.
@@ -975,7 +1014,7 @@ function getCookie(cookieName) {
     }
     if (c.indexOf(name) == 0) {
       return c.substring(name.length, c.length);
-    }console.log("TRUE!");
+    }
   }
   return "";
 }

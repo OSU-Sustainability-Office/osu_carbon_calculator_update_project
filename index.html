@@ -15,6 +15,9 @@
 
   <!-- Site CSS and JS Links -->
   <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/carbonCalc.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.188.0.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/Chart.bundle.js"></script>
@@ -865,6 +868,19 @@
       </div>
     </div>
     <center><a href="http://oregonstate.edu/copyright">Copyright</a> ©2017 Oregon State University. Glyphicons created by <a href="http://glyphicons.com/">Glyphicons</a>, and provided free for use with <a href="http://getbootstrap.com">Bootstrap</a> Version 3.3.7.</center>
+    <div class="overlay" id="overlay">
+      <div class="panel panel-default panel-login">
+        <div class="panel-heading"><h4 class="panel-title">Track Your Progress</h4></div>
+        <div class="panel-body">
+          <center>
+            <img src="http://simpleicon.com/wp-content/uploads/bar-chart-down-2.svg" height="175em"></img><br /><br />
+            <a href="https://login.oregonstate.edu/idp/profile/cas/login?service=http://carbon.campusops.oregonstate.edu/"><button type="button" class="btn btn-primary collapsed">Track Your Progress With ONID</button></a> or
+            <!-- This is handled with JS -->
+            <button type="button" id="close-btn" class="btn btn-default">No Thanks</button>
+          </center>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
