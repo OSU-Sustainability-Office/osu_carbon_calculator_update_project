@@ -23,6 +23,7 @@ var old_data = new Array(5);
 // ONID Variables
 var uid;
 var firstName;
+var primaryAffiliation;
 
 // Charts.JS requires that data be placed into an array.
 var data = new Array(6);
@@ -860,17 +861,20 @@ window.onload = function() {
     xmlHttp.open("GET", "../php/CASValidate.php?ticket="+ticket, false); // false for synchronous request
     xmlHttp.send(null);
     var res = xmlHttp.responseText;
-    console.log(res);
     if (res.includes("Success")) {
       updateUserVariables(res);
       closeONIDWindow();
       showOldData();
     }
   }
+
+  // Add event listeners for updating graphs
+  document.getElementById("last-next-button").addEventListener("click", showResult);
+  document.getElementById("results-accordion").addEventListener("click", showResult);
 }
 
 // Computes and shows the result to the user.
-function showResult() {
+var showResult = function showResult() {
 
   // Compute Result
   trans_total = parseFloat(trans_car_conv()) + parseFloat(trans_short_bus_conv()) + parseFloat(trans_long_bus_conv()) + parseFloat(trans_train_conv()) + parseFloat(trans_airplane_conv());
@@ -954,8 +958,15 @@ function updateUserVariables(res) {
   firstName = doc.getElementsByTagName("cas:firstname")[0].childNodes[0].nodeValue;
   console.log(firstName);
 
+  primaryAffiliation = doc.getElementsByTagName("cas:eduPersonPrimaryAffiliation")[0].childNodes[0].nodeValue;
+  console.log(primaryAffiliation);
+
   uid = doc.getElementsByTagName("cas:uid")[0].childNodes[0].nodeValue;
   console.log(uid);
+
+  // Update header with user's name.
+
+  var header = document.getElementsByClassName("well-md")[0].getElementsByTagName("h1")[0].innerHTML = "Hello, " + firstName + "! Welcome to your Carbon Calculator.";
 }
 
 // User data from previous visits is saved in a cookie on their machine for up to a year.

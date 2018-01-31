@@ -20,7 +20,7 @@
 }
 
 /* For Smartphones */
-@media all and (min-width:1px) and (max-width: 800px) {
+@media all and (min-width:1px) and (max-width: 1024px) {
   .login-container {
     position: relative;
     top: 100px;
