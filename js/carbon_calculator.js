@@ -1,43 +1,4 @@
 /*******************************************************************************
- *                             ██████╗ ███████╗██╗   ██╗
- *                             ██╔═══██╗██╔════╝██║   ██║
- *                             ██║   ██║███████╗██║   ██║
- *                             ██║   ██║╚════██║██║   ██║
- *                             ╚██████╔╝███████║╚██████╔╝
- *                             ╚═════╝ ╚══════╝ ╚═════╝
- *
- *                ██████╗ █████╗ ██████╗ ██████╗  ██████╗ ███╗   ██╗
- *                ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔═══██╗████╗  ██║
- *                ██║     ███████║██████╔╝██████╔╝██║   ██║██╔██╗ ██║
- *                ██║     ██╔══██║██╔══██╗██╔══██╗██║   ██║██║╚██╗██║
- *                ╚██████╗██║  ██║██║  ██║██████╔╝╚██████╔╝██║ ╚████║
- *                ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝
- *
- *██████╗ █████╗ ██╗      ██████╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗
- *██╔════╝██╔══██╗██║     ██╔════╝██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
- *██║     ███████║██║     ██║     ██║   ██║██║     ███████║   ██║   ██║   ██║██████╔╝
- *██║     ██╔══██║██║     ██║     ██║   ██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
- *╚██████╗██║  ██║███████╗╚██████╗╚██████╔╝███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
- *╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
- *
- * Originally adapted from SCU's original code:
- * https://docs.google.com/file/d/0B66G3LFpAvamc1RwQ29HLWg2dms/edit?usp=sharing
- * Updated in 2017 by Keava Campbell and Jack Woods
- * For more information about the calculator, visit:
- * http://carbon.campusops.oregonstate.edu/
- *
- * For general inquiries regarding this script, email: jack.woods@oregonstate.edu
- *
- * Other Notes:
- * A lot of the code was previously written by some grad students for a project.
- * JW and KC have updated this script on an "as-needed" basis, so portions of
- * the code are not optimized. Some code is purposely NOT optimized to
- * maintain the original code structure & style, and some stylistic
- * choices have been made to improve code readability for non-technical staff
- * at the Sustainability Office (who don't have backgrounds in CS).
- ******************************************************************************/
-
-/*******************************************************************************
                           Begin Variable Declaration
  ******************************************************************************/
 
