@@ -776,7 +776,8 @@ function update_graphs() {
 }
 
 /*******************************************
-  Calculator page handler
+  Display questions that depend on the results
+  of other questions.
 *******************************************/
 
 function display_question(action, field_name) {
@@ -790,13 +791,14 @@ function display_question(action, field_name) {
 
 /*******************************************************************************
                       Miscellaneous Function Definitions
+                      ----------------------------------
+                      NOTE: This remains as a backup ONLY.
+                      Data is now stored in a DynamoDB.
  ******************************************************************************/
 
-/*******************************************************************************
- Save Anonymous User Data. This data is used for sustainability-focused outreach
- efforts and other metrics. No specific user information is saved.
- Data is saved into a CSV file in this format:
-*******************************************************************************/
+ // Save Anonymous User Data. This data is used for sustainability-focused outreach
+ // efforts and other metrics. No specific user information is saved.
+ // Data is saved into a CSV file in this format:
 function save_anonymous_data() {
   // Save results to csv/text file
   // Ajax request to php script
