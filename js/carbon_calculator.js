@@ -990,7 +990,7 @@ function updateDB() {
   var dataObject = {
     "date": "" + d.getMonth() + d.getDate() + d.getYear(), // Uses getMonth(), getDate(), and getYear() from Javascript Date object.
     "totals": data,
-    "location": res
+    "location": JSON.parse(res)
   };
 
   // Next, create the JSON object for the user.
