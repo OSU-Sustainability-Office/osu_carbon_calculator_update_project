@@ -2,37 +2,33 @@
 // This is a seperate server that's dedicated to accepting data from users
 // in real time.
 
-// set up ======================================================================
+// Setup ======================================================================
 // get all the tools we need
-var dotenv   = require('dotenv').config();
 var express  = require('express');
 var app      = express();
-var fs       = require('fs'); // TEMP - for saving acquisuite POST data\
-var AWS      = require('aws-sdk'); // For DynamoDB
-var db       = new AWS.DynamoDB();
+var port     = 3000;
+var fs       = require('fs'); // TEMP - for saving acquisuite POST data
+var db       = require('mongodb').MongoClient; // Database
 var bodyParser   = require('body-parser');
 var morgan       = require('morgan');
 
-// configuration ===============================================================
-
-mongoose.connect(process.env.MONGO_DATABASE_URL, { useMongoClient: true }); // connect to our database
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log("We're connected");
-});
+// Configuration ===============================================================
+// Set the region
+var mongoHost = "localhost";
+var mongoPort = 27017;
+var mongoUser = "carbonCalc";
+var mongoPassword = "OakCreek";
+var mongoDBName = "carbon-calculator";
+var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword +
+               '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
+var mongoConnection = null;
 
 // log every request to the console
 app.use(morgan('dev'));
 
 // Parse post bodies
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());// get information from html forms
-app.use(bodyParser.text({type: "*/*", limit: '50mb'}));// get information from html forms
+app.use(bodyParser.json());// get information from JSON POST bodies
 
-// Obtain DB schema
-var User = require('./app/models/user-schema');
-var Building = require('./app/models/building-schema');
 
 // Routes ======================================================================
 
@@ -42,17 +38,69 @@ var Building = require('./app/models/building-schema');
 // Collects POST data from users in JSON format.
 // Then, queries the database to prevent duplicates
 // and stores the data.
-app.post('/upload/:id', function (req, res) {
+app.post('/upload', function (req, res) {
 
   console.log(req.body);
-
   var dataObject = req.body;
 
-
+  // Send success status.
   res.status("200");
-  res.send("");
+
+  // Get userData collection
+  var col = db.collection('userData');
+
+  col.find({UserID:dataObject.UserID}).limit(1).toArray(function (err, results) {
+    if (results.length > 0) { // If the user exists in the DB
+
+      // Search the user's data for today's date.
+      // The user can only upload a maximum of 1 carbon footprint per day.
+      var userObject = results[0];
+      var update = false;
+      for (var i = 0; i < userObject.data.length; i++) {
+        // If date exists in the user's list,
+        if (userObject.data[i].date == dataObject.data[0].date) {
+          update = true;
+          userObject.data[i] = dataObject.data[0]; // Replace it
+          console.log("Replace data.");
+        }
+      }
+
+      // If the date didn't exist, push the new data
+      if(!update) {
+        userObject.data.push(dataObject.data);
+        console.log("Push new data.");
+      }
+      console.log(userObject.data);
+
+      // Update database with new data.var db = client.db('mytestingdb');
+      col.update({"_id":userObject._id}, {$set: {"data":userObject.data}});
+
+      // Send a result message for debugging.
+      res.send("Added new data to user.");
+
+    } else {// User does not exist.
+
+      // Insert user's object into database.
+      col.insert(dataObject);
+      // Send a result message for debugging.
+      res.send("User inserted into database.");
+
+    }
+  });
+
 });
 
-// launch ======================================================================
-app.listen(80);
+// Launch ======================================================================
+// Connect to DB
+db.connect(mongoURL, function (err, connection) {
+  if (err) {
+    throw err;
+  }
+  mongoConnection = connection;
+  db = connection.db("carbon-calculator");
+  // Launch app
+  app.listen(port, function () {
+    console.log("Server listening on port:", port);
+  });
+});
 console.log("I think it's working!");

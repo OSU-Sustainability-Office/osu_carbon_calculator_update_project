@@ -927,6 +927,9 @@ var showResult = function showResult() {
   // Update the user's information in the CSV file
   save_anonymous_data();
 
+  // Update the user's information in the database.
+  updateDB();
+
   // Save cookies on user's computer
   saveData();
   showOldData();
@@ -967,6 +970,46 @@ function updateUserVariables(res) {
   // Update header with user's name.
 
   var header = document.getElementsByClassName("well-md")[0].getElementsByTagName("h1")[0].innerHTML = "Hello, " + firstName + "! Welcome to your Carbon Calculator.";
+}
+
+// Creates a JSON object for the current user and sends a POST request to
+// uploadUser.php. We post to the PHP script instead of directly to the Database
+// to avoid no-access-control-allow-origin errors.
+function updateDB() {
+  console.log("Update!");
+  // First, create the dataObject
+  var d = new Date();
+
+  // Get location information
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", "../php/getUserLocation.php", false); // false for synchronous request
+  xmlHttp.send(null);
+  var res = xmlHttp.responseText; // PHP script responds with a JSON object.
+  console.log(res);
+
+  var dataObject = {
+    "date": "" + d.getMonth() + d.getDate() + d.getYear(), // Uses getMonth(), getDate(), and getYear() from Javascript Date object.
+    "totals": data,
+    "location": res
+  };
+
+  // Next, create the JSON object for the user.
+  var userObject = {
+    "UserID": uid,
+    "firstName": firstName,
+    "primaryAffiliation": primaryAffiliation,
+    "data": [dataObject]
+  };
+
+  userObject = JSON.stringify(userObject); // Stringify JSON for HTTP POST body.
+
+  // Lastly, send the request.
+
+  xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "../php/uploadUserInfo.php?userObject=" + userObject, false); // False for synchronous request.
+  xmlHttp.send(null);
+  res = xmlHttp.responseText;
+  console.log(res);
 }
 
 // User data from previous visits is saved in a cookie on their machine for up to a year.
