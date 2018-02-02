@@ -6,7 +6,9 @@
 // get all the tools we need
 var express  = require('express');
 var app      = express();
-var port     = 3000;
+var port     = 3000; // NOTE: Port 80 is forwarded to 3000 on our ec2 instance
+                     // this command:
+//sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 var fs       = require('fs'); // TEMP - for saving acquisuite POST data
 var db       = require('mongodb').MongoClient; // Database
 var bodyParser   = require('body-parser');
