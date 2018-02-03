@@ -988,7 +988,10 @@ function updateDB() {
   console.log(res);
 
   var dataObject = {
-    "date": "" + d.getMonth() + d.getDate() + d.getYear(), // Uses getMonth(), getDate(), and getYear() from Javascript Date object.
+    // Uses getMonth(), getDate(), and getYear() from Javascript Date object.
+    // The slicing stuff ensures that dates will be saved in 2 digit format.
+    // For example, January will be 01 instead of just 1.
+    "date": "" + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2) + d.getYear(),
     "totals": data,
     "location": JSON.parse(res)
   };
