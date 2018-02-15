@@ -642,45 +642,6 @@
 
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse4">Previous</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse6">Next</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-             <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Waste</a>
-           </h4>
-        </div>
-        <div id="collapse6" class="panel-collapse collapse">
-          <div class="panel-body">
-            <p>From the following scale decide how much of your waste is recycled (the average person recycles around 25% of their waste)<br />
-              <input type="radio" name="radio_recycle" value="below_avg" />Below Average<br />
-              <input type="radio" name="radio_recycle" value="avg" />Average<br />
-              <input type="radio" name="radio_recycle" value="above_avg" />Above Average<br />
-            </p>
-
-            <p>From the following scale choose the amount of trash you accumulate per day (A bag of sugar weighs 4 lbs. The average person accumulates 4lbs trash per day)<br/>
-              <input type="radio" name="radio_trash" value="less_4lb" />Less than 4lbs<br/>
-              <input type="radio" name="radio_trash" value="4lb" />About 4lbs<br/>
-              <input type="radio" name="radio_trash" value="more_4lb" />Greater than 4lbs<br />
-            </p>
-
-            <p>From the following scale choose the amount you compost per day (A 16 oz soda weights 1 lb. The average person composts 1 lb per day)<br>
-              <!--need conversion factor for composting-->
-              <input type="radio" name="radio_compost" value="less_1lb">Less than 1lbs<br>
-              <input type="radio" name="radio_compost" value="1lb">About 1lbs<br>
-              <input type="radio" name="radio_compost" value="more_1lb">Greater than 1lbs<br>
-            </p>
-
-            <div class="row">
-              <div class="col-md-12"><br />
-
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Previous</button>
                   <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse7">Next</button>
                 </div>
               </div>
@@ -691,10 +652,10 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-             <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Water</a>
+             <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Water</a>
            </h4>
         </div>
-        <div id="collapse7" class="panel-collapse collapse">
+        <div id="collapse6" class="panel-collapse collapse">
           <div class="panel-body">
             <p>On average, how long are your showers? <input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes</p>
             <p>On average, how many times do you shower every week? <input id="water_showers_times" type="number" size="5" maxlength="4" /> times</p>
@@ -714,6 +675,28 @@
 
             <div class="row">
               <div class="col-md-12"><br />
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Previous</button>
+                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse7">Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+             <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Waste</a>
+           </h4>
+        </div>
+        <div id="collapse7" class="panel-collapse collapse">
+          <div class="panel-body">
+            Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.<br /><br />
+            But what’s more important? While it’s great we have minimal waste disposal-related emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture, purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the “Next Steps” tab.
+            <div class="row">
+              <div class="col-md-12"><br />
+
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse6">Previous</button>
                   <button type="button" id="last-next-button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse8">Next</button>
@@ -799,12 +782,6 @@
                     </tr>
 
                     <tr>
-                      <td style="font-weight:bold;">Waste</td>
-                      <td id="waste_tab_total">empty</td>
-                      <td id="waste_tab_percentage">empty</td>
-                    </tr>
-
-                    <tr>
                       <td style="font-weight:bold;">Water</td>
                       <td id="water_tab_total">empty</td>
                       <td id="water_tab_percentage">empty</td>
@@ -887,7 +864,10 @@
               <img src="http://simpleicon.com/wp-content/uploads/bar-chart-down-2.svg" height="175em"></img><br /><br />
               <a href="https://login.oregonstate.edu/idp/profile/cas/login?service=http://carbon.campusops.oregonstate.edu/"><button type="button" class="btn btn-primary collapsed">Track Your Progress With ONID</button></a> or
               <!-- This is handled with JS -->
-              <button type="button" id="close-btn" class="btn btn-default">No Thanks</button>
+              <button type="button" id="close-btn" class="btn btn-default">No Thanks</button><br /><br />
+              When you're signed in with ONID, your results will be automatically saved for later.<br /><br />
+              We're hard at work adding unique visualizations so you can understand your carbon<br />
+              footprint like never before.
             </center>
           </div>
         </div>

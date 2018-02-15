@@ -548,11 +548,11 @@ var us_avg_config = {
   data: {
     datasets: [{
       data: [
-        4165.6,
-        4100,
-        3181.6,
-        3755.6,
-        1197.2
+        4808.4,
+        4979.9,
+        3692.1,
+        2404.2,
+        515.2
       ],
       backgroundColor: [
         window.chartColors.red,
@@ -598,11 +598,11 @@ var horizontalBarChartData2 = {
     borderColor: window.chartColors.yellow,
     borderWidth: 1,
     data: [
-      4165.6,
-      4100,
-      3181.6,
-      3755.6,
-      1197.2
+      4808.4,
+      4979.9,
+      3692.1,
+      2404.2,
+      515.2
     ]
   }, {
     label: "Your Result",
@@ -909,7 +909,6 @@ var showResult = function showResult() {
   $("#consumption_tab_total").html(cons_total.toFixed(2));
   $("#energy_tab_total").html(energy_total.toFixed(2));
   $("#food_tab_total").html(food_total.toFixed(2));
-  $("#waste_tab_total").html(waste_total.toFixed(2));
   $("#water_tab_total").html(water_total.toFixed(2));
   $("#carbon_total").html(carbon_num_total.toFixed(2));
 
