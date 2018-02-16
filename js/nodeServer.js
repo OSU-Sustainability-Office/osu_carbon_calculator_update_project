@@ -69,7 +69,7 @@ app.post('/upload', function (req, res) {
 
       // If the date didn't exist, push the new data
       if(!update) {
-        userObject.data.push(dataObject.data);
+        userObject.data.push(dataObject.data[0]); // The data itself is an array. Only push the first element.
         console.log("Push new data.");
       }
       console.log(userObject.data);
