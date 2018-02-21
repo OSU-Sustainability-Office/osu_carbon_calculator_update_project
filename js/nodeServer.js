@@ -91,6 +91,41 @@ app.post('/upload', function (req, res) {
   });
 
 });
+//=====================================
+// Data Retrieval
+//=====================================
+// Retrieves the user's object in JSON format.
+app.post('/download', function (req, res) {
+
+  console.log(req.body);
+  var dataObject = req.body;
+
+  // Get userData collection
+  var col = db.collection('userData');
+
+  col.find({UserID:dataObject.UserID}).limit(1).toArray(function (err, results) {
+    if (results.length > 0) { // If the user exists in the DB
+
+      var userObject = results[0];
+
+      // Send success status.
+      res.status("200");
+
+      // Send user's object.
+      res.send(JSON.stringify(userObject));
+
+    } else {// User does not exist.
+
+      // Send success status.
+      res.status("500");
+
+      // Send an error message.
+      res.send("Error: No such user.");
+
+    }
+  });
+
+});
 
 // Launch ======================================================================
 // Connect to DB
