@@ -22,7 +22,7 @@ var energy_total;
 var food_total;
 var waste_total;
 var water_total;
-var graph_carbon_num_total;
+var carbon_num_total;
 
 // ONID Variables
 var uid;
@@ -613,7 +613,6 @@ function downloadHistData() {
   userObject = JSON.stringify(userObject); // Stringify JSON for HTTP POST body.
 
   // Send the request.
-
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open("POST", "../php/userInfo.php?upload=false&userObject=" + userObject, false); // False for synchronous request.
   xmlHttp.send(null);

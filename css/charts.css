@@ -1,5 +1,5 @@
 .pie {
-  margin: 1em;
+  margin: 0em;
   min-height: 400px;
 }
 .bar {
@@ -39,9 +39,55 @@
   fill: #7A6855;
   stroke: #7A6855;
 }
+.ct-series-f {
+  fill: #4A773C;
+  stroke: #4A773C;
+}
 
 /* Pie Slice Hover Colors */
-.ct-series:hover {
+.ct-series .ct-slice-pie:hover {
   fill: #B7A99A;
+}
+/* Bar Chart Hover Colors */
+.ct-series .ct-bar:hover {
   stroke: #B7A99A;
 }
+
+/* Tooltips */
+.chartist-tooltip {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  min-width: 5em;
+  min-height: 2em;
+  padding: .5em;
+  background: #000;
+  color: #FFF;
+  font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  -webkit-transition: opacity .2s linear;
+  -moz-transition: opacity .2s linear;
+  -o-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+}
+.chartist-tooltip:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-top-color: #000;
+}
+.chartist-tooltip.tooltip-show {
+  opacity: 1;
+}
+
+.ct-area, .ct-line {
+pointer-events: none;
+}
+
+/*# sourceMappingURL=chartist-plugin-tooltip.css.map */

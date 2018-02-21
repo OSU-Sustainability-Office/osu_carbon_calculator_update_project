@@ -7,7 +7,7 @@ var user_data = {
 };
 
 var user_previous_data = {
-  series: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random()], // Data
+  series: [1, 1, 1, 1, 1], // Data is replaced by updateData
   labels: ["Transportation: " + data[0] + " kgC02", "Consumption: " + data[1] + " kgC02", "Energy and Heat: " + data[2] + " kgC02", "Food: " + data[3] + " kgC02", "Water: " + data[4] + " kgC02"] // Labels
 };
 
@@ -31,7 +31,7 @@ var user_us_comparison = {
 
 var country_avg_data = {
   labels: ['Brazil', 'Burkina Faso', 'China', 'France', 'Oregon', 'You'],
-  series: [2500, 200, 7600, 16400, 5100, 10000]
+  series: [[2500], [200], [7600], [16400], [5100], [1000]]
 };
 
 function updateData() {
@@ -64,6 +64,17 @@ function updateData() {
     series: seriesData,
     labels: labelData
   };
+
+  var hd = historicalData[historicalData.length - 2].totals; // Length - 1 yields the current results.
+  user_previous_data = { // For previous data pie chart.
+    series: hd,
+    labels: ["Transportation: " + data[0] + " kgC02", "Consumption: " + data[1] + " kgC02", "Energy and Heat: " + data[2] + " kgC02", "Food: " + data[3] + " kgC02", "Water: " + data[4] + " kgC02"] // Labels
+  };
+
+  country_avg_data = {
+    labels: ['Brazil', 'Burkina Faso', 'China', 'France', 'Oregon', 'You'],
+    series: [[2500], [200], [7600], [16400], [5100], [5100]]
+  };
 }
 
 /*******************************************************************************
@@ -73,7 +84,10 @@ var options = {
   labelInterpolationFnc: function(value) {
     return value[0]
   },
-  height: "35em"
+  height: "25em",
+  plugins: [
+    Chartist.plugins.tooltip()
+  ]
 };
 
 var responsiveOptions = [
@@ -96,7 +110,6 @@ var responsiveOptions = [
                                    Bar Charts
  ******************************************************************************/
 var bar_options = {
-  seriesBarDistance: 10,
   axisX: {
     offset: 60
   },
@@ -105,7 +118,24 @@ var bar_options = {
     scaleMinSpace: 15
  },
  seriesBarDistance: 30,
- height: "35em"
+ height: "20em",
+ plugins: [
+   Chartist.plugins.tooltip({tooltipOffset: {
+     x: -555,
+     y: -20
+   }})
+ ]
+};
+
+var country_bar_options = {
+ seriesBarDistance: 80,
+ height: "20em",
+ plugins: [
+   Chartist.plugins.tooltip({tooltipOffset: {
+     x: -235,
+     y: -20
+   }})
+ ]
 };
 
 var trend_bar_options = {
@@ -119,7 +149,13 @@ var trend_bar_options = {
     scaleMinSpace: 15
  },
  seriesBarDistance: 10,
- height: "35em"
+ height: "20em",
+ plugins: [
+   Chartist.plugins.tooltip({tooltipOffset: {
+     x: -570,
+     y: -20
+   }})
+ ]
 };
 
 var bar_responsiveOptions = [
@@ -136,7 +172,6 @@ var bar_responsiveOptions = [
 /*******************************************************************************
                                  Create SVGs
  ******************************************************************************/
-
 function updateGraphs() {
   var user_total_pie = new Chartist.Pie('.user-total-pie', user_data, options, responsiveOptions);
   var us_avg_pie = new Chartist.Pie('.us-avg-pie', us_avg, options, responsiveOptions);
@@ -144,5 +179,5 @@ function updateGraphs() {
 
   var user_trend_bar = new Chartist.Bar('.user-trend-bar', user_historical_data, trend_bar_options);
   var user_us_bar = new Chartist.Bar('.user-us-bar', user_us_comparison, bar_options);
-  var country_avg_bar = new Chartist.Bar('.country-avg-bar', data, bar_options);
+  var country_avg_bar = new Chartist.Bar('.country-avg-bar', country_avg_data, country_bar_options);
 }

@@ -61,6 +61,7 @@
   <script src="js/bootstrap.js" defer></script>
   <script src="js/carbon_calculator.js" defer></script>
   <script src="js/chartist.min.js" defer></script>
+  <script src="js/chartist-plugin-tooltip.js" defer></script>
   <script src="js/charts.js" defer></script>
 
   <!--Enable Tooltips-->
@@ -719,7 +720,7 @@
            </h4>
       </div>
       <div id="collapse8" class="panel-collapse collapse">
-        <div class="panel-body">
+        <div class="panel-body" id="results-body">
           <div class="row">
             <div class="col-md-12">
               <div class="panel panel-default">
@@ -743,12 +744,9 @@
           <div class="row">
             <div class="col-md-4">
               <div class="panel panel-default">
-                <div class="panel-heading">
-                  <center>
-                    <h3 class="panel-title">Your Result</h3></center>
-                </div>
                 <div class="panel-body">
                   <center>
+                    <h4>Your Result</h4>
                     <div class="user-total-pie pie"></div>
                   </center>
                 </div>
@@ -756,12 +754,9 @@
             </div>
             <div class="col-md-4">
               <div class="panel panel-default">
-                <div class="panel-heading">
-                  <center>
-                    <h3 class="panel-title">Previous Result</h3></center>
-                </div>
                 <div class="panel-body">
                   <center>
+                    <h4>Previous Result</h4>
                     <div class="user-previous-pie pie"></div>
                   </center>
                 </div>
@@ -769,12 +764,9 @@
             </div>
             <div class="col-md-4">
               <div class="panel panel-default">
-                <div class="panel-heading">
-                  <center>
-                    <h3 class="panel-title">United States Average</h3></center>
-                </div>
                 <div class="panel-body">
                   <center>
+                    <h4>United States Average</h4>
                     <div class="us-avg-pie pie"></div>
                   </center>
                 </div>
@@ -784,12 +776,9 @@
           <div class="row">
             <div class="col-md-4">
               <div class="panel panel-default">
-                <div class="panel-heading">
-                  <center>
-                    <h3 class="panel-title">Totals (By Category)</h3></center>
-                </div>
                 <div class="panel-body">
                   <center>
+                    <h4>Totals (By Category)</h4><br />
                     <div class="table-responsive">
                       <table class="table table-hover">
                         <tr>
@@ -842,12 +831,9 @@
             </div>
             <div class="col-md-8">
               <div class="panel panel-default" id="trend-card">
-                <div class="panel-heading">
-                  <center>
-                    <h3 class="panel-title">Trend</h3></center>
-                </div>
                 <div class="panel-body">
                   <center>
+                    <h4>Trend</h4>
                     <div class="user-trend-bar"></div>
                   </center>
                 </div>
@@ -856,22 +842,25 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <center>
-                <h4>Other Locales:</h4>
-                <div class="country-avg-bar bar"></div>
-              </center>
-            </div>
-            <div class="col-md-4">
-              <center>
-                <h4>Other Locales:</h4>
-                <div class="bar"></div>
-              </center>
-            </div>
-            <div class=col-md-2>
-              <!-- Spacer -->
+              <div class="panel panel-default" id="trend-card">
+                <div class="panel-body">
+                  <center>
+                    <h4>Other Locales</h4>
+                    <div class="country-avg-bar bar"></div>
+                  </center>
+                </div>
+              </div>
             </div>
             <div class="col-md-8">
-              <div class="user-us-bar bar"></div>
+              <div class="panel panel-default" id="trend-card">
+                <div class="panel-body">
+                  <center>
+                    <h4>You vs. the US Average</h4>
+                    <div class="user-us-bar bar"></div>
+                    <span style="color:#AA9D2E">■ You</span>    <span style="color:#0D5257">■ US Average</span>
+                  </center>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -931,7 +920,7 @@
         </div>
       </div>
     </div>
-    <center><a href="http://oregonstate.edu/copyright">Copyright</a> ©2017 Oregon State University. Glyphicons created by <a href="http://glyphicons.com/">Glyphicons</a>, and provided free for use with <a href="http://getbootstrap.com">Bootstrap</a> Version 3.3.7.
+    <center><br /><a href="http://oregonstate.edu/copyright">Copyright</a> ©2017 Oregon State University. Glyphicons created by <a href="http://glyphicons.com/">Glyphicons</a>, and provided free for use with <a href="http://getbootstrap.com">Bootstrap</a> Version 3.3.7.
     </center>
     <div class="overlay" id="overlay">
       <div class="login-container">
