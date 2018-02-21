@@ -10,7 +10,7 @@
     currency: undefined,
     currencyFormatCallback: undefined,
     tooltipOffset: {
-      x: -250,
+      x: +35,
       y: -20
     },
     anchorToPoint: false,
@@ -133,7 +133,7 @@
       function setPosition(event) {
         height = height || $toolTip.offsetHeight;
         width = width || $toolTip.offsetWidth;
-        var offsetX = - width / 2 + options.tooltipOffset.x
+        var offsetX = - width + options.tooltipOffset.x
         var offsetY = - height + options.tooltipOffset.y;
         var anchorX, anchorY;
 

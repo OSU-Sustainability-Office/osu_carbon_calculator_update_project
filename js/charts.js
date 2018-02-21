@@ -31,7 +31,7 @@ var user_us_comparison = {
 
 var country_avg_data = {
   labels: ['Brazil', 'Burkina Faso', 'China', 'France', 'Oregon', 'You'],
-  series: [[2500], [200], [7600], [16400], [5100], [1000]]
+  series: [[2500], [200], [7600], [1640], [5100], [1000]]
 };
 
 function updateData() {
@@ -85,8 +85,9 @@ var options = {
     return value[0]
   },
   height: "25em",
+  showLabel: false,
   plugins: [
-    Chartist.plugins.tooltip()
+    Chartist.plugins.tooltip({appendToBody: true})
   ]
 };
 
@@ -120,10 +121,7 @@ var bar_options = {
  seriesBarDistance: 30,
  height: "20em",
  plugins: [
-   Chartist.plugins.tooltip({tooltipOffset: {
-     x: -555,
-     y: -20
-   }})
+   Chartist.plugins.tooltip({appendToBody: true})
  ]
 };
 
@@ -131,10 +129,7 @@ var country_bar_options = {
  seriesBarDistance: 80,
  height: "20em",
  plugins: [
-   Chartist.plugins.tooltip({tooltipOffset: {
-     x: -235,
-     y: -20
-   }})
+   Chartist.plugins.tooltip({appendToBody: true})
  ]
 };
 
@@ -151,10 +146,7 @@ var trend_bar_options = {
  seriesBarDistance: 10,
  height: "20em",
  plugins: [
-   Chartist.plugins.tooltip({tooltipOffset: {
-     x: -570,
-     y: -20
-   }})
+   Chartist.plugins.tooltip({appendToBody: true})
  ]
 };
 

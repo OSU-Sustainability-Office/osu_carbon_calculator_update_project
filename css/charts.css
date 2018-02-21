@@ -55,7 +55,7 @@
 
 /* Tooltips */
 .chartist-tooltip {
-  position: relative;
+  position: absolute;
   display: inline-block;
   opacity: 0;
   min-width: 5em;
