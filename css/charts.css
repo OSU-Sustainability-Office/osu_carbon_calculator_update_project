@@ -6,9 +6,13 @@
   margin: 1em;
   min-height: 400px;
 }
+.chartist-tooltip {
+  /* set me to make the tooltip for the point at 2 more visible */
+  position: relative;
+}
 .ct-bar {
   fill: none;
-  stroke-width: 10px;
+  stroke-width: 2em;
 }
 /* Pie Slice Colors */
 .ct-slice-pie {

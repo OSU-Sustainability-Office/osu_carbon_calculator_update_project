@@ -2,6 +2,10 @@
 
 $url = "http://ec2-54-186-223-223.us-west-2.compute.amazonaws.com/upload";
 
+if($_GET["upload"] != "true") {
+  $url = "http://ec2-54-186-223-223.us-west-2.compute.amazonaws.com/download";
+}
+
 // The data to send to the API
 $postData = $_GET["userObject"];
 

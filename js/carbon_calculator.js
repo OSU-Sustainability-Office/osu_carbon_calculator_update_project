@@ -26,8 +26,9 @@ var graph_carbon_num_total;
 
 // ONID Variables
 var uid;
-var firstName;
+var firstName = "";
 var primaryAffiliation;
+var historicalData;
 
 // Data array used for database upload/download
 var data = new Array(5);
@@ -547,12 +548,17 @@ var showResult = function showResult() {
   $("#water_tab_percentage").html((water_total / carbon_num_total * 100).toFixed(2));
   $("#carbon_total_percentage").html((1 * 100).toFixed(2));
 
-  // Redraw graphs with updated information
-  updateGraphs();
-
-
   // Update the user's information in the database.
   updateDB();
+
+  // Download historical data.
+  downloadHistData();
+
+  // Update data arrays for historical trends charts.
+  updateData(); // Located in charts.js
+
+  // Redraw graphs with updated information
+  updateGraphs();
 }
 
 /*******************************************
@@ -579,13 +585,10 @@ function updateUserVariables(res) {
 
   // Set global Variables
   firstName = doc.getElementsByTagName("cas:firstname")[0].childNodes[0].nodeValue;
-  console.log(firstName);
 
   primaryAffiliation = doc.getElementsByTagName("cas:eduPersonPrimaryAffiliation")[0].childNodes[0].nodeValue;
-  console.log(primaryAffiliation);
 
   uid = doc.getElementsByTagName("cas:uid")[0].childNodes[0].nodeValue;
-  console.log(uid);
 
   // Update header with user's name.
 
@@ -595,8 +598,36 @@ function updateUserVariables(res) {
 // Creates a JSON object for the current user and sends a POST request to
 // uploadUser.php. We post to the PHP script instead of directly to the Database
 // to avoid no-access-control-allow-origin errors.
+function downloadHistData() {
+  // First, create the dataObject
+  var d = new Date();
+
+  // Create the JSON object for the user.
+  var userObject = {
+    "UserID": uid,
+    "firstName": firstName,
+    "primaryAffiliation": primaryAffiliation,
+    "data": []
+  };
+
+  userObject = JSON.stringify(userObject); // Stringify JSON for HTTP POST body.
+
+  // Send the request.
+
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "../php/userInfo.php?upload=false&userObject=" + userObject, false); // False for synchronous request.
+  xmlHttp.send(null);
+  if(xmlHttp.responseText != "Error: No such user.") {
+    historicalData = JSON.parse(xmlHttp.responseText).data;
+  } else {
+    console.log("Error downloading historical data.");
+  }
+}
+
+// Creates a JSON object for the current user and sends a POST request to
+// uploadUser.php. We post to the PHP script instead of directly to the Database
+// to avoid no-access-control-allow-origin errors.
 function updateDB() {
-  console.log("Update!");
   // First, create the dataObject
   var d = new Date();
 
@@ -605,7 +636,6 @@ function updateDB() {
   xmlHttp.open("GET", "../php/getUserLocation.php", false); // false for synchronous request
   xmlHttp.send(null);
   var res = xmlHttp.responseText; // PHP script responds with a JSON object.
-  console.log(res);
 
   var dataObject = {
     // Uses getMonth(), getDate(), and getYear() from Javascript Date object.
@@ -629,8 +659,7 @@ function updateDB() {
   // Lastly, send the request.
 
   xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("POST", "../php/uploadUserInfo.php?userObject=" + userObject, false); // False for synchronous request.
+  xmlHttp.open("POST", "../php/userInfo.php?upload=true&userObject=" + userObject, false); // False for synchronous request.
   xmlHttp.send(null);
   res = xmlHttp.responseText;
-  console.log(res);
 }

@@ -3,44 +3,44 @@
 
 <head>
   <script>
-  /*******************************************************************************
-   *                             ██████╗ ███████╗██╗   ██╗
-   *                             ██╔═══██╗██╔════╝██║   ██║
-   *                             ██║   ██║███████╗██║   ██║
-   *                             ██║   ██║╚════██║██║   ██║
-   *                             ╚██████╔╝███████║╚██████╔╝
-   *                             ╚═════╝ ╚══════╝ ╚═════╝
-   *
-   *                ██████╗ █████╗ ██████╗ ██████╗  ██████╗ ███╗   ██╗
-   *                ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔═══██╗████╗  ██║
-   *                ██║     ███████║██████╔╝██████╔╝██║   ██║██╔██╗ ██║
-   *                ██║     ██╔══██║██╔══██╗██╔══██╗██║   ██║██║╚██╗██║
-   *                ╚██████╗██║  ██║██║  ██║██████╔╝╚██████╔╝██║ ╚████║
-   *                ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝
-   *
-   *██████╗ █████╗ ██╗      ██████╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗
-   *██╔════╝██╔══██╗██║     ██╔════╝██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
-   *██║     ███████║██║     ██║     ██║   ██║██║     ███████║   ██║   ██║   ██║██████╔╝
-   *██║     ██╔══██║██║     ██║     ██║   ██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
-   *╚██████╗██║  ██║███████╗╚██████╗╚██████╔╝███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
-   *╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
-   *
-   * Originally adapted from SCU's original code:
-   * https://docs.google.com/file/d/0B66G3LFpAvamc1RwQ29HLWg2dms/edit?usp=sharing
-   * Updated in 2017-2018 by Keava Campbell and Jack Woods.
-   * For more information about the calculator, visit:
-   * http://carbon.campusops.oregonstate.edu/
-   *
-   * For general inquiries regarding this calculator, email: jack.woods@oregonstate.edu
-   *
-   * Other Notes:
-   * A lot of the code was previously written by some grad students for a project.
-   * JW and KC have updated this script on an "as-needed" basis, so portions of
-   * the code are not optimized. Some code is purposely NOT optimized to
-   * maintain the original code structure & style, and some stylistic
-   * choices have been made to improve code readability for non-technical staff
-   * at the Sustainability Office (who don't have backgrounds in CS).
-   ******************************************************************************/
+    /*******************************************************************************
+     *                             ██████╗ ███████╗██╗   ██╗
+     *                             ██╔═══██╗██╔════╝██║   ██║
+     *                             ██║   ██║███████╗██║   ██║
+     *                             ██║   ██║╚════██║██║   ██║
+     *                             ╚██████╔╝███████║╚██████╔╝
+     *                             ╚═════╝ ╚══════╝ ╚═════╝
+     *
+     *                ██████╗ █████╗ ██████╗ ██████╗  ██████╗ ███╗   ██╗
+     *                ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔═══██╗████╗  ██║
+     *                ██║     ███████║██████╔╝██████╔╝██║   ██║██╔██╗ ██║
+     *                ██║     ██╔══██║██╔══██╗██╔══██╗██║   ██║██║╚██╗██║
+     *                ╚██████╗██║  ██║██║  ██║██████╔╝╚██████╔╝██║ ╚████║
+     *                ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝
+     *
+     *██████╗ █████╗ ██╗      ██████╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗
+     *██╔════╝██╔══██╗██║     ██╔════╝██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
+     *██║     ███████║██║     ██║     ██║   ██║██║     ███████║   ██║   ██║   ██║██████╔╝
+     *██║     ██╔══██║██║     ██║     ██║   ██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
+     *╚██████╗██║  ██║███████╗╚██████╗╚██████╔╝███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
+     *╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+     *
+     * Originally adapted from SCU's original code:
+     * https://docs.google.com/file/d/0B66G3LFpAvamc1RwQ29HLWg2dms/edit?usp=sharing
+     * Updated in 2017-2018 by Keava Campbell and Jack Woods.
+     * For more information about the calculator, visit:
+     * http://carbon.campusops.oregonstate.edu/
+     *
+     * For general inquiries regarding this calculator, email: jack.woods@oregonstate.edu
+     *
+     * Other Notes:
+     * A lot of the code was previously written by some grad students for a project.
+     * JW and KC have updated this script on an "as-needed" basis, so portions of
+     * the code are not optimized. Some code is purposely NOT optimized to
+     * maintain the original code structure & style, and some stylistic
+     * choices have been made to improve code readability for non-technical staff
+     * at the Sustainability Office (who don't have backgrounds in CS).
+     ******************************************************************************/
   </script>
   <meta charset="utf-8">
   <title>Oregon State University - Carbon Footprint Calculator</title>
@@ -54,8 +54,8 @@
 
   <!-- Site CSS and JS Links -->
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/carbonCalc.css">
   <link rel="stylesheet" href="css/charts.css">
+  <link rel="stylesheet" href="css/carbonCalc.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/bootstrap.js" defer></script>
@@ -123,7 +123,8 @@
           <p>To get started, please choose which of the following describes you:
             <div class="radio">
               <label><button type="button" name="radio_commuter" class="btn btn-default" value="on_campus" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('on_campus')"/>On Campus student</button></label><br />
-              <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('full_commuter')"/>Off Campus Full-time Commuter Student or Staff</button></label><br />
+              <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('full_commuter')"/>Off Campus Full-time Commuter Student or Staff</button></label><br
+              />
               <label><button type="button" name="radio_commuter" class="btn btn-default" value="part_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('part_commuter')"/>Part-time Commuter Student or Staff</button></label>
             </div>
           </p>
@@ -152,126 +153,126 @@
           <div id="trans_input_car_miles_q" class="collapse">
             Approximately how many miles do you drive per month?
             <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles, Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></a>
-     					<input id="trans_input_car_miles" type="number" size="4" maxlength="4" /> miles
-     				</div>
+            <input id="trans_input_car_miles" type="number" size="4" maxlength="4" /> miles
+          </div>
 
-     				<p>Do you commute using the Corvallis or Albany Transit?<br />
-     					<input type="radio" name="trans_radio_short_use_bus" value="yes" onclick="display_question('show','trans_input_short_bus_miles')">Yes
-     					<input type="radio" name="trans_radio_short_use_bus" value="no" onclick="display_question('hide','trans_input_short_bus_miles')">No
-     				</p>
+          <p>Do you commute using the Corvallis or Albany Transit?<br />
+            <input type="radio" name="trans_radio_short_use_bus" value="yes" onclick="display_question('show','trans_input_short_bus_miles')">Yes
+            <input type="radio" name="trans_radio_short_use_bus" value="no" onclick="display_question('hide','trans_input_short_bus_miles')">No
+          </p>
 
-     				<p id="trans_input_short_bus_miles_q" style="display:none;">
-     					Approximately how many miles per month do you travel on Corvallis or Albany Transit? <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
+          <p id="trans_input_short_bus_miles_q" style="display:none;">
+            Approximately how many miles per month do you travel on Corvallis or Albany Transit? <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
             />
             <input name="trans_input_short_bus_miles" id="trans_input_short_bus_miles" type="number" size="4" maxlength="4" /> miles
-            </p>
+          </p>
 
-            <p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?<br />
-              <input type="radio" name="trans_radio_long_use_bus" value="yes" onclick="display_question('show','trans_input_long_bus_miles')">Yes
-              <input type="radio" name="trans_radio_long_use_bus" value="no" onclick="display_question('hide','trans_input_long_bus_miles')">No
-            </p>
+          <p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?<br />
+            <input type="radio" name="trans_radio_long_use_bus" value="yes" onclick="display_question('show','trans_input_long_bus_miles')">Yes
+            <input type="radio" name="trans_radio_long_use_bus" value="no" onclick="display_question('hide','trans_input_long_bus_miles')">No
+          </p>
 
-            <p id="trans_input_long_bus_miles_q" style="display:none;">
-              Approximately how many miles/year do you travel on these buses?
-              <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br />
-              <input id="trans_input_long_bus_miles" type="number" size="4" maxlength="4" /> miles
-            </p>
+          <p id="trans_input_long_bus_miles_q" style="display:none;">
+            Approximately how many miles/year do you travel on these buses?
+            <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br />
+            <input id="trans_input_long_bus_miles" type="number" size="4" maxlength="4" /> miles
+          </p>
 
-            <p>Do you use the train?<br />
-              <input type="radio" name="trans_train_use_bus" value="yes" onclick="display_question('show','trans_input_train_miles')">Yes
-              <input type="radio" name="trans_train_use_bus" value="no" onclick="display_question('hide','trans_input_train_miles')">No
-            </p>
+          <p>Do you use the train?<br />
+            <input type="radio" name="trans_train_use_bus" value="yes" onclick="display_question('show','trans_input_train_miles')">Yes
+            <input type="radio" name="trans_train_use_bus" value="no" onclick="display_question('hide','trans_input_train_miles')">No
+          </p>
 
-            <p id="trans_input_train_miles_q" style="display:none;">
-              Approximately how many miles/year do you travel on train? <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
-              />
-              <input id="trans_input_train_miles" type="number" size="4" maxlength="4" /> miles
-            </p>
+          <p id="trans_input_train_miles_q" style="display:none;">
+            Approximately how many miles/year do you travel on train? <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
+            />
+            <input id="trans_input_train_miles" type="number" size="4" maxlength="4" /> miles
+          </p>
 
 
-            <p>
-              Have you traveled or do you plan to travel by airplane this year?<br>
-              <input type="radio" name="trans_radio_use_plane" value="yes" onclick="display_question('show','trans_input_plane_miles'); display_comment('comment_transportation_plane_negative','Airplane travel adds a heavy amount to your carbon footprint. Did you know flying across the country produces 40% more emissions than driving in a car by yourself?')">Yes
-              <input type="radio" name="trans_radio_use_plane" value="no" onclick="display_question('hide','trans_input_plane_miles') ; display_comment('comment_transportation_plane','Great decision! Riding in an airplane adds a heavy amount to your transportation footprint.')">No
-            </p>
+          <p>
+            Have you traveled or do you plan to travel by airplane this year?<br>
+            <input type="radio" name="trans_radio_use_plane" value="yes" onclick="display_question('show','trans_input_plane_miles'); display_comment('comment_transportation_plane_negative','Airplane travel adds a heavy amount to your carbon footprint. Did you know flying across the country produces 40% more emissions than driving in a car by yourself?')">Yes
+            <input type="radio" name="trans_radio_use_plane" value="no" onclick="display_question('hide','trans_input_plane_miles') ; display_comment('comment_transportation_plane','Great decision! Riding in an airplane adds a heavy amount to your transportation footprint.')">No
+          </p>
 
-            <p class="pop_up_comment" id="comment_transportation_plane"></p>
+          <p class="pop_up_comment" id="comment_transportation_plane"></p>
 
-            <p id="trans_input_plane_miles_q" style="display:none;">
-              How many miles have you traveled or do you plan to travel this year? This <a href="http://www.webflyer.com/travel/mileage_calculator/" target="_blank"> flight distance calculator </a> might be helpful in determining this amount <a href="#"
-                data-toggle="tooltip" title="Average Flight Mileage for Time Zones: PDX Airport to: New York: 2,450 miles, Seattle: 129 miles, Denver: 989 miles, Chicago: 1730 miles, Los Angeles: 834 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
-              />
-              <input id="trans_input_plane_miles" type="number" size="5" maxlength="5"> miles
-            </p>
+          <p id="trans_input_plane_miles_q" style="display:none;">
+            How many miles have you traveled or do you plan to travel this year? This <a href="http://www.webflyer.com/travel/mileage_calculator/" target="_blank"> flight distance calculator </a> might be helpful in determining this amount <a href="#"
+              data-toggle="tooltip" title="Average Flight Mileage for Time Zones: PDX Airport to: New York: 2,450 miles, Seattle: 129 miles, Denver: 989 miles, Chicago: 1730 miles, Los Angeles: 834 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
+            />
+            <input id="trans_input_plane_miles" type="number" size="5" maxlength="5"> miles
+          </p>
 
-            <p class="pop_up_comment" id="comment_transport_options"></p>
-            <div class="row">
-              <div class="col-md-12"><br />
+          <p class="pop_up_comment" id="comment_transport_options"></p>
+          <div class="row">
+            <div class="col-md-12"><br />
 
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Previous</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Next</button>
-                </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Previous</button>
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Next</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Consumption</a>
          </h4>
-        </div>
-        <div id="collapse3" class="panel-collapse collapse">
-          <div class="panel-body">
-            <p>How much do you spend on furniture and appliances each year?<br />
-              <input id="furniture_appliance_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year
-            </p>
-            <p>How much do you spend on paper products (newspapers, books, textbooks, magazines etc.) each month?<br />
-              <input id="paper_products_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
-            </p>
-            <p>How much do you spend on personal care and cleaning supplies each month?<br />
-              <input id="personal_care_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
-            </p>
-            <p>How much do you spend on computers, tablets, phones, and other electronics in a year?<br />
-              <input id="electronics_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year <a href="#" data-toggle="tooltip" title="" data-original-title="If you've owned these goods for more than a year, approximate how much it's costed you each year. EX: if you've had a $800 laptop for 4 years, that's $200 a year."><span class="glyphicon glyphicon-question-sign"></span></a>
-            </p>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>How much do you spend on furniture and appliances each year?<br />
+            <input id="furniture_appliance_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year
+          </p>
+          <p>How much do you spend on paper products (newspapers, books, textbooks, magazines etc.) each month?<br />
+            <input id="paper_products_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
+          </p>
+          <p>How much do you spend on personal care and cleaning supplies each month?<br />
+            <input id="personal_care_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
+          </p>
+          <p>How much do you spend on computers, tablets, phones, and other electronics in a year?<br />
+            <input id="electronics_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year <a href="#" data-toggle="tooltip" title="" data-original-title="If you've owned these goods for more than a year, approximate how much it's costed you each year. EX: if you've had a $800 laptop for 4 years, that's $200 a year."><span class="glyphicon glyphicon-question-sign"></span></a>
+          </p>
 
 
-            <p>How much do you spend on new clothing in a given month?<br />
-              <input id="clothing_per_month" type="number" size="2" maxlength="4" /> dollars per month
-            </p>
+          <p>How much do you spend on new clothing in a given month?<br />
+            <input id="clothing_per_month" type="number" size="2" maxlength="4" /> dollars per month
+          </p>
 
-            <p>How much do you spend on entertainment and other recreational activities per month?<br />
-              <input id="recreation_per_month" type="number" size="2" maxlength="4" /> dollars per month <a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-question-sign"></span></a>
-            </p>
+          <p>How much do you spend on entertainment and other recreational activities per month?<br />
+            <input id="recreation_per_month" type="number" size="2" maxlength="4" /> dollars per month <a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-question-sign"></span></a>
+          </p>
 
-            <p>If you drink your water from nonrefillable plastic bottles, how many do you buy per week?<br />
-              <input id="consumption_plastic_bottle" type="number" size="5" maxlength="4" /> bottles per week
-            </p>
+          <p>If you drink your water from nonrefillable plastic bottles, how many do you buy per week?<br />
+            <input id="consumption_plastic_bottle" type="number" size="5" maxlength="4" /> bottles per week
+          </p>
 
-            <div class="row">
-              <div class="col-md-12"><br />
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse2">Previous</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse4">Next</button>
-                </div>
+          <div class="row">
+            <div class="col-md-12"><br />
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse2">Previous</button>
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse4">Next</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Energy and Heating</a>
            </h4>
-        </div>
-        <div id="collapse4" class="panel-collapse collapse">
-          <div class="panel-body">
-            <p>If you're an on campus resident choose from the following dorms:
-              <select id="energy_campus_resident">
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>If you're an on campus resident choose from the following dorms:
+            <select id="energy_campus_resident">
        					<option value="none">None</option>
        					<option value="bloss">Bloss</option>
        					<option value="buxton">Buxton</option>
@@ -289,331 +290,333 @@
        					<option value="wilson">Wilson</option>
        					<option value="tebeau">Tebeau</option>
        				</select>
+          </p>
+
+          <script>
+            // This script reveals & hides the simple & complex energy tables
+
+            function show_simple() {
+              $('#energy_complex').collapse('hide');
+              $('#energy_simple').collapse('show');
+            }
+
+            function show_complex() {
+              $('#energy_simple').collapse('hide');
+              energy
+              $('#energy_complex').collapse('show');
+            }
+          </script>
+          <p>If you receive energy bills, select the "Simple" option. If not, select the "Complex" option.<br> Note: If you live in the dorms, you need to pick the "Complex" option.
+            <input type="radio" id="simple_complex_simple" value="simple" onclick="show_simple()">Simple &nbsp;&nbsp;
+            <input type="radio" id="simple_complex_complex" value="complex" onclick="show_complex()"> Complex &nbsp;&nbsp;
+          </p>
+
+          <div id="energy_simple" class="collapse">
+            <p>
+              How much do you usually pay for electricity each month?<br>
+              <input id="electricity_usage" type="number" size="2" maxlength="4"> dollars per month
             </p>
 
-            <script>
-              // This script reveals & hides the simple & complex energy tables
-
-              function show_simple() {
-                $('#energy_complex').collapse('hide');
-                $('#energy_simple').collapse('show');
-              }
-
-              function show_complex() {
-                $('#energy_simple').collapse('hide');energy
-                $('#energy_complex').collapse('show');
-              }
-            </script>
-            <p>If you receive energy bills, select the "Simple" option. If not, select the "Complex" option.<br> Note: If you live in the dorms, you need to pick the "Complex" option.
-              <input type="radio" id="simple_complex_simple" value="simple" onclick="show_simple()">Simple &nbsp;&nbsp;
-              <input type="radio" id="simple_complex_complex" value="complex" onclick="show_complex()"> Complex &nbsp;&nbsp;
+            <p>
+              How much do you usually pay for gas each month? <br>
+              <input id="heat_usage" type="number" size="2" maxlength="4"> dollars per month
             </p>
 
-            <div id="energy_simple" class="collapse">
-              <p>
-                How much do you usually pay for electricity each month?<br>
-                <input id="electricity_usage" type="number" size="2" maxlength="4"> dollars per month
-              </p>
+            <p>How often do you turn out the lights when you leave a room?
+              <input type="radio" name="lightsquestion" value="Almost Never" />Almost Never
+              <input type="radio" name="lightsquestion" value="Sometimes" />Sometimes
+              <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')">Almost Always
+            </p>
+            <p class="pop_up_comment" id="commentLightsQuestion"></p>
 
-              <p>
-                How much do you usually pay for gas each month? <br>
-                <input id="heat_usage" type="number" size="2" maxlength="4"> dollars per month
-              </p>
+          </div>
 
-              <p>How often do you turn out the lights when you leave a room?
-                <input type="radio" name="lightsquestion" value="Almost Never" />Almost Never
-                <input type="radio" name="lightsquestion" value="Sometimes" />Sometimes
-                <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')">Almost Always
-              </p>
-              <p class="pop_up_comment" id="commentLightsQuestion"></p>
+          <div id="energy_complex" class="collapse">
+            <p>
+              From the following list of appliances, electronics, lighting, etc, input how many of each item are in your room and how many hours a day each item is <strong>in use</strong> or <strong>plugged in</strong>. If you own an item not listed below
+              please be sure to fill in extra fields: What is the item and wattage? You can find the wattage on the bottom of most appliances. Be sure to multiply by 1000 if the wattage is given in kilowatts.<br>
+            </p>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Watts</th>
+                    <th>Active Use (Hours per day)</th>
+                    <th>Standby (Hours per day)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="row1">
+                    <td>Refrigerator</td>
+                    <td><input id="appliance_1_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_1_watts" type="hidden" value="160" />160</td>
+                    <td><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-            </div>
+                  <tr id="row2">
+                    <td>Microwave</td>
+                    <td><input id="appliance_2_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_2_watts" type="hidden" value="1000" />1000</td>
+                    <td><input id="appliance_2_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_2_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-            <div id="energy_complex" class="collapse">
-              <p>
-                From the following list of appliances, electronics, lighting, etc, input how many of each item are in your room and how many hours a day each item is <strong>in use</strong> or <strong>plugged in</strong>. If you own an item not listed
-                below please be sure to fill in extra fields: What is the item and wattage? You can find the wattage on the bottom of most appliances. Be sure to multiply by 1000 if the wattage is given in kilowatts.<br>
-              </p>
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Item</th>
-                      <th>Quantity</th>
-                      <th>Watts</th>
-                      <th>Active Use (Hours per day)</th>
-                      <th>Standby (Hours per day)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr id="row1">
-                      <td>Refrigerator</td>
-                      <td><input id="appliance_1_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_1_watts" type="hidden" value="160" />160</td>
-                      <td><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row1">
+                    <td>Clock radio</td>
+                    <td><input id="appliance_3_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_3_watts" type="hidden" value="10" />10</td>
+                    <td><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row2">
-                      <td>Microwave</td>
-                      <td><input id="appliance_2_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_2_watts" type="hidden" value="1000" />1000</td>
-                      <td><input id="appliance_2_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_2_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row2">
+                    <td>IPod dock</td>
+                    <td><input id="appliance_4_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_4_watts" type="hidden" value="100" />100</td>
+                    <td><input id="appliance_4_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_4_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row1">
-                      <td>Clock radio</td>
-                      <td><input id="appliance_3_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_3_watts" type="hidden" value="10" />10</td>
-                      <td><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row1">
+                    <td>Stereo sound system</td>
+                    <td><input id="appliance_5_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_5_watts" type="hidden" value="150" />150</td>
+                    <td><input id="appliance_5_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_5_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row2">
-                      <td>IPod dock</td>
-                      <td><input id="appliance_4_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_4_watts" type="hidden" value="100" />100</td>
-                      <td><input id="appliance_4_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_4_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row2">
+                    <td>Computer desktop</td>
+                    <td><input id="appliance_6_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_6_watts" type="hidden" value="225" />225</td>
+                    <td><input id="appliance_6_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_6_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row1">
-                      <td>Stereo sound system</td>
-                      <td><input id="appliance_5_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_5_watts" type="hidden" value="150" />150</td>
-                      <td><input id="appliance_5_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_5_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row1">
+                    <td>Computer monitor 15"</td>
+                    <td><input id="appliance_7_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_7_watts" type="hidden" value="35" />35</td>
+                    <td><input id="appliance_7_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_7_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row2">
-                      <td>Computer desktop</td>
-                      <td><input id="appliance_6_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_6_watts" type="hidden" value="225" />225</td>
-                      <td><input id="appliance_6_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_6_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row2">
+                    <td>Computer, laptop</td>
+                    <td><input id="appliance_8_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_8_watts" type="hidden" value="60" />60</td>
+                    <td><input id="appliance_8_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_8_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row1">
-                      <td>Computer monitor 15"</td>
-                      <td><input id="appliance_7_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_7_watts" type="hidden" value="35" />35</td>
-                      <td><input id="appliance_7_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_7_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row1">
+                    <td>Printer</td>
+                    <td><input id="appliance_9_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_9_watts" type="hidden" value="100" />100</td>
+                    <td><input id="appliance_9_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_9_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row2">
-                      <td>Computer, laptop</td>
-                      <td><input id="appliance_8_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_8_watts" type="hidden" value="60" />60</td>
-                      <td><input id="appliance_8_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_8_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row2">
+                    <td>TV</td>
+                    <td><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_10_watts" type="hidden" value="115" />115</td>
+                    <td><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row1">
-                      <td>Printer</td>
-                      <td><input id="appliance_9_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_9_watts" type="hidden" value="100" />100</td>
-                      <td><input id="appliance_9_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_9_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
-
-                    <tr id="row2">
-                      <td>TV</td>
-                      <td><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_10_watts" type="hidden" value="115" />115</td>
-                      <td><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
-
-                    <tr id="row1">
-                      <td>Portable fan</td>
-                      <td><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_11_watts" type="hidden" value="115" />115</td>
-                      <td><input id="appliance_11_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row1">
+                    <td>Portable fan</td>
+                    <td><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_11_watts" type="hidden" value="115" />115</td>
+                    <td><input id="appliance_11_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
 
-                    <tr id="row2">
-                      <td>Floor lamp</td>
-                      <td><input id="appliance_12_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_12_watts" type="hidden" value="300" />300</td>
-                      <td><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                    </tr>
+                  <tr id="row2">
+                    <td>Floor lamp</td>
+                    <td><input id="appliance_12_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_12_watts" type="hidden" value="300" />300</td>
+                    <td><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
+                  </tr>
 
-                    <tr id="row1">
-                      <td>Game Console</td>
-                      <td><input id="appliance_13_total" type="number" size="4" maxlength="1" value="1" /></td>
-                      <td><input id="appliance_13_watts" type="hidden" value="245">1440</td>
-                      <td><input id="appliance_13_active_usage" type="number" size="4" maxlength="4"></td>
-                      <td><input id="appliance_13_passive_usage" type="number" size="4" maxlength="4" value="24"></td>
-                    </tr>
+                  <tr id="row1">
+                    <td>Game Console</td>
+                    <td><input id="appliance_13_total" type="number" size="4" maxlength="1" value="1" /></td>
+                    <td><input id="appliance_13_watts" type="hidden" value="245">1440</td>
+                    <td><input id="appliance_13_active_usage" type="number" size="4" maxlength="4"></td>
+                    <td><input id="appliance_13_passive_usage" type="number" size="4" maxlength="4" value="24"></td>
+                  </tr>
 
-                    <tr id="row2">
-                      <td>Other</td>
-                      <td><input id="appliance_14_total" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_14_watts" type="number" size="4" maxlength="5" /></td>
-                      <td><input id="appliance_14_active_usage" type="number" size="4" maxlength="4" /></td>
-                      <td><input id="appliance_14_passive_usage" type="number" size="4" maxlength="4" /></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div><br />
-              <p>How often do you turn out the lights when you leave a room?
-                <input type="radio" name="lightsquestion" value="Almost Never" />Almost Never
-                <input type="radio" name="lightsquestion" value="Sometimes" />Sometimes
-                <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')">Almost Always
-              </p>
-              <p class="pop_up_comment" id="commentLightsQuestion"></p>
-            </div>
-            <div class="row">
-              <div class="col-md-12"><br />
+                  <tr id="row2">
+                    <td>Other</td>
+                    <td><input id="appliance_14_total" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_14_watts" type="number" size="4" maxlength="5" /></td>
+                    <td><input id="appliance_14_active_usage" type="number" size="4" maxlength="4" /></td>
+                    <td><input id="appliance_14_passive_usage" type="number" size="4" maxlength="4" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><br />
+            <p>How often do you turn out the lights when you leave a room?
+              <input type="radio" name="lightsquestion" value="Almost Never" />Almost Never
+              <input type="radio" name="lightsquestion" value="Sometimes" />Sometimes
+              <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')">Almost Always
+            </p>
+            <p class="pop_up_comment" id="commentLightsQuestion"></p>
+          </div>
+          <div class="row">
+            <div class="col-md-12"><br />
 
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Previous</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Next</button>
-                </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Previous</button>
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Next</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
              <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Food</a>
            </h4>
-        </div>
-        <div id="collapse5" class="panel-collapse collapse">
-          <div class="panel-body">
-            <div class="row vertical-divider">
-              <div class="col-md-6">
-                <center>
-                  <h4>Serving Sizes for Carbon Calculator:</h4></center><br />
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Fruits & Vegetables</th>
-                      <th>Grains</th>
-                      <th>Meat & Poultry</th>
-                      <th>Fish & Seafood</th>
-                      <th>Eggs & Dairy</th>
-                      <th>Nuts</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1 Apple, Banana, Orange, etc.</td>
-                      <td>2 Slices of Bread</td>
-                      <td>4-5 Ounces of Cooked Meat (steak, lamb chop, pork, etc)</td>
-                      <td>4-5 Ounces of Cooked Fish</td>
-                      <td>3 Eggs</td>
-                      <td>24 Almonds</td>
-                    </tr>
-                    <tr>
-                      <td>1 Cup of Diced Fruit</td>
-                      <td>1 Bagel, Roll, English Muffin, etc.</td>
-                      <td>1/2 Pound Burger</td>
-                      <td>8 Pieces of Sushi or Sashimi</td>
-                      <td>1 Cup of Yogurt or Milk</td>
-                      <td>18 Cashews</td>
-                    </tr>
-                    <tr>
-                      <td>2 Apricots, Kiwis, Plums, etc.</td>
-                      <td>1/2 Cup of Rice, Pasta, Quinoa, Oatmeal, etc.</td>
-                      <td></td>
-                      <td>10 Pieces of Shrimp</td>
-                      <td>4 Slices of Cheese</td>
-                      <td>35 Peanuts</td>
-                    </tr>
-                    <tr>
-                      <td>1 Potato or Tomato</td>
-                      <td>1 Cup of Dry Cereal</td>
-                      <td>4-5 Ounces of Cooked Chicken/Turkey</td>
-                      <td>4-5 Large Scallops</td>
-                      <td></td>
-                      <td>12 Macadamia Nuts</td>
-                    </tr>
-                    <tr>
-                      <td>1/2 Cup of Marinara Sauce</td>
-                      <td>1 Slice of Cake</td>
-                      <td>7 Chicken Nuggets</td>
-                      <td>6-8 Clams</td>
-                      <td></td>
-                      <td>7 Walnuts</td>
-                    </tr>
-                    <tr>
-                      <td>3/4 Cup of Cooked Vegetables</td>
-                      <td>2 Medium Chocolate Chip Cookies</td>
-                      <td>4 Chicken Wings</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>1 Cup of Salad</td>
-                      <td></td>
-                      <td>5.4 Slices of Deli Turkey</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-md-6">
-                <center>
-                  <h4>Questions (Continued):</h4></center><br />
-                <p>How many servings of red meat do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="meat_serv" size="4" maxlength="4">
-                </p>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="row vertical-divider">
+            <div class="col-md-6">
+              <center>
+                <h4>Serving Sizes for Carbon Calculator:</h4></center><br />
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Fruits & Vegetables</th>
+                    <th>Grains</th>
+                    <th>Meat & Poultry</th>
+                    <th>Fish & Seafood</th>
+                    <th>Eggs & Dairy</th>
+                    <th>Nuts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1 Apple, Banana, Orange, etc.</td>
+                    <td>2 Slices of Bread</td>
+                    <td>4-5 Ounces of Cooked Meat (steak, lamb chop, pork, etc)</td>
+                    <td>4-5 Ounces of Cooked Fish</td>
+                    <td>3 Eggs</td>
+                    <td>24 Almonds</td>
+                  </tr>
+                  <tr>
+                    <td>1 Cup of Diced Fruit</td>
+                    <td>1 Bagel, Roll, English Muffin, etc.</td>
+                    <td>1/2 Pound Burger</td>
+                    <td>8 Pieces of Sushi or Sashimi</td>
+                    <td>1 Cup of Yogurt or Milk</td>
+                    <td>18 Cashews</td>
+                  </tr>
+                  <tr>
+                    <td>2 Apricots, Kiwis, Plums, etc.</td>
+                    <td>1/2 Cup of Rice, Pasta, Quinoa, Oatmeal, etc.</td>
+                    <td></td>
+                    <td>10 Pieces of Shrimp</td>
+                    <td>4 Slices of Cheese</td>
+                    <td>35 Peanuts</td>
+                  </tr>
+                  <tr>
+                    <td>1 Potato or Tomato</td>
+                    <td>1 Cup of Dry Cereal</td>
+                    <td>4-5 Ounces of Cooked Chicken/Turkey</td>
+                    <td>4-5 Large Scallops</td>
+                    <td></td>
+                    <td>12 Macadamia Nuts</td>
+                  </tr>
+                  <tr>
+                    <td>1/2 Cup of Marinara Sauce</td>
+                    <td>1 Slice of Cake</td>
+                    <td>7 Chicken Nuggets</td>
+                    <td>6-8 Clams</td>
+                    <td></td>
+                    <td>7 Walnuts</td>
+                  </tr>
+                  <tr>
+                    <td>3/4 Cup of Cooked Vegetables</td>
+                    <td>2 Medium Chocolate Chip Cookies</td>
+                    <td>4 Chicken Wings</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>1 Cup of Salad</td>
+                    <td></td>
+                    <td>5.4 Slices of Deli Turkey</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <center>
+                <h4>Questions (Continued):</h4></center><br />
+              <p>How many servings of red meat do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="meat_serv" size="4" maxlength="4">
+              </p>
 
-                <p>How many servings of dairy products or eggs do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="dairy_serv" size="4" maxlength="4">
-                </p>
+              <p>How many servings of dairy products or eggs do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="dairy_serv" size="4" maxlength="4">
+              </p>
 
-                <p>How many servings of fruits and vegetables do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
-                </p>
+              <p>How many servings of fruits and vegetables do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
+              </p>
 
-                <p>How many servings of grains and baked products do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="grains_serv" size="4" maxlength="4">
-                </p>
+              <p>How many servings of grains and baked products do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="grains_serv" size="4" maxlength="4">
+              </p>
 
-                <p>How many servings of poultry do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="poultry_serv" size="4" maxlength="4">
-                </p>
+              <p>How many servings of poultry do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="poultry_serv" size="4" maxlength="4">
+              </p>
 
-                <p>How many servings of pork do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="pork_serv" size="4" maxlength="4">
-                </p>
+              <p>How many servings of pork do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="pork_serv" size="4" maxlength="4">
+              </p>
 
-                <p>How many servings of seafood do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="seafood_serv" size="4" maxlength="4">
-                </p>
+              <p>How many servings of seafood do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="seafood_serv" size="4" maxlength="4">
+              </p>
 
-                <p>How many servings of nuts do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                  <input type="number" id="nuts_serv" size="4" maxlength="4">
-                </p>
+              <p>How many servings of nuts do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
+                <input type="number" id="nuts_serv" size="4" maxlength="4">
+              </p>
 
-                <p> How often do you eat processed food? (The average person eats 22 pounds of processed food a week)<br>
-                  <!--need conversion factor for processed food and avg pounds per week. Dummy question for now-->
-                  <input type="radio" name="radio_recycle" value="below_avg_processed" onclick="display_comment('comment_processed_food','Great decision! Processed foods often require a larger amount of energy than fresh produce')">Below Average<br>
-                  <input type="radio" name="radio_recycle" value="avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Average<br>
-                  <input type="radio" name="radio_recycle" value="above_avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Above
-                  Average<br>
-                </p>
+              <p> How often do you eat processed food? (The average person eats 22 pounds of processed food a week)<br>
+                <!--need conversion factor for processed food and avg pounds per week. Dummy question for now-->
+                <input type="radio" name="radio_recycle" value="below_avg_processed" onclick="display_comment('comment_processed_food','Great decision! Processed foods often require a larger amount of energy than fresh produce')">Below Average<br>
+                <input type="radio" name="radio_recycle" value="avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Average<br>
+                <input type="radio" name="radio_recycle" value="above_avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Above
+                Average
+                <br>
+              </p>
 
-                <p class="pop_up_comment" id="comment_processed_food"></p>
+              <p class="pop_up_comment" id="comment_processed_food"></p>
 
-                <p>How much do you spend on eating out each month?<br />
-                  <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
-                </p>
+              <p>How much do you spend on eating out each month?<br />
+                <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
+              </p>
 
-                <p>If you drink coffee or tea please select from the following options: <br />
-                  <select id="food_coffee_type" onchange="food_coffee_select_handler()">
+              <p>If you drink coffee or tea please select from the following options: <br />
+                <select id="food_coffee_type" onchange="food_coffee_select_handler()">
                					<option value="none">-Select-</option>
                					<option value="black_coffee">Black Coffee</option>
                					<option value="cream_sugar">Black Coffee + cream or sugar</option>
@@ -621,264 +624,327 @@
                					<option value="latte">Latte</option>
                					<option value="black_coffee">Tea</option>
                				</select>
-                </p>
+              </p>
 
 
-                <div id="food_coffee_frequency_q" class="collapse">
-                  <p id="food_coffee_frequency_q">About how many times a week do you drink a cup or more? <br />
-                    <input id="food_coffee_frequency" type="number" size="2" maxlength="4" /> times
-                  </p>
-                </div>
-
-                <p>Do you buy food at farmers markets?<br />
-                  <input type="radio" name="food_farmers_market" value="yes" onclick="display_comment('comment_farmers_market','Great decision! Buying locally grown food lowers your carbon emissions')" /> yes &nbsp;
-                  <input type="radio" name="food_farmers_market" value="no" onclick="display_comment('comment_farmers_market','You might want to check out the farmers market!')" /> no
+              <div id="food_coffee_frequency_q" class="collapse">
+                <p id="food_coffee_frequency_q">About how many times a week do you drink a cup or more? <br />
+                  <input id="food_coffee_frequency" type="number" size="2" maxlength="4" /> times
                 </p>
               </div>
-            </div>
 
-            <p class="pop_up_comment" id="comment_farmers_market"></p>
-            <div class="row">
-              <div class="col-md-12"><br />
-
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse4">Previous</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse6">Next</button>
-                </div>
-              </div>
+              <p>Do you buy food at farmers markets?<br />
+                <input type="radio" name="food_farmers_market" value="yes" onclick="display_comment('comment_farmers_market','Great decision! Buying locally grown food lowers your carbon emissions')" /> yes &nbsp;
+                <input type="radio" name="food_farmers_market" value="no" onclick="display_comment('comment_farmers_market','You might want to check out the farmers market!')" /> no
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-             <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Water</a>
-           </h4>
-        </div>
-        <div id="collapse6" class="panel-collapse collapse">
-          <div class="panel-body">
-            <p>On average, how long are your showers? <input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes</p>
-            <p>On average, how many times do you shower every week? <input id="water_showers_times" type="number" size="5" maxlength="4" /> times</p>
-            <p>On average, how many loads of laundry do you wash every month? <input id="water_laundry" type="number" size="5" maxlength="4" /> times</p>
-            <p>On average, how many times do you flush a toilet every day? <input id="water_flush" type="number" size="5" maxlength="4" /> flushes</p>
-            <p>On average, how many cups of water do you drink every day (from the tap or a water fountain)? <input id="water_cups" type="number" size="5" maxlength="4" /> cups
-              <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-question-sign"></span></a>
-            </p>
 
-            <p>Do you use a refillable water bottle?
-              <input type="radio" name="water_bottle_refill" value="yes" onclick="display_comment('comment_water_bottle','Way to go! Every time you use your refillable water bottle instead of buying a plastic bottle you are saving as much carbon as driving 30 miles in an average sized car. That could get you to Albany and back!')"
-              />yes
-              <input type="radio" name="water_bottle_refill" value="no" onclick="display_comment('comment_water_bottle_negative','A refillable water bottle is around $10 -$20 dollars and in the long run will save you hundreds of dollars.')" />no
-            </p>
+          <p class="pop_up_comment" id="comment_farmers_market"></p>
+          <div class="row">
+            <div class="col-md-12"><br />
 
-            <p class="pop_up_comment" id="comment_water_bottle"></p>
-
-            <div class="row">
-              <div class="col-md-12"><br />
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Previous</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse7">Next</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-             <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Waste</a>
-           </h4>
-        </div>
-        <div id="collapse7" class="panel-collapse collapse">
-          <div class="panel-body">
-            Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.<br /><br />
-            But what’s more important? While it’s great we have minimal waste disposal-related emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture, purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the “Next Steps” tab.
-            <div class="row">
-              <div class="col-md-12"><br />
-
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse6">Previous</button>
-                  <button type="button" id="last-next-button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse8">Next</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-             <a data-toggle="collapse" id="results-accordion" data-parent="#accordion" href="#collapse8">Results</a>
-           </h4>
-        </div>
-        <div id="collapse8" class="panel-collapse collapse">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-4">
-                <center>
-                  <h4>Your Result</h4>
-                  <div class="user-total-pie pie"></div>
-                </center>
-              </div>
-              <div class="col-md-4">
-                <center>
-                  <h4>Totals (By Category)</h4>
-                  <div class="user-us-bar bar">
-                </center>
-              </div>
-              <div class="col-md-4">
-                <center>
-                  <h4>United States Average</h4>
-                  <div class="us-avg-pie pie">
-                </center>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <center>
-                  <h4>Previous Results:</h4>
-                </center>
-              </div>
-              <div class="col-md-4">
-                <center>
-                  <h4>Other Locales:</h4>
-                  <div class="country-avg-bar bar"></div>
-                </center>
-              </div>
-              <div class="col-md-4">
-                <center>
-                  <h4>Other Locales:</h4>
-                  <div class="bar"></div>
-                </center>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class=col-md-2><!-- Spacer -->
-              </div>
-              <div class="col-md-8">
-                <center><h4>Your totals (by category):</h4></center>
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <tr>
-                      <th>Category</th>
-                      <th>kgCO<sub>2</sub>e / year
-                        <a href="#" data-toggle="tooltip" title="The additional&quot;e&quot; to kg CO2 means the carbon dioxide equivalent and is most widely used to measure greenhouse emissions.  All greenhouse gases have potential to warm the atmosphere, thus accounted for when you see emissions in terms of CO2e"><span class="glyphicon glyphicon-question-sign"></span></a>
-                      </th>
-                      <th>Percentage</th>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold;">Transportation</td>
-                      <td id="transportation_tab_total">empty</td>
-                      <td id="transportation_tab_percentage">empty</td>
-                    </tr>
-
-                    <tr>
-                      <td style="font-weight:bold;">Consumption</td>
-                      <td id="consumption_tab_total">empty</td>
-                      <td id="consumption_tab_percentage">empty</td>
-                    </tr>
-
-                    <tr>
-                      <td style="font-weight:bold;">Energy and Heat</td>
-                      <td id="energy_tab_total">empty</td>
-                      <td id="energy_tab_percentage">empty</td>
-                    </tr>
-
-                    <tr>
-                      <td style="font-weight:bold;">Food</td>
-                      <td id="food_tab_total">empty</td>
-                      <td id="food_tab_percentage">empty</td>
-                    </tr>
-
-                    <tr>
-                      <td style="font-weight:bold;">Water</td>
-                      <td id="water_tab_total">empty</td>
-                      <td id="water_tab_percentage">empty</td>
-                    </tr>
-
-                    <tr>
-                      <td style="font-weight:bold;">Total</td>
-                      <td style="font-weight:bold;" id="carbon_total">empty</td>
-                      <td style="font-weight:bold;" id="carbon_total_percentage">empty</td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12"><br />
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse7">Previous</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse9">Next</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-             <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">Next Steps</a>
-           </h4>
-        </div>
-        <div id="collapse9" class="panel-collapse collapse">
-          <div class="panel-body">
-            <p>
-              Now that you have your results, how can you reduce emissions? Fortunately, there are some simple choices most people can make to easily reduce their individual carbon emissions. Collectively, these contributions will help our community do its part.
-            </p>
-
-            <p>
-              Think about trying some of the following actions. Start with the easiest one or two, and challenge yourself to add additional actions each month.
-            </p>
-
-            <p>
-              <ul style="list-style:disc;">
-                <li>Have a meat free day once a week.</li>
-                <li>Use a re-usable water bottle to drink tap water.</li>
-                <li>Carpool or take public transit for a few commute trips each week.</li>
-                <li>Buy second-hand clothing to minimize your supply chain emissions.</li>
-                <li>Purchase carbon offsets to account for airplane travel.</li>
-                <li>Wash your clothes in cold water and run large loads to save both water and energy.</li>
-                <li>Volunteer on campus and in the community! Plant trees, restore habitat, etc.</li>
-                <li>Swap out incandescent lights for LEDs or CFLs to see up to 83% energy savings! Use natural light whenever possible.</li>
-                <li>Turn off lights, TVs, and other electronics when they aren't in use.</li>
-                <li>Clean the lint trap in your dryer after every load.</li>
-                <li>Enable energy saving options on your computer and cell phone.</li>
-              </ul>
-            </p>
-            <p>
-              In addition to individual action to reduce carbon emissions, <b>collective action is important</b>!  The OSU Sustainability Office has launched a <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Carbon Planning Toolkit</a> to assist OSU departments in planning to reduce carbon emissions and strengthening climate awareness through education, research and outreach.  You can participate by establishing a team within your department to implement the toolkit. <a href="mailto:sustainability@oregonstate.edu">For more information or help with the Toolkit, or day to day actions, contact the Sustainability Office at sustainability@oregonstate.edu.</a>
-            </p>
-            <div class="row">
-              <div class="col-md-12"><br />
-
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse8">Previous</button>
-                </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse4">Previous</button>
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse6">Next</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <center><a href="http://oregonstate.edu/copyright">Copyright</a> ©2017 Oregon State University. Glyphicons created by <a href="http://glyphicons.com/">Glyphicons</a>, and provided free for use with <a href="http://getbootstrap.com">Bootstrap</a> Version 3.3.7.</center>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+             <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Water</a>
+           </h4>
+      </div>
+      <div id="collapse6" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>On average, how long are your showers? <input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes</p>
+          <p>On average, how many times do you shower every week? <input id="water_showers_times" type="number" size="5" maxlength="4" /> times</p>
+          <p>On average, how many loads of laundry do you wash every month? <input id="water_laundry" type="number" size="5" maxlength="4" /> times</p>
+          <p>On average, how many times do you flush a toilet every day? <input id="water_flush" type="number" size="5" maxlength="4" /> flushes</p>
+          <p>On average, how many cups of water do you drink every day (from the tap or a water fountain)? <input id="water_cups" type="number" size="5" maxlength="4" /> cups
+            <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-question-sign"></span></a>
+          </p>
+
+          <p>Do you use a refillable water bottle?
+            <input type="radio" name="water_bottle_refill" value="yes" onclick="display_comment('comment_water_bottle','Way to go! Every time you use your refillable water bottle instead of buying a plastic bottle you are saving as much carbon as driving 30 miles in an average sized car. That could get you to Albany and back!')"
+            />yes
+            <input type="radio" name="water_bottle_refill" value="no" onclick="display_comment('comment_water_bottle_negative','A refillable water bottle is around $10 -$20 dollars and in the long run will save you hundreds of dollars.')" />no
+          </p>
+
+          <p class="pop_up_comment" id="comment_water_bottle"></p>
+
+          <div class="row">
+            <div class="col-md-12"><br />
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Previous</button>
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse7">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+             <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Waste</a>
+           </h4>
+      </div>
+      <div id="collapse7" class="panel-collapse collapse">
+        <div class="panel-body">
+          Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated
+          with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.<br /><br /> But what’s more important? While it’s great we have minimal waste disposal-related
+          emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture,
+          purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the “Next Steps” tab.
+          <div class="row">
+            <div class="col-md-12"><br />
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse6">Previous</button>
+                <button type="button" id="last-next-button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse8">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+             <a data-toggle="collapse" id="results-accordion" data-parent="#accordion" href="#collapse8">Results</a>
+           </h4>
+      </div>
+      <div id="collapse8" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <center>
+                    <h3 class="panel-title">Key</h3></center>
+                </div>
+                <div class="panel-body">
+                  <center>
+                    <div class="col-md-1"><!--Spacer--></div>
+                    <div class="col-md-2" style="color:#AA9D2E">■ Transportation</div>
+                    <div class="col-md-2" style="color:#0D5257">■ Consumption</div>
+                    <div class="col-md-2" style="color:#D3832B">■ Energy and Heat</div>
+                    <div class="col-md-2" style="color:#003B5C">■ Food</div>
+                    <div class="col-md-2" style="color:#7A6855">■ Water</div>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <center>
+                    <h3 class="panel-title">Your Result</h3></center>
+                </div>
+                <div class="panel-body">
+                  <center>
+                    <div class="user-total-pie pie"></div>
+                  </center>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <center>
+                    <h3 class="panel-title">Previous Result</h3></center>
+                </div>
+                <div class="panel-body">
+                  <center>
+                    <div class="user-previous-pie pie"></div>
+                  </center>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <center>
+                    <h3 class="panel-title">United States Average</h3></center>
+                </div>
+                <div class="panel-body">
+                  <center>
+                    <div class="us-avg-pie pie"></div>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <center>
+                    <h3 class="panel-title">Totals (By Category)</h3></center>
+                </div>
+                <div class="panel-body">
+                  <center>
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <tr>
+                          <th>Category</th>
+                          <th>kgCO<sub>2</sub>e / year
+                            <a href="#" data-toggle="tooltip" title="The additional&quot;e&quot; to kg CO2 means the carbon dioxide equivalent and is most widely used to measure greenhouse emissions.  All greenhouse gases have potential to warm the atmosphere, thus accounted for when you see emissions in terms of CO2e"><span class="glyphicon glyphicon-question-sign"></span></a>
+                          </th>
+                          <th>Percentage</th>
+                        </tr>
+                        <tr>
+                          <td style="color:#AA9D2E; font-weight:bold;">Transportation</td>
+                          <td id="transportation_tab_total">empty</td>
+                          <td id="transportation_tab_percentage">empty</td>
+                        </tr>
+
+                        <tr>
+                          <td style="color:#0D5257; font-weight:bold;">Consumption</td>
+                          <td id="consumption_tab_total">empty</td>
+                          <td id="consumption_tab_percentage">empty</td>
+                        </tr>
+
+                        <tr>
+                          <td style="color:#D3832B; font-weight:bold;">Energy and Heat</td>
+                          <td id="energy_tab_total">empty</td>
+                          <td id="energy_tab_percentage">empty</td>
+                        </tr>
+
+                        <tr>
+                          <td style="color:#003B5C; font-weight:bold;">Food</td>
+                          <td id="food_tab_total">empty</td>
+                          <td id="food_tab_percentage">empty</td>
+                        </tr>
+
+                        <tr>
+                          <td style="color:#7A6855; font-weight:bold;">Water</td>
+                          <td id="water_tab_total">empty</td>
+                          <td id="water_tab_percentage">empty</td>
+                        </tr>
+
+                        <tr>
+                          <td style="font-weight:bold;">Total</td>
+                          <td id="carbon_total">empty</td>
+                          <td id="carbon_total_percentage">empty</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </center>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="panel panel-default" id="trend-card">
+                <div class="panel-heading">
+                  <center>
+                    <h3 class="panel-title">Trend</h3></center>
+                </div>
+                <div class="panel-body">
+                  <center>
+                    <div class="user-trend-bar"></div>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <center>
+                <h4>Other Locales:</h4>
+                <div class="country-avg-bar bar"></div>
+              </center>
+            </div>
+            <div class="col-md-4">
+              <center>
+                <h4>Other Locales:</h4>
+                <div class="bar"></div>
+              </center>
+            </div>
+            <div class=col-md-2>
+              <!-- Spacer -->
+            </div>
+            <div class="col-md-8">
+              <div class="user-us-bar bar"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12"><br />
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse7">Previous</button>
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse9">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+           <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">Next Steps</a>
+         </h4>
+      </div>
+      <div id="collapse9" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>
+            Now that you have your results, how can you reduce emissions? Fortunately, there are some simple choices most people can make to easily reduce their individual carbon emissions. Collectively, these contributions will help our community do its part.
+          </p>
+
+          <p>
+            Think about trying some of the following actions. Start with the easiest one or two, and challenge yourself to add additional actions each month.
+          </p>
+
+          <p>
+            <ul style="list-style:disc;">
+              <li>Have a meat free day once a week.</li>
+              <li>Use a re-usable water bottle to drink tap water.</li>
+              <li>Carpool or take public transit for a few commute trips each week.</li>
+              <li>Buy second-hand clothing to minimize your supply chain emissions.</li>
+              <li>Purchase carbon offsets to account for airplane travel.</li>
+              <li>Wash your clothes in cold water and run large loads to save both water and energy.</li>
+              <li>Volunteer on campus and in the community! Plant trees, restore habitat, etc.</li>
+              <li>Swap out incandescent lights for LEDs or CFLs to see up to 83% energy savings! Use natural light whenever possible.</li>
+              <li>Turn off lights, TVs, and other electronics when they aren't in use.</li>
+              <li>Clean the lint trap in your dryer after every load.</li>
+              <li>Enable energy saving options on your computer and cell phone.</li>
+            </ul>
+          </p>
+          <p>
+            In addition to individual action to reduce carbon emissions, <b>collective action is important</b>! The OSU Sustainability Office has launched a <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Carbon Planning Toolkit</a>              to assist OSU departments in planning to reduce carbon emissions and strengthening climate awareness through education, research and outreach. You can participate by establishing a team within your department to implement the toolkit.
+            <a href="mailto:sustainability@oregonstate.edu">For more information or help with the Toolkit, or day to day actions, contact the Sustainability Office at sustainability@oregonstate.edu.</a>
+          </p>
+          <div class="row">
+            <div class="col-md-12"><br />
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse8">Previous</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <center><a href="http://oregonstate.edu/copyright">Copyright</a> ©2017 Oregon State University. Glyphicons created by <a href="http://glyphicons.com/">Glyphicons</a>, and provided free for use with <a href="http://getbootstrap.com">Bootstrap</a> Version 3.3.7.
+    </center>
     <div class="overlay" id="overlay">
       <div class="login-container">
         <div class="panel panel-default panel-login">
-          <div class="panel-heading"><h4 class="panel-title">Track Your Progress</h4></div>
+          <div class="panel-heading">
+            <h4 class="panel-title">Track Your Progress</h4></div>
           <div class="panel-body">
             <center>
               <img src="http://simpleicon.com/wp-content/uploads/bar-chart-down-2.svg" height="175em"></img><br /><br />
               <a href="https://login.oregonstate.edu/idp/profile/cas/login?service=http://carbon.campusops.oregonstate.edu/"><button type="button" class="btn btn-primary collapsed">Track Your Progress With ONID</button></a> or
               <!-- This is handled with JS -->
-              <button type="button" id="close-btn" class="btn btn-default">No Thanks</button><br /><br />
-              When you're signed in with ONID, your results will be automatically saved for later.<br /><br />
-              We're hard at work adding unique visualizations so you can understand your carbon<br />
-              footprint like never before.
+              <button type="button" id="close-btn" class="btn btn-default">No Thanks</button><br /><br /> When you're signed in with ONID, your results will be automatically saved for later.<br /><br /> We're hard at work adding unique visualizations
+              so you can understand your carbon<br /> footprint like never before.
             </center>
           </div>
         </div>
