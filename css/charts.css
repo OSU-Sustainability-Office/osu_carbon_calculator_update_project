@@ -1,0 +1,43 @@
+.pie {
+  margin: 1em;
+  min-height: 400px;
+}
+.bar {
+  margin: 1em;
+  min-height: 400px;
+}
+.ct-bar {
+  fill: none;
+  stroke-width: 10px;
+}
+/* Pie Slice Colors */
+.ct-slice-pie {
+  stroke: #FFF;
+  stroke-width: 0.25em;
+}
+.ct-series-a {
+  fill: #AA9D2E;
+  stroke: #AA9D2E;
+}
+.ct-series-b {
+  fill: #0D5257;
+  stroke: #0D5257;
+}
+.ct-series-c {
+  fill: #D3832B;
+  stroke: #D3832B;
+}
+.ct-series-d {
+  fill: #003B5C;
+  stroke: #003B5C;
+}
+.ct-series-e {
+  fill: #7A6855;
+  stroke: #7A6855;
+}
+
+/* Pie Slice Hover Colors */
+.ct-series:hover {
+  fill: #B7A99A;
+  stroke: #B7A99A;
+}

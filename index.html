@@ -48,19 +48,20 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta name="Description" content="Carbon Footprint Calculator for Oregon State University" />
-  <meta name="Keywords" content="carboon footprint calculator campus oregon state university sustainable sustainability" />
+  <meta name="Keywords" content="carboon footprint calculator campus oregon state university osu sustainable sustainability" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
   <!-- Site CSS and JS Links -->
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/carbonCalc.css">
+  <link rel="stylesheet" href="css/charts.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/Chart.bundle.js"></script>
-  <script src="js/utils-chart.js"></script>
+  <script src="js/bootstrap.js" defer></script>
   <script src="js/carbon_calculator.js" defer></script>
+  <script src="js/chartist.min.js" defer></script>
+  <script src="js/charts.js" defer></script>
 
   <!--Enable Tooltips-->
   <script>
@@ -715,31 +716,42 @@
         <div id="collapse8" class="panel-collapse collapse">
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <center>
-                  <h4>Your Result:</h4>
-                  <canvas id="chart_area_user" /></canvas>
+                  <h4>Your Result</h4>
+                  <div class="user-total-pie pie"></div>
                 </center>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <center>
-                  <h4>United States Average:</h4>
-                  <canvas id="chart_area_us_avg" /></canvas>
+                  <h4>Totals (By Category)</h4>
+                  <div class="user-us-bar bar">
+                </center>
+              </div>
+              <div class="col-md-4">
+                <center>
+                  <h4>United States Average</h4>
+                  <div class="us-avg-pie pie">
                 </center>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4" id="result_table">
-                  <h4>Your result compared to your previous result:</h4>
-                  <canvas id="comparisongraph" class="comparisongraph"></canvas>
+              <div class="col-md-4">
+                <center>
+                  <h4>Previous Results:</h4>
+                </center>
               </div>
               <div class="col-md-4">
-                  <h4>Your result compared to the carbon emissions of the average citizen in the following locations:</h4>
-                  <canvas id="world_avg_graph"></canvas>
+                <center>
+                  <h4>Other Locales:</h4>
+                  <div class="country-avg-bar bar"></div>
+                </center>
               </div>
               <div class="col-md-4">
-                <h4>Your result compared to the United States average:</h4>
-                <canvas id="you_vs_us_avg"></canvas>
+                <center>
+                  <h4>Other Locales:</h4>
+                  <div class="bar"></div>
+                </center>
               </div>
             </div>
 
@@ -796,7 +808,6 @@
                 </div>
               </div>
             </div>
-            <!-- <input type="submit" name="submitbutton" value="Click here to save your results!" />  -->
             <div class="row">
               <div class="col-md-12"><br />
                 <div class="btn-group">

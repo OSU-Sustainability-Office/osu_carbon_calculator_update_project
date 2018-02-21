@@ -1,4 +1,17 @@
 /*******************************************************************************
+                                     Notes
+                        --------------------------------
+  This script only calculates and manages data. Any javascript developed from
+  this point forward should be modularized into seperate .js files in the /js
+  directory.
+
+  Trust me, we originally had everything in this file and it was a mess. -JW
+
+  Link to SCU's original code:
+  https://docs.google.com/file/d/0B66G3LFpAvamc1RwQ29HLWg2dms/edit?usp=sharing//
+ ******************************************************************************/
+
+/*******************************************************************************
                           Begin Variable Declaration
  ******************************************************************************/
 
@@ -11,46 +24,22 @@ var waste_total;
 var water_total;
 var graph_carbon_num_total;
 
-// Old Totals for Each Category
-var old_trans_total;
-var old_cons_total;
-var old_energy_total;
-var old_food_total;
-var old_waste_total;
-var old_water_total;
-var old_data = new Array(5);
-
 // ONID Variables
 var uid;
 var firstName;
 var primaryAffiliation;
 
-// Charts.JS requires that data be placed into an array.
-var data = new Array(6);
-
-// This array is for the bar graph, comparing the user's result to the avg
-// person from other countries. The array contains 6 copies of the data because
-// Charts.JS requires a new entry in the array for each bar drawn.
-var graph_carbon_total = new Array(6);
+// Data array used for database upload/download
+var data = new Array(5);
 
 var user_type = "on_campus";
 var user_num = 1;
-
-// Charts.JS pie chart declaration.
-window.myPie1;
-window.myPie2;
 
 
 /*******************************************************************************
                                TRANSPORTATION
  All of the conversions in the transportation category are calculated
- seperately, and then combined in showResult().var old_trans_total;
-var old_cons_total;
-var old_energy_total;
-var old_food_total;
-var old_waste_total;
-var old_water_total;
-var old_graph_carbon_num_total;
+ seperately, and then combined in showResult().
 *******************************************************************************/
 
 // This performs no calcuation. It just shows/hides a question.
@@ -467,314 +456,7 @@ function water_conv() {
 
   return result;
 }
-//Link to SCU's original code: https://docs.google.com/file/d/0B66G3LFpAvamc1RwQ29HLWg2dms/edit?usp=sharing//
 
-
-// Draw Pie/Bar Charts
-
-var data = [{
-    value: 11,
-    color: "#DD6600",
-    highlight: "#DD6600",
-    label: "You"
-  },
-  {
-    value: 30,
-    color: "#555",
-    highlight: "#555",
-    label: "You"
-  },
-  {
-    value: 11,
-    percent: "22%",
-    color: "#777",
-    highlight: "#777",
-    label: "You"
-  },
-  {
-    value: 48,
-    percent: "22%",
-    color: "#999",
-    highlight: "#999",
-    label: "You"
-  }
-]
-
-var user_config = {
-  type: 'pie',
-  data: {
-    datasets: [{
-      data: data,
-      backgroundColor: [
-        window.chartColors.red,
-        window.chartColors.orange,
-        window.chartColors.yellow,
-        window.chartColors.green,
-        window.chartColors.blue,
-      ],
-      label: 'Your Result'
-    }],
-    labels: [
-      "Transportation",
-      "Consumption",
-      "Energy and Heating",
-      "Food",
-      "Waste and Water",
-    ]
-  },
-  options: {
-    responsive: true,
-    tooltips: {
-
-      callbacks: { // HERE YOU CUSTOMIZE THE LABELS
-        label: function(tooltipItem, data) {
-          return data.labels[tooltipItem.index] + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
-        },
-      }
-    }
-  }
-};
-
-
-function draw_user_result() {
-  var ctx = document.getElementById("chart_area_user").getContext("2d");
-  window.myPie = new Chart(ctx, user_config);
-  window.myPie.update();
-}
-
-
-var us_avg_config = {
-  type: 'pie',
-  data: {
-    datasets: [{
-      data: [
-        4808.4,
-        4979.9,
-        3692.1,
-        2404.2,
-        515.2
-      ],
-      backgroundColor: [
-        window.chartColors.red,
-        window.chartColors.orange,
-        window.chartColors.yellow,
-        window.chartColors.green,
-        window.chartColors.blue,
-      ],
-      label: 'Your Result'
-    }],
-    labels: [
-      "Transportation",
-      "Consumption",
-      "Energy and Heating",
-      "Food",
-      "Waste and Water",
-    ]
-  },
-  options: {
-    responsive: true,
-    tooltips: {
-
-      callbacks: { // HERE YOU CUSTOMIZE THE LABELS
-        label: function(tooltipItem, data) {
-          return data.labels[tooltipItem.index] + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
-        },
-      }
-    }
-  }
-};
-
-//Bar graph - You vs. US Average
-var horizontalBarChartData2 = {
-  labels: ["Transportation",
-    "Consumption",
-    "Energy and Heating",
-    "Food",
-    "Waste and Water"
-  ],
-  datasets: [{
-    label: 'Average',
-    backgroundColor: window.chartColors.yellow,
-    borderColor: window.chartColors.yellow,
-    borderWidth: 1,
-    data: [
-      4808.4,
-      4979.9,
-      3692.1,
-      2404.2,
-      515.2
-    ]
-  }, {
-    label: "Your Result",
-    backgroundColor: window.chartColors.green,
-    borderColor: window.chartColors.green,
-    borderWidth: 1,
-    data: data
-  }]
-
-};
-
-//Bar graph - You vs US Average
-function draw_you_vs_us_avg() {
-  var ctx3 = document.getElementById("you_vs_us_avg").getContext("2d");
-  window.myHorizontalBar2 = new Chart(ctx3, {
-    type: 'horizontalBar',
-    data: horizontalBarChartData2,
-    options: {
-      // Elements optBar graph - Youions apply to all of the options unless overridden in a dataset
-      // In this case, we are setting the border of each horizontal bar to be 2px wide
-      elements: {
-        rectangle: {
-          borderWidth: 2,
-        }
-      },
-      responsive: true,
-      legend: {
-        position: 'right',
-      },
-      title: {
-        display: true,
-        text: ''
-      },
-      tooltips: {
-
-        callbacks: {
-          label: function(tooltipItem, data) {
-            return data.datasets[tooltipItem.datasetIndex].label + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
-          },
-        }
-      }
-    }
-  });
-}
-
-//Bar graph - World Averages
-var horizontalBarChartData = {
-  labels: ["Brazil", "Burkina Faso", "China", "United States", "France", "Oregon"],
-  datasets: [{
-    label: 'Average',
-    backgroundColor: window.chartColors.yellow,
-    borderColor: window.chartColors.yellow,
-    borderWidth: 1,
-    data: [
-      2500,
-      200,
-      7600,
-      16400,
-      5100,
-      10000
-    ]
-  }, {
-    label: 'You',
-    backgroundColor: window.chartColors.green,
-    borderColor: window.chartColors.green,
-    data: graph_carbon_total
-  }]
-
-};
-
-function draw_world_avg() {
-  var ctx3 = document.getElementById("world_avg_graph").getContext("2d");
-  window.myHorizontalBar = new Chart(ctx3, {
-    type: 'horizontalBar',
-    data: horizontalBarChartData,
-    options: {
-      // Elements options apply to all of the options unless overridden in a dataset
-      // In this case, we are setting the border of each horizontal bar to be 2px wide
-      elements: {
-        rectangle: {
-          borderWidth: 2,
-        }
-      },
-      responsive: true,
-      legend: {
-        position: 'right',
-      },
-      title: {
-        display: true,
-        text: ''
-      },
-      tooltips: {
-
-        callbacks: {
-          label: function(tooltipItem, data) {
-            return data.datasets[tooltipItem.datasetIndex].label + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
-          },
-        }
-      }
-    }
-  });
-}
-
-//Bar graph - Comparison
-var horizontalBarChartData3 = {
-  labels: ["Transportation",
-    "Consumption",
-    "Energy and Heating",
-    "Food",
-    "Waste and Water"
-  ],
-  datasets: [{
-    label: 'Previous',
-    backgroundColor: window.chartColors.yellow,
-    borderColor: window.chartColors.yellow,
-    borderWidth: 1,
-    data: old_data
-  }, {
-    label: 'Current',
-    backgroundColor: window.chartColors.green,
-    borderColor: window.chartColors.green,
-    data: data
-  }]
-
-};
-
-function draw_comparison_graph() {
-  var ctx3 = document.getElementById("comparisongraph").getContext("2d");
-  window.myHorizontalBar2 = new Chart(ctx3, {
-    type: 'horizontalBar',
-    data: horizontalBarChartData3,
-    options: {
-      // Elements options apply to all of the options unless overridden in a dataset
-      // In this case, we are setting the border of each horizontal bar to be 2px wide
-      elements: {
-        rectangle: {
-          borderWidth: 2,
-        }
-      },
-      responsive: true,
-      legend: {
-        position: 'right',
-      },
-      title: {
-        display: true,
-        text: ''
-      },
-      tooltips: {
-
-        callbacks: {
-          label: function(tooltipItem, data) {
-            return data.datasets[tooltipItem.datasetIndex].label + ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " KgCO2";
-          },
-        }
-      }
-    }
-  });
-}
-
-
-function draw_us_result() {
-  var ctx2 = document.getElementById("chart_area_us_avg").getContext("2d");
-  window.myPie2 = new Chart(ctx2, us_avg_config);
-  window.myPie2.update();
-};
-
-function update_graphs() {
-  window.myPie.update();
-  window.myPie2.update();
-  window.myHorizontalBar.update();
-  window.myHorizontalBar2.update();
-}
 
 /*******************************************
   Display questions that depend on the results
@@ -792,45 +474,7 @@ function display_question(action, field_name) {
 
 /*******************************************************************************
                       Miscellaneous Function Definitions
-                      ----------------------------------
-                      NOTE: This remains as a backup ONLY.
-                      Data is now stored in a DynamoDB.
  ******************************************************************************/
-
- // Save Anonymous User Data. This data is used for sustainability-focused outreach
- // efforts and other metrics. No specific user information is saved.
- // Data is saved into a CSV file in this format:
-function save_anonymous_data() {
-  // Save results to csv/text file
-  // Ajax request to php script
-  $.ajax({
-    data: {
-      trans_total: trans_total.toString(),
-      trans_car_conv: parseFloat(trans_car_conv()).toString(),
-      trans_short_bus_conv: parseFloat(trans_short_bus_conv()).toString(),
-      trans_long_bus_conv: parseFloat(trans_long_bus_conv()).toString(),
-      trans_train_conv: parseFloat(trans_train_conv()).toString(),
-      trans_airplane_conv: parseFloat(trans_airplane_conv()).toString(),
-      cons_total: cons_total.toString(),
-      consumption_textbook_conv: "Textbook question was removed.",
-      consumption_clothing_conv: parseFloat(consumption_clothing_conv()).toString(),
-      consumption_cellphone_conv: "Cell phone question was removed.",
-      consumption_eReader_conv: "E-Reader question was removed.",
-      consumption_plastic_bottle_conv: parseFloat(consumption_plastic_bottle_conv()).toString(),
-      energy_total: energy_total.toString(),
-      energy_audit_dorm_conv: parseFloat(energy_audit_dorm_conv()).toString(),
-      energy_gas_baseline_conv: parseFloat(energy_gas_baseline_conv()).toString(),
-      energy_baseline_conv: parseFloat(energy_baseline_conv()).toString(),
-      food_total: food_total.toString(),
-      food_conv: parseFloat(food_conv()).toString(),
-      consumption_coffee_conv: parseFloat(consumption_coffee_conv()).toString(),
-      waste_total: waste_total.toString(),
-      water_total: water_total.toString(),
-    },
-    url: "../php/save_anonymous_input.php",
-    type: "POST"
-  });
-}
 
 
 // Determines whether the user is an on-campus student, full-commuter, or
@@ -849,10 +493,6 @@ function set_user_type(type) {
 
 // Initially draws the graphs when the webpage loads.
 window.onload = function() {
-  draw_user_result();
-  draw_us_result();
-  draw_world_avg();
-  draw_you_vs_us_avg();
 
   // Verify ONID Login
   var ticket = location.search.substring(8);
@@ -864,7 +504,6 @@ window.onload = function() {
     if (res.includes("Success")) {
       updateUserVariables(res);
       closeONIDWindow();
-      showOldData();
     }
   }
 
@@ -884,23 +523,11 @@ var showResult = function showResult() {
   waste_total = parseFloat(waste_conv());
   water_total = parseFloat(water_conv());
   carbon_num_total = trans_total + cons_total + energy_total + food_total + waste_total + water_total;
-  for (var i = 0; i < 6; i++) {
-    graph_carbon_total[i] = parseFloat(carbon_num_total.toFixed(2));
-    //graph_carbon_num_total[i] = trans_total + cons_total + energy_total + food_total + waste_total + water_total;
-  }
 
-  graph_trans_total = parseFloat(trans_total.toFixed(1));
   data[0] = parseFloat(trans_total.toFixed(1));
-  graph_cons_total = parseFloat(cons_total.toFixed(1));
   data[1] = 1 + parseFloat(cons_total.toFixed(1));
-  graph_energy_total = parseFloat(energy_total.toFixed(1));
   data[2] = parseFloat(energy_total.toFixed(1));
-  graph_food_total = parseFloat(food_total.toFixed(1));
   data[3] = parseFloat(food_total.toFixed(1));
-  graph_waste_total = parseFloat(waste_total.toFixed(1));
-  //data[4] = parseFloat(waste_total.toFixed(1));
-  graph_water_total = parseFloat(water_total.toFixed(1));
-  //data[5] = parseFloat(water_total.toFixed(1));
   data[4] = (parseFloat(waste_total.toFixed(1)) + parseFloat(water_total.toFixed(1))); // Waste and Water
   data[4] = data[4].toFixed(1);
 
@@ -921,17 +548,11 @@ var showResult = function showResult() {
   $("#carbon_total_percentage").html((1 * 100).toFixed(2));
 
   // Redraw graphs with updated information
-  update_graphs();
+  updateGraphs();
 
-  // Update the user's information in the CSV file
-  save_anonymous_data();
 
   // Update the user's information in the database.
   updateDB();
-
-  // Save cookies on user's computer
-  saveData();
-  showOldData();
 }
 
 /*******************************************
@@ -1012,67 +633,4 @@ function updateDB() {
   xmlHttp.send(null);
   res = xmlHttp.responseText;
   console.log(res);
-}
-
-// User data from previous visits is saved in a cookie on their machine for up to a year.
-function setCookie(name, data) {
-    var date = new Date(); // Get new Date object
-    date.setTime(date.getTime() + (364*24*60*60*1000)); // Save cookie for 1 year.
-    var expires = "expires="+ date.toUTCString(); // Convert to UTC for cookie
-    document.cookie = name + "=" + data + ";" + expires + ";";
-}
-
-function getCookie(cookieName) {
-  var name = cookieName + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function saveData() {
-  // Save each total into memory for future comparisons.
-  setCookie("osu_trans", trans_total.toFixed(2));
-  setCookie("osu_cons", cons_total.toFixed(2));
-  setCookie("osu_energy",energy_total.toFixed(2));
-  setCookie("osu_food",food_total.toFixed(2));
-  setCookie("osu_waste",waste_total.toFixed(2));
-  setCookie("osu_water",water_total.toFixed(2));
-}
-
-function retrieveData() {
-  old_trans_total = getCookie("osu_trans");
-  old_cons_total = getCookie("osu_cons");
-  old_energy_total = getCookie("osu_energy");
-  old_food_total = getCookie("osu_food");
-  old_waste_total = getCookie("osu_waste");
-  old_water_total = getCookie("osu_water");
-  old_graph_carbon_num_total = old_trans_total + old_cons_total + old_energy_total + old_food_total + old_water_total + old_waste_total;
-}
-
-// Returns a boolean, which determines whether or not the user has used the calculator before.
-function showOldData() {
-  var cookie = getCookie("osu_trans");
-  if (cookie != "") {
-    retrieveData();
-    old_data[0] = old_trans_total;
-    old_data[1] = old_cons_total;
-    old_data[2] = old_energy_total;
-    old_data[3] = old_food_total;
-    old_data[4] = old_waste_total + old_water_total;
-    draw_comparison_graph();
-  } else {
-    var prevRes = document.getElementById("result_table");
-    while (prevRes.firstChild) {
-      prevRes.removeChild(prevRes.firstChild);
-    }
-  }
 }
