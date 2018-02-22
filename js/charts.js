@@ -52,7 +52,7 @@ function updateData() {
     var year = dataObject.date.substring(5);
     d.setYear(20 + year); // 20 + 18 = 2018.
 
-    var month = dataObject.date.substring(0,2);
+    var month = dataObject.date.substring(0,2) - 1;
     d.setMonth(month);
 
     var day = dataObject.date.substring(2,4);
