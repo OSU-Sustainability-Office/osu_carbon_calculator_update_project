@@ -31,7 +31,7 @@ var user_us_comparison = {
 
 var country_avg_data = {
   labels: ['Brazil', 'Burkina Faso', 'China', 'France', 'Oregon', 'You'],
-  series: [[2500], [200], [7600], [1640], [5100], [1000]]
+  series: [[2500], [200], [7600], [10640], [5100], [1000]]
 };
 
 function updateData() {
@@ -73,7 +73,7 @@ function updateData() {
 
   country_avg_data = {
     labels: ['Brazil', 'Burkina Faso', 'China', 'France', 'Oregon', 'You'],
-    series: [[2500], [200], [7600], [16400], [5100], [5100]]
+    series: [[2500], [200], [7600], [10640], [5100], [carbon_num_total.toFixed(1)]]
   };
 }
 
