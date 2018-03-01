@@ -112,7 +112,11 @@
 
         if(tooltipText) {
           $toolTip.innerHTML = tooltipText;
-          setPosition(event);
+          if ($toolTip.classList.contains('tooltip-show')) {
+            setPosition(event);
+          } else {
+            $toolTip.style.top = 0;
+          }
           show($toolTip);
 
           // Remember height and width to avoid wrong position in IE
@@ -126,8 +130,12 @@
       });
 
       on('mousemove', null, function (event) {
-        if (false === options.anchorToPoint)
-        setPosition(event);
+        if ($toolTip.classList.contains('tooltip-show')) {
+          if (false === options.anchorToPoint)
+          setPosition(event);
+        } else {
+          $toolTip.style.top = 0;
+        }
       });
 
       function setPosition(event) {
@@ -166,6 +174,7 @@
   function hide(element) {
     var regex = new RegExp('tooltip-show' + '\\s*', 'gi');
     element.className = element.className.replace(regex, '').trim();
+    element.style.top = 0;
   }
 
   function hasClass(element, className) {
