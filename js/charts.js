@@ -72,7 +72,7 @@ function updateData() {
   };
 
   country_avg_data = {
-    labels: ['Brazil', 'Burkina Faso', 'China', 'France', 'Oregon', 'You'],
+    labels: ['', '', '', '', '', ''], // Labels are coded in HTML
     series: [[2500], [200], [7600], [10640], [5100], [carbon_num_total.toFixed(1)]]
   };
 }
@@ -81,9 +81,6 @@ function updateData() {
                                    Pie Charts
  ******************************************************************************/
 var options = {
-  labelInterpolationFnc: function(value) {
-    return value[0]
-  },
   height: "25em",
   showLabel: false,
   plugins: [
@@ -92,17 +89,17 @@ var options = {
 };
 
 var responsiveOptions = [
-  ['screen and (min-width: 640px)', {
-    chartPadding: 30,
-    showLabel: false,
-    labelInterpolationFnc: function(value) {
-      return value;
+  ['screen and (max-width: 640px)', {
+    seriesBarDistance: 15,
+    axisX: {
+      labelInterpolationFnc: function(value) {
+        // Will return Mon, Tue, Wed etc. on medium screens
+        return value[0];
+      }
     }
   }],
-  ['screen and (min-width: 1024px)', {
-    labelOffset: 80,
-    chartPadding: 20,
-    showLabel: false
+  ['screen and (max-width: 1024px)', {
+    seriesBarDistance: 20
   }]
 ];
 
@@ -111,13 +108,6 @@ var responsiveOptions = [
                                    Bar Charts
  ******************************************************************************/
 var bar_options = {
-  axisX: {
-    offset: 60
-  },
-  axisY: {
-    offset: 80,
-    scaleMinSpace: 15
- },
  seriesBarDistance: 30,
  height: "20em",
  plugins: [
@@ -126,7 +116,7 @@ var bar_options = {
 };
 
 var country_bar_options = {
- seriesBarDistance: 80,
+ seriesBarDistance: 60,
  height: "20em",
  plugins: [
    Chartist.plugins.tooltip({appendToBody: true})
@@ -150,26 +140,15 @@ var trend_bar_options = {
  ]
 };
 
-var bar_responsiveOptions = [
-  ['screen and (max-width: 640px)', {
-    seriesBarDistance: 5,
-    axisX: {
-      labelInterpolationFnc: function (value) {
-        return value[0];
-      }
-    }
-  }]
-];
-
 /*******************************************************************************
                                  Create SVGs
  ******************************************************************************/
 function updateGraphs() {
-  var user_total_pie = new Chartist.Pie('.user-total-pie', user_data, options, responsiveOptions);
-  var us_avg_pie = new Chartist.Pie('.us-avg-pie', us_avg, options, responsiveOptions);
-  var user_previous_pie = new Chartist.Pie('.user-previous-pie', user_previous_data, options, responsiveOptions);
+  var user_total_pie = new Chartist.Pie('.user-total-pie', user_data, options);
+  var us_avg_pie = new Chartist.Pie('.us-avg-pie', us_avg, options);
+  var user_previous_pie = new Chartist.Pie('.user-previous-pie', user_previous_data, options);
 
-  var user_trend_bar = new Chartist.Bar('.user-trend-bar', user_historical_data, trend_bar_options);
-  var user_us_bar = new Chartist.Bar('.user-us-bar', user_us_comparison, bar_options);
+  var user_trend_bar = new Chartist.Bar('.user-trend-bar', user_historical_data, trend_bar_options, responsiveOptions);
+  var user_us_bar = new Chartist.Bar('.user-us-bar', user_us_comparison, bar_options, responsiveOptions);
   var country_avg_bar = new Chartist.Bar('.country-avg-bar', country_avg_data, country_bar_options);
 }
