@@ -105,7 +105,7 @@
                 value = options.currency + value.replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,');
               }
             }
-            value = '<span class="chartist-tooltip-value">' + value + '</span>';
+            value = '<span class="chartist-tooltip-value">' + value + ' kgCO<sub>2</sub>e' + '</span>';
             tooltipText += value;
           }
         }
