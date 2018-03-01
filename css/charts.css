@@ -4,7 +4,6 @@
 }
 .bar {
   margin: 1em;
-  min-height: 400px;
 }
 .chartist-tooltip {
   /* set me to make the tooltip for the point at 2 more visible */
