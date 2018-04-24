@@ -58,7 +58,7 @@ function updateData() {
     var day = dataObject.date.substring(2,4);
     d.setDate(day);
 
-    labelData.push(d.toDateString());
+    labelData.push(d.getMonth() + "/"+ d.getDate());
   });
   user_historical_data = {
     series: seriesData,
