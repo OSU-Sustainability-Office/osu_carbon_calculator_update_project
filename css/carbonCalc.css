@@ -60,13 +60,26 @@ div .radio label {
   display: none;
 }
 
-
-.portionTable .col-sm-12{
-  border-bottom: 1px solid rgba(0,0,0,0.4);
+.foodNarrative {
+  font-weight: normal !important;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-left: 5px;
 }
+
+.highlight {
+  color: #D73F09;
+}
+
 #appliance_14_watts {
-    width: 60px;
+    width: 60px !important;
+}
+
+@media all and (min-width:768px) {
+#energy_complex .container .row div input {
+    width: 80%;
   }
+}
 /* For Smartphones */
 @media all and (min-width:1px) and (max-width: 1024px) {
   .login-container {
@@ -81,5 +94,8 @@ div .radio label {
   }
   .complex-energy-big-header {
     display: none;
+  }
+  #energy_complex .container .row div {
+    padding-bottom: 5px;
   }
 }

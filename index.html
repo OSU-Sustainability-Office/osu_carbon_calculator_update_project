@@ -68,6 +68,11 @@
   <script>
     $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
+      $(".radio button").click((event) => {
+        $(".radio button").css({"color":"#000000","borderColor":"#000000"});
+        event.target.style.color = "#D73F09";
+        event.target.style.borderColor = "#D73F09";
+      });
     });
   </script>
 </head>
@@ -593,8 +598,8 @@
             </div> -->
             <!-- <div class=""> -->
              <div class="question">
-                <p>How many portions of red meat do you eat in a week on average?</p>
-                  <div class="container portionTable">
+                <p>How many portions of <span class="highlight">red meat</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Red Meat Portion Examples
@@ -608,13 +613,16 @@
                         4-5 Ounces of Cooked Steak
                       </div>
                     </div>
-                  </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 1/2 Pound Burger, 4-5 Ounces of Cooked Steak
+                  </p>
                   <input class="ntableInput" type="number" id="meat_serv" size="4" maxlength="4">
                 </div>
 
               <div class="question">
-                <p>How many portions of dairy products or eggs do you eat in a week on average?</p>
-                  <div class="container portionTable">
+                <p>How many portions of <span class="highlight">dairy products</span> or <span class="highlight">eggs</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Dairy Product Portion Examples
@@ -631,13 +639,16 @@
                         4 Slices of Cheese
                       </div>
                     </div>
-                  </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 3 Eggs, 1 Cup of Yogurt or Milk, 4 Slices of Cheese
+                  </p>
                   <input type="number" id="dairy_serv" size="4" maxlength="4">
                 </div>
 
               <div class="question">
-                <p>How many portions of fruits and vegetables do you eat in a week on average?</p>
-                  <div class="container portionTable">
+                <p>How many portions of <span class="highlight">fruits</span> and <span class="highlight">vegetables</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Fruit and Vegetable Portion Examples
@@ -666,13 +677,16 @@
                         1 Cup of Salad
                       </div>
                     </div>
-                  </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 1 Apple, Orange, or Banana; 1 Cup of Diced Fruit; 2 Apricots, Kiwis or Plums; 1 Potato or Tomato; 1/2 Cup of Marinara Sauce; 3/4 Cup of Cooked Vegetables; 1 Cup of Salad
+                  </p>
                   <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
                 </div>
 
               <div class="question">
-                <p>How many portions of grains and baked products do you eat in a week on average?</p>
-                  <div class="container portionTable">
+                <p>How many portions of <span class="highlight">grains</span> and <span class="highlight">baked products</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Grain Portion Examples
@@ -698,13 +712,16 @@
                         2 Medium Chocolate Chip Cookies
                       </div>
                     </div>
-                  </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 2 Slices of Bread; 1 Bagel, Roll or English Muffin; 1/2 Cup of Rice, Pasta, Quinoa or Oatmeal; 1 Cup of Dry Cereal, 1 Slice of Cake; 2 Medium Chocolate Chip Cookies
+                  </p>
                   <input type="number" id="grains_serv" size="4" maxlength="4">
                 </div>
 
             <div class="question">
-              <p>How many portions of poultry do you eat in a week on average?</p>
-                <div class="container portionTable">
+              <p>How many portions of <span class="highlight">poultry</span> do you eat in a week on average?</p>
+                <!-- <div class="container portionTable">
                   <div class="row">
                     <div class="col-sm-12">
                       Poultry Portion Examples
@@ -724,14 +741,17 @@
                       5.4 Slices of Deli Turkey
                     </div>
                   </div>
-                </div>
+                </div> -->
+                <p class="foodNarrative">
+                    Example Portions: 4-5 Ounces of Cooked Chicken/Turkey, 7 Chicken Nuggets, 4 Chicken Wings or 5.4 Slices of Deli Turkey
+                </p>
                 <input type="number" id="poultry_serv" size="4" maxlength="4">
               </div>
               
 
               <div class="question">
-                <p>How many portions of pork do you eat in a week on average?</p>
-                  <div class="container portionTable">
+                <p>How many portions of <span class="highlight">pork</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Pork Portion Examples
@@ -742,13 +762,16 @@
                         4-5 Ounces of Cooked Pork
                       </div>
                     </div>
-                  </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 4-5 Ounces of Cooked Pork
+                  </p>
                   <input type="number" id="pork_serv" size="4" maxlength="4">
                 </div>
 
               <div class="question">
-                <p>How many portions of seafood do you eat in a week on average?</p>
-                  <div class="container portionTable">
+                <p>How many portions of <span class="highlight">seafood</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Seafood Portion Examples
@@ -771,15 +794,18 @@
                         6-8 Clams
                       </div>
                     </div>
-                  </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 4-5 Ounces of Cooked Fish, 8 Pieces of Sushi/Sashimi, 10 Pieces of Shrimp, 4-5 Large Scallops or 6-8 Clams
+                  </p>
                   <input type="number" id="seafood_serv" size="4" maxlength="4">
                 </div>
 
 
 
             <div class="question">
-              <p>How many portions of nuts do you eat in a week on average?</p>
-                <div class="container portionTable">
+              <p>How many portions of <span class="highlight">nuts</span> do you eat in a week on average?</p>
+                <!-- <div class="container portionTable">
                   <div class="row">
                     <div class="col-sm-12">
                      Nut Portion Examples
@@ -802,7 +828,10 @@
                       7 Walnuts
                     </div>
                   </div>
-                </div>
+                </div> -->
+                <p class="foodNarrative">
+                    Example Portions: 24 Almonds, 18 Cashews, 35 Peanuts, 12 Macadamia Nuts or 7 Walnuts
+                </p>
                 <input type="number" id="nuts_serv" size="4" maxlength="4">
               </div>
 
