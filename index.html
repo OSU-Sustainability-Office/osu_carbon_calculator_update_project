@@ -68,6 +68,11 @@
   <script>
     $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
+      $(".radio button").click((event) => {
+        $(".radio button").css({"color":"#000000","borderColor":"#000000"});
+        event.target.style.color = "#D73F09";
+        event.target.style.borderColor = "#D73F09";
+      });
     });
   </script>
 </head>
@@ -121,14 +126,14 @@
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
-          <p>To get started, please choose which of the following describes you:
+          <div class="question">
+            <p>To get started, please choose which of the following describes you:</p>
             <div class="radio">
-              <label><button type="button" name="radio_commuter" class="btn btn-default" value="on_campus" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('on_campus')"/>On Campus student</button></label><br />
-              <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('full_commuter')"/>Off Campus Full-time Commuter Student or Staff</button></label><br
-              />
+              <label><button type="button" name="radio_commuter" class="btn btn-default" value="on_campus" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('on_campus')"/>On Campus student</button></label>
+              <label><button type="button" name="radio_commuter" class="btn btn-default" value="full_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('full_commuter')"/>Off Campus Full-time Commuter Student or Staff</button></label>
               <label><button type="button" name="radio_commuter" class="btn btn-default" value="part_commuter" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="set_user_type('part_commuter')"/>Part-time Commuter Student or Staff</button></label>
             </div>
-          </p>
+          </div>
         </div>
       </div>
     </div>
@@ -140,7 +145,8 @@
       </div>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
-          <p>Do you own a car or motorcycle?<br />
+          <div class="question">
+            <p>Do you own a car or motorcycle?</p>
             <select id="trans_select_car" onchange="trans_car_select_handler()">
            	  <option value="no_car">No, I walk, bike, or skateboard etc.</option>
               <option value="motorcycle">Motorcycle </option>
@@ -150,61 +156,61 @@
            		<option value="carhybrid_electric">Hybrid or Electric Car</option>
            		<!-- <option value="diesel">diesel</option>   -->  <!--possible addition, needs data-->
            	</select>
-          </p>
-          <div id="trans_input_car_miles_q" class="collapse">
-            Approximately how many miles do you drive per month?
-            <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles, Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></a>
-            <input id="trans_input_car_miles" type="number" size="4" maxlength="4" /> miles
+          </div>
+          <div id="trans_input_car_miles_q" class="collapse question">
+              <p> Approximately how many miles do you drive per month?
+             <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles, Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-info-sign"></a></p>
+              <input id="trans_input_car_miles" type="number" size="4" maxlength="4" /> miles
+            </div>
+
+          <div class="question">
+            <p>Do you commute using the Corvallis or Albany Transit?</p>
+            <input type="radio" name="trans_radio_short_use_bus" value="yes" onclick="display_question('show','trans_input_short_bus_miles')"> Yes
+            <input type="radio" name="trans_radio_short_use_bus" value="no" onclick="display_question('hide','trans_input_short_bus_miles')"> No
           </div>
 
-          <p>Do you commute using the Corvallis or Albany Transit?<br />
-            <input type="radio" name="trans_radio_short_use_bus" value="yes" onclick="display_question('show','trans_input_short_bus_miles')">Yes
-            <input type="radio" name="trans_radio_short_use_bus" value="no" onclick="display_question('hide','trans_input_short_bus_miles')">No
-          </p>
-
-          <p id="trans_input_short_bus_miles_q" style="display:none;">
-            Approximately how many miles per month do you travel on Corvallis or Albany Transit? <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
-            />
+          <div id="trans_input_short_bus_miles_q" style="display:none;" class="question">
+            <p>Approximately how many miles per month do you travel on Corvallis or Albany Transit? <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
             <input name="trans_input_short_bus_miles" id="trans_input_short_bus_miles" type="number" size="4" maxlength="4" /> miles
-          </p>
+          </div>
 
-          <p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?<br />
-            <input type="radio" name="trans_radio_long_use_bus" value="yes" onclick="display_question('show','trans_input_long_bus_miles')">Yes
-            <input type="radio" name="trans_radio_long_use_bus" value="no" onclick="display_question('hide','trans_input_long_bus_miles')">No
-          </p>
+          <div class="question"><p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?</p>
+            <input type="radio" name="trans_radio_long_use_bus" value="yes" onclick="display_question('show','trans_input_long_bus_miles')"> Yes
+            <input type="radio" name="trans_radio_long_use_bus" value="no" onclick="display_question('hide','trans_input_long_bus_miles')"> No
+          </div>
 
-          <p id="trans_input_long_bus_miles_q" style="display:none;">
-            Approximately how many miles/year do you travel on these buses?
-            <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br />
+          <div id="trans_input_long_bus_miles_q" style="display:none;" class="question">
+            <p>Approximately how many miles/year do you travel on these buses?
+            <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
             <input id="trans_input_long_bus_miles" type="number" size="4" maxlength="4" /> miles
-          </p>
+          </div>
 
-          <p>Do you use the train?<br />
-            <input type="radio" name="trans_train_use_bus" value="yes" onclick="display_question('show','trans_input_train_miles')">Yes
-            <input type="radio" name="trans_train_use_bus" value="no" onclick="display_question('hide','trans_input_train_miles')">No
-          </p>
 
-          <p id="trans_input_train_miles_q" style="display:none;">
-            Approximately how many miles/year do you travel on train? <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
-            />
+          <div class="question">
+            <p>Do you use the train?</p>
+            <input type="radio" name="trans_train_use_bus" value="yes" onclick="display_question('show','trans_input_train_miles')"> Yes
+            <input type="radio" name="trans_train_use_bus" value="no" onclick="display_question('hide','trans_input_train_miles')"> No
+          </div>
+
+          <div id="trans_input_train_miles_q" style="display:none;" class="question">
+            <p>Approximately how many miles/year do you travel on train? <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
             <input id="trans_input_train_miles" type="number" size="4" maxlength="4" /> miles
-          </p>
+          </div>
 
 
-          <p>
-            Have you traveled or do you plan to travel by airplane this year?<br>
-            <input type="radio" name="trans_radio_use_plane" value="yes" onclick="display_question('show','trans_input_plane_miles'); display_comment('comment_transportation_plane_negative','Airplane travel adds a heavy amount to your carbon footprint. Did you know flying across the country produces 40% more emissions than driving in a car by yourself?')">Yes
-            <input type="radio" name="trans_radio_use_plane" value="no" onclick="display_question('hide','trans_input_plane_miles') ; display_comment('comment_transportation_plane','Great decision! Riding in an airplane adds a heavy amount to your transportation footprint.')">No
-          </p>
+          <div class="question">
+            <p>Have you traveled or do you plan to travel by airplane this year?</p>
+            <input type="radio" name="trans_radio_use_plane" value="yes" onclick="display_question('show','trans_input_plane_miles'); display_comment('comment_transportation_plane_negative','Airplane travel adds a heavy amount to your carbon footprint. Did you know flying across the country produces 40% more emissions than driving in a car by yourself?')"> Yes
+            <input type="radio" name="trans_radio_use_plane" value="no" onclick="display_question('hide','trans_input_plane_miles') ; display_comment('comment_transportation_plane','Great decision! Riding in an airplane adds a heavy amount to your transportation footprint.')"> No
+          </div>
 
           <p class="pop_up_comment" id="comment_transportation_plane"></p>
 
-          <p id="trans_input_plane_miles_q" style="display:none;">
-            How many miles have you traveled or do you plan to travel this year? This <a href="http://www.webflyer.com/travel/mileage_calculator/" target="_blank"> flight distance calculator </a> might be helpful in determining this amount <a href="#"
-              data-toggle="tooltip" title="Average Flight Mileage for Time Zones: PDX Airport to: New York: 2,450 miles, Seattle: 129 miles, Denver: 989 miles, Chicago: 1730 miles, Los Angeles: 834 miles"><span class="glyphicon glyphicon-question-sign"></span></a><br
-            />
+          <div id="trans_input_plane_miles_q" style="display:none;" class="question">
+            <p>How many miles have you traveled or do you plan to travel this year? This <a href="http://www.webflyer.com/travel/mileage_calculator/" target="_blank"> flight distance calculator </a> might be helpful in determining this amount <a href="#"
+              data-toggle="tooltip" title="Average Flight Mileage for Time Zones: PDX Airport to: New York: 2,450 miles, Seattle: 129 miles, Denver: 989 miles, Chicago: 1730 miles, Los Angeles: 834 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
             <input id="trans_input_plane_miles" type="number" size="5" maxlength="5"> miles
-          </p>
+          </div>
 
           <p class="pop_up_comment" id="comment_transport_options"></p>
           <div class="row">
@@ -227,31 +233,38 @@
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
-          <p>How much do you spend on furniture and appliances each year?<br />
-            <input id="furniture_appliance_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year
-          </p>
-          <p>How much do you spend on paper products (newspapers, books, textbooks, magazines etc.) each month?<br />
-            <input id="paper_products_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
-          </p>
-          <p>How much do you spend on personal care and cleaning supplies each month?<br />
-            <input id="personal_care_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per month
-          </p>
-          <p>How much do you spend on computers, tablets, phones, and other electronics in a year?<br />
-            <input id="electronics_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" />dollars per year <a href="#" data-toggle="tooltip" title="" data-original-title="If you've owned these goods for more than a year, approximate how much it's costed you each year. EX: if you've had a $800 laptop for 4 years, that's $200 a year."><span class="glyphicon glyphicon-question-sign"></span></a>
-          </p>
+          <div class="question">
+            <p>How much do you spend on furniture and appliances each year?</p>
+            <input id="furniture_appliance_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" /> dollars per year
+          </div>
+          <div class="question">
+            <p>How much do you spend on paper products (newspapers, books, textbooks, magazines etc.) each month?</p>
+            <input id="paper_products_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" /> dollars per month
+          </div>
+          <div class="question">
+            <p>How much do you spend on personal care and cleaning supplies each month?</p>
+            <input id="personal_care_per_month" type="number" min="0" step="0.01" size="2" maxlength="4" /> dollars per month
+          </div>
+          <div class="question">
+            <p>How much do you spend on computers, tablets, phones, and other electronics in a year?</p>
+            <input id="electronics_per_year" type="number" min="0" step="0.01" size="2" maxlength="4" /> dollars per year <a href="#" data-toggle="tooltip" title="" data-original-title="If you've owned these goods for more than a year, approximate how much it's costed you each year. EX: if you've had a $800 laptop for 4 years, that's $200 a year."><span class="glyphicon glyphicon-info-sign"></span></a>
+          </div>
 
 
-          <p>How much do you spend on new clothing in a given month?<br />
+          <div class="question">
+            <p>How much do you spend on new clothing in a given month?</p>
             <input id="clothing_per_month" type="number" size="2" maxlength="4" /> dollars per month
-          </p>
+          </div>
 
-          <p>How much do you spend on entertainment and other recreational activities per month?<br />
-            <input id="recreation_per_month" type="number" size="2" maxlength="4" /> dollars per month <a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-question-sign"></span></a>
-          </p>
+          <div class="question">
+            <p>How much do you spend on entertainment and other recreational activities per month?</p>
+            <input id="recreation_per_month" type="number" size="2" maxlength="4" /> dollars per month <a href="#" data-toggle="tooltip" title="Examples: Going to a movie theater, concert, bowling alley, etc"><span class="glyphicon glyphicon-info-sign"></span></a>
+          </div>
 
-          <p>If you drink your water from nonrefillable plastic bottles, how many do you buy per week?<br />
+          <div class="question">
+            <p>If you drink your water from nonrefillable plastic bottles, how many do you buy per week?</p>
             <input id="consumption_plastic_bottle" type="number" size="5" maxlength="4" /> bottles per week
-          </p>
+          </div>
 
           <div class="row">
             <div class="col-md-12"><br />
@@ -272,7 +285,8 @@
       </div>
       <div id="collapse4" class="panel-collapse collapse">
         <div class="panel-body">
-          <p>If you're an on campus resident choose from the following dorms:
+          <div class="question">
+            <p>If you're an on campus resident choose from the following dorms:</p>
             <select id="energy_campus_resident">
        					<option value="none">None</option>
        					<option value="bloss">Bloss</option>
@@ -291,7 +305,7 @@
        					<option value="wilson">Wilson</option>
        					<option value="tebeau">Tebeau</option>
        				</select>
-          </p>
+          </div>
 
           <script>
             // This script reveals & hides the simple & complex energy tables
@@ -303,31 +317,44 @@
 
             function show_complex() {
               $('#energy_simple').collapse('hide');
-              energy
               $('#energy_complex').collapse('show');
             }
           </script>
-          <p>If you receive energy bills, select the "Simple" option. If not, select the "Complex" option.<br> Note: If you live in the dorms, you need to pick the "Complex" option.
-            <input type="radio" id="simple_complex_simple" value="simple" onclick="show_simple()">Simple &nbsp;&nbsp;
-            <input type="radio" id="simple_complex_complex" value="complex" onclick="show_complex()"> Complex &nbsp;&nbsp;
-          </p>
+          <div class="question">
+            <p>If you receive energy bills, select the "Simple" option. If not, select the "Complex" option.</p>
+            <div class="radio">
+              <label><button type="button" name="radio_heating" class="btn btn-default" value="simple" id="simple_complex_simple" onclick="show_simple()"/>Simple</button></label>
+              <label><button type="button" name="radio_heating" class="btn btn-default" value="complex" id="simple_complex_complex" onclick="show_complex()"/>Complex</button></label>
+            </div>
+            <!-- <input type="radio" id="simple_complex_simple" value="simple" onclick="show_simple()"> Simple
+            <input type="radio" id="simple_complex_complex" value="complex" onclick="show_complex()"> Complex -->
+          </div>
 
           <div id="energy_simple" class="collapse">
-            <p>
-              How much do you usually pay for electricity each month?<br>
+            <div class="question">
+              <p>How much do you usually pay for electricity each month?</p>
               <input id="electricity_usage" type="number" size="2" maxlength="4"> dollars per month
-            </p>
+            </div>
 
-            <p>
-              How much do you usually pay for gas each month? <br>
+            <div class="question">
+              <p>How much do you usually pay for gas each month? </p>
               <input id="heat_usage" type="number" size="2" maxlength="4"> dollars per month
-            </p>
+            </div>
 
-            <p>How often do you turn out the lights when you leave a room?
-              <input type="radio" name="lightsquestion" value="Almost Never" />Almost Never
-              <input type="radio" name="lightsquestion" value="Sometimes" />Sometimes
-              <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')">Almost Always
-            </p>
+            <div class="question">
+              <p>How often do you turn out the lights when you leave a room? </p>
+              <div class="row">
+                <div class="col-sm-2">
+                  <input type="radio" name="lightsquestion" value="Almost Never"> Almost Never</input>
+                </div>
+                <div class="col-sm-2">
+                  <input type="radio" name="lightsquestion" value="Sometimes"> Sometimes</input>
+                </div>
+                <div class="col-sm-2">
+                  <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')"> Almost Always</input>
+                </div>
+              </div>
+            </div>
             <p class="pop_up_comment" id="commentLightsQuestion"></p>
 
           </div>
@@ -337,138 +364,142 @@
               From the following list of appliances, electronics, lighting, etc, input how many of each item are in your room and how many hours a day each item is <strong>in use</strong> or <strong>plugged in</strong>. If you own an item not listed below
               please be sure to fill in extra fields: What is the item and wattage? You can find the wattage on the bottom of most appliances. Be sure to multiply by 1000 if the wattage is given in kilowatts.<br>
             </p>
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Watts</th>
-                    <th>Active Use (Hours per day)</th>
-                    <th>Standby (Hours per day)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr id="row1">
-                    <td>Refrigerator</td>
-                    <td><input id="appliance_1_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_1_watts" type="hidden" value="160" />160</td>
-                    <td><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+              <div class="container">
+                <div class="row complex-energy-big-header">
+                    <div class="col-sm-2">Item</div>
+                    <div class="col-sm-3">Quantity</div>
+                    <div class="col-sm-1">Watts</div>
+                    <div class="col-sm-3">Active Use (Hours per day)</div>
+                    <div class="col-sm-3">Standby (Hours per day)</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Refrigerator</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_1_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_1_watts" type="hidden" value="160" />160</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row2">
-                    <td>Microwave</td>
-                    <td><input id="appliance_2_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_2_watts" type="hidden" value="1000" />1000</td>
-                    <td><input id="appliance_2_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_2_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Microwave</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_2_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_2_watts" type="hidden" value="1000" />1000</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_2_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_2_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row1">
-                    <td>Clock radio</td>
-                    <td><input id="appliance_3_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_3_watts" type="hidden" value="10" />10</td>
-                    <td><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Clock radio</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_3_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_3_watts" type="hidden" value="10" />10</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row2">
-                    <td>IPod dock</td>
-                    <td><input id="appliance_4_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_4_watts" type="hidden" value="100" />100</td>
-                    <td><input id="appliance_4_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_4_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>IPod dock</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_4_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_4_watts" type="hidden" value="100" />100</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_4_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_4_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row1">
-                    <td>Stereo sound system</td>
-                    <td><input id="appliance_5_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_5_watts" type="hidden" value="150" />150</td>
-                    <td><input id="appliance_5_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_5_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Stereo sound system</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_5_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_5_watts" type="hidden" value="150" />150</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_5_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_5_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row2">
-                    <td>Computer desktop</td>
-                    <td><input id="appliance_6_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_6_watts" type="hidden" value="225" />225</td>
-                    <td><input id="appliance_6_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_6_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Computer desktop</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_6_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_6_watts" type="hidden" value="225" />225</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_6_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_6_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row1">
-                    <td>Computer monitor 15"</td>
-                    <td><input id="appliance_7_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_7_watts" type="hidden" value="35" />35</td>
-                    <td><input id="appliance_7_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_7_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Computer monitor 15"</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_7_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_7_watts" type="hidden" value="35" />35</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_7_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_7_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row2">
-                    <td>Computer, laptop</td>
-                    <td><input id="appliance_8_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_8_watts" type="hidden" value="60" />60</td>
-                    <td><input id="appliance_8_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_8_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Computer, laptop</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_8_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_8_watts" type="hidden" value="60" />60</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_8_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_8_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row1">
-                    <td>Printer</td>
-                    <td><input id="appliance_9_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_9_watts" type="hidden" value="100" />100</td>
-                    <td><input id="appliance_9_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_9_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Printer</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_9_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_9_watts" type="hidden" value="100" />100</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_9_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_9_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row2">
-                    <td>TV</td>
-                    <td><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_10_watts" type="hidden" value="115" />115</td>
-                    <td><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>TV</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_10_watts" type="hidden" value="115" />115</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row1">
-                    <td>Portable fan</td>
-                    <td><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_11_watts" type="hidden" value="115" />115</td>
-                    <td><input id="appliance_11_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Portable fan</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_11_watts" type="hidden" value="115" />115</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_11_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
 
-                  <tr id="row2">
-                    <td>Floor lamp</td>
-                    <td><input id="appliance_12_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_12_watts" type="hidden" value="300" />300</td>
-                    <td><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Floor lamp</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_12_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_12_watts" type="hidden" value="300" />300</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+                </div>
 
-                  <tr id="row1">
-                    <td>Game Console</td>
-                    <td><input id="appliance_13_total" type="number" size="4" maxlength="1" value="1" /></td>
-                    <td><input id="appliance_13_watts" type="hidden" value="245">1440</td>
-                    <td><input id="appliance_13_active_usage" type="number" size="4" maxlength="4"></td>
-                    <td><input id="appliance_13_passive_usage" type="number" size="4" maxlength="4" value="24"></td>
-                  </tr>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Game Console</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_13_total" type="number" size="4" maxlength="1" value="1" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_13_watts" type="hidden" value="245">1440</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_13_active_usage" type="number" size="4" maxlength="4"></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_13_passive_usage" type="number" size="4" maxlength="4" value="24"></div>
+                </div>
 
-                  <tr id="row2">
-                    <td>Other</td>
-                    <td><input id="appliance_14_total" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_14_watts" type="number" size="4" maxlength="5" /></td>
-                    <td><input id="appliance_14_active_usage" type="number" size="4" maxlength="4" /></td>
-                    <td><input id="appliance_14_passive_usage" type="number" size="4" maxlength="4" /></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div><br />
-            <p>How often do you turn out the lights when you leave a room?
-              <input type="radio" name="lightsquestion" value="Almost Never" />Almost Never
-              <input type="radio" name="lightsquestion" value="Sometimes" />Sometimes
-              <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')">Almost Always
-            </p>
+                <div class="row">
+                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Other</div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_14_total" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_14_watts" type="number" size="12" maxlength="5" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_14_active_usage" width="30px" type="number" size="4" maxlength="4" /></div>
+                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_14_passive_usage" type="number" size="4" maxlength="4" /></div>
+                </div>
+            </div>
+
+            <div class="question">
+              <p>How often do you turn out the lights when you leave a room? </p>
+              <div class="row">
+                <div class="col-sm-2">
+                  <input type="radio" name="lightsquestion" value="Almost Never"> Almost Never</input>
+                </div>
+                <div class="col-sm-2">
+                  <input type="radio" name="lightsquestion" value="Sometimes"> Sometimes</input>
+                </div>
+                <div class="col-sm-2">
+                  <input type="radio" name="lightsquestion" value="Almost Always" onclick="display_comment('commentLightsQuestion','This is a great way to save energy, and super easy, too! Good work!')"> Almost Always</input>
+                </div>
+              </div>
+            </div>
             <p class="pop_up_comment" id="commentLightsQuestion"></p>
           </div>
           <div class="row">
@@ -490,11 +521,10 @@
            </h4>
       </div>
       <div id="collapse5" class="panel-collapse collapse">
-        <div class="panel-body">
-          <div class="row vertical-divider">
-            <div class="col-md-6">
-              <center>
-                <h4>Serving Sizes for Carbon Calculator:</h4></center><br />
+        <div class="panel-body food">
+          <!-- <div class="row vertical-divider">
+            <div class="">
+                <h4>Serving Sizes for Carbon Calculator:</h4><br />
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -565,81 +595,305 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <div class="col-md-6">
-              <center>
-                <h4>Questions (Continued):</h4></center><br />
-              <p>How many servings of red meat do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="meat_serv" size="4" maxlength="4">
-              </p>
+            </div> -->
+            <!-- <div class=""> -->
+             <div class="question">
+                <p>How many portions of <span class="highlight">red meat</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        Red Meat Portion Examples
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        1/2 Pound Burger
+                      </div>
+                      <div class="col-sm-4">
+                        4-5 Ounces of Cooked Steak
+                      </div>
+                    </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 1/2 Pound Burger, 4-5 Ounces of Cooked Steak
+                  </p>
+                  <input class="ntableInput" type="number" id="meat_serv" size="4" maxlength="4">
+                </div>
 
-              <p>How many servings of dairy products or eggs do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="dairy_serv" size="4" maxlength="4">
-              </p>
+              <div class="question">
+                <p>How many portions of <span class="highlight">dairy products</span> or <span class="highlight">eggs</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        Dairy Product Portion Examples
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        3 Eggs
+                      </div>
+                      <div class="col-sm-4">
+                        1 Cup of Yogurt or Milk
+                      </div>
+                      <div class="col-sm-4">
+                        4 Slices of Cheese
+                      </div>
+                    </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 3 Eggs, 1 Cup of Yogurt or Milk, 4 Slices of Cheese
+                  </p>
+                  <input type="number" id="dairy_serv" size="4" maxlength="4">
+                </div>
 
-              <p>How many servings of fruits and vegetables do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
-              </p>
+              <div class="question">
+                <p>How many portions of <span class="highlight">fruits</span> and <span class="highlight">vegetables</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        Fruit and Vegetable Portion Examples
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        1 Apple, Banana, Orange, etc
+                      </div>
+                      <div class="col-sm-4">
+                        1 Cup of Diced Fruit
+                      </div>
+                      <div class="col-sm-4">
+                        2 Apricots, Kiwis, Plums, etc.
+                      </div>
+                      <div class="col-sm-4">
+                        1 Potato or Tomato
+                      </div>
+                      <div class="col-sm-4">
+                        1/2 Cup of Marinara Sauce
+                      </div>
+                      <div class="col-sm-4">
+                        3/4 Cup of Cooked Vegetables
+                      </div>
+                      <div class="col-sm-4">
+                        1 Cup of Salad
+                      </div>
+                    </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 1 Apple, Orange, or Banana; 1 Cup of Diced Fruit; 2 Apricots, Kiwis or Plums; 1 Potato or Tomato; 1/2 Cup of Marinara Sauce; 3/4 Cup of Cooked Vegetables; 1 Cup of Salad
+                  </p>
+                  <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
+                </div>
 
-              <p>How many servings of grains and baked products do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="grains_serv" size="4" maxlength="4">
-              </p>
+              <div class="question">
+                <p>How many portions of <span class="highlight">grains</span> and <span class="highlight">baked products</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        Grain Portion Examples
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        2 Slices of Bread
+                      </div>
+                      <div class="col-sm-4">
+                        1 Bagel, Roll, English Muffin, etc.
+                      </div>
+                      <div class="col-sm-4">
+                        1/2 Cup of Rice, Pasta, Quinoa, Oatmeal, etc.
+                      </div>
+                      <div class="col-sm-4">
+                        1 Cup of Dry Cereal
+                      </div>
+                      <div class="col-sm-4">
+                        1 Slice of Cake
+                      </div>
+                      <div class="col-sm-4">
+                        2 Medium Chocolate Chip Cookies
+                      </div>
+                    </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 2 Slices of Bread; 1 Bagel, Roll or English Muffin; 1/2 Cup of Rice, Pasta, Quinoa or Oatmeal; 1 Cup of Dry Cereal, 1 Slice of Cake; 2 Medium Chocolate Chip Cookies
+                  </p>
+                  <input type="number" id="grains_serv" size="4" maxlength="4">
+                </div>
 
-              <p>How many servings of poultry do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="poultry_serv" size="4" maxlength="4">
-              </p>
-
-              <p>How many servings of pork do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="pork_serv" size="4" maxlength="4">
-              </p>
-
-              <p>How many servings of seafood do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="seafood_serv" size="4" maxlength="4">
-              </p>
-
-              <p>How many servings of nuts do you eat in a week on average? <a href="#" data-toggle="tooltip" title="Check out the example serving sizes above."><span class="glyphicon glyphicon-question-sign"></span></a><br />
-                <input type="number" id="nuts_serv" size="4" maxlength="4">
-              </p>
-
-              <p> How often do you eat processed food? (The average person eats 22 pounds of processed food a week)<br>
-                <!--need conversion factor for processed food and avg pounds per week. Dummy question for now-->
-                <input type="radio" name="radio_recycle" value="below_avg_processed" onclick="display_comment('comment_processed_food','Great decision! Processed foods often require a larger amount of energy than fresh produce')">Below Average<br>
-                <input type="radio" name="radio_recycle" value="avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Average<br>
-                <input type="radio" name="radio_recycle" value="above_avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">Above
-                Average
-                <br>
-              </p>
-
-              <p class="pop_up_comment" id="comment_processed_food"></p>
-
-              <p>How much do you spend on eating out each month?<br />
-                <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
-              </p>
-
-              <p>If you drink coffee or tea please select from the following options: <br />
-                <select id="food_coffee_type" onchange="food_coffee_select_handler()">
-               					<option value="none">-Select-</option>
-               					<option value="black_coffee">Black Coffee</option>
-               					<option value="cream_sugar">Black Coffee + cream or sugar</option>
-                        <option value="latte">Cappuccino</option><!--latte and capuccino have the same carbon factor-->
-               					<option value="latte">Latte</option>
-               					<option value="black_coffee">Tea</option>
-               				</select>
-              </p>
-
-
-              <div id="food_coffee_frequency_q" class="collapse">
-                <p id="food_coffee_frequency_q">About how many times a week do you drink a cup or more? <br />
-                  <input id="food_coffee_frequency" type="number" size="2" maxlength="4" /> times
+            <div class="question">
+              <p>How many portions of <span class="highlight">poultry</span> do you eat in a week on average?</p>
+                <!-- <div class="container portionTable">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      Poultry Portion Examples
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      4-5 Ounces of Cooked Chicken/Turkey
+                    </div>
+                    <div class="col-sm-4">
+                      7 Chicken Nuggets
+                    </div>
+                    <div class="col-sm-4">
+                      4 Chicken Wings
+                    </div>
+                    <div class="col-sm-4">
+                      5.4 Slices of Deli Turkey
+                    </div>
+                  </div>
+                </div> -->
+                <p class="foodNarrative">
+                    Example Portions: 4-5 Ounces of Cooked Chicken/Turkey, 7 Chicken Nuggets, 4 Chicken Wings or 5.4 Slices of Deli Turkey
                 </p>
+                <input type="number" id="poultry_serv" size="4" maxlength="4">
+              </div>
+              
+
+              <div class="question">
+                <p>How many portions of <span class="highlight">pork</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        Pork Portion Examples
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        4-5 Ounces of Cooked Pork
+                      </div>
+                    </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 4-5 Ounces of Cooked Pork
+                  </p>
+                  <input type="number" id="pork_serv" size="4" maxlength="4">
+                </div>
+
+              <div class="question">
+                <p>How many portions of <span class="highlight">seafood</span> do you eat in a week on average?</p>
+                  <!-- <div class="container portionTable">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        Seafood Portion Examples
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        4-5 Ounces of Cooked Fish
+                      </div>
+                      <div class="col-sm-4">
+                        8 Pieces of Sushi or Sashimi
+                      </div>
+                      <div class="col-sm-4">
+                        10 Pieces of Shrimp
+                      </div>
+                      <div class="col-sm-4">
+                        4-5 Large Scallops
+                      </div>
+                      <div class="col-sm-4">
+                        6-8 Clams
+                      </div>
+                    </div>
+                  </div> -->
+                  <p class="foodNarrative">
+                    Example Portions: 4-5 Ounces of Cooked Fish, 8 Pieces of Sushi/Sashimi, 10 Pieces of Shrimp, 4-5 Large Scallops or 6-8 Clams
+                  </p>
+                  <input type="number" id="seafood_serv" size="4" maxlength="4">
+                </div>
+
+
+
+            <div class="question">
+              <p>How many portions of <span class="highlight">nuts</span> do you eat in a week on average?</p>
+                <!-- <div class="container portionTable">
+                  <div class="row">
+                    <div class="col-sm-12">
+                     Nut Portion Examples
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      24 Almonds
+                    </div>
+                    <div class="col-sm-4">
+                      18 Cashews
+                    </div>
+                    <div class="col-sm-4">
+                      35 Peanuts
+                    </div>
+                    <div class="col-sm-4">
+                      12 Macadamia Nuts
+                    </div>
+                    <div class="col-sm-4">
+                      7 Walnuts
+                    </div>
+                  </div>
+                </div> -->
+                <p class="foodNarrative">
+                    Example Portions: 24 Almonds, 18 Cashews, 35 Peanuts, 12 Macadamia Nuts or 7 Walnuts
+                </p>
+                <input type="number" id="nuts_serv" size="4" maxlength="4">
               </div>
 
-              <p>Do you buy food at farmers markets?<br />
-                <input type="radio" name="food_farmers_market" value="yes" onclick="display_comment('comment_farmers_market','Great decision! Buying locally grown food lowers your carbon emissions')" /> yes &nbsp;
-                <input type="radio" name="food_farmers_market" value="no" onclick="display_comment('comment_farmers_market','You might want to check out the farmers market!')" /> no
-              </p>
-            </div>
-          </div>
+            <div class="question">
+              <p> How often do you eat processed food? <a href="#" data-toggle="tooltip" title="The average person eats 22 pounds of processed food a week"><span class="glyphicon glyphicon-info-sign"></span></a></p>
+                <!--need conversion factor for processed food and avg pounds per week. Dummy question for now-->
+                <input type="radio" name="radio_recycle" value="below_avg_processed" onclick="display_comment('comment_processed_food','Great decision! Processed foods often require a larger amount of energy than fresh produce')"> Below Average<br>
+                <input type="radio" name="radio_recycle" value="avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')"> Average<br>
+                <input type="radio" name="radio_recycle" value="above_avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')"> Above Average
+              </div>
+
+              <div class="question">
+                <p>How much do you spend on eating out each month?</p>
+                  <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
+              </div>
+
+              <div class="question">
+                <p>If you drink coffee or tea please select from the following options: </p>
+                  <!-- <select id="food_coffee_type" onchange="food_coffee_select_handler()">
+                 					<option value="none">-Select-</option>
+                 					<option value="black_coffee">Black Coffee</option>
+                 					<option value="cream_sugar">Black Coffee + cream or sugar</option>
+                          <option value="latte">Cappuccino</option> 
+                 					<option value="latte">Latte</option>
+                 					<option value="black_coffee">Tea</option>
+                 	</select> -->
+                  <script>
+                    function checkDrinkChecks() {
+                      var elements = [$("#drinks_coffee")[0],$("#drinks_coffeecream")[0],$("#drinks_latte")[0],$("#drinks_tea")[0]];
+                      var x = false;
+                      elements.forEach(e => {
+                        if (e.checked) {
+                          x = true;
+                        }
+                      });
+                      if (x) {
+                        $('#food_coffee_frequency_q').collapse('show');
+                      }
+                      else {
+                        $('#food_coffee_frequency_q').collapse('hide');
+                      }
+                    }
+                  </script>
+                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_coffee" value="black_coffee" name="Black Coffeee"> Black Coffee</input><br />
+                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_coffeecream" value="cream_coffee" name="Cream Coffeee"> Coffee w/Cream or Sugar</input><br />
+                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_latte" value="latte" name="Latte"> Lattes or Cappuccinos</input><br />
+                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_tea" value="tea" name="Tea"> Tea</input>
+              </div>
+
+              <div id="food_coffee_frequency_q" class="collapse question">
+                <p id="food_coffee_frequency_q">About how many cups do you drink per week? </p>
+                  <input id="food_coffee_frequency" type="number" size="2" maxlength="4" /> cups
+                
+              </div>
+
+              <div class="question">
+                <p>Do you buy food at farmers markets?</p>
+                <input type="radio" name="food_farmers_market" value="yes" onclick="display_comment('comment_farmers_market','Great decision! Buying locally grown food lowers your carbon emissions')"> Yes </input>
+                <input type="radio" name="food_farmers_market" value="no" onclick="display_comment('comment_farmers_market','You might want to check out the farmers market!')"> No</input>
+              </div>
+            <!-- </div>
+          </div> -->
 
           <p class="pop_up_comment" id="comment_farmers_market"></p>
           <div class="row">
@@ -662,21 +916,28 @@
       </div>
       <div id="collapse6" class="panel-collapse collapse">
         <div class="panel-body">
-          <p>On average, how long are your showers? <input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes</p>
-          <p>On average, how many times do you shower every week? <input id="water_showers_times" type="number" size="5" maxlength="4" /> times</p>
-          <p>On average, how many loads of laundry do you wash every month? <input id="water_laundry" type="number" size="5" maxlength="4" /> times</p>
-          <p>On average, how many times do you flush a toilet every day? <input id="water_flush" type="number" size="5" maxlength="4" /> flushes</p>
-          <p>On average, how many cups of water do you drink every day (from the tap or a water fountain)? <input id="water_cups" type="number" size="5" maxlength="4" /> cups
-            <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-question-sign"></span></a>
-          </p>
+          <div class="question">
+            <p>On average, how long are your showers? </p><input id="water_showers_duration" type="number" size="5" maxlength="4" /> minutes
+          </div>
+          <div class="question">
+            <p>On average, how many times do you shower every week?</p> <input id="water_showers_times" type="number" size="5" maxlength="4" /> times
+          </div>
+          <div class="question">
+            <p>On average, how many loads of laundry do you wash every month?</p> <input id="water_laundry" type="number" size="5" maxlength="4" /> times
+          </div>
+          <div class="question">
+            <p>On average, how many times do you flush a toilet every day?</p> <input id="water_flush" type="number" size="5" maxlength="4" /> flushes
+          </div>
+          <div class="question">
+            <p>On average, how many cups of water do you drink every day (from the tap or a water fountain)? <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-info-sign"></span></a></p> <input id="water_cups" type="number" size="5" maxlength="4"> cups </input>
+          </div>
 
-          <p>Do you use a refillable water bottle?
+          <div class="question">
+            <p>Do you use a refillable water bottle?</p>
             <input type="radio" name="water_bottle_refill" value="yes" onclick="display_comment('comment_water_bottle','Way to go! Every time you use your refillable water bottle instead of buying a plastic bottle you are saving as much carbon as driving 30 miles in an average sized car. That could get you to Albany and back!')"
-            />yes
-            <input type="radio" name="water_bottle_refill" value="no" onclick="display_comment('comment_water_bottle_negative','A refillable water bottle is around $10 -$20 dollars and in the long run will save you hundreds of dollars.')" />no
-          </p>
-
-          <p class="pop_up_comment" id="comment_water_bottle"></p>
+            /> Yes
+            <input type="radio" name="water_bottle_refill" value="no" onclick="display_comment('comment_water_bottle_negative','A refillable water bottle is around $10 -$20 dollars and in the long run will save you hundreds of dollars.')" /> No
+          </div>
 
           <div class="row">
             <div class="col-md-12"><br />

@@ -90,7 +90,7 @@ var options = {
 
 var responsiveOptions = [
   ['screen and (max-width: 640px)', {
-    seriesBarDistance: 15,
+    //seriesBarDistance: 15,
     axisX: {
       labelInterpolationFnc: function(value) {
         // Will return Mon, Tue, Wed etc. on medium screens
@@ -99,45 +99,139 @@ var responsiveOptions = [
     }
   }],
   ['screen and (max-width: 1024px)', {
-    seriesBarDistance: 20
+    //seriesBarDistance: 20
   }]
 ];
 
+var responsiveOptions2 = [
+  ['screen and (max-width: 640px)', {
+    //seriesBarDistance: 15,
+    axisX: {
+      offset: -10
+      // labelInterpolationFnc: function(value) {
+      //   // Will return Mon, Tue, Wed etc. on medium screens
+      //   return value[0];
+      // }
+    }
+  }],
+  ['screen and (max-width: 1024px)', {
+    //seriesBarDistance: 20
+  }]
+];
 
 /*******************************************************************************
                                    Bar Charts
  ******************************************************************************/
-var bar_options = {
+
+
+const ctEqualBarWidth = function(options) {
+  return function(chart) {
+    chart.on('created', function(ctx) {
+      const bars = ctx.svg.querySelectorAll('.ct-bar');
+      // !important is needed because CSS will override attributes
+      bars.attr({
+        style: `stroke-width: ${ctx.axisX.stepLength-2}px !important;`
+      });
+    });
+  }
+}
+
+const ctEqualHalfBarWidth = function(options) {
+  return function(chart) {
+    chart.on('created', function(ctx) {
+      const bars = ctx.svg.querySelectorAll('.ct-bar');
+
+      // !important is needed because CSS will override attributes
+      bars.attr({
+        style: `stroke-width: 29px !important;`
+      });
+    });
+  }
+}
+
+const ctXLabelRotate = function(options) {
+  return function(chart) {
+    chart.on('created',function(ctx) {
+      const xLabels = ctx.svg.querySelectorAll('.ct-label.ct-horizontal');
+      var fontSize = ctx.axisX.stepLength/2;
+      if (fontSize < 10)
+        fontSize = 10;
+      else if (fontSize > 16)
+        fontSize = 16;
+      xLabels.attr({
+        style: `-ms-transform: rotate(-45deg) !important;
+                -webkit-transform: rotate(-45deg) !important;
+                transform: rotate(-45deg) !important;
+                display: block !important;
+                font-size: ${fontSize}px !important;`
+      });
+    });
+  }
+}
+
+
+var bar_options = { //you vs us graph
  seriesBarDistance: 30,
+ fullWidth: true,
  height: "20em",
- plugins: [
-   Chartist.plugins.tooltip({appendToBody: true})
- ]
-};
-
-var country_bar_options = {
- seriesBarDistance: 60,
- height: "20em",
- plugins: [
-   Chartist.plugins.tooltip({appendToBody: true})
- ]
-};
-
-var trend_bar_options = {
-  stackBars: true,
-  seriesBarDistance: 10,
-  axisX: {
-    offset: 60
+ axisX: {
+    offset: 60,
+    scaleMinSpace: 30
   },
-  axisY: {
-    offset: 80,
-    scaleMinSpace: 15
+  low: 0,
+ chartPadding: {
+  top: 50
  },
- seriesBarDistance: 10,
- height: "20em",
+ axisY: {
+    onlyInteger: true,
+    scaleMinSpace: 20,
+ },
  plugins: [
-   Chartist.plugins.tooltip({appendToBody: true})
+   Chartist.plugins.tooltip({appendToBody: true}),
+   ctEqualHalfBarWidth() ]
+};
+
+var country_bar_options = { //country avg
+ height: "20em",
+ fullWidth: true,
+ seriesBarDistance: 30,
+ axisX: {
+  scaleMinSpace: 30
+ },
+ low: 0,
+ chartPadding: {
+  top: 50
+ },
+ axisY: {
+    onlyInteger: true,
+    scaleMinSpace: 20,
+ },
+ plugins: [
+   Chartist.plugins.tooltip({appendToBody: true}),
+   ctEqualHalfBarWidth()
  ]
+};
+
+var trend_bar_options = { //user trend
+  stackBars: true,
+  seriesBarDistance: 35,
+  axisX: {
+    scaleMinSpace: 35,
+  },
+    axisY: {
+    onlyInteger: true,
+    scaleMinSpace: 30,
+ },
+ height: "20em",
+ low: 0,
+ chartPadding: {
+  top: 50
+ },
+ plugins: [
+   Chartist.plugins.tooltip({appendToBody: true}),
+   ctEqualBarWidth(),
+   ctXLabelRotate()
+  ]
 };
 
 /*******************************************************************************
@@ -148,7 +242,7 @@ function updateGraphs() {
   var us_avg_pie = new Chartist.Pie('.us-avg-pie', us_avg, options);
   var user_previous_pie = new Chartist.Pie('.user-previous-pie', user_previous_data, options);
 
-  var user_trend_bar = new Chartist.Bar('.user-trend-bar', user_historical_data, trend_bar_options, responsiveOptions);
+  var user_trend_bar = new Chartist.Bar('.user-trend-bar', user_historical_data, trend_bar_options);
   var user_us_bar = new Chartist.Bar('.user-us-bar', user_us_comparison, bar_options, responsiveOptions);
-  var country_avg_bar = new Chartist.Bar('.country-avg-bar', country_avg_data, country_bar_options);
+  var country_avg_bar = new Chartist.Bar('.country-avg-bar', country_avg_data, country_bar_options, responsiveOptions);
 }
