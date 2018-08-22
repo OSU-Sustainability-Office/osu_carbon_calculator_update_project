@@ -627,8 +627,6 @@ function downloadHistData() {
 // uploadUser.php. We post to the PHP script instead of directly to the Database
 // to avoid no-access-control-allow-origin errors.
 function updateDB() {
-  // First, create the dataObject
-  var d = new Date();
 
   // Get location information
   var xmlHttp = new XMLHttpRequest();
@@ -640,7 +638,7 @@ function updateDB() {
     // Uses getMonth(), getDate(), and getYear() from Javascript Date object.
     // The slicing stuff ensures that dates will be saved in 2 digit format.
     // For example, January will be 01 instead of just 1.
-    "date": "" + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2) + d.getYear(),
+    "date": new Date().toISOString().slice(0, 19).replace('T', ' '),
     "totals": data,
     "location": JSON.parse(res)
   };
@@ -652,6 +650,7 @@ function updateDB() {
     "primaryAffiliation": primaryAffiliation,
     "data": [dataObject]
   };
+  console.log(userObject)
 
   userObject = JSON.stringify(userObject); // Stringify JSON for HTTP POST body.
 
