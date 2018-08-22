@@ -48,15 +48,8 @@ function updateData() {
 
 
     // Corvert the date into a user friendly format. In the DB, it looks like
-    // this: mmddyyy. Ex: 0220118 = Feb 20, 2018.
-    var year = dataObject.date.substring(5);
-    d.setYear(20 + year); // 20 + 18 = 2018.
-
-    var month = dataObject.date.substring(0,2) - 1;
-    d.setMonth(month);
-
-    var day = dataObject.date.substring(2,4);
-    d.setDate(day);
+    // a UTC datestring (MYSQL DATETIME)
+    d.parse(dataObject.date);
 
     labelData.push(d.getMonth() + "/"+ d.getDate());
   });
