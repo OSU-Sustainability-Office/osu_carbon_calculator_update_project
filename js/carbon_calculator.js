@@ -25,16 +25,27 @@ var water_total;
 var carbon_num_total;
 
 // ONID Variables
-var uid;
+var uid = null;
 var firstName = "";
 var primaryAffiliation;
-var historicalData;
+var historicalData = [{totals:[4808.4, 4979.9, 3692.1, 2404.2, 515.2]}]; // Defaults to US Average data
+var loc = null; // Location information
 
 // Data array used for database upload/download
 var data = new Array(5);
 
 var user_type = "on_campus";
 var user_num = 1;
+
+/*******************************************************************************
+                          Initialize Location Variable
+ ******************************************************************************/
+
+let js = document.createElement('script')
+js.src = 'http://extreme-ip-lookup.com/json/?callback=updateLoc';
+document.head.appendChild(js)
+
+function updateLoc(json) { loc = json; }
 
 
 /*******************************************************************************
@@ -508,6 +519,9 @@ window.onload = function() {
     }
   }
 
+  // Download user's historical data.
+  downloadHistData();
+
   // Add event listeners for updating graphs
   document.getElementById("last-next-button").addEventListener("click", showResult);
   document.getElementById("results-accordion").addEventListener("click", showResult);
@@ -551,9 +565,6 @@ var showResult = function showResult() {
   // Update the user's information in the database.
   updateDB();
 
-  // Download historical data.
-  downloadHistData();
-
   // Update data arrays for historical trends charts.
   updateData(); // Located in charts.js
 
@@ -595,69 +606,44 @@ function updateUserVariables(res) {
   var header = document.getElementsByClassName("well-md")[0].getElementsByTagName("h1")[0].innerHTML = "Hello, " + firstName + "! Welcome to your Carbon Calculator.";
 }
 
-// Creates a JSON object for the current user and sends a POST request to
-// uploadUser.php. We post to the PHP script instead of directly to the Database
-// to avoid no-access-control-allow-origin errors.
+// Downloads historical data by appending a js script to the dom. This
+// circumvents CORS restrictions that arise when using traditional ajax methods.
 function downloadHistData() {
-  // First, create the dataObject
-  var d = new Date();
-
-  // Create the JSON object for the user.
-  var userObject = {
-    "UserID": uid,
-    "firstName": firstName,
-    "primaryAffiliation": primaryAffiliation,
-    "data": []
-  };
-
-  userObject = JSON.stringify(userObject); // Stringify JSON for HTTP POST body.
-
-  // Send the request.
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("POST", "../php/userInfo.php?upload=false&userObject=" + userObject, false); // False for synchronous request.
-  xmlHttp.send(null);
-  if(xmlHttp.responseText != "Error: No such user.") {
-    historicalData = JSON.parse(xmlHttp.responseText).data;
-  } else {
-    console.log("Error downloading historical data.");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      historicalData = JSON.parse(xhttp.responseText)
+    }
   }
+  xhttp.open('GET', 'http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/carbon/download/'+ uid, true)
+  xhttp.send()
 }
 
 // Creates a JSON object for the current user and sends a POST request to
 // uploadUser.php. We post to the PHP script instead of directly to the Database
 // to avoid no-access-control-allow-origin errors.
 function updateDB() {
+  if (uid != null) {
 
-  // Get location information
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", "../php/getUserLocation.php", false); // false for synchronous request
-  xmlHttp.send(null);
-  var res = xmlHttp.responseText; // PHP script responds with a JSON object.
+    var dataObject = {
+      "date": new Date().toLocaleDateString(),
+      "totals": data,
+      "location": loc
+    };
 
-  var dataObject = {
-    // Uses getMonth(), getDate(), and getYear() from Javascript Date object.
-    // The slicing stuff ensures that dates will be saved in 2 digit format.
-    // For example, January will be 01 instead of just 1.
-    "date": new Date().toISOString().slice(0, 19).replace('T', ' '),
-    "totals": data,
-    "location": JSON.parse(res)
-  };
+    // Create the JSON object for the user.
+    var userObject = {
+      "UserID": uid,
+      "firstName": firstName,
+      "primaryAffiliation": primaryAffiliation,
+      "data": [dataObject].concat(historicalData)
+    };
+    console.log(userObject);
 
-  // Next, create the JSON object for the user.
-  var userObject = {
-    "UserID": uid,
-    "firstName": firstName,
-    "primaryAffiliation": primaryAffiliation,
-    "data": [dataObject]
-  };
-  console.log(userObject)
-
-  userObject = JSON.stringify(userObject); // Stringify JSON for HTTP POST body.
-
-  // Lastly, send the request.
-
-  xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("POST", "../php/userInfo.php?upload=true&userObject=" + userObject, false); // False for synchronous request.
-  xmlHttp.send(null);
-  res = xmlHttp.responseText;
+    // Send the request
+    let xhttp = new XMLHttpRequest();
+    xhttp.open('POST', 'http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/carbon/upload', true);
+    xhttp.setRequestHeader('Content-type', 'application/JSON');
+    xhttp.send(JSON.stringify(userObject));
+  }
 }
