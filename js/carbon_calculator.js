@@ -28,7 +28,7 @@ var carbon_num_total;
 var uid = null;
 var firstName = "";
 var primaryAffiliation;
-var historicalData = [{totals:[4808.4, 4979.9, 3692.1, 2404.2, 515.2]}]; // Defaults to US Average data
+var historicalData = [{totals:[4808.4, 4979.9, 3692.1, 2404.2, 515.2], date: new Date().toLocaleDateString()}]; // Defaults to US Average data
 var loc = null; // Location information
 
 // Data array used for database upload/download
@@ -515,12 +515,10 @@ window.onload = function() {
     var res = xmlHttp.responseText;
     if (res.includes("Success")) {
       updateUserVariables(res);
+      downloadHistData();
       closeONIDWindow();
     }
   }
-
-  // Download user's historical data.
-  downloadHistData();
 
   // Add event listeners for updating graphs
   document.getElementById("last-next-button").addEventListener("click", showResult);
@@ -602,8 +600,8 @@ function updateUserVariables(res) {
   uid = doc.getElementsByTagName("cas:uid")[0].childNodes[0].nodeValue;
 
   // Update header with user's name.
-
   var header = document.getElementsByClassName("well-md")[0].getElementsByTagName("h1")[0].innerHTML = "Hello, " + firstName + "! Welcome to your Carbon Calculator.";
+
 }
 
 // Downloads historical data by appending a js script to the dom. This
@@ -611,10 +609,11 @@ function updateUserVariables(res) {
 function downloadHistData() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+    if (this.readyState == 4) {
       historicalData = JSON.parse(xhttp.responseText)
     }
   }
+
   xhttp.open('GET', 'http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/carbon/download/'+ uid, true)
   xhttp.send()
 }
@@ -636,9 +635,8 @@ function updateDB() {
       "UserID": uid,
       "firstName": firstName,
       "primaryAffiliation": primaryAffiliation,
-      "data": [dataObject].concat(historicalData)
+      "data": [dataObject]
     };
-    console.log(userObject);
 
     // Send the request
     let xhttp = new XMLHttpRequest();

@@ -48,8 +48,7 @@ function updateData() {
 
     // Corvert the date into a user friendly format.
     var date = new Date(Date.parse(dataObject.date));
-
-    labelData.push(date.getMonth() + "/"+ date.getDate());
+    labelData.push((date.getMonth() + 1) + "/"+ date.getDate());
   });
   user_historical_data = {
     series: seriesData,
