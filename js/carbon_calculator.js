@@ -506,18 +506,17 @@ function set_user_type(type) {
 // Initially draws the graphs when the webpage loads.
 window.onload = function() {
 
-  // Verify ONID Login
-  var ticket = location.search.substring(8);
-  if (ticket.length > 0) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "../php/CASValidate.php?ticket="+ticket, false); // false for synchronous request
-    xmlHttp.send(null);
-    var res = xmlHttp.responseText;
-    if (res.includes("Success")) {
-      updateUserVariables(res);
-      downloadHistData();
-      closeONIDWindow();
-    }
+  // Verify ONID Login by requesting for the User's Data
+  var xmlHttp = new XMLHttpRequest()
+  xmlHttp.withCredentials = true
+  xmlHttp.open("GET", "http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/auth/userData/allData", false); // false for synchronous request
+  xmlHttp.send(null);
+  var res = xmlHttp.responseText;
+  console.log(res)
+  if (!res.includes("Error")) {
+    updateUserVariables(res);
+    downloadHistData();
+    closeONIDWindow();
   }
 
   // Add event listeners for updating graphs
@@ -576,28 +575,19 @@ var showResult = function showResult() {
 var closeONIDWindow = function closeONIDWindow() {
   document.getElementById("overlay").classList.add("hidden");
 }
+
 // Close ONID Login Window listener
 document.getElementById("close-btn").addEventListener("click", closeONIDWindow);
 
 // Update user variables, such as UID and name
 function updateUserVariables(res) {
-  var parser;
-  var doc;
-  if (window.DOMParser) {
-    parser = new DOMParser();
-    doc = parser.parseFromString(res, "text/xml");
-  } else { // IE uses ActiveX
-    parser = new ActiveXObject("Microsoft.XMLDOM");
-    doc.async = false;
-    doc.loadXML(res);
-  }
+
+  var userData = JSON.parse(res)
 
   // Set global Variables
-  firstName = doc.getElementsByTagName("cas:firstname")[0].childNodes[0].nodeValue;
-
-  primaryAffiliation = doc.getElementsByTagName("cas:eduPersonPrimaryAffiliation")[0].childNodes[0].nodeValue;
-
-  uid = doc.getElementsByTagName("cas:uid")[0].childNodes[0].nodeValue;
+  firstName = userData.firstName
+  primaryAffiliation = userData.primaryAffiliation
+  uid = userData.onid
 
   // Update header with user's name.
   var header = document.getElementsByClassName("well-md")[0].getElementsByTagName("h1")[0].innerHTML = "Hello, " + firstName + "! Welcome to your Carbon Calculator.";
