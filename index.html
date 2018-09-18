@@ -69,22 +69,28 @@
     $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
       $(".radio button").click((event) => {
-        $(".radio button").css({"color":"#000000","borderColor":"#000000"});
+        $(".radio button").css({
+          "color": "#000000",
+          "borderColor": "#000000"
+        });
         event.target.style.color = "#D73F09";
         event.target.style.borderColor = "#D73F09";
       });
     });
   </script>
-
+  
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125914273-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126061073-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-125914273-1');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-126061073-1');
+  </script>
 
 </head>
 
@@ -169,10 +175,10 @@
            	</select>
           </div>
           <div id="trans_input_car_miles_q" class="collapse question">
-              <p> Approximately how many miles do you drive per month?
-             <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles, Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-info-sign"></a></p>
-              <input id="trans_input_car_miles" type="number" size="4" maxlength="4" /> miles
-            </div>
+            <p> Approximately how many miles do you drive per month?
+              <a href="#" data-toggle="tooltip" title="Oregon State University to: WinCo: 2.0 miles, Carmike: 2.8 miles, Fred Meyers: 0.9 miles, Philomath: 5.4 miles, Albany: 11.6 miles, Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-info-sign"></a></p>
+            <input id="trans_input_car_miles" type="number" size="4" maxlength="4" /> miles
+          </div>
 
           <div class="question">
             <p>Do you commute using the Corvallis or Albany Transit?</p>
@@ -185,14 +191,15 @@
             <input name="trans_input_short_bus_miles" id="trans_input_short_bus_miles" type="number" size="4" maxlength="4" /> miles
           </div>
 
-          <div class="question"><p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?</p>
+          <div class="question">
+            <p>Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?</p>
             <input type="radio" name="trans_radio_long_use_bus" value="yes" onclick="display_question('show','trans_input_long_bus_miles')"> Yes
             <input type="radio" name="trans_radio_long_use_bus" value="no" onclick="display_question('hide','trans_input_long_bus_miles')"> No
           </div>
 
           <div id="trans_input_long_bus_miles_q" style="display:none;" class="question">
             <p>Approximately how many miles/year do you travel on these buses?
-            <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
+              <a href="#" data-toggle="tooltip" title="Oregon State University to: Eugene: 48.4 miles, Portland: 85.4 miles, Albany: 11.6 miles, Seattle: 257.8 miles, Salem: 36.9 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
             <input id="trans_input_long_bus_miles" type="number" size="4" maxlength="4" /> miles
           </div>
 
@@ -211,15 +218,15 @@
 
           <div class="question">
             <p>Have you traveled or do you plan to travel by airplane this year?</p>
-            <input type="radio" name="trans_radio_use_plane" value="yes" onclick="display_question('show','trans_input_plane_miles'); display_comment('comment_transportation_plane_negative','Airplane travel adds a heavy amount to your carbon footprint. Did you know flying across the country produces 40% more emissions than driving in a car by yourself?')"> Yes
-            <input type="radio" name="trans_radio_use_plane" value="no" onclick="display_question('hide','trans_input_plane_miles') ; display_comment('comment_transportation_plane','Great decision! Riding in an airplane adds a heavy amount to your transportation footprint.')"> No
+            <input type="radio" name="trans_radio_use_plane" value="yes" onclick="display_question('show','trans_input_plane_miles'); display_comment('comment_transportation_plane_negative','Airplane travel adds a heavy amount to your carbon footprint. Did you know flying across the country produces 40% more emissions than driving in a car by yourself?')">            Yes
+            <input type="radio" name="trans_radio_use_plane" value="no" onclick="display_question('hide','trans_input_plane_miles') ; display_comment('comment_transportation_plane','Great decision! Riding in an airplane adds a heavy amount to your transportation footprint.')">            No
           </div>
 
           <p class="pop_up_comment" id="comment_transportation_plane"></p>
 
           <div id="trans_input_plane_miles_q" style="display:none;" class="question">
             <p>How many miles have you traveled or do you plan to travel this year? This <a href="http://www.webflyer.com/travel/mileage_calculator/" target="_blank"> flight distance calculator </a> might be helpful in determining this amount <a href="#"
-              data-toggle="tooltip" title="Average Flight Mileage for Time Zones: PDX Airport to: New York: 2,450 miles, Seattle: 129 miles, Denver: 989 miles, Chicago: 1730 miles, Los Angeles: 834 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
+                data-toggle="tooltip" title="Average Flight Mileage for Time Zones: PDX Airport to: New York: 2,450 miles, Seattle: 129 miles, Denver: 989 miles, Chicago: 1730 miles, Los Angeles: 834 miles"><span class="glyphicon glyphicon-info-sign"></span></a></p>
             <input id="trans_input_plane_miles" type="number" size="5" maxlength="5"> miles
           </div>
 
@@ -375,126 +382,196 @@
               From the following list of appliances, electronics, lighting, etc, input how many of each item are in your room and how many hours a day each item is <strong>in use</strong> or <strong>plugged in</strong>. If you own an item not listed below
               please be sure to fill in extra fields: What is the item and wattage? You can find the wattage on the bottom of most appliances. Be sure to multiply by 1000 if the wattage is given in kilowatts.<br>
             </p>
-              <div class="container">
-                <div class="row complex-energy-big-header">
-                    <div class="col-sm-2">Item</div>
-                    <div class="col-sm-3">Quantity</div>
-                    <div class="col-sm-1">Watts</div>
-                    <div class="col-sm-3">Active Use (Hours per day)</div>
-                    <div class="col-sm-3">Standby (Hours per day)</div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Refrigerator</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_1_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_1_watts" type="hidden" value="160" />160</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+            <div class="container">
+              <div class="row complex-energy-big-header">
+                <div class="col-sm-2">Item</div>
+                <div class="col-sm-3">Quantity</div>
+                <div class="col-sm-1">Watts</div>
+                <div class="col-sm-3">Active Use (Hours per day)</div>
+                <div class="col-sm-3">Standby (Hours per day)</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Refrigerator</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_1_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_1_watts" type="hidden" value="160" />160</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_1_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_1_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Microwave</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_2_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_2_watts" type="hidden" value="1000" />1000</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_2_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_2_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Microwave</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_2_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_2_watts" type="hidden" value="1000" />1000</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_2_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_2_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Clock radio</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_3_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_3_watts" type="hidden" value="10" />10</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Clock radio</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_3_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_3_watts" type="hidden" value="10" />10</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_3_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_3_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>IPod dock</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_4_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_4_watts" type="hidden" value="100" />100</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_4_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_4_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>IPod dock</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_4_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_4_watts" type="hidden" value="100" />100</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_4_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_4_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Stereo sound system</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_5_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_5_watts" type="hidden" value="150" />150</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_5_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_5_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Stereo sound system</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_5_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_5_watts" type="hidden" value="150" />150</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_5_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_5_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Computer desktop</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_6_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_6_watts" type="hidden" value="225" />225</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_6_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_6_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Computer desktop</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_6_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_6_watts" type="hidden" value="225" />225</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_6_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_6_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Computer monitor 15"</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_7_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_7_watts" type="hidden" value="35" />35</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_7_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_7_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Computer monitor 15"</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_7_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_7_watts" type="hidden" value="35" />35</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_7_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_7_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Computer, laptop</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_8_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_8_watts" type="hidden" value="60" />60</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_8_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_8_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Computer, laptop</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_8_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_8_watts" type="hidden" value="60" />60</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_8_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_8_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Printer</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_9_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_9_watts" type="hidden" value="100" />100</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_9_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_9_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Printer</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_9_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_9_watts" type="hidden" value="100" />100</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_9_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_9_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>TV</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_10_watts" type="hidden" value="115" />115</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>TV</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_10_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_10_watts" type="hidden" value="115" />115</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_10_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_10_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Portable fan</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_11_watts" type="hidden" value="115" />115</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_11_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Portable fan</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_11_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_11_watts" type="hidden" value="115" />115</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_11_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_11_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Floor lamp</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_12_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_12_watts" type="hidden" value="300" />300</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Floor lamp</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_12_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_12_watts" type="hidden" value="300" />300</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_12_active_usage" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_12_passive_usage" type="number" size="4" maxlength="4" value="24" /></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Game Console</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_13_total" type="number" size="4" maxlength="1" value="1" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_13_watts" type="hidden" value="245">1440</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_13_active_usage" type="number" size="4" maxlength="4"></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_13_passive_usage" type="number" size="4" maxlength="4" value="24"></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Game Console</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_13_total" type="number" size="4" maxlength="1" value="1" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_13_watts" type="hidden" value="245">1440</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_13_active_usage" type="number" size="4" maxlength="4"></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_13_passive_usage" type="number" size="4" maxlength="4" value="24"></div>
+              </div>
 
-                <div class="row">
-                  <div class="col-sm-2"><p class="complex-energy-small-header">Item: </p>Other</div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Quantity: </p><input id="appliance_14_total" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-1"><p class="complex-energy-small-header">Watts: </p><input id="appliance_14_watts" type="number" size="12" maxlength="5" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_14_active_usage" width="30px" type="number" size="4" maxlength="4" /></div>
-                  <div class="col-sm-3"><p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_14_passive_usage" type="number" size="4" maxlength="4" /></div>
-                </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <p class="complex-energy-small-header">Item: </p>Other</div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Quantity: </p><input id="appliance_14_total" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-1">
+                  <p class="complex-energy-small-header">Watts: </p><input id="appliance_14_watts" type="number" size="12" maxlength="5" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Active Use (Hours per day): </p><input id="appliance_14_active_usage" width="30px" type="number" size="4" maxlength="4" /></div>
+                <div class="col-sm-3">
+                  <p class="complex-energy-small-header">Standby (Hours per day): </p><input id="appliance_14_passive_usage" type="number" size="4" maxlength="4" /></div>
+              </div>
             </div>
 
             <div class="question">
@@ -607,10 +684,10 @@
                 </tbody>
               </table>
             </div> -->
-            <!-- <div class=""> -->
-             <div class="question">
-                <p>How many portions of <span class="highlight">red meat</span> do you eat in a week on average?</p>
-                  <!-- <div class="container portionTable">
+          <!-- <div class=""> -->
+          <div class="question">
+            <p>How many portions of <span class="highlight">red meat</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Red Meat Portion Examples
@@ -625,15 +702,15 @@
                       </div>
                     </div>
                   </div> -->
-                  <p class="foodNarrative">
-                    Example Portions: 1/2 Pound Burger, 4-5 Ounces of Cooked Steak
-                  </p>
-                  <input class="ntableInput" type="number" id="meat_serv" size="4" maxlength="4">
-                </div>
+            <p class="foodNarrative">
+              Example Portions: 1/2 Pound Burger, 4-5 Ounces of Cooked Steak
+            </p>
+            <input class="ntableInput" type="number" id="meat_serv" size="4" maxlength="4">
+          </div>
 
-              <div class="question">
-                <p>How many portions of <span class="highlight">dairy products</span> or <span class="highlight">eggs</span> do you eat in a week on average?</p>
-                  <!-- <div class="container portionTable">
+          <div class="question">
+            <p>How many portions of <span class="highlight">dairy products</span> or <span class="highlight">eggs</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Dairy Product Portion Examples
@@ -651,15 +728,15 @@
                       </div>
                     </div>
                   </div> -->
-                  <p class="foodNarrative">
-                    Example Portions: 3 Eggs, 1 Cup of Yogurt or Milk, 4 Slices of Cheese
-                  </p>
-                  <input type="number" id="dairy_serv" size="4" maxlength="4">
-                </div>
+            <p class="foodNarrative">
+              Example Portions: 3 Eggs, 1 Cup of Yogurt or Milk, 4 Slices of Cheese
+            </p>
+            <input type="number" id="dairy_serv" size="4" maxlength="4">
+          </div>
 
-              <div class="question">
-                <p>How many portions of <span class="highlight">fruits</span> and <span class="highlight">vegetables</span> do you eat in a week on average?</p>
-                  <!-- <div class="container portionTable">
+          <div class="question">
+            <p>How many portions of <span class="highlight">fruits</span> and <span class="highlight">vegetables</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Fruit and Vegetable Portion Examples
@@ -689,15 +766,15 @@
                       </div>
                     </div>
                   </div> -->
-                  <p class="foodNarrative">
-                    Example Portions: 1 Apple, Orange, or Banana; 1 Cup of Diced Fruit; 2 Apricots, Kiwis or Plums; 1 Potato or Tomato; 1/2 Cup of Marinara Sauce; 3/4 Cup of Cooked Vegetables; 1 Cup of Salad
-                  </p>
-                  <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
-                </div>
+            <p class="foodNarrative">
+              Example Portions: 1 Apple, Orange, or Banana; 1 Cup of Diced Fruit; 2 Apricots, Kiwis or Plums; 1 Potato or Tomato; 1/2 Cup of Marinara Sauce; 3/4 Cup of Cooked Vegetables; 1 Cup of Salad
+            </p>
+            <input type="number" id="fruits_vegetables_serv" size="4" maxlength="4">
+          </div>
 
-              <div class="question">
-                <p>How many portions of <span class="highlight">grains</span> and <span class="highlight">baked products</span> do you eat in a week on average?</p>
-                  <!-- <div class="container portionTable">
+          <div class="question">
+            <p>How many portions of <span class="highlight">grains</span> and <span class="highlight">baked products</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Grain Portion Examples
@@ -724,15 +801,15 @@
                       </div>
                     </div>
                   </div> -->
-                  <p class="foodNarrative">
-                    Example Portions: 2 Slices of Bread; 1 Bagel, Roll or English Muffin; 1/2 Cup of Rice, Pasta, Quinoa or Oatmeal; 1 Cup of Dry Cereal, 1 Slice of Cake; 2 Medium Chocolate Chip Cookies
-                  </p>
-                  <input type="number" id="grains_serv" size="4" maxlength="4">
-                </div>
+            <p class="foodNarrative">
+              Example Portions: 2 Slices of Bread; 1 Bagel, Roll or English Muffin; 1/2 Cup of Rice, Pasta, Quinoa or Oatmeal; 1 Cup of Dry Cereal, 1 Slice of Cake; 2 Medium Chocolate Chip Cookies
+            </p>
+            <input type="number" id="grains_serv" size="4" maxlength="4">
+          </div>
 
-            <div class="question">
-              <p>How many portions of <span class="highlight">poultry</span> do you eat in a week on average?</p>
-                <!-- <div class="container portionTable">
+          <div class="question">
+            <p>How many portions of <span class="highlight">poultry</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                   <div class="row">
                     <div class="col-sm-12">
                       Poultry Portion Examples
@@ -753,16 +830,16 @@
                     </div>
                   </div>
                 </div> -->
-                <p class="foodNarrative">
-                    Example Portions: 4-5 Ounces of Cooked Chicken/Turkey, 7 Chicken Nuggets, 4 Chicken Wings or 5.4 Slices of Deli Turkey
-                </p>
-                <input type="number" id="poultry_serv" size="4" maxlength="4">
-              </div>
+            <p class="foodNarrative">
+              Example Portions: 4-5 Ounces of Cooked Chicken/Turkey, 7 Chicken Nuggets, 4 Chicken Wings or 5.4 Slices of Deli Turkey
+            </p>
+            <input type="number" id="poultry_serv" size="4" maxlength="4">
+          </div>
 
 
-              <div class="question">
-                <p>How many portions of <span class="highlight">pork</span> do you eat in a week on average?</p>
-                  <!-- <div class="container portionTable">
+          <div class="question">
+            <p>How many portions of <span class="highlight">pork</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Pork Portion Examples
@@ -774,15 +851,15 @@
                       </div>
                     </div>
                   </div> -->
-                  <p class="foodNarrative">
-                    Example Portions: 4-5 Ounces of Cooked Pork
-                  </p>
-                  <input type="number" id="pork_serv" size="4" maxlength="4">
-                </div>
+            <p class="foodNarrative">
+              Example Portions: 4-5 Ounces of Cooked Pork
+            </p>
+            <input type="number" id="pork_serv" size="4" maxlength="4">
+          </div>
 
-              <div class="question">
-                <p>How many portions of <span class="highlight">seafood</span> do you eat in a week on average?</p>
-                  <!-- <div class="container portionTable">
+          <div class="question">
+            <p>How many portions of <span class="highlight">seafood</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                     <div class="row">
                       <div class="col-sm-12">
                         Seafood Portion Examples
@@ -806,17 +883,17 @@
                       </div>
                     </div>
                   </div> -->
-                  <p class="foodNarrative">
-                    Example Portions: 4-5 Ounces of Cooked Fish, 8 Pieces of Sushi/Sashimi, 10 Pieces of Shrimp, 4-5 Large Scallops or 6-8 Clams
-                  </p>
-                  <input type="number" id="seafood_serv" size="4" maxlength="4">
-                </div>
+            <p class="foodNarrative">
+              Example Portions: 4-5 Ounces of Cooked Fish, 8 Pieces of Sushi/Sashimi, 10 Pieces of Shrimp, 4-5 Large Scallops or 6-8 Clams
+            </p>
+            <input type="number" id="seafood_serv" size="4" maxlength="4">
+          </div>
 
 
 
-            <div class="question">
-              <p>How many portions of <span class="highlight">nuts</span> do you eat in a week on average?</p>
-                <!-- <div class="container portionTable">
+          <div class="question">
+            <p>How many portions of <span class="highlight">nuts</span> do you eat in a week on average?</p>
+            <!-- <div class="container portionTable">
                   <div class="row">
                     <div class="col-sm-12">
                      Nut Portion Examples
@@ -840,28 +917,28 @@
                     </div>
                   </div>
                 </div> -->
-                <p class="foodNarrative">
-                    Example Portions: 24 Almonds, 18 Cashews, 35 Peanuts, 12 Macadamia Nuts or 7 Walnuts
-                </p>
-                <input type="number" id="nuts_serv" size="4" maxlength="4">
-              </div>
+            <p class="foodNarrative">
+              Example Portions: 24 Almonds, 18 Cashews, 35 Peanuts, 12 Macadamia Nuts or 7 Walnuts
+            </p>
+            <input type="number" id="nuts_serv" size="4" maxlength="4">
+          </div>
 
-            <div class="question">
-              <p> How often do you eat processed food? <a href="#" data-toggle="tooltip" title="The average person eats 22 pounds of processed food a week"><span class="glyphicon glyphicon-info-sign"></span></a></p>
-                <!--need conversion factor for processed food and avg pounds per week. Dummy question for now-->
-                <input type="radio" name="radio_recycle" value="below_avg_processed" onclick="display_comment('comment_processed_food','Great decision! Processed foods often require a larger amount of energy than fresh produce')"> Below Average<br>
-                <input type="radio" name="radio_recycle" value="avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')"> Average<br>
-                <input type="radio" name="radio_recycle" value="above_avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')"> Above Average
-              </div>
+          <div class="question">
+            <p> How often do you eat processed food? <a href="#" data-toggle="tooltip" title="The average person eats 22 pounds of processed food a week"><span class="glyphicon glyphicon-info-sign"></span></a></p>
+            <!--need conversion factor for processed food and avg pounds per week. Dummy question for now-->
+            <input type="radio" name="radio_recycle" value="below_avg_processed" onclick="display_comment('comment_processed_food','Great decision! Processed foods often require a larger amount of energy than fresh produce')"> Below Average<br>
+            <input type="radio" name="radio_recycle" value="avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">            Average<br>
+            <input type="radio" name="radio_recycle" value="above_avg_processed" onclick="display_comment('comment_processed_food_negative','You should reconsider how much processed food you eat. Processed foods often require a larger amount of energy than fresh produce and are often not as healthy either')">            Above Average
+          </div>
 
-              <div class="question">
-                <p>How much do you spend on eating out each month?</p>
-                  <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
-              </div>
+          <div class="question">
+            <p>How much do you spend on eating out each month?</p>
+            <input id="hotels_per_month" type="number" size="2" maxlength="4" /> dollars per month
+          </div>
 
-              <div class="question">
-                <p>If you drink coffee or tea please select from the following options: </p>
-                  <!-- <select id="food_coffee_type" onchange="food_coffee_select_handler()">
+          <div class="question">
+            <p>If you drink coffee or tea please select from the following options: </p>
+            <!-- <select id="food_coffee_type" onchange="food_coffee_select_handler()">
                  					<option value="none">-Select-</option>
                  					<option value="black_coffee">Black Coffee</option>
                  					<option value="cream_sugar">Black Coffee + cream or sugar</option>
@@ -869,41 +946,40 @@
                  					<option value="latte">Latte</option>
                  					<option value="black_coffee">Tea</option>
                  	</select> -->
-                  <script>
-                    function checkDrinkChecks() {
-                      var elements = [$("#drinks_coffee")[0],$("#drinks_coffeecream")[0],$("#drinks_latte")[0],$("#drinks_tea")[0]];
-                      var x = false;
-                      elements.forEach(e => {
-                        if (e.checked) {
-                          x = true;
-                        }
-                      });
-                      if (x) {
-                        $('#food_coffee_frequency_q').collapse('show');
-                      }
-                      else {
-                        $('#food_coffee_frequency_q').collapse('hide');
-                      }
-                    }
-                  </script>
-                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_coffee" value="black_coffee" name="Black Coffeee"> Black Coffee</input><br />
-                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_coffeecream" value="cream_coffee" name="Cream Coffeee"> Coffee w/Cream or Sugar</input><br />
-                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_latte" value="latte" name="Latte"> Lattes or Cappuccinos</input><br />
-                  <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_tea" value="tea" name="Tea"> Tea</input>
-              </div>
+            <script>
+              function checkDrinkChecks() {
+                var elements = [$("#drinks_coffee")[0], $("#drinks_coffeecream")[0], $("#drinks_latte")[0], $("#drinks_tea")[0]];
+                var x = false;
+                elements.forEach(e => {
+                  if (e.checked) {
+                    x = true;
+                  }
+                });
+                if (x) {
+                  $('#food_coffee_frequency_q').collapse('show');
+                } else {
+                  $('#food_coffee_frequency_q').collapse('hide');
+                }
+              }
+            </script>
+            <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_coffee" value="black_coffee" name="Black Coffeee"> Black Coffee</input><br />
+            <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_coffeecream" value="cream_coffee" name="Cream Coffeee"> Coffee w/Cream or Sugar</input><br />
+            <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_latte" value="latte" name="Latte"> Lattes or Cappuccinos</input><br />
+            <input type="checkbox" onchange="checkDrinkChecks()" id="drinks_tea" value="tea" name="Tea"> Tea</input>
+          </div>
 
-              <div id="food_coffee_frequency_q" class="collapse question">
-                <p id="food_coffee_frequency_q">About how many cups do you drink per week? </p>
-                  <input id="food_coffee_frequency" type="number" size="2" maxlength="4" /> cups
+          <div id="food_coffee_frequency_q" class="collapse question">
+            <p id="food_coffee_frequency_q">About how many cups do you drink per week? </p>
+            <input id="food_coffee_frequency" type="number" size="2" maxlength="4" /> cups
 
-              </div>
+          </div>
 
-              <div class="question">
-                <p>Do you buy food at farmers markets?</p>
-                <input type="radio" name="food_farmers_market" value="yes" onclick="display_comment('comment_farmers_market','Great decision! Buying locally grown food lowers your carbon emissions')"> Yes </input>
-                <input type="radio" name="food_farmers_market" value="no" onclick="display_comment('comment_farmers_market','You might want to check out the farmers market!')"> No</input>
-              </div>
-            <!-- </div>
+          <div class="question">
+            <p>Do you buy food at farmers markets?</p>
+            <input type="radio" name="food_farmers_market" value="yes" onclick="display_comment('comment_farmers_market','Great decision! Buying locally grown food lowers your carbon emissions')"> Yes </input>
+            <input type="radio" name="food_farmers_market" value="no" onclick="display_comment('comment_farmers_market','You might want to check out the farmers market!')"> No</input>
+          </div>
+          <!-- </div>
           </div> -->
 
           <p class="pop_up_comment" id="comment_farmers_market"></p>
@@ -940,7 +1016,8 @@
             <p>On average, how many times do you flush a toilet every day?</p> <input id="water_flush" type="number" size="5" maxlength="4" /> flushes
           </div>
           <div class="question">
-            <p>On average, how many cups of water do you drink every day (from the tap or a water fountain)? <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-info-sign"></span></a></p> <input id="water_cups" type="number" size="5" maxlength="4"> cups </input>
+            <p>On average, how many cups of water do you drink every day (from the tap or a water fountain)? <a href="#" data-toggle="tooltip" title="The average water bottle holds around 2.5 cups and a larger liter bottle holds 4 cups"><span class="glyphicon glyphicon-info-sign"></span></a></p>
+            <input id="water_cups" type="number" size="5" maxlength="4"> cups </input>
           </div>
 
           <div class="question">
@@ -1002,7 +1079,9 @@
                 </div>
                 <div class="panel-body">
                   <center>
-                    <div class="col-md-1"><!--Spacer--></div>
+                    <div class="col-md-1">
+                      <!--Spacer-->
+                    </div>
                     <div class="col-md-2" style="color:#AA9D2E">■ Transportation</div>
                     <div class="col-md-2" style="color:#0D5257">■ Consumption</div>
                     <div class="col-md-2" style="color:#D3832B">■ Energy and Heat</div>
@@ -1184,7 +1263,7 @@
             </ul>
           </p>
           <p>
-            In addition to individual action to reduce carbon emissions, <b>collective action is important</b>! The OSU Sustainability Office has launched a <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Carbon Planning Toolkit</a>              to assist OSU departments in planning to reduce carbon emissions and strengthening climate awareness through education, research and outreach. You can participate by establishing a team within your department to implement the toolkit.
+            In addition to individual action to reduce carbon emissions, <b>collective action is important</b>! The OSU Sustainability Office has launched a <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Carbon Planning Toolkit</a>            to assist OSU departments in planning to reduce carbon emissions and strengthening climate awareness through education, research and outreach. You can participate by establishing a team within your department to implement the toolkit.
             <a href="mailto:sustainability@oregonstate.edu">For more information or help with the Toolkit, or day to day actions, contact the Sustainability Office at sustainability@oregonstate.edu.</a>
           </p>
           <div class="row">
@@ -1198,7 +1277,8 @@
         </div>
       </div>
     </div>
-    <center><br /><a href="http://oregonstate.edu/copyright">Copyright</a> ©2017 Oregon State University. Glyphicons created by <a href="http://glyphicons.com/">Glyphicons</a>, and provided free for use with <a href="http://getbootstrap.com">Bootstrap</a> Version 3.3.7.
+    <center><br /><a href="http://oregonstate.edu/copyright">Copyright</a> ©2017 Oregon State University. Glyphicons created by <a href="http://glyphicons.com/">Glyphicons</a>, and provided free for use with <a href="http://getbootstrap.com">Bootstrap</a> Version
+      3.3.7.
     </center>
     <div class="overlay" id="overlay">
       <div class="login-container">
