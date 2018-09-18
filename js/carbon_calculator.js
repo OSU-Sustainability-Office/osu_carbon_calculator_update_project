@@ -512,7 +512,6 @@ window.onload = function() {
   xmlHttp.open("GET", "http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/auth/userData/allData", false); // false for synchronous request
   xmlHttp.send(null);
   var res = xmlHttp.responseText;
-  console.log(res)
   if (!res.includes("Error")) {
     updateUserVariables(res);
     downloadHistData();
