@@ -1,3 +1,18 @@
-# Ignore Tabling & Jeopardy Files
-tabling/*
-*.DS_Store
+.DS_Store
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/unit/coverage/
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Legacy Carbon Calculator Files
+/old_carbon_calculator/*
