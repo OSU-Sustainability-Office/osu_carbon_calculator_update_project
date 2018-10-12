@@ -14,7 +14,7 @@
 /*******************************************************************************
                           Begin Variable Declaration
  ******************************************************************************/
-
+console.log("Updated 10/11/18 - JW")
 // Totals for Each Category
 var trans_total;
 var cons_total;
