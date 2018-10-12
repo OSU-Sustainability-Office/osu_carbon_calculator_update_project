@@ -39,23 +39,37 @@ function updateData() {
   var seriesData = [
     [], [], [], [], [] // One column for each category.
   ];
+  var hd;
 
-  // Push the totals from each dataObject to chartist.js-compatible lists.
-  historicalData.forEach( function(dataObject, err){
-    // Push the totals for each category to the array.
-    for (var i = 0; i < seriesData.length; i++) seriesData[i].push(dataObject.totals[i]);
-
+  if (uid === null) {
+    for (var i = 0; i < seriesData.length; i++) seriesData[i].push(defaultData.totals[i]);
+    for (var i = 0; i < seriesData.length; i++) seriesData[i].push(data[i]);
 
     // Corvert the date into a user friendly format.
-    var date = new Date(Date.parse(dataObject.date));
+    var date = new Date(Date.parse(defaultData.date));
     labelData.push((date.getMonth() + 1) + "/"+ date.getDate());
-  });
+    labelData.push((date.getMonth() + 1) + "/"+ date.getDate());
+
+    hd = defaultData.totals;
+  } else {
+    // Push the totals from each dataObject to chartist.js-compatible lists.
+    userData.data.forEach( function(dataObject, err){
+      // Push the totals for each category to the array.
+      for (var i = 0; i < seriesData.length; i++) seriesData[i].push(dataObject.totals[i]);
+
+      // Corvert the date into a user friendly format.
+      var date = new Date(Date.parse(dataObject.date));
+      labelData.push((date.getMonth() + 1) + "/"+ date.getDate());
+    });
+
+    hd = userData.data[userData.data.length - 1].totals;
+  }
+
   user_historical_data = {
     series: seriesData,
     labels: labelData
   };
 
-  var hd = historicalData[historicalData.length - 1].totals;
   user_previous_data = { // For previous data pie chart.
     series: hd,
     labels: ["Transportation: " + data[0] + " kgC02", "Consumption: " + data[1] + " kgC02", "Energy and Heat: " + data[2] + " kgC02", "Food: " + data[3] + " kgC02", "Water: " + data[4] + " kgC02"] // Labels
@@ -120,7 +134,7 @@ const ctEqualBarWidth = function(options) {
       const bars = ctx.svg.querySelectorAll('.ct-bar');
       // !important is needed because CSS will override attributes
       bars.attr({
-        style: `stroke-width: ${ctx.axisX.stepLength-2}px !important;`
+        style: `stroke-width: ${ctx.axisX.stepLength-100}px !important;`
       });
     });
   }

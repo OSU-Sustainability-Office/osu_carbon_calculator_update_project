@@ -25,10 +25,11 @@ var water_total;
 var carbon_num_total;
 
 // ONID Variables
+var userData = null;
 var uid = null;
 var firstName = "";
 var primaryAffiliation;
-var historicalData = [{totals:[4808.4, 4979.9, 3692.1, 2404.2, 515.2], date: new Date().toLocaleDateString()}]; // Defaults to US Average data
+var defaultData = {totals:[4808.4, 4979.9, 3692.1, 2404.2, 515.2], date: new Date().toLocaleDateString()}; // Defaults to US Average data
 var loc = null; // Location information
 
 // Data array used for database upload/download
@@ -509,12 +510,12 @@ window.onload = function() {
   // Verify ONID Login by requesting for the User's Data
   var xmlHttp = new XMLHttpRequest()
   xmlHttp.withCredentials = true
-  xmlHttp.open("GET", "http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/auth/userData/allData", false); // false for synchronous request
+  xmlHttp.open("GET", "https://api.sustainability.oregonstate.edu/auth/userData/allData", false); // false for synchronous request
   xmlHttp.send(null);
   var res = xmlHttp.responseText;
-  if (!res.includes("Error")) {
+
+  if (!res.includes("400")) {
     updateUserVariables(res);
-    downloadHistData();
     closeONIDWindow();
   }
 
@@ -581,7 +582,7 @@ document.getElementById("close-btn").addEventListener("click", closeONIDWindow);
 // Update user variables, such as UID and name
 function updateUserVariables(res) {
 
-  var userData = JSON.parse(res)
+  userData = JSON.parse(res)
 
   // Set global Variables
   firstName = userData.firstName
@@ -593,44 +594,31 @@ function updateUserVariables(res) {
 
 }
 
-// Downloads historical data by appending a js script to the dom. This
-// circumvents CORS restrictions that arise when using traditional ajax methods.
-function downloadHistData() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4) {
-      historicalData = JSON.parse(xhttp.responseText)
-    }
-  }
-
-  xhttp.open('GET', 'http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/carbon/download/'+ uid, true)
-  xhttp.send()
-}
-
-// Creates a JSON object for the current user and sends a POST request to
-// uploadUser.php. We post to the PHP script instead of directly to the Database
-// to avoid no-access-control-allow-origin errors.
+// Creates a JSON object for the current user and calls the sustainability API
+// to update the database.
 function updateDB() {
-  if (uid != null) {
 
+  if (uid != null) {
+    // Create new data object for current calculation.
     var dataObject = {
       "date": new Date().toLocaleDateString(),
       "totals": data,
       "location": loc
     };
 
-    // Create the JSON object for the user.
-    var userObject = {
-      "UserID": uid,
-      "firstName": firstName,
-      "primaryAffiliation": primaryAffiliation,
-      "data": [dataObject]
-    };
+    // Update the JSON object for the user.
+    const l = userData.data.map(d => d.date).indexOf(dataObject.date)
+    if (l !== -1) {
+      userData.data[l] = dataObject
+    } else {
+      userData.data.push(dataObject)
+    }
 
     // Send the request
     let xhttp = new XMLHttpRequest();
     xhttp.open('POST', 'http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/carbon/upload', true);
     xhttp.setRequestHeader('Content-type', 'application/JSON');
-    xhttp.send(JSON.stringify(userObject));
+    xhttp.send(JSON.stringify(userData));
   }
+
 }
