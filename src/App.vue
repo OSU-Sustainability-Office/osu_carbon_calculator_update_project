@@ -9,6 +9,7 @@
 export default {
   name: 'App',
   created () {
+    // Update user variables (if logged in)
     this.$store.dispatch('user/setUserVars').then(() => {
       console.log('done')
     })

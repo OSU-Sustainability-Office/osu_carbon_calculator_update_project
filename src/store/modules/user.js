@@ -20,7 +20,7 @@ export default {
     },
     data: state => {
       return state.data
-    },
+    }
   },
   mutations: {
     // Initializes/updates all of the user variables.
@@ -33,9 +33,11 @@ export default {
   },
   actions: {
     setUserVars (context) {
-      UserApi.downloadUserData().then(userObject => {
-        context.commit('update', userObject)
-      })
+      if (UserApi.isLoggedIn()) {
+        UserApi.downloadUserData().then(userObject => {
+          context.commit('update', userObject)
+        })
+      }
     }
   }
 }
