@@ -7,7 +7,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    this.$store.dispatch('user/setUserVars').then(() => {
+      console.log('done')
+    })
+  }
 }
 </script>
 
