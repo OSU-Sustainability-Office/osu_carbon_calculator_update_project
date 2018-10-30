@@ -616,7 +616,7 @@ function updateDB() {
 
     // Send the request
     let xhttp = new XMLHttpRequest();
-    xhttp.open('POST', 'http://ec2-52-39-141-177.us-west-2.compute.amazonaws.com:3000/carbon/upload/'+uid, true);
+    xhttp.open('POST', 'https://api.sustainability.oregonstate.edu/carbon/upload/'+uid, true);
     xhttp.setRequestHeader('Content-type', 'application/JSON');
     xhttp.send(JSON.stringify(userData));
   }
