@@ -615,7 +615,8 @@ function updateDB() {
         userData.data.push(dataObject)
       }
     } else {
-      userData.data[0] = dataObject
+      userData.data = []
+      userData.data.push(dataObject)
     }
 
     // Send the request
