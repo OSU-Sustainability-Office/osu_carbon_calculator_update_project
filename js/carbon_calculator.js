@@ -622,7 +622,7 @@ function updateDB() {
 
     // Send the request
     let xhttp = new XMLHttpRequest();
-    xhttp.open('POST', 'https://api.sustainability.oregonstate.edu/carbon/upload/'+uid, true);
+    xhttp.open('POST', 'https://api.sustainability.oregonstate.edu/carbon/upload', true);
     xhttp.setRequestHeader('Content-type', 'application/JSON');
     xhttp.send(JSON.stringify(userData));
   }
