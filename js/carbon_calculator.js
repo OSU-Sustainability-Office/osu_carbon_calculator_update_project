@@ -588,6 +588,7 @@ function updateUserVariables(res) {
   firstName = userData.firstName
   primaryAffiliation = userData.primaryAffiliation
   uid = userData.onid
+  userData.UserID = userData.onid
 
   // Update header with user's name.
   var header = document.getElementsByClassName("well-md")[0].getElementsByTagName("h1")[0].innerHTML = "Hello, " + firstName + "! Welcome to your Carbon Calculator.";
@@ -617,8 +618,6 @@ function updateDB() {
     } else {
       userData.data = []
       userData.data.push(dataObject)
-      console.log(userData)
-      console.log(uid)
     }
 
     // Send the request
