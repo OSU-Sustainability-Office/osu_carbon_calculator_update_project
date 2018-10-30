@@ -617,6 +617,8 @@ function updateDB() {
     } else {
       userData.data = []
       userData.data.push(dataObject)
+      console.log(userData)
+      console.log(uid)
     }
 
     // Send the request
