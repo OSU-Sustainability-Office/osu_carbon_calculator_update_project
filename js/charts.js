@@ -41,7 +41,7 @@ function updateData() {
   ];
   var hd;
 
-  if (uid === null) {
+  if (uid === null || userData.data === undefined) {
     for (var i = 0; i < seriesData.length; i++) seriesData[i].push(defaultData.totals[i]);
     for (var i = 0; i < seriesData.length; i++) seriesData[i].push(data[i]);
 

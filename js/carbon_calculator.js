@@ -606,12 +606,14 @@ function updateDB() {
       "location": loc
     };
 
-    // Update the JSON object for the user.
-    const l = userData.data.map(d => d.date).indexOf(dataObject.date)
-    if (l !== -1) {
-      userData.data[l] = dataObject
-    } else {
-      userData.data.push(dataObject)
+    if (userData.data != undefined) {
+      // Update the JSON object for the user.
+      const l = userData.data.map(d => d.date).indexOf(dataObject.date)
+      if (l !== -1) {
+        userData.data[l] = dataObject
+      } else {
+        userData.data.push(dataObject)
+      }
     }
 
     // Send the request
