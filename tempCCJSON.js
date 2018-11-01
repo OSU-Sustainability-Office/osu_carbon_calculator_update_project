@@ -252,25 +252,300 @@
       ],
       color: '#0D5257'
     },
-    {//TODO Figure out how you're going to deal with this section.
+    {
       title: 'Energy and Heating',
       questions: [
         {
-          text: 'How much do you spend on furniture and appliances each year?',
+          text: 'If you\'re an on campus resident, choose from the following dorms:',
           input: {
-            type: 'value',
-            values: [{val: 0, coef: 0.614}]
+            type: 'list',
+            values: [
+              {val: 'None', coef: 0},
+              {val: 'Bloss', coef: 1154.00},
+              {val: 'Buxton', coef: 1343.37},
+              {val: 'Callahan', coef: 576.00},
+              {val: 'Cauthorn', coef: 703.2},
+              {val: 'Finley', coef: 1448.00},
+              {val: 'Halsell', coef: 1345.87},
+              {val: 'Hawley', coef: 1394.51},
+              {val: 'ILLC', coef: 4525.11},
+              {val: 'McNary', coef: 3759.93},
+              {val: 'Poling', coef: 225.43},
+              {val: 'Sackett', coef: 1097.95},
+              {val: 'Weatherford', coef: 2297.60},
+              {val: 'West', coef: 2096.40},
+              {val: 'Wilson', coef: 568.80},
+              {val: 'Tebeau', coef: 1745.24}
+            ]
           },
           visible: true,
           trigger: {
             parentQuestion: null,
             triggerValue: null
           },
-          metaData: 'Source: Carbon Calculator Spreadsheet: https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=1428571633'
+          metaData: 'Baseline for dorms only counts heating and lighting of each building. Data provided by OSU Sustainability Office & updated on 1/28/17 to reflect FY16 school year.'
         },
+        {
+          text: 'If you receive energy bills, select the "Simple" option. If not, select the "Complex" option.',
+          input: {
+            type: 'list',
+            values: [
+              {val: 'Simple', coef: 0},
+              {val: 'Complex', coef: 0}
+            ]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'Baseline for dorms only counts heating and lighting of each building. Data provided by OSU Sustainability Office & updated on 1/28/17 to reflect FY16 school year.'
+        },
+        {
+          text: 'How much do you usually pay for electricity each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 3.54452690167}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Simple'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        // TODO: Everything after this point in this section are just appliance-related questions
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        },
+        {
+          text: 'How much do you usually pay for gas each month (in Dollars)?',
+          input: {
+            type: 'dependentValue',
+            values: [
+              {val: 0, coef: 5.65092592593}
+            ]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 1,
+            triggerValue: 'Complex'
+          },
+          metaData: 'Need to add source for this calculation.'
+        }
       ],
       color: '#D3832B'
     },
+
     {
       title: 'Food',
       questions: [
