@@ -335,8 +335,22 @@
           text: 'From the following list of appliances, electronics, lighting, etc, input how many of each item are in your room and how many hours a day each item is in use or plugged in. If you own an item not listed below please be sure to fill in extra fields: What is the item and wattage? You can find the wattage on the bottom of most appliances. Be sure to multiply by 1000 if the wattage is given in kilowatts.',
           input: {
             type: 'table',
-            values: [ //TODO
-              {val: 0, coef: 5.65092592593}
+            values: [
+              ['Item', 'Quantity', 'Watts', 'Active Use (Hours/Day)', 'Standby Use (Hours/Day)'],
+              ['Refrigerator', '1', '160', '24', '0'],
+              ['Microwave', '1', '1000', '0', '0'],
+              ['Clock Radio', '1', '10', '0', '0'],
+              ['iPod Dock', '1', '100', '0', '0'],
+              ['Stereo Sound System', '1', '150', '0', '0'],
+              ['Desktop Computer', '1', '400', '0', '0'],
+              ['Computer Monitor', '1', '35', '0', '0'],
+              ['Laptop Computer', '1', '60', '0', '0'],
+              ['Printer', '1', '100', '0', '0'],
+              ['TV', '1', '115', '0', '0'],
+              ['Poirtable Fan', '1', '115', '0', '0'],
+              ['Floor Lamp', '1', '300', '0', '0'],
+              ['Game Console', '1', '140', '0', '0'],
+              ['Other', '1', '0', '0', '0']
             ]
           },
           visible: false,
@@ -353,21 +367,282 @@
     {
       title: 'Food',
       questions: [
-
+        {
+          text: 'On average, how many portions of red meat do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 3.48875}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 1/2 lbs of ground beef, or 4-5 ounces of cooked steak.'
+        },
+        {
+          text: 'On average, how many portions of dairy products or eggs do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 1.2192}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 3 eggs, 1 cup of yogurt or milk, or 4 slices of cheese.'
+        },
+        {
+          text: 'On average, how many portions of fruits and vegetables do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 0.09725}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 1 apple, orange or banana; 1 cup of diced fruit; 2 apricots, kiwis, or plums; 1 potato or tomatol; 1/2 cup of marinara sauce; 3/4 cup of cooked vegetables; 1 cup of salad.'
+        },
+        {
+          text: 'On average, how many portions of grains and baked products do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 0.1595}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 2 slices of bread; 1 bagel, roll, or english muffin, 1/2 cup of rice, pasta, quinoa, or oatmeal; 1 cup of dry cereal; 1 slice of cake; 2 medium chocolate chip cookies.'
+        },
+        {
+          text: 'On average, how many portions of poultry do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 0.515}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 4-5 ounces of cooked chicken/turkey; 7 chicken nuggets; 4 chicken wings; 5 slices of deli turkey.'
+        },
+        {
+          text: 'On average, how many portions of pork do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 0.73125}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 4-5 ounces of cooked pork.'
+        },
+        {
+          text: 'On average, how many portions of seafood do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 0.55125}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 4-5 ounces of cooked fish; 8 pieces of sushi/sashimi; 10 pieces of shrimp; 4-5 large scallops or 6-8 clams.'
+        },
+        {
+          text: 'On average, how many portions of nuts do you eat in a week?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 0.0426}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'A portion consists of: 24 almonds; 18 cashews; 35 peanuts; 12 macadamia nuts; 7 walnuts.'
+        },
+        {
+          text: 'How often do you eat processed food?',
+          input: {
+            type: 'list',
+            values: [
+              {val: 'Below Average', coef: .015},
+              {val: 'Average', coef: .05},
+              {val: 'Above Average', coef: -0.05}
+            ]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        },
+        {
+          text: 'On average, how much do you spend while eating out each month?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 2.8756}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'Source: http://www.carbonfootprint.com/calculatorfaqs.html'
+        },
+        {
+          text: 'If you drink coffee or tea, please select from the following options:',
+          input: {
+            type: 'list',
+            values: [
+              {val: 'Black Coffee', coef: 21},
+              {val: 'Coffee with Cream or Sugar', coef: 71},
+              {val: 'Lattes or Cappuccinos', coef: 340},
+              {val: 'Tea', coef: 0}
+            ]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question was added from the previous carbon calculator, but has no source attributed. Metadata will be updated when a source is found.'
+        },
+        {
+          text: 'How often do you drink the beverage you selected?',
+          input: {
+            type: 'dependentValue',
+            values: [{val: 0, coef: 0.052}]
+          },
+          visible: false,
+          trigger: {
+            parentQuestion: 9,
+            triggerValue: null // Means this is triggered by any value
+          },
+          metaData: 'This question was added from the previous carbon calculator, but has no source attributed. Metadata will be updated when a source is found.'
+        },
+        {
+          text: 'Do you purchase food from farmers markets?',
+          input: {
+            type: 'list',
+            values: [
+              {val: 'Yes', coef: 0.06826625},
+              {val: 'No', coef: 0.06826625}
+            ]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        }
       ],
       color: '#003B5C'
     },
     {
       title: 'Water',
       questions: [
-
+        {
+          text: 'On average, how long are your showers?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 2.17686}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        },
+        {
+          text: 'On average, how many loads of laundry do you wash each month?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 1.0366}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        },
+        {
+          text: 'On average, how many times do you flush a toilet each day?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 3.73176}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        },
+        {
+          text: 'On average, how many cups of water do you drink every day (from the tap or a water fountain)?',
+          input: {
+            type: 'value',
+            values: [{val: 0, coef: 0.0647875}]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        },
+        {
+          text: 'Do you use a refillable water bottle?',
+          input: {
+            type: 'value',
+            values: [
+              {val: 'Yes', coef: 0},
+              {val: 'No', coef: 0}
+            ]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        }
       ],
       color: '#7A6855'
     },
     {
       title: 'Waste',
       questions: [
-
+        {
+          text: '<p>Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p> <p>But what’s more important? While it’s great we have minimal waste disposal-related emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture, purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the “Next Steps” tab.</p>',
+          input: {
+            type: 'text',
+            values: [
+              {val: 0, coef: 0}
+            ]
+          },
+          visible: true,
+          trigger: {
+            parentQuestion: null,
+            triggerValue: null
+          },
+          metaData: 'This question is not factored into your final score, but will be once we find a source for CO2e conversions.'
+        }
       ],
       color: '#FFFFFF'
     }
