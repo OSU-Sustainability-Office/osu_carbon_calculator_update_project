@@ -5,6 +5,13 @@ import axios from 'axios' // Imported to interact with sustainability API.
 import App from '@/App'
 import router from '@/router'
 import store from '@/store'
+import elm from 'element-ui'
+import Vuei18n from 'vue-i18n'
+import locale from 'element-ui/lib/locale/lang/en'
+
+// For element UI
+Vue.use(Vuei18n)
+Vue.use(elm, { locale: locale })
 
 Vue.config.productionTip = false
 
@@ -14,8 +21,8 @@ axios.defaults.baseURL = 'https://api.sustainability.oregonstate.edu'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router, // Imported
-  store, // Imported
-  components: { App }, // App is imported
+  router,
+  store,
+  components: { App },
   template: '<App/>'
 })
