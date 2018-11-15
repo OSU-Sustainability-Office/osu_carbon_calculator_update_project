@@ -1,4 +1,4 @@
-# osu-carbon-calculator
+# OSU Carbon Calculator
 
 > This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in Oregon State University’s initiative to be carbon neutral by 2025. This calculator was originally created by OSU grad students, and was based on a calculator developed by Santa Clara University. For more information, please visit their website.
 
