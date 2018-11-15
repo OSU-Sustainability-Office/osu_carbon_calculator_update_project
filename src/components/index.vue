@@ -33,7 +33,7 @@ export default {
     logo,
     introText,
     calcAccordion
-  },
+  }
 }
 </script>
 

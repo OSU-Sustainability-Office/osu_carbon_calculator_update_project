@@ -5,7 +5,11 @@ export default{
   isLoggedIn () {
     return axios.get('auth/userData/onid', {withCredentials: true})
       .then(res => {
-        return true
+        if (res.status === 200) {
+          return true
+        } else {
+          return false
+        }
       }).catch(function () {
         return false
       })

@@ -7,21 +7,13 @@
 <script>
 export default {
   name: 'navbar',
-  created () {
-    // Update user variables (if logged in)
-    this.$store.dispatch('user/setUserVars').then(() => {
-      console.log('done')
-    })
-  },
   data () {
     return {
       activeIndex: '1'
     }
   },
   methods: {
-    handleSelect (key, keyPath) {
-      console.log(key, keyPath)
-    }
+    handleSelect (key, keyPath) {}
   }
 }
 </script>

@@ -5,7 +5,9 @@ export default{
   downloadCategories () {
     return axios.get('carbon/questions/download', {withCredentials: true})
       .then(res => {
-        return JSON.parse(res.data)
+        return res.data
+      }).catch(e => {
+        return []
       })
   }
 }

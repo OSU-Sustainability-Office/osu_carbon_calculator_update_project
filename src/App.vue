@@ -24,9 +24,10 @@ export default {
   },
   created () {
     // Update user variables (if logged in)
-    this.$store.dispatch('user/setUserVars').then(() => {
-      console.log('done')
-    })
+    this.$store.dispatch('user/setUserVars')
+
+    // Download the cc categories and questions
+    this.$store.dispatch('calculator/downloadCategories')
   }
 }
 </script>

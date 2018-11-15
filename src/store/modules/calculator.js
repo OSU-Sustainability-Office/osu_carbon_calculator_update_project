@@ -23,7 +23,9 @@ export default {
     // Downloads all of the questions and categories
     downloadCategories (context) {
       ccApi.downloadCategories().then(categories => {
-        context.commit('initializeCategories', categories)
+        context.commit('initializeCategories', categories.sort((a, b) => {
+          return a.categoryID > b.categoryID
+        }))
       })
     }
   }
