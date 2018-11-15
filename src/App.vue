@@ -10,6 +10,11 @@
         <router-view/>
       </el-main>
 
+      <el-button @click="visible = true">Button</el-button>
+      <el-dialog :visible.sync="visible" title="Hello world">
+        <p>Try Element</p>
+      </el-dialog>
+
     </el-container>
   </div>
 </template>
@@ -28,6 +33,9 @@ export default {
 
     // Download the cc categories and questions
     this.$store.dispatch('calculator/downloadCategories')
+  },
+  data: function() {
+    return {visible: false}
   }
 }
 </script>
