@@ -39,14 +39,6 @@ export default {
       state.data = userObject.data
       state.isLoggedIn = true
       state.administrator = userObject.administrator
-    },
-    logout (state) {
-      state.onid = ''
-      state.firstName = ''
-      state.primaryAffiliation = ''
-      state.data = []
-      state.isLoggedIn = false
-      state.administrator = false
     }
   },
   actions: {
