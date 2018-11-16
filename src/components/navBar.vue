@@ -17,9 +17,13 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      loggedOut: !this.$store.getters['user/isLoggedIn'],
       administrator: this.$store.getters['user/administrator'],
       loginLink: 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location
+    }
+  },
+  computed: {
+    loggedOut () {
+      return !this.$store.getters['user/isLoggedIn']
     }
   },
   methods: {
