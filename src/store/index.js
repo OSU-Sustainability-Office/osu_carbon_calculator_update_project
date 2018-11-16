@@ -7,7 +7,7 @@ Vue.use(Vuex) // Use Vuex as central data store
 
 export default new Vuex.Store({
   state: {
-    isLoggedIn: false // This becomes true if the user decides to login with ONID
+
   },
   getters: {
 

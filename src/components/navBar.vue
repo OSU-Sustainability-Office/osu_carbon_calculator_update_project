@@ -1,7 +1,14 @@
 <template>
-  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-    <el-menu-item index="1">Processing Center</el-menu-item>
-  </el-menu>
+<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+  <el-menu-item index="1">Oregon State University Sustainability Office</el-menu-item>
+  <el-menu-item v-if="loggedOut" index="2">Login</el-menu-item>
+  <el-submenu v-else index="3">
+    <template slot="title">My Account</template>
+    <el-menu-item index="3-1">Historical Data</el-menu-item>
+    <el-menu-item index="3-2">Energy Dashboard</el-menu-item>
+    <el-menu-item v-if="administrator" index="3-3">Edit Calculator</el-menu-item>
+  </el-submenu>
+</el-menu>
 </template>
 
 <script>
@@ -9,11 +16,24 @@ export default {
   name: 'navbar',
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      loggedOut: !this.$store.getters['user/isLoggedIn'],
+      administrator: this.$store.getters['user/administrator'],
+      loginLink: 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location
     }
   },
   methods: {
-    handleSelect (key, keyPath) {}
+    handleSelect (key, keyPath) {
+      console.log(key)
+      switch (key) {
+        case '2':
+          window.location = this.loginLink
+          break
+        default:
+          console.log('blah')
+          break
+      }
+    }
   }
 }
 </script>

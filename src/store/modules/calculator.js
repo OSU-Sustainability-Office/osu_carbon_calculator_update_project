@@ -24,7 +24,7 @@ export default {
     downloadCategories (context) {
       ccApi.downloadCategories().then(categories => {
         context.commit('initializeCategories', categories.sort((a, b) => {
-          return a.categoryID > b.categoryID
+          return a.categoryID > b.categoryID ? 1 : -1
         }))
       })
     }
