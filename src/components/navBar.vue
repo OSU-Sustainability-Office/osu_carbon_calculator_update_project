@@ -1,6 +1,6 @@
 <template>
 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-  <el-menu-item index="1"><img src="/static/images/logo.svg" height="100%"/>
+  <el-menu-item index="1"><svgLogo />
   </el-menu-item>
   <el-menu-item v-if="loggedOut" index="2">Login</el-menu-item>
   <el-submenu v-else index="3">
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import svgLogo from '../../public/static/images/logo.svg'
+
 export default {
   name: 'navbar',
   data () {
@@ -44,6 +46,9 @@ export default {
           break
       }
     }
+  },
+  components: {
+    svgLogo
   }
 }
 </script>
