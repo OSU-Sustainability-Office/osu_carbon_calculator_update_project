@@ -1,6 +1,6 @@
 <template>
 <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-  <el-menu-item index="1"><svgLogo />
+  <el-menu-item index="1"><svgLogo class="logo"/>
   </el-menu-item>
   <el-menu-item v-if="loggedOut" index="2">Login</el-menu-item>
   <el-submenu v-else index="3">
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style scoped>
-.el-menu .el-menu-horizontal {
-  background: #DC4405;
+.logo {
+  height: 50px;
 }
 </style>
