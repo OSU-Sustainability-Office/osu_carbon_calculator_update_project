@@ -8,8 +8,7 @@ import store from '@/store/index.js'
 import elm from 'element-ui'
 import Vuei18n from 'vue-i18n'
 import locale from 'element-ui/lib/locale/lang/en'
-import 'element-ui/lib/theme-chalk/reset.css'
-import '@/assets/style-variables.scss'
+import '@/assets/element-variables.scss'
 
 // For element UI
 Vue.use(Vuei18n)
