@@ -3,12 +3,13 @@
 import Vue from 'vue'
 import axios from 'axios' // Imported to interact with sustainability API.
 import App from '@/App'
-import router from '@/router'
-import store from '@/store'
+import router from '@/router/index.js'
+import store from '@/store/index.js'
 import elm from 'element-ui'
 import Vuei18n from 'vue-i18n'
 import locale from 'element-ui/lib/locale/lang/en'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/reset.css'
+import '@/assets/style-variables.scss'
 
 // For element UI
 Vue.use(Vuei18n)
