@@ -1,34 +1,7 @@
-# osu-carbon-calculator
+# Carbon Calculator
 
-## Project setup
-```
-npm install
-```
+## [Production Build](https://myco2.sustainability.oregonstate.edu)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## [Test Build](http://carbon-calculator.s3-website-us-west-2.amazonaws.com)
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## [Documentation](https://osusustainability.gitbook.io/energy-dashboard/frontend-documentation#carbon-calculator)
