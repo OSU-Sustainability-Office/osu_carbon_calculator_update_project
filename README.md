@@ -1,4 +1,4 @@
-# Carbon Calculator - [![Build Status](https://travis-ci.org/OSU-Sustainability-Office/osu_carbon_calculator_update_project.svg?branch=VueJS-Migration)](https://travis-ci.org/OSU-Sustainability-Office/osu_carbon_calculator_update_project/)
+# Carbon Calculator - [![Build Status](https://travis-ci.org/OSU-Sustainability-Office/osu_carbon_calculator_update_project.svg?branch=VueJS-Migration)](https://travis-ci.org/OSU-Sustainability-Office/osu_carbon_calculator_update_project)
 
 ## [Production Build](https://myco2.sustainability.oregonstate.edu)
 
