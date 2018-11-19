@@ -50,5 +50,4 @@ body {
 }
 </style>
 <style scoped lang='scss'>
-@import '@/assets/element-variables.scss';
 </style>

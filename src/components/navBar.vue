@@ -53,8 +53,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .logo {
-  height: 50px;
+  height: 4em;
 }
 </style>

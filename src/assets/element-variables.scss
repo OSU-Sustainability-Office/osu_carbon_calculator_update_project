@@ -602,6 +602,8 @@ $--menu-item-color: $--color-text-primary !default;
 $--menu-item-fill: $--color-primary !default;
 $--menu-item-hover-fill: $--color-primary !default;
 $--menu-item-border: $--color-black !default;
+$--menu-item-dropdown-background: $--color-black !default;
+$--menu-item-dropdown-border: $--color-primary;
 
 /* Rate
 --------------------------*/
@@ -674,15 +676,15 @@ $--transfer-filter-height: 32px !default;
 
 /* Header
   --------------------------*/
-$--header-padding: 0 20px !default;
+$--header-padding: 0 0px !default;
 
 /* Footer
 --------------------------*/
-$--footer-padding: 0 20px !default;
+$--footer-padding: 0 0px !default;
 
 /* Main
 --------------------------*/
-$--main-padding: 20px !default;
+$--main-padding: 0px !default;
 
 /* Break-point
 --------------------------*/
