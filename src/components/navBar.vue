@@ -42,7 +42,6 @@ export default {
           this.$store.commit('user/logout')
           break
         default:
-          console.log('blah')
           break
       }
     }
