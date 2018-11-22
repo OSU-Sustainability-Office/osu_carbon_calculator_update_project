@@ -76,6 +76,7 @@
       &:hover {
         outline: none;
         .el-submenu__title {
+          // Submenu hover
           color: $--color-text-primary;
         }
       }
@@ -124,9 +125,11 @@
       outline: none;
       color: $--color-text-secondary;
       text-decoration: underline;
+      background: #962C06;
     }
     & > .el-menu-item.is-active {
-      border-bottom: 2px solid $--menu-item-border;
+      // Determines the color of the selected nav element
+      background: #962C06;
       color: $--color-text-primary;
     }
   }
