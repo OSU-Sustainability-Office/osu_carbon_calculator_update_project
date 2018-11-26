@@ -1,23 +1,24 @@
 <template>
 
-  <el-form ref="form" :model="form" label-width="120px" v-display="questionData.visible">
+  <div class="question">
+
     {{questionData.text}} <br />
-    <el-select placeholder="Select One">
+
+    <el-select v-model="value" placeholder="Select One">
       <el-option
-        v-for="(choice, index) in questionData.input.values"
-        :key="index"
+        v-for="choice in questionData.input.values"
+        :key="choice.val"
         :label="choice.val"
         :value="choice.val"
         :coef="choice.coef">
       </el-option>
     </el-select>
 
-  </el-form>
+  </div>
 
 </template>
 
 <script>
-
 export default {
   name: 'list',
   props: {
