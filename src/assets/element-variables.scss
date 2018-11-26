@@ -41,7 +41,7 @@ $--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
 $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
 
 $--color-text-primary: #000 !default;
-$--color-text-regular: #fff !default;
+$--color-text-regular: #000 !default;
 $--color-text-secondary: #fff !default;
 $--color-text-placeholder: #c0c4cc !default;
 
@@ -314,7 +314,7 @@ $--notification-danger-color: $--color-danger !default;
 /* Input
 -------------------------- */
 $--input-font-size: $--font-size-base !default;
-$--input-color: $--color-text-regular !default;
+$--input-color: $--color-text-primary !default;
 $--input-width: 140px !default;
 $--input-height: 40px !default;
 $--input-border: $--border-base !default;

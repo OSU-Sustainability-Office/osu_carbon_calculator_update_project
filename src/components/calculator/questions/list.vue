@@ -2,7 +2,6 @@
 
   <el-form ref="form" :model="form" label-width="120px" v-display="questionData.visible">
     {{questionData.text}} <br />
-    blah
     <el-select placeholder="Select One">
       <el-option
         v-for="(choice, index) in questionData.input.values"
@@ -21,7 +20,9 @@
 
 export default {
   name: 'list',
-  props: ['questionData']
+  props: {
+    'questionData': Object
+  }
 }
 </script>
 

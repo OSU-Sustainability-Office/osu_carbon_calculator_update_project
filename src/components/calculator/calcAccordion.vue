@@ -4,7 +4,7 @@
   <el-collapse v-model="catAccordion" accordion>
 
     <el-collapse-item v-for="category in categories" :key="category.categoryID" :title="category.title" :name="category.categoryID">
-      <list questionData="category.questions[0]" />
+      <list v-bind:questionData="category.questions[0]" />
 
     </el-collapse-item>
 
