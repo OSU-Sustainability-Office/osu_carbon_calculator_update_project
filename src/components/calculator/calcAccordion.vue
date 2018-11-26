@@ -4,7 +4,7 @@
   <el-collapse v-model="catAccordion" accordion>
     <el-collapse-item v-for="category in categories" :key="category.categoryID" :title="category.title" :name="category.categoryID">
 
-      <component v-for="question in category.questions" v-bind:is="question.input.type" v-bind:questionData="question" />
+      <component v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" />
 
     </el-collapse-item>
   </el-collapse>
@@ -17,7 +17,7 @@
 import list from '@/components/calculator/questions/list'
 import dependentValue from '@/components/calculator/questions/dependentValue'
 import value from '@/components/calculator/questions/value'
-import text from '@/components/calculator/questions/text'
+import paragraph from '@/components/calculator/questions/paragraph'
 
 export default {
   name: 'calcAccordion',
@@ -34,7 +34,7 @@ export default {
     list,
     dependentValue,
     value,
-    text
+    paragraph
   }
 }
 </script>

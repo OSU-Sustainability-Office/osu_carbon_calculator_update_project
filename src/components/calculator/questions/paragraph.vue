@@ -2,7 +2,7 @@
 
   <div class="question">
 
-    <br /> Hello
+    <span v-html="questionData.text"></span> <br />
 
   </div>
 
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'text',
+  name: 'paragraph',
   props: {
     'questionData': Object
   }
