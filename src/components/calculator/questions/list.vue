@@ -3,10 +3,9 @@
 
   {{questionData.text}} <br />
 
-  <el-select v-model="questionData.value" placeholder="Select One">
+  <el-select v-model="questionData.value" @change="updateQuestionValue" placeholder="Select One">
     <el-option v-for="choice in questionData.input.values" :key="choice.val" :label="choice.val" :value="choice.val" :coef="choice.coef" />
   </el-select>
-
 
 </div>
 </template>
@@ -17,6 +16,15 @@ export default {
   props: {
     'questionData': Object,
     'index': Number
+  },
+  created () {
+    this.questionData.value = this.questionData.input.values[0].val
+    this.$store.commit('updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+  },
+  methods: {
+    updateQuestionValue () {
+      this.$store.commit('updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+    }
   }
 }
 </script>

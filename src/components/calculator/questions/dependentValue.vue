@@ -1,30 +1,29 @@
 <template>
 
-  <div class="question">
-
-    {{questionData.text}} <br />
-
-    <el-input-number v-model="questionData.value" @change="handleChange" :min="1" :max="10" />
-
-  </div>
+  <!-- draw a value question if the question should be visible -->
+  <value v-if="showQuestion" v-bind:questionData="questionData" v-bind:index="index" />
 
 </template>
 
 <script>
+import value from '@/components/calculator/questions/value'
 export default {
   name: 'dependentValue',
   props: {
-    'questionData': Object
+    'questionData': Object,
+    'index': Number,
+    'categoryID': Number
   },
-  methods: {
-    handleChange (value) {
-      console.log(value)
+  computed: {
+    showQuestion () {
+      const parentQuestion = this.$store.getters['calculator/categories'][this.categoryID].questions[this.questionData.trigger.parentQuestion]
+
+      // Return true if the trigger value matches the parent's value, or return true if the trigger value is 'any' and the parent's value is not the default
+      return (parentQuestion.value === this.questionData.trigger.triggerValue) || (this.questionData.trigger.triggerValue === 'any' && parentQuestion.value !== parentQuestion.input.values[0].val)
     }
   },
-  data () {
-    return {
-      num: '1'
-    }
+  components: {
+    value
   }
 }
 </script>

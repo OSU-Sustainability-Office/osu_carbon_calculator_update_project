@@ -4,7 +4,7 @@
 
     {{questionData.text}} <br />
 
-    <el-input-number v-model="questionData.value" @change="handleChange" :min="1" :max="10" />
+    <el-input-number v-model="questionData.value" @change="updateQuestionValue" :min="1" :max="10" />
 
   </div>
 
@@ -17,8 +17,8 @@ export default {
     'questionData': Object
   },
   methods: {
-    handleChange (value) {
-      console.log(value)
+    updateQuestionValue () {
+      this.$store.commit('updateQuestionValue', this.categoryID, this.index, this.questionData.value)
     }
   },
   data () {

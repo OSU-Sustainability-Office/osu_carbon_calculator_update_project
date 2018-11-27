@@ -15,6 +15,10 @@ export default {
     updateCategoryTotal (state, categoryID, newTotal) {
       state.categories[categoryID].total = newTotal
     },
+    // Updates the value input by the user
+    updateQuestionValue (state, categoryID, questionIndex, value) {
+      state.categories[categoryID].questions[questionIndex].value = value
+    },
     initializeCategories (state, categories) {
       state.categories = categories
     }
