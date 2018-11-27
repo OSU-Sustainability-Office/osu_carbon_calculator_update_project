@@ -3,9 +3,8 @@
 
   {{questionData.text}} <br />
 
-  <el-select v-model="value" placeholder="Select One">
-    <el-option v-for="choice in questionData.input.values" :key="choice.val" :label="choice.val" :value="choice.val" :coef="choice.coef">
-    </el-option>
+  <el-select v-model="questionData.value" placeholder="Select One">
+    <el-option v-for="choice in questionData.input.values" :key="choice.val" :label="choice.val" :value="choice.val" :coef="choice.coef" />
   </el-select>
 
 
@@ -16,12 +15,8 @@
 export default {
   name: 'list',
   props: {
-    'questionData': Object
-  },
-  data () {
-    return {
-      value: ''
-    }
+    'questionData': Object,
+    'index': Number
   }
 }
 </script>

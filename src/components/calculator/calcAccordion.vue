@@ -4,7 +4,7 @@
   <el-collapse v-model="catAccordion" accordion>
     <el-collapse-item v-for="category in categories" :key="category.categoryID" :title="category.title" :name="category.categoryID">
 
-      <component v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" />
+      <component v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-model="question.value" />
 
     </el-collapse-item>
   </el-collapse>

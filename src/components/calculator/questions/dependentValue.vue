@@ -4,7 +4,7 @@
 
     {{questionData.text}} <br />
 
-    <el-input-number v-model="num1" @change="handleChange" :min="1" :max="10" />
+    <el-input-number v-model="questionData.value" @change="handleChange" :min="1" :max="10" />
 
   </div>
 
@@ -19,6 +19,11 @@ export default {
   methods: {
     handleChange (value) {
       console.log(value)
+    }
+  },
+  data () {
+    return {
+      num: '1'
     }
   }
 }
