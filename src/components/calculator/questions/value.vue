@@ -4,7 +4,7 @@
 
     {{questionData.text}} <br />
 
-    <el-input-number v-model="questionData.value" @change="updateQuestionValue" :min="1" :max="10" />
+    <el-input-number v-model="questionData.value" @change="updateQuestionValue" :min="0" />
 
   </div>
 
@@ -14,11 +14,27 @@
 export default {
   name: 'value',
   props: {
-    'questionData': Object
+    'questionData': Object,
+    'index': Number,
+    'categoryID': Number
+  },
+  created () {
+    this.questionData.value = 0
+    this.$store.commit({
+      type: 'calculator/updateQuestionValue',
+      categoryID: this.categoryID,
+      questionIndex: this.index,
+      value: this.questionData.value
+    })
   },
   methods: {
     updateQuestionValue () {
-      this.$store.commit('calculator/updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+      this.$store.commit({
+        type: 'calculator/updateQuestionValue',
+        categoryID: this.categoryID,
+        questionIndex: this.index,
+        value: this.questionData.value
+      })
     }
   },
   data () {

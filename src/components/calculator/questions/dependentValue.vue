@@ -1,12 +1,13 @@
 <template>
 
   <!-- draw a value question if the question should be visible -->
-  <value v-if="showQuestion" v-bind:questionData="questionData" v-bind:index="index" />
+  <value v-if="showQuestion" v-bind:questionData="questionData" v-bind:index="index" v-bind:categoryID="categoryID" />
 
 </template>
 
 <script>
 import value from '@/components/calculator/questions/value'
+
 export default {
   name: 'dependentValue',
   props: {

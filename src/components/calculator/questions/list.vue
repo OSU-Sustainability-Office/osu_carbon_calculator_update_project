@@ -3,7 +3,7 @@
 
   {{questionData.text}} <br />
 
-  <el-select v-model="questionData.value" @change="updateQuestionValue" placeholder="Select One">
+  <el-select v-model="value" @change="updateQuestionValue" placeholder="Select One">
     <el-option v-for="choice in questionData.input.values" :key="choice.val" :label="choice.val" :value="choice.val" :coef="choice.coef" />
   </el-select>
 
@@ -15,15 +15,31 @@ export default {
   name: 'list',
   props: {
     'questionData': Object,
-    'index': Number
+    'index': Number,
+    'categoryID': Number
+  },
+  data () {
+    return {
+      value: ''
+    }
   },
   created () {
-    this.questionData.value = this.questionData.input.values[0].val
-    this.$store.commit('calculator/updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+    this.value = this.questionData.input.values[0].val
+    this.$store.commit({
+      type: 'calculator/updateQuestionValue',
+      categoryID: this.categoryID,
+      questionIndex: this.index,
+      value: this.value
+    })
   },
   methods: {
     updateQuestionValue () {
-      this.$store.commit('calculator/updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+      this.$store.commit({
+        type: 'calculator/updateQuestionValue',
+        categoryID: this.categoryID,
+        questionIndex: this.index,
+        value: this.value
+      })
     }
   }
 }
