@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     updateQuestionValue () {
-      this.$store.commit('updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+      this.$store.commit('calculator/updateQuestionValue', this.categoryID, this.index, this.questionData.value)
     }
   },
   data () {

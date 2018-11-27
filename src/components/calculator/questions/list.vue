@@ -19,11 +19,11 @@ export default {
   },
   created () {
     this.questionData.value = this.questionData.input.values[0].val
-    this.$store.commit('updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+    this.$store.commit('calculator/updateQuestionValue', this.categoryID, this.index, this.questionData.value)
   },
   methods: {
     updateQuestionValue () {
-      this.$store.commit('updateQuestionValue', this.categoryID, this.index, this.questionData.value)
+      this.$store.commit('calculator/updateQuestionValue', this.categoryID, this.index, this.questionData.value)
     }
   }
 }
