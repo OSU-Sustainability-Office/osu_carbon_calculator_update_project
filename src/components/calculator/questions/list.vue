@@ -1,21 +1,15 @@
 <template>
+<div class="question">
 
-  <div class="question">
+  {{questionData.text}} <br />
 
-    {{questionData.text}} <br />
+  <el-select v-model="value" placeholder="Select One">
+    <el-option v-for="choice in questionData.input.values" :key="choice.val" :label="choice.val" :value="choice.val" :coef="choice.coef">
+    </el-option>
+  </el-select>
 
-    <el-select v-model="value" placeholder="Select One">
-      <el-option
-        v-for="choice in questionData.input.values"
-        :key="choice.val"
-        :label="choice.val"
-        :value="choice.val"
-        :coef="choice.coef">
-      </el-option>
-    </el-select>
 
-  </div>
-
+</div>
 </template>
 
 <script>
@@ -23,6 +17,11 @@ export default {
   name: 'list',
   props: {
     'questionData': Object
+  },
+  data () {
+    return {
+      value: ''
+    }
   }
 }
 </script>
