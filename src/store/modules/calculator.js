@@ -20,6 +20,12 @@ export default {
       state.categories[payload.categoryID].questions[payload.questionIndex].value = payload.value
     },
     initializeCategories (state, categories) {
+      // Initialize value endpoint for computed property reactivity
+      categories.forEach(c => {
+        c.questions.forEach(q => {
+          q.value = 'default'
+        })
+      })
       state.categories = categories
     }
   },

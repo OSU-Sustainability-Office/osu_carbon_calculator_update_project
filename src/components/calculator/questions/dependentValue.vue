@@ -16,11 +16,17 @@ export default {
     'categoryID': Number
   },
   computed: {
+    parentQuestion () {
+      return this.$store.state.calculator.categories[this.categoryID].questions[this.questionData.trigger.parentQuestion]
+    },
     showQuestion () {
-      const parentQuestion = this.$store.getters['calculator/categories'][this.categoryID].questions[this.questionData.trigger.parentQuestion]
-
       // Return true if the trigger value matches the parent's value, or return true if the trigger value is 'any' and the parent's value is not the default
-      return (parentQuestion.value === this.questionData.trigger.triggerValue) || (this.questionData.trigger.triggerValue === 'any' && parentQuestion.value !== parentQuestion.input.values[0].val)
+      return (this.triggerValue === 'any' && this.parentQuestion.value !== this.parentQuestion.input.values[0].val) || (this.parentQuestion.value === this.triggerValue)
+    }
+  },
+  data () {
+    return {
+      triggerValue: this.questionData.trigger.triggerValue
     }
   },
   components: {
