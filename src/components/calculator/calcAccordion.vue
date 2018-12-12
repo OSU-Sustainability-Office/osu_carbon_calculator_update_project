@@ -2,9 +2,18 @@
 <el-col :span="24" v-loading="loading">
 
   <el-collapse v-model="catAccordion" accordion>
+
+    <!-- Iterate over each category and render the questions -->
     <el-collapse-item v-for="category in categories" :key="category.categoryID" :title="category.title" :name="category.categoryID">
 
       <component v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
+
+    </el-collapse-item>
+
+    <!-- Display Results -->
+    <el-collapse-item title="Results" name="Results">
+
+      <graph />
 
     </el-collapse-item>
   </el-collapse>
@@ -18,6 +27,7 @@ import list from '@/components/calculator/questions/list'
 import dependentValue from '@/components/calculator/questions/dependentValue'
 import value from '@/components/calculator/questions/value'
 import paragraph from '@/components/calculator/questions/paragraph'
+import graph from '@/components/calculator/graphs/graph'
 
 export default {
   name: 'calcAccordion',
@@ -34,7 +44,8 @@ export default {
     list,
     dependentValue,
     value,
-    paragraph
+    paragraph,
+    graph
   }
 }
 </script>

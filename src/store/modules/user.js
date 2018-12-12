@@ -43,6 +43,7 @@ export default {
   },
   actions: {
     setUserVars (context) {
+      // Download user data using the user api
       if (UserApi.isLoggedIn()) {
         UserApi.downloadUserData().then(userObject => {
           context.commit('update', userObject)

@@ -3,11 +3,15 @@ import ccApi from '@/utils/api/cc.js'
 export default {
   namespaced: true,
   state: {
-    categories: [] // Contains all of the categories, and their questions
+    categories: [], // Contains all of the categories, and their questions
+    graphs: []
   },
   getters: {
     categories: state => {
       return state.categories
+    },
+    graphs: state => {
+      return state.graphs
     }
   },
   mutations: {
