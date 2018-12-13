@@ -27,6 +27,7 @@ import list from '@/components/calculator/questions/list'
 import dependentValue from '@/components/calculator/questions/dependentValue'
 import value from '@/components/calculator/questions/value'
 import paragraph from '@/components/calculator/questions/paragraph'
+import tableQuestion from '@/components/calculator/questions/tableQuestion'
 import graph from '@/components/calculator/graphs/graph'
 
 export default {
@@ -45,6 +46,7 @@ export default {
     dependentValue,
     value,
     paragraph,
+    tableQuestion,
     graph
   }
 }

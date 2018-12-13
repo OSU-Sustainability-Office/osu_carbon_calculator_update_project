@@ -34,16 +34,21 @@ export default {
               // Find the location of the correct coefficient in parentQuestion's value list by mapping and linear searching array
               valueMap = parentQuestion.input.values.map(obj => obj.val)
               location = valueMap.indexOf(triggerValue)
-
-              // eslint-disable-next-line
-            } else if (triggerValue == 'any') {
+            } else { // if (triggerValue == 'any')
               // Find the location of the correct coefficient in parentQuestion's value list by mapping and linear searching array
               valueMap = parentQuestion.input.values.map(obj => obj.val)
               location = valueMap.indexOf(parentQuestion.value)
             }
 
-            // Multiply the current question's value to the parent question's coefficient
-            if (!isNaN(question.value) && !isNaN(parentQuestion.input.values[location].coef)) total += question.value * parentQuestion.input.values[location].coef
+            // Add to the total for this category
+            // If the parentQuestion has a 0 coefficient, the child question has the coefficient
+            if (parentQuestion.input.values[location].coef === 0) {
+              // Multiply the current question's value to the parent question's coefficient
+              total += question.value * question.input.values[0].coef
+            } else {
+              // Multiply the current question's value to the parent question's coefficient
+              if (!isNaN(question.value) && !isNaN(parentQuestion.input.values[location].coef)) total += question.value * parentQuestion.input.values[location].coef
+            }
 
             // eslint-disable-next-line
           } else if (question.input.type == 'value') {
