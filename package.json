@@ -32,5 +32,20 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
-  }
+  },
+  "description": "## [Production Build](https://myco2.sustainability.oregonstate.edu)",
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project.git"
+  },
+  "author": "Jack Woods & Brogan Miner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project/issues"
+  },
+  "homepage": "https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project#readme"
 }
