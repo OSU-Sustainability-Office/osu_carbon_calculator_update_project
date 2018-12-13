@@ -61,10 +61,10 @@ export default {
 
       // Add this row to tableData
       this.tableData.push(rowObj)
-
-      // Disable the loading animation (enabled when component is rendered)
-      this.loading = false
     })
+
+    // Disable the loading animation (enabled when component is rendered)
+    this.loading = false
   },
   computed: {
     parentQuestion () {
@@ -84,6 +84,17 @@ export default {
   },
   methods: {
     updateQuestionValue () {
+      // Before commiting to the VueX store, multiply/sum each value in the table
+      this.questionData.value = 0
+      this.questionData.input.values.slice(1).forEach(row => {
+        let rowTotal = 1
+        row.forEach((data, index) => {
+          if (typeof data == 'number') rowTotal *= data
+          // TODO: Finish calculating total for this question, and commit new value to VueX store
+        })
+      })
+
+      // Update VueX Store
       this.$store.commit({
         type: 'calculator/updateQuestionValue',
         categoryID: this.categoryID,
