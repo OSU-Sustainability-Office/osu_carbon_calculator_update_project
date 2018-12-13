@@ -4,7 +4,15 @@
   {{questionData.text}} <br />
 
   <el-table v-loading="loading" :data="tableData" stripe border>
-    <el-table-column v-for="(column, index) in this.questionData.input.values[0]" :key="index" :prop="column" :label="column" />
+    <el-table-column v-for="(column, index) in this.questionData.input.values[0]" :key="index" :prop="column" :label="column">
+
+      <template slot-scope="scope">
+        <editableCell :show-input="tableData[scope.$index][index]" v-model="questionData.input.values[scope.$index][index]">
+          <span slot="content">{{questionData.input.values[scope.$index][index]}}</span>
+        </editableCell>
+      </template>
+
+    </el-table-column>
   </el-table>
 
   <!-- <el-input-number v-model="questionData.value" @change="updateQuestionValue" :min="0" /> -->
@@ -13,12 +21,21 @@
 </template>
 
 <script>
+// NOTE: Special thanks to reddit user u/CristiJ for the editable ElementUI table
+// source code. Available: https://www.reddit.com/r/vuejs/comments/842g5c/inline_editable_table_with_elementui/
+// The code in this project has been edited significantly, but I felt that credit
+// was due. -JW
+import editableCell from '@/components/calculator/questions/editableCell'
+
 export default {
   name: 'tableQuestion',
   props: {
     'questionData': Object,
     'index': Number,
     'categoryID': Number
+  },
+  components: {
+    editableCell
   },
   created () {
     // Overwrite default data in vuex store
@@ -39,6 +56,7 @@ export default {
         // 0 is the first row of the data array, which contains column titles.
         // [index] refers to the title that corresponds with this data point
         rowObj[this.questionData.input.values[0][index]] = data
+        rowObj[index] = false // Initialize each cell in the table to be non-editable.
       })
 
       // Add this row to tableData
@@ -72,6 +90,12 @@ export default {
         questionIndex: this.index,
         value: this.questionData.value
       })
+    },
+    setEditMode (row, index) {
+      this.tableData[row][index] = true
+    },
+    saveRow (row, index) {
+      this.tableData[row][index] = false
     }
   }
 }
