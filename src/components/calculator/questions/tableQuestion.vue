@@ -7,7 +7,7 @@
     <el-table-column v-for="(column, index) in this.questionData.input.values[0]" :key="index" :prop="column" :label="column">
 
       <template slot-scope="scope">
-        <editableCell :show-input="tableData[scope.$index][index]" v-model="questionData.input.values[scope.$index][index]">
+        <editableCell @change="updateQuestionValue" :show-input="tableData[scope.$index][index]" v-model="questionData.input.values[scope.$index][index]">
           <span slot="content">{{questionData.input.values[scope.$index][index]}}</span>
         </editableCell>
       </template>
@@ -84,14 +84,37 @@ export default {
   },
   methods: {
     updateQuestionValue () {
-      // Before commiting to the VueX store, multiply/sum each value in the table
-      this.questionData.value = 0
-      this.questionData.input.values.slice(1).forEach(row => {
-        let rowTotal = 1
-        row.forEach((data, index) => {
-          if (typeof data == 'number') rowTotal *= data
-          // TODO: Finish calculating total for this question, and commit new value to VueX store
+      // Convert strings to integers
+      let values = []
+      this.questionData.input.values.forEach((row, x) => {
+        let newRow = []
+        row.forEach((cell, y) => {
+          newRow.push(parseInt(this.questionData.input.values[x][y]))
         })
+        values.push(newRow)
+      })
+
+      let total = 0 // This will sum each entry in coefRow once it's multiplied by the primary column
+
+      // Before commiting to the VueX store, multiply/sum each value in the table
+      values.slice(1).forEach(row => {
+        let primaryColVal = row[parseInt(this.questionData.input.primaryColumn)]
+        let quantityColVal = row[parseInt(this.questionData.input.quantityColumn)]
+
+        // Multiply each quantity by its coefficient
+        let coefRow = row.slice(0)
+        this.questionData.input.coefficients.forEach((c, index) => {
+          if (index === this.questionData.input.quantityColumn) coefRow[index] = 0 //
+          else coefRow[index] *= c
+        })
+
+        // Multiply each value in coefRow by the primary column
+        this.questionData.input.sumColumns.forEach(index => {
+          total += coefRow[index] * primaryColVal * quantityColVal
+        })
+
+        // Save result
+        this.questionData.value = total * this.questionData.input.coefficient
       })
 
       // Update VueX Store
