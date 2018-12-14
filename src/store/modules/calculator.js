@@ -27,7 +27,7 @@ export default {
       // Initialize value endpoint for computed property reactivity
       categories.forEach(c => {
         c.questions.forEach(q => {
-          q.value = 'default'
+          q.value = 0
         })
       })
       state.categories = categories

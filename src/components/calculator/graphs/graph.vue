@@ -4,6 +4,8 @@
 
     This is a temporary element for displaying totals for each category.
 
+    {{totals}}
+
   </div>
 
 </template>
@@ -18,6 +20,8 @@ export default {
       let totals = []
 
       this.categories.forEach(category => {
+
+          console.log("-----adsf")
         let total = 0
         category.questions.forEach(question => {
           // Multiply this value by parent question's coefficient
@@ -53,7 +57,10 @@ export default {
             // eslint-disable-next-line
           } else if (question.input.type == 'value') {
             total += question.value * question.input.values[0].coef
+          } else if (question.input.type == 'tableQuestion') {
+            total += question.value
           }
+          console.log(total)
         })
         totals.push(total)
       })
