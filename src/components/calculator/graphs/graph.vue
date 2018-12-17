@@ -1,3 +1,12 @@
+<!--
+@Author: Jack Woods <jackrwoods>
+@Date:   2018-12-12T12:28:53-08:00
+@Filename: graph.vue
+@Last modified by:   jackrwoods
+@Last modified time: 2018-12-17T13:49:35-08:00
+@Copyright: 2018 Oregon State University
+-->
+
 <template>
 
   <div class="graphs">
@@ -11,17 +20,18 @@
 </template>
 
 <script>
+import UserApi from '@/utils/api/user.js' // For uploading user data
+
 export default {
   name: 'graph',
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
+    // Adds up the totals for each question and returns an array of category totals
     totals () {
       // Empty array of category totals (in order)
       let totals = []
 
       this.categories.forEach(category => {
-
-          console.log("-----adsf")
         let total = 0
         category.questions.forEach(question => {
           // Multiply this value by parent question's coefficient
@@ -57,15 +67,36 @@ export default {
             // eslint-disable-next-line
           } else if (question.input.type == 'value') {
             total += question.value * question.input.values[0].coef
+            // eslint-disable-next-line
           } else if (question.input.type == 'tableQuestion') {
             total += question.value
           }
-          console.log(total)
         })
         totals.push(total)
       })
 
       return totals
+    },
+    methods: {
+      uploadTotals () {
+        // Initialize user object for upload
+        let userObject = {}
+        userObject['onid'] = this.$store.getters['user/onid']
+        userObject['firstName'] = this.$store.getters['user/firstName']
+        userObject['primaryAffiliation'] = this.$store.getters['user/primaryAffiliation']
+        userObject['administrator'] = this.$store.getters['user/administratior']
+
+        // Initialize data array with current data only
+        userObject['data'] = []
+        userObject['data'].push({
+          date: new Date().toLocaleDateString(),
+          location: UserApi.getLocation(),
+          totals: this.totals
+        })
+
+        // Upload userObject for DB entry
+        UserApi.uploadUserData(userObject)
+      }
     }
   }
 }

@@ -1,3 +1,12 @@
+/**
+ * @Author: Jack Woods <jackrwoods>
+ * @Date:   2018-11-27T13:45:59-08:00
+ * @Filename: user.js
+ * @Last modified by:   jackrwoods
+ * @Last modified time: 2018-12-17T13:39:39-08:00
+ * @Copyright: 2018 Oregon State University
+ */
+
 import axios from 'axios'
 
 export default{
@@ -26,5 +35,21 @@ export default{
   // Sends a request to the api route responsible for destroying user sessions. DOES NOT LOG OUT OF ONID!!!
   logout () {
     axios.get('auth/logout', { withCredentials: true })
+  },
+
+  // Uploads the user's onid, firstName, primaryAffiliation, and data.
+  uploadUserData (usr) {
+    return axios.post('carbon/upload', {
+      withCredentials: true,
+      data: usr
+    })
+  },
+
+  // Calls an Extreme IP Lookup free API route and returns the JSON object
+  getLocation () {
+    return axios.get('http://extreme-ip-lookup.com/json/', { withCredentials: true })
+      .then(res => {
+        return res.data
+      })
   }
 }

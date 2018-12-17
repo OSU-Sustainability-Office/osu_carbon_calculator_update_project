@@ -1,3 +1,12 @@
+/**
+ * @Author: Jack Woods <jackrwoods>
+ * @Date:   2018-11-27T13:45:59-08:00
+ * @Filename: user.js
+ * @Last modified by:   jackrwoods
+ * @Last modified time: 2018-12-17T13:49:15-08:00
+ * @Copyright: 2018 Oregon State University
+ */
+
 import UserApi from '@/utils/api/user.js'
 
 export default {
