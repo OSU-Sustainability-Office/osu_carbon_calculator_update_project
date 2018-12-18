@@ -1,3 +1,12 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-11-27T13:45:59-08:00
+@Filename: calcAccordion.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2018-12-18T08:57:58-08:00
+@Copyright: 2018 Oregon State University
+-->
+
 <template>
 <el-col :span="24" v-loading="loading">
 
@@ -13,7 +22,7 @@
     <!-- Display Results -->
     <el-collapse-item title="Results" name="Results">
 
-      <graph />
+      <chartContainer />
 
     </el-collapse-item>
   </el-collapse>
@@ -28,7 +37,7 @@ import dependentValue from '@/components/calculator/questions/dependentValue'
 import value from '@/components/calculator/questions/value'
 import paragraph from '@/components/calculator/questions/paragraph'
 import tableQuestion from '@/components/calculator/questions/tableQuestion'
-import graph from '@/components/calculator/graphs/graph'
+import chartContainer from '@/components/calculator/graphs/chartContainer'
 
 export default {
   name: 'calcAccordion',
@@ -47,7 +56,7 @@ export default {
     value,
     paragraph,
     tableQuestion,
-    graph
+    chartContainer
   }
 }
 </script>

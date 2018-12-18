@@ -2,8 +2,8 @@
 @Author: Jack Woods <jackrwoods>
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
-@Last modified by:   jackrwoods
-@Last modified time: 2018-12-17T15:02:12-08:00
+@Last modified by:   Jack Woods
+@Last modified time: 2018-12-18T08:57:02-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -25,7 +25,7 @@
 import UserApi from '@/utils/api/user.js' // For uploading user data
 
 export default {
-  name: 'graph',
+  name: 'chartContainer',
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
     // Adds up the totals for each question and returns an array of category totals
@@ -96,8 +96,6 @@ export default {
         location: UserApi.getLocation(),
         totals: this.totals
       })
-
-      console.log(userObject)
 
       // Upload userObject for DB entry
       UserApi.uploadUserData(userObject)
