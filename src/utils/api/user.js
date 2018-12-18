@@ -2,8 +2,8 @@
  * @Author: Jack Woods <jackrwoods>
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
- * @Last modified by:   jackrwoods
- * @Last modified time: 2018-12-17T15:23:41-08:00
+ * @Last modified by:   Jack Woods
+ * @Last modified time: 2018-12-18T09:37:35-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -24,9 +24,17 @@ export default{
       })
   },
 
-  // Downloads the user's onid, firstName, primaryAffiliation, and historical data from the API route.
+  // Downloads the user's onid, firstName, primaryAffiliation
   downloadUserData () {
     return axios.get('auth/userData/allData', { withCredentials: true })
+      .then(res => {
+        return res.data
+      })
+  },
+
+  // Download's the user's previous data
+  downloadHistData () {
+    return axios.get('carbon/download', { withCredentials: true })
       .then(res => {
         return res.data
       })
@@ -41,8 +49,6 @@ export default{
   uploadUserData (usr) {
     axios.post('carbon/upload', usr, {
       withCredentials: true
-    }).then(res => {
-      console.log(res)
     })
   },
 

@@ -2,8 +2,8 @@
  * @Author: Jack Woods <jackrwoods>
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
- * @Last modified by:   jackrwoods
- * @Last modified time: 2018-12-17T15:04:43-08:00
+ * @Last modified by:   Jack Woods
+ * @Last modified time: 2018-12-18T09:35:43-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -45,9 +45,11 @@ export default {
       state.onid = userObject.onid
       state.firstName = userObject.firstName
       state.primaryAffiliation = userObject.primaryAffiliation
-      state.data = userObject.data
       state.isLoggedIn = true
       state.administrator = userObject.administrator ? userObject.administrator : false
+    },
+    histData (state, histData) {
+      state.data = histData
     }
   },
   actions: {
@@ -56,6 +58,9 @@ export default {
       if (UserApi.isLoggedIn()) {
         UserApi.downloadUserData().then(userObject => {
           context.commit('update', userObject)
+        })
+        UserApi.downloadHistData().then(histData => {
+          context.commit('histData', histData)
         })
       }
     }
