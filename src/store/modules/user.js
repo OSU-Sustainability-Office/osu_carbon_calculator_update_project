@@ -3,7 +3,7 @@
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
  * @Last modified by:   jackrwoods
- * @Last modified time: 2018-12-17T13:49:15-08:00
+ * @Last modified time: 2018-12-17T15:04:43-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -47,7 +47,7 @@ export default {
       state.primaryAffiliation = userObject.primaryAffiliation
       state.data = userObject.data
       state.isLoggedIn = true
-      state.administrator = userObject.administrator
+      state.administrator = userObject.administrator ? userObject.administrator : false
     }
   },
   actions: {

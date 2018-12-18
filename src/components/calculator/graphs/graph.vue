@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   jackrwoods
-@Last modified time: 2018-12-17T13:49:35-08:00
+@Last modified time: 2018-12-17T15:02:12-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -14,6 +14,8 @@
     This is a temporary element for displaying totals for each category.
 
     {{totals}}
+
+    <button v-on:click="uploadTotals">Upload</button>
 
   </div>
 
@@ -76,27 +78,29 @@ export default {
       })
 
       return totals
-    },
-    methods: {
-      uploadTotals () {
-        // Initialize user object for upload
-        let userObject = {}
-        userObject['onid'] = this.$store.getters['user/onid']
-        userObject['firstName'] = this.$store.getters['user/firstName']
-        userObject['primaryAffiliation'] = this.$store.getters['user/primaryAffiliation']
-        userObject['administrator'] = this.$store.getters['user/administratior']
+    }
+  },
+  methods: {
+    uploadTotals: function () {
+      // Initialize user object for upload
+      let userObject = {}
+      userObject['onid'] = this.$store.getters['user/onid']
+      userObject['firstName'] = this.$store.getters['user/firstName']
+      userObject['primaryAffiliation'] = this.$store.getters['user/primaryAffiliation']
+      userObject['administrator'] = this.$store.getters['user/administratior']
 
-        // Initialize data array with current data only
-        userObject['data'] = []
-        userObject['data'].push({
-          date: new Date().toLocaleDateString(),
-          location: UserApi.getLocation(),
-          totals: this.totals
-        })
+      // Initialize data array with current data only
+      userObject['data'] = []
+      userObject['data'].push({
+        date: new Date().toLocaleDateString(),
+        location: UserApi.getLocation(),
+        totals: this.totals
+      })
 
-        // Upload userObject for DB entry
-        UserApi.uploadUserData(userObject)
-      }
+      console.log(userObject)
+
+      // Upload userObject for DB entry
+      UserApi.uploadUserData(userObject)
     }
   }
 }

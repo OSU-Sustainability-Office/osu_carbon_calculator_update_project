@@ -3,7 +3,7 @@
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
  * @Last modified by:   jackrwoods
- * @Last modified time: 2018-12-17T13:39:39-08:00
+ * @Last modified time: 2018-12-17T15:23:41-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -39,9 +39,10 @@ export default{
 
   // Uploads the user's onid, firstName, primaryAffiliation, and data.
   uploadUserData (usr) {
-    return axios.post('carbon/upload', {
-      withCredentials: true,
-      data: usr
+    axios.post('carbon/upload', usr, {
+      withCredentials: true
+    }).then(res => {
+      console.log(res)
     })
   },
 
