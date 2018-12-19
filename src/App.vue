@@ -1,3 +1,12 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-11-27T13:45:58-08:00
+@Filename: App.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2018-12-19T10:08:11-08:00
+@Copyright: 2018 Oregon State University
+-->
+
 <template>
   <div id="app">
     <el-container>

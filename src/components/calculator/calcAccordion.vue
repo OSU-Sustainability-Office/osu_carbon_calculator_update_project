@@ -3,19 +3,25 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcAccordion.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-18T08:57:58-08:00
+@Last modified time: 2018-12-19T08:59:45-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
-<el-col :span="24" v-loading="loading">
+<el-col :span="24">
 
-  <el-collapse v-model="catAccordion" accordion>
+  <el-collapse v-model="catAccordion" v-loading="loading" accordion>
 
     <!-- Iterate over each category and render the questions -->
     <el-collapse-item v-for="category in categories" :key="category.categoryID" :title="category.title" :name="category.categoryID">
 
       <component v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
+
+      <br />
+      <el-button-group>
+        <el-button v-on:click="previous" type="primary" icon="el-icon-arrow-left">Previous Page</el-button>
+        <el-button v-on:click="next" type="primary">Next Page <i class="el-icon-arrow-right el-icon-right"></i></el-button>
+      </el-button-group>
 
     </el-collapse-item>
 
@@ -48,7 +54,15 @@ export default {
   },
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
-    loading () { return (this.$store.getters['calculator/categories'] > 0) }
+    loading () { return (this.$store.getters['calculator/categories'].length < 1) }
+  },
+  methods: {
+    previous () {
+      // Do things
+    },
+    next () {
+      // Do other things
+    }
   },
   components: {
     list,

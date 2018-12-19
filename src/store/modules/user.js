@@ -3,7 +3,7 @@
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
  * @Last modified by:   Jack Woods
- * @Last modified time: 2018-12-18T09:35:43-08:00
+ * @Last modified time: 2018-12-19T10:07:42-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -59,7 +59,7 @@ export default {
         UserApi.downloadUserData().then(userObject => {
           context.commit('update', userObject)
         })
-        UserApi.downloadHistData().then(histData => {
+        UserApi.downloadHistData(context.getters['user/onid']).then(histData => {
           context.commit('histData', histData)
         })
       }

@@ -3,21 +3,25 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-18T08:57:02-08:00
+@Last modified time: 2018-12-18T09:20:46-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
 
-  <div class="graphs">
+<div class="chartContainer">
 
-    This is a temporary element for displaying totals for each category.
+  <el-row :gutter="20">
+    <el-col :span="12" :offset="6">
+      <el-carousel trigger="click" height="15em">
+        <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
+          <h3>{{ entry }}</h3>
+        </el-carousel-item>
+      </el-carousel>
+    </el-col>
+  </el-row>
 
-    {{totals}}
-
-    <button v-on:click="uploadTotals">Upload</button>
-
-  </div>
+</div>
 
 </template>
 
@@ -28,6 +32,7 @@ export default {
   name: 'chartContainer',
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
+    historicalData () { return this.$store.getters['user/data'] },
     // Adds up the totals for each question and returns an array of category totals
     totals () {
       // Empty array of category totals (in order)
