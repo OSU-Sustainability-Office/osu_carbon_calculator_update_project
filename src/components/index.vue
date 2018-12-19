@@ -1,3 +1,12 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-11-27T13:45:59-08:00
+@Filename: index.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2018-12-19T13:10:07-08:00
+@Copyright: 2018 Oregon State University
+-->
+
 <template>
 
   <!-- This div only exists to satisfy VueJS's 1 root element requirement -->
@@ -39,4 +48,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@font-face {
+    font-family: 'StratumNo2';
+    src: url('../../public/static/fonts/StratumNo2-Bold.woff2') format('woff2'),
+        url('../../public/static/fonts/StratumNo2-Bold.woff') format('woff'),
+        url('../../public/static/fonts/StratumNo2-Bold.ttf') format('truetype'),
+        url('../../public/static/fonts/StratumNo2-Bold.svg#StratumNo2-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
 </style>
