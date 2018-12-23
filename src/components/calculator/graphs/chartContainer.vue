@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-23T09:48:05-08:00
+@Last modified time: 2018-12-23T11:14:41-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -13,10 +13,11 @@
 
   <el-row :gutter="20">
     <el-col :span="12" :offset="6">
-      <bar-chart :chartData="chartdata" :options="chartoptions" />
-      <el-carousel trigger="click" height="15em">
+      <el-carousel trigger="click" height="100em">
+        <h3> Historical Data </h3>
         <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
-          <h3>{{ entry }}</h3>
+          <h3>{{ entry.date }}</h3>
+          <bar-chart :histData="entry" />
         </el-carousel-item>
       </el-carousel>
     </el-col>
@@ -29,13 +30,13 @@
 <script>
 import UserApi from '@/utils/api/user.js' // For uploading user data
 import barChart from '@/components/calculator/graphs/chartComponents/barChart'
-// import pieChart from '@/components/calculator/graphs/chartComponents/pieChart'
+import pieChart from '@/components/calculator/graphs/chartComponents/pieChart'
 
 export default {
   name: 'chartContainer',
   components: {
-    barChart// ,
-    // pieChart
+    barChart,
+    pieChart
   },
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
@@ -90,26 +91,6 @@ export default {
       })
 
       return totals
-    }
-  },
-  data () {
-    return {
-      chartdata: {
-        datacollection: {
-          labels: ['January', 'February'],
-          datasets: [
-            {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              data: [40, 20]
-            }
-          ]
-        }
-      },
-      chartoptions: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
     }
   },
   methods: {
