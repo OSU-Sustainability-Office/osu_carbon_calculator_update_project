@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-26T10:00:01-08:00
+@Last modified time: 2018-12-26T10:34:32-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
