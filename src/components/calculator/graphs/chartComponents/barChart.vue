@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-23T11:11:04-08:00
+@Last modified time: 2018-12-26T10:00:01-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -14,7 +14,7 @@ export default {
   extends: Bar,
   mixins: [mixins.reactiveProp],
   props: {
-    histData: {
+    dataObj: {
       type: Object,
       default: null
     }
@@ -23,7 +23,7 @@ export default {
     return {
       options: {
         chartoptions: {
-          responsive: true,
+          responsive: false,
           maintainAspectRatio: false
         }
       }
@@ -36,8 +36,8 @@ export default {
       return {
         labels: ['Transportation', 'Consumption', 'Energy and Heating', 'Food', 'Water', 'Waste'],
         datasets: [{
-          label: 'Total Carbon Dioxide Equivalent Emissions by Category',
-          data: this.histData.totals
+          label: 'Carbon Dioxide Equivalent Emissions by Category',
+          data: this.dataObj.totals
         }]
       }
     }

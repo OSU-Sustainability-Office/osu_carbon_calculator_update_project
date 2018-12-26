@@ -3,21 +3,31 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-23T11:14:41-08:00
+@Last modified time: 2018-12-26T09:47:06-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
 
 <div class="chartContainer">
+  <el-row :gutter="20">
+    <el-col :span="12">
+      <h3 class="centered">US Average:</h3>
+      <pie-chart :dataObj="usAvgDataObj"/>
+    </el-col>
+    <el-col :span="12">
+      <h3 class="centered">Your Result: {{ dataObj }}</h3>
+      <pie-chart :dataObj="dataObj"/>
+    </el-col>
+  </el-row>
 
   <el-row :gutter="20">
-    <el-col :span="12" :offset="6">
-      <el-carousel trigger="click" height="100em">
-        <h3> Historical Data </h3>
+    <el-col :span="24">
+      <h3> Historical Data </h3>
+      <el-carousel type="card" trigger="click" height="30em">
         <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
           <h3>{{ entry.date }}</h3>
-          <bar-chart :histData="entry" />
+          <bar-chart :dataObj="entry" />
         </el-carousel-item>
       </el-carousel>
     </el-col>
@@ -37,6 +47,13 @@ export default {
   components: {
     barChart,
     pieChart
+  },
+  data () {
+    return {
+      usAvgDataObj: {
+        totals: [4808.4, 4979.9, 3692.1, 2404.2, 515.2]
+      }
+    }
   },
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
@@ -91,6 +108,10 @@ export default {
       })
 
       return totals
+    },
+    dataObj () {
+      let totals = this.totals
+      return { totals }
     }
   },
   methods: {
@@ -107,7 +128,7 @@ export default {
       userObject['data'].push({
         date: new Date().toLocaleDateString(),
         location: UserApi.getLocation(),
-        totals: this.totals
+        totals: this.totals.totals
       })
 
       // Upload userObject for DB entry
@@ -119,4 +140,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.el-carousel__item {
+  background: #fff;
+}
+.centered {
+  text-align: center;
+}
 </style>
