@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-05T14:53:46-08:00
+@Last modified time: 2019-01-05T15:18:55-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -15,9 +15,9 @@
       <h3 class="centered">US Average:</h3>
       <pie-chart :dataObj="usAvgDataObj"/>
     </el-col>
-    <el-col v-show="!isIncomplete" :span="8">
+    <el-col v-if="!isIncomplete" :span="8">
       <h3 class="centered">Your Result:</h3>
-      <pie-chart :dataObj="dataObj"/>
+      <pie-chart ref="resPie" :dataObj="dataObj"/>
     </el-col>
   </el-row>
 
@@ -153,6 +153,9 @@ export default {
 
       // Upload userObject for DB entry
       UserApi.uploadUserData(userObject)
+    },
+    reRender () {
+      this.$refs.resPie.reRender()
     }
   }
 }

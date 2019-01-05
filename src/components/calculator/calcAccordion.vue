@@ -3,14 +3,14 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcAccordion.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-19T08:59:45-08:00
+@Last modified time: 2019-01-05T15:17:27-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
 <el-col :span="24">
 
-  <el-collapse v-model="catAccordion" v-loading="loading" accordion>
+  <el-collapse v-model="catAccordion" v-loading="loading" @change="changeAcc" accordion>
 
     <!-- Iterate over each category and render the questions -->
     <el-collapse-item v-for="category in categories" :key="category.categoryID" :title="category.title" :name="category.categoryID">
@@ -28,7 +28,7 @@
     <!-- Display Results -->
     <el-collapse-item title="Results" name="Results">
 
-      <chartContainer />
+      <chartContainer ref="charts" />
 
     </el-collapse-item>
   </el-collapse>
@@ -62,6 +62,12 @@ export default {
     },
     next () {
       // Do other things
+    },
+    changeAcc (category) {
+      // eslint-disable-next-line
+      if (category == "Results") {
+        this.$refs.charts.reRender()
+      }
     }
   },
   components: {
