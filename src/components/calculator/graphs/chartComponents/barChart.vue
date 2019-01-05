@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-26T10:34:32-08:00
+@Last modified time: 2019-01-05T14:25:12-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -33,13 +33,21 @@ export default {
     // Convert the data into a format compatible with chartjs
     chartdata () {
       // Data object for chartjs
-      return {
+      let obj = {
         labels: ['Transportation', 'Consumption', 'Energy and Heating', 'Food', 'Water', 'Waste'],
         datasets: [{
           label: 'Carbon Dioxide Equivalent Emissions by Category',
-          data: this.dataObj.totals
+          data: this.dataObj.totals,
+          backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#0D5257', '#006A8E', '#7A6855']
         }]
       }
+
+      // Use Object.assign for vue reactivity
+      Object.assign(obj.datasets[0].data, this.dataObj.totals)
+
+      // When this variable changes, re-render chart
+      this.renderChart(obj, this.options)
+      return obj
     }
   },
   mounted () {
