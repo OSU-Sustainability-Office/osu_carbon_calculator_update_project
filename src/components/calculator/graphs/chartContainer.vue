@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-05T12:02:21-08:00
+@Last modified time: 2019-01-05T12:32:42-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -11,11 +11,11 @@
 
 <div class="chartContainer">
   <el-row :gutter="20">
-    <el-col :span="12">
+    <el-col :span="avgSpan">
       <h3 class="centered">US Average:</h3>
       <pie-chart :dataObj="usAvgDataObj"/>
     </el-col>
-    <el-col :span="12">
+    <el-col :span="resultSpan">
       <h3 class="centered">Your Result:</h3>
       <pie-chart :dataObj="dataObj"/>
     </el-col>
@@ -24,7 +24,7 @@
   <el-row :gutter="20">
     <el-col :span="24">
       <h3> Historical Data </h3>
-      <el-carousel type="card" trigger="click" height="30em">
+      <el-carousel type="card" trigger="click" height="30em" :autoplay="false" :loop="false">
         <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
           <h3>{{ entry.date }}</h3>
           <bar-chart :dataObj="entry" />
@@ -104,6 +104,7 @@ export default {
             total += question.value
           }
         })
+
         totals.push(total)
       })
 
@@ -111,7 +112,30 @@ export default {
     },
     dataObj () {
       let totals = this.totals
+
+      // Trigger data upload when data changes
+      if (this.$store.getters['user/isLoggedIn']) this.uploadTotals()
+
       return { totals }
+    },
+    isIncomplete () {
+      // Returns true if no data has been entered into the calculator
+      let incomplete = true
+
+      this.totals.forEach(t => {
+        if (t !== 0) incomplete = false
+      })
+
+      return incomplete
+    },
+    avgSpan () {
+      // Always show the Us average, but make room for user's results if the
+      // data has been entered into the calculator
+      return this.isIncomplete ? 24 : 12
+    },
+    resultSpan () {
+      // Do not show user results if no data has been entered.
+      return this.isIncomplete ? 0 : 12
     }
   },
   methods: {
