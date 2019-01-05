@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-05T12:32:42-08:00
+@Last modified time: 2019-01-05T14:22:04-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -11,7 +11,7 @@
 
 <div class="chartContainer">
   <el-row :gutter="20">
-    <el-col :span="avgSpan">
+    <el-col :span="8" :offset="avgOffset">
       <h3 class="centered">US Average:</h3>
       <pie-chart :dataObj="usAvgDataObj"/>
     </el-col>
@@ -128,14 +128,14 @@ export default {
 
       return incomplete
     },
-    avgSpan () {
+    avgOffset () {
       // Always show the Us average, but make room for user's results if the
       // data has been entered into the calculator
-      return this.isIncomplete ? 24 : 12
+      return this.isIncomplete ? 8 : 4
     },
     resultSpan () {
       // Do not show user results if no data has been entered.
-      return this.isIncomplete ? 0 : 12
+      return this.isIncomplete ? 0 : 8
     }
   },
   methods: {
