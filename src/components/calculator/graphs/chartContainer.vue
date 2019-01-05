@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-26T09:47:06-08:00
+@Last modified time: 2019-01-05T12:02:21-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -16,7 +16,7 @@
       <pie-chart :dataObj="usAvgDataObj"/>
     </el-col>
     <el-col :span="12">
-      <h3 class="centered">Your Result: {{ dataObj }}</h3>
+      <h3 class="centered">Your Result:</h3>
       <pie-chart :dataObj="dataObj"/>
     </el-col>
   </el-row>
