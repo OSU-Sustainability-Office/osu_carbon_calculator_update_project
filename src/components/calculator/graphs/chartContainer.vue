@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-05T14:22:04-08:00
+@Last modified time: 2019-01-05T14:53:46-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -15,13 +15,13 @@
       <h3 class="centered">US Average:</h3>
       <pie-chart :dataObj="usAvgDataObj"/>
     </el-col>
-    <el-col :span="resultSpan">
+    <el-col v-show="!isIncomplete" :span="8">
       <h3 class="centered">Your Result:</h3>
       <pie-chart :dataObj="dataObj"/>
     </el-col>
   </el-row>
 
-  <el-row :gutter="20">
+  <el-row v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0" :gutter="20">
     <el-col :span="24">
       <h3> Historical Data </h3>
       <el-carousel type="card" trigger="click" height="30em" :autoplay="false" :loop="false">
@@ -132,10 +132,6 @@ export default {
       // Always show the Us average, but make room for user's results if the
       // data has been entered into the calculator
       return this.isIncomplete ? 8 : 4
-    },
-    resultSpan () {
-      // Do not show user results if no data has been entered.
-      return this.isIncomplete ? 0 : 8
     }
   },
   methods: {
