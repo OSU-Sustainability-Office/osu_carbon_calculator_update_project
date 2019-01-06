@@ -3,15 +3,16 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-06T15:21:26-08:00
+@Last modified time: 2019-01-06T15:24:15-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
 
-import { Pie, mixins } from 'vue-chartjs'
+import { Line, mixins } from 'vue-chartjs'
 
 export default {
-  extends: Pie,
+  extends: Line,
+  name: 'trend-chart',
   mixins: [mixins.reactiveProp],
   props: {
     dataObj: {
@@ -34,17 +35,9 @@ export default {
     chartdata () {
       // Data object for chartjs
       let obj = {
-        labels: ['Transportation', 'Consumption', 'Energy and Heating', 'Food', 'Water', 'Waste'],
-        datasets: [{
-          label: 'Carbon Dioxide Equivalent Emissions by Category',
-          data: this.dataObj.totals,
-          backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#0D5257', '#006A8E', '#7A6855'],
-          borderColor: '#000'
-        }]
+        labels: this.dataObj.dates,
+        datasets: this.dataObj.datasets
       }
-
-      // Use Object.assign for vue reactivity
-      Object.assign(obj.datasets[0].data, this.dataObj.totals)
 
       // When this variable changes, re-render chart
       this.renderChart(obj, this.options)

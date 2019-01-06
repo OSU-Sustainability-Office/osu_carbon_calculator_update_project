@@ -3,27 +3,36 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-05T15:18:55-08:00
+@Last modified time: 2019-01-06T15:21:13-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
 
 <div class="chartContainer">
+
+  <el-row v-if="!isIncomplete" :gutter="20">
+    <el-col :span="24">
+      <h3 class="centered">Your Results:</h3>
+      <bar-chart ref="resBar" :dataObj="dataObj" />
+    </el-col>
+  </el-row>
+
   <el-row :gutter="20">
     <el-col :span="8" :offset="avgOffset">
       <h3 class="centered">US Average:</h3>
       <pie-chart :dataObj="usAvgDataObj"/>
     </el-col>
     <el-col v-if="!isIncomplete" :span="8">
-      <h3 class="centered">Your Result:</h3>
+      <h3 class="centered">Your Footprint:</h3>
       <pie-chart ref="resPie" :dataObj="dataObj"/>
     </el-col>
   </el-row>
 
   <el-row v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0" :gutter="20">
     <el-col :span="24">
-      <h3> Historical Data </h3>
+      <h3 class="centered">Trend:</h3>
+      <trend-chart :dataObj="formatHistData(historicalData)" />
       <el-carousel type="card" trigger="click" height="30em" :autoplay="false" :loop="false">
         <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
           <h3>{{ entry.date }}</h3>
@@ -41,12 +50,14 @@
 import UserApi from '@/utils/api/user.js' // For uploading user data
 import barChart from '@/components/calculator/graphs/chartComponents/barChart'
 import pieChart from '@/components/calculator/graphs/chartComponents/pieChart'
+import trendChart from '@/components/calculator/graphs/chartComponents/trendChart'
 
 export default {
   name: 'chartContainer',
   components: {
     barChart,
-    pieChart
+    pieChart,
+    trendChart
   },
   data () {
     return {
@@ -135,7 +146,7 @@ export default {
     }
   },
   methods: {
-    uploadTotals: function () {
+    uploadTotals () {
       // Initialize user object for upload
       let userObject = {}
       userObject['onid'] = this.$store.getters['user/onid']
@@ -148,14 +159,71 @@ export default {
       userObject['data'].push({
         date: new Date().toLocaleDateString(),
         location: UserApi.getLocation(),
-        totals: this.totals.totals
+        totals: this.totals
       })
 
       // Upload userObject for DB entry
       UserApi.uploadUserData(userObject)
     },
     reRender () {
-      this.$refs.resPie.reRender()
+      if (this.$refs.resPie) {
+        this.$refs.resPie.reRender()
+        this.$refs.resBar.reRender()
+      }
+    },
+    formatHistData (data) {
+      let dates = []
+
+      // Create a dataset for each category
+      let datasets = [
+        {
+          label: 'Transportation',
+          backgroundColor: '#D3832B',
+          borderColor: '#000'
+        },
+        {
+          label: 'Consumption',
+          backgroundColor: '#AA9D2E',
+          borderColor: '#000'
+        },
+        {
+          label: 'Energy and Heating',
+          backgroundColor: '#FFB500',
+          borderColor: '#000'
+        },
+        {
+          label: 'Food',
+          backgroundColor: '#0D5257',
+          borderColor: '#000'
+        },
+        {
+          label: 'Water',
+          backgroundColor: '#006A8E',
+          borderColor: '#000'
+        },
+        {
+          label: 'Waste',
+          backgroundColor: '#7A6855',
+          borderColor: '#000'
+        }
+      ]
+
+      // Iterate over each dataset, and add each historical data point
+      datasets.forEach((set, index) => {
+        set.data = []
+        set.fill = index === 0 ? 'origin' : index - 1
+        data.forEach(entry => {
+          // Sum all previous data points to make this point 'stack'
+          let sum = 0
+          for (let i = 0; i <= index; i++) {
+            sum += entry.totals[i]
+          }
+          set.data.push(sum)
+          if (index === 1) dates.push(entry.date)
+        })
+      })
+
+      return { datasets, dates }
     }
   }
 }
