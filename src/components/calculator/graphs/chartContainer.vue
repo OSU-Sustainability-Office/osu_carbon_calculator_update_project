@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-06T15:21:13-08:00
+@Last modified time: 2019-01-06T15:47:21-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -33,7 +33,7 @@
     <el-col :span="24">
       <h3 class="centered">Trend:</h3>
       <trend-chart :dataObj="formatHistData(historicalData)" />
-      <el-carousel type="card" trigger="click" height="30em" :autoplay="false" :loop="false">
+      <el-carousel type="card" trigger="click" height="35em" :autoplay="false" :loop="false">
         <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
           <h3>{{ entry.date }}</h3>
           <bar-chart :dataObj="entry" />
