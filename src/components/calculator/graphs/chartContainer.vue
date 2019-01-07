@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-06T16:12:53-08:00
+@Last modified time: 2019-01-06T16:21:21-08:00
 @Copyright: 2018 Oregon State University
 -->
 
