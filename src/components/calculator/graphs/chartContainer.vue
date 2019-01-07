@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T13:52:52-08:00
+@Last modified time: 2019-01-07T14:16:32-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -144,6 +144,9 @@ export default {
       // Always show the Us average, but make room for user's results if the
       // data has been entered into the calculator
       return this.isIncomplete ? 8 : 4
+    },
+    todayDate () {
+      return new Date().toLocaleDateString()
     }
   },
   methods: {
@@ -158,7 +161,7 @@ export default {
       // Initialize data array with current data only
       userObject['data'] = []
       userObject['data'].push({
-        date: new Date().toLocaleDateString(),
+        date: this.todayDate,
         location: UserApi.getLocation(),
         totals: this.totals
       })
@@ -225,13 +228,22 @@ export default {
         })
 
         // Add current totals to dataset if data has been entered.
-        if (!this.isIncomplete()) {
+        if (!this.isIncomplete) {
           let sum = 0
           for (let i = 0; i <= index; i++) {
             sum += this.totals[i]
           }
-          set.data.push(sum)
-          if (index === 1) dates.push(new Date().toLocaleDateString())
+
+          // Check to see if overwriting data is necessary.
+          // eslint-disable-next-line
+          if (data[data.length - 1].date == this.todayDate) {
+            // Update today's datapoint by overwriting
+            this.$set(set.data, set.data.length - 1, sum)
+          } else {
+            // Append a new datapoint
+            set.data.push(sum)
+            if (index === 1) dates.push(this.todayDate)
+          }
         }
       })
 
