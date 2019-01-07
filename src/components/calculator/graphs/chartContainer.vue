@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-06T16:21:21-08:00
+@Last modified time: 2019-01-07T13:51:01-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -223,6 +223,14 @@ export default {
           set.data.push(sum)
           if (index === 1) dates.push(entry.date)
         })
+
+        // Add current totals to dataset
+        let sum = 0
+        for (let i = 0; i <= index; i++) {
+          sum += this.totals[i]
+        }
+        set.data.push(sum)
+        if (index === 1) dates.push(new Date().toLocaleDateString())
       })
 
       return { datasets, dates }

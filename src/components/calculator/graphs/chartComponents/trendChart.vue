@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-06T15:41:55-08:00
+@Last modified time: 2019-01-07T13:49:30-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -34,11 +34,12 @@ export default {
       // Data object for chartjs
       let obj = {
         labels: this.dataObj.dates,
-        datasets: this.dataObj.datasets
+        datasets: []
       }
 
-      // When this variable changes, re-render chart
-      this.renderChart(obj, this.options)
+      // Use Object.assign for vue reactivity
+      Object.assign(obj.datasets, this.dataObj.datasets)
+
       return obj
     }
   },
