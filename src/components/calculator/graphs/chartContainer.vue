@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T14:16:32-08:00
+@Last modified time: 2019-01-07T14:22:30-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -218,30 +218,20 @@ export default {
         set.data = []
         set.fill = index === 0 ? 'origin' : index - 1
         data.forEach(entry => {
-          // Sum all previous data points to make this point 'stack'
-          let sum = 0
-          for (let i = 0; i <= index; i++) {
-            sum += entry.totals[i]
-          }
-          set.data.push(sum)
+          set.data.push(entry.totals[index])
           if (index === 1) dates.push(entry.date)
         })
 
         // Add current totals to dataset if data has been entered.
         if (!this.isIncomplete) {
-          let sum = 0
-          for (let i = 0; i <= index; i++) {
-            sum += this.totals[i]
-          }
-
           // Check to see if overwriting data is necessary.
           // eslint-disable-next-line
           if (data[data.length - 1].date == this.todayDate) {
             // Update today's datapoint by overwriting
-            this.$set(set.data, set.data.length - 1, sum)
+            this.$set(set.data, set.data.length - 1, this.totals[index])
           } else {
             // Append a new datapoint
-            set.data.push(sum)
+            set.data.push(this.totals[index])
             if (index === 1) dates.push(this.todayDate)
           }
         }

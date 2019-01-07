@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T13:49:30-08:00
+@Last modified time: 2019-01-07T14:20:19-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -24,7 +24,12 @@ export default {
     return {
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+          yAxes: [{
+            stacked: true
+          }]
+        }
       }
     }
   },
