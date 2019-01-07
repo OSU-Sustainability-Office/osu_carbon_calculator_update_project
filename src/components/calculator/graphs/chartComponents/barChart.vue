@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T13:29:07-08:00
+@Last modified time: 2019-01-07T14:24:56-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -36,7 +36,7 @@ export default {
         datasets: [{
           label: 'Carbon Dioxide Equivalent Emissions by Category',
           data: this.dataObj.totals,
-          backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#0D5257', '#006A8E', '#7A6855'],
+          backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#8E9089', '#006A8E', '#7A6855'],
           borderColor: '#000',
           borderWidth: 2
         }]

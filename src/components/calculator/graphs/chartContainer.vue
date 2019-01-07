@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T14:22:30-08:00
+@Last modified time: 2019-01-07T14:24:57-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -198,7 +198,7 @@ export default {
         },
         {
           label: 'Food',
-          backgroundColor: '#0D5257',
+          backgroundColor: '#8E9089',
           borderColor: '#000'
         },
         {
