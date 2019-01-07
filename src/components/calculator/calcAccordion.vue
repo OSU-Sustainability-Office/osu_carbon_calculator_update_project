@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcAccordion.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-05T15:26:54-08:00
+@Last modified time: 2019-01-06T16:13:42-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -26,7 +26,7 @@
     </el-collapse-item>
 
     <!-- Display Results -->
-    <el-collapse-item title="Results" name="Results">
+    <el-collapse-item title="Results" name="Results" @click="this.$refs.charts.reRender()">
 
       <chartContainer ref="charts" />
 

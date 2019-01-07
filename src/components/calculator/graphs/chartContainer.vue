@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-06T15:47:21-08:00
+@Last modified time: 2019-01-06T16:12:53-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -14,29 +14,29 @@
   <el-row v-if="!isIncomplete" :gutter="20">
     <el-col :span="24">
       <h3 class="centered">Your Results:</h3>
-      <bar-chart ref="resBar" :dataObj="dataObj" />
+      <bar-chart ref="resBar" :dataObj="dataObj" :styles="{height: chartHeight + 'em'}"/>
     </el-col>
   </el-row>
 
   <el-row :gutter="20">
     <el-col :span="8" :offset="avgOffset">
       <h3 class="centered">US Average:</h3>
-      <pie-chart :dataObj="usAvgDataObj"/>
+      <pie-chart :dataObj="usAvgDataObj" :styles="{height: chartHeight + 'em'}"/>
     </el-col>
     <el-col v-if="!isIncomplete" :span="8">
       <h3 class="centered">Your Footprint:</h3>
-      <pie-chart ref="resPie" :dataObj="dataObj"/>
+      <pie-chart ref="resPie" :dataObj="dataObj" :styles="{height: chartHeight + 'em'}"/>
     </el-col>
   </el-row>
 
   <el-row v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0" :gutter="20">
     <el-col :span="24">
       <h3 class="centered">Trend:</h3>
-      <trend-chart :dataObj="formatHistData(historicalData)" />
-      <el-carousel type="card" trigger="click" height="35em" :autoplay="false" :loop="false">
+      <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
+      <el-carousel type="card" trigger="click" :height="chartHeight + 10 + 'em'" :autoplay="false" :loop="false">
         <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
           <h3>{{ entry.date }}</h3>
-          <bar-chart :dataObj="entry" />
+          <bar-chart :dataObj="entry" :styles="{height: chartHeight + 'em'}"/>
         </el-carousel-item>
       </el-carousel>
     </el-col>
@@ -63,7 +63,8 @@ export default {
     return {
       usAvgDataObj: {
         totals: [4808.4, 4979.9, 3692.1, 2404.2, 515.2]
-      }
+      },
+      chartHeight: 30
     }
   },
   computed: {
@@ -169,6 +170,7 @@ export default {
       if (this.$refs.resPie) {
         this.$refs.resPie.reRender()
         this.$refs.resBar.reRender()
+        this.$refs.trendBar.reRender()
       }
     },
     formatHistData (data) {
