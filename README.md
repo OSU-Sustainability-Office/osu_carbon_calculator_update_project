@@ -13,8 +13,10 @@
 - [X] Conditional question rendering (Completed on 11/29/18)
 - [X] Calculate totals for each category (Complete by 12/11/18)
 - [X] Store user totals in database (Complete by 12/17/18)
-- [ ] Display graphs from database (Complete by 12/19/18)
-- [ ] Update Brandon with project progress (Complete by 12/19/2018)
+- [X] Display graphs from database (Complete by 12/19/18)
+- [X] Update Brandon with project progress (Complete by 12/19/2018)
+- [ ] Implement new graphs, as discussed in 1/8/19 meeting minutes
+- [ ] Update UI, as discussed in 1/8/19 meeting minutes
 - [ ] Edit/add/remove questions with administrative privileges (Complete by 12/25/2018)
 - [ ] Conditional graph rendering (Complete by 12/25/18)
 - [ ] Deploy New Carbon Calculator to Production (Complete by 12/31/18)
