@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-19T12:13:04-08:00
+@Last modified time: 2019-01-07T15:33:53-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -55,6 +55,9 @@ export default {
           break
         case '2':
           window.location = this.loginLink
+          break
+        case '3-1':
+          this.$store.commit('ui/toggleHistoricalDataDialog')
           break
         case '3-2':
           window.location = this.dashboardLink

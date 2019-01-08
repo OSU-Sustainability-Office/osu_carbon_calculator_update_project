@@ -3,7 +3,7 @@
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
  * @Last modified by:   Jack Woods
- * @Last modified time: 2018-12-19T10:07:42-08:00
+ * @Last modified time: 2019-01-08T12:14:02-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -50,6 +50,11 @@ export default {
     },
     histData (state, histData) {
       state.data = histData
+    },
+    // Removes one historical data entry
+    removeHistData (state, index) {
+      state.data.splice(index, 1)
+      console.log(index)
     }
   },
   actions: {

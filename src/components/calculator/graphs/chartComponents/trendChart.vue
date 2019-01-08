@@ -1,9 +1,9 @@
 <!--
 @Author: Jack Woods
 @Date:   2018-12-19T18:36:52-08:00
-@Filename: barGraph.vue
+@Filename: trendChart.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T14:24:54-08:00
+@Last modified time: 2019-01-07T14:44:30-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
