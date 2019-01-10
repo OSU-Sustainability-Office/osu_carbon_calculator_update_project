@@ -3,17 +3,16 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: trendChart.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T14:44:30-08:00
+@Last modified time: 2019-01-10T15:16:09-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
 
-import { Line, mixins } from 'vue-chartjs'
+import { Line } from 'vue-chartjs'
 
 export default {
   extends: Line,
   name: 'trend-chart',
-  mixins: [mixins.reactiveProp],
   props: {
     dataObj: {
       type: Object,
@@ -30,31 +29,23 @@ export default {
             stacked: true
           }]
         }
-      }
-    }
-  },
-  computed: {
-    // Convert the data into a format compatible with chartjs
-    chartdata () {
-      // Data object for chartjs
-      let obj = {
+      },
+      chartdata: {
         labels: this.dataObj.dates,
         datasets: []
       }
-
-      // Use Object.assign for vue reactivity
-      Object.assign(obj.datasets, this.dataObj.datasets)
-
-      return obj
     }
   },
   mounted () {
+    // Use Object.assign for vue reactivity
+    Object.assign(this.chartdata.datasets, this.dataObj.datasets)
     this.renderChart(this.chartdata, this.options)
   },
-  methods: {
-    reRender () {
-      // When this variable changes, re-render chart
-      this.renderChart(this.chartdata, this.options)
+  watch: {
+    dataObj () {
+      // Use Object.assign for vue reactivity
+      Object.assign(this.chartdata.datasets, this.dataObj.datasets)
+      this.$data._chart.update()
     }
   }
 }
