@@ -1,3 +1,12 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-11-27T13:45:59-08:00
+@Filename: logo.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2019-01-10T15:52:36-08:00
+@Copyright: 2018 Oregon State University
+-->
+
 <template>
 
   <el-col :span="24">
@@ -24,10 +33,17 @@ export default {
   background-color: #DC4405;
   color: #000000;
   text-align: right;
+  font-family: 'StratumNo2';
 }
 .jumbotron_text_bottom {
   background-color: #000000;
   color: #DC4405;
   text-align: left;
+  font-family: 'StratumNo2';
+}
+h1 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 4em;
 }
 </style>

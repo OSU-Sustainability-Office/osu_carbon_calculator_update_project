@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: index.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T15:28:16-08:00
+@Last modified time: 2019-01-10T12:03:20-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -17,14 +17,9 @@
       <logo></logo>
     </el-row>
 
-    <!-- A paragraph containing meta information -->
-    <el-row>
-      <introText></introText>
-    </el-row>
-
     <!-- The actual calculator -->
     <el-row>
-      <calcAccordion></calcAccordion>
+      <calcCarousel></calcCarousel>
       <historicalDataDialog></historicalDataDialog>
     </el-row>
 
@@ -34,16 +29,14 @@
 
 <script>
 import logo from '@/components/calculator/logo'
-import introText from '@/components/calculator/introText'
-import calcAccordion from '@/components/calculator/calcAccordion'
+import calcCarousel from '@/components/calculator/calcCarousel'
 import historicalDataDialog from '@/components/administration/historicalDataDialog'
 
 export default {
   name: 'index',
   components: {
     logo,
-    introText,
-    calcAccordion,
+    calcCarousel,
     historicalDataDialog
   }
 }
