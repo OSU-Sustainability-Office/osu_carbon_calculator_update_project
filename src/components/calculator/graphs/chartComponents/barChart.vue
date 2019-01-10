@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-10T15:13:18-08:00
+@Last modified time: 2019-01-10T15:19:04-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -37,6 +37,8 @@ export default {
     }
   },
   mounted () {
+    // Use Object.assign for vue reactivity
+    Object.assign(this.chartdata.datasets[0].data, this.dataObj.totals)
     this.renderChart(this.chartdata, this.options)
   },
   watch: {
