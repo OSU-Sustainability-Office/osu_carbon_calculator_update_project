@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T14:24:57-08:00
+@Last modified time: 2019-01-10T14:55:24-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -18,8 +18,8 @@
     </el-col>
   </el-row>
 
-  <el-row :gutter="20">
-    <el-col :span="8" :offset="avgOffset">
+  <el-row>
+    <el-col :span="24">
       <h3 class="centered">US Average:</h3>
       <pie-chart :dataObj="usAvgDataObj" :styles="{height: chartHeight + 'em'}"/>
     </el-col>
@@ -169,13 +169,6 @@ export default {
       // Upload userObject for DB entry
       UserApi.uploadUserData(userObject)
     },
-    reRender () {
-      if (this.$refs.resPie) {
-        this.$refs.resPie.reRender()
-        this.$refs.resBar.reRender()
-        this.$refs.trendBar.reRender()
-      }
-    },
     formatHistData (data) {
       let dates = []
 
@@ -238,6 +231,9 @@ export default {
       })
 
       return { datasets, dates }
+    },
+    selectHistDataPointInCarousel (event) {
+      console.log(event)
     }
   }
 }
