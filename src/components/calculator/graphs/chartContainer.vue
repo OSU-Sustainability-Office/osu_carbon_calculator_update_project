@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-12T18:37:29-08:00
+@Last modified time: 2019-01-12T19:27:10-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -13,26 +13,25 @@
 <div class="chartContainer">
 
   <!-- US Avg and Category Comparison Charts -->
-  <el-row>
-    <el-col :span="24">
-      <h3 class="centered">Your Results:</h3>
+  <el-card class="box-card" shadow="hover">
+    <div slot="header" class="clearfix">
+      <span>Your Results</span>
+      <el-button style="float: right; padding: 3px 0" type="info" @click="resultsToggle = !resultsToggle" plain><span v-if="resultsToggle">View Totals</span><span v-if="!resultsToggle">View Percentages</span></el-button>
+    </div>
+    <div>
       <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
-      <el-button type="info" @click="resultsToggle = !resultsToggle" plain><span v-if="resultsToggle">View Totals</span><span v-if="!resultsToggle">View Percentages</span></el-button>
-    </el-col>
-  </el-row>
+    </div>
+  </el-card>
 
-  <el-row v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0" :gutter="20">
-    <el-col :span="24">
-      <h3 class="centered">Trend:</h3>
+  <!-- Trend/Historical Data Chart -->
+  <el-card class="box-card" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide" shadow="hover">
+    <div slot="header" class="clearfix">
+      <span>Trend</span>
+    </div>
+    <div>
       <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
-      <el-carousel type="card" trigger="click" :height="chartHeight + 10 + 'em'" :autoplay="false" :loop="false">
-        <el-carousel-item v-for="(entry, index) in historicalData" :key="index">
-          <h3>{{ entry.date }}</h3>
-          <bar-chart :dataObj="entry" :styles="{height: chartHeight + 'em'}"/>
-        </el-carousel-item>
-      </el-carousel>
-    </el-col>
-  </el-row>
+    </div>
+  </el-card>
 
 </div>
 
@@ -48,6 +47,12 @@ export default {
   components: {
     barChart,
     trendChart
+  },
+  props: {
+    lastSlide: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
@@ -276,5 +281,9 @@ export default {
 }
 .centered {
   text-align: center;
+}
+.el-row {
+  border: 2px solid #000;
+  border-radius: 4px;
 }
 </style>
