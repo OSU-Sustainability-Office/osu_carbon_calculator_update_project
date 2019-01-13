@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:58-08:00
 @Filename: App.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2018-12-19T10:08:11-08:00
+@Last modified time: 2019-01-13T12:23:12-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -56,6 +56,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
 }
 </style>
 <style scoped lang='scss'>

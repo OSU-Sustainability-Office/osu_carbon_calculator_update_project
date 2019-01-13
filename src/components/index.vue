@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: index.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-10T15:56:03-08:00
+@Last modified time: 2019-01-13T12:22:03-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -44,17 +44,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@font-face {
-    font-family: 'StratumNo2';
-    src: url('../../public/static/fonts/StratumNo2-Bold.woff2') format('woff2'),
-        url('../../public/static/fonts/StratumNo2-Bold.woff') format('woff'),
-        url('../../public/static/fonts/StratumNo2-Bold.ttf') format('truetype'),
-        url('../../public/static/fonts/StratumNo2-Bold.svg#StratumNo2-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-}
-#calculator {
-  font-family: 'Open Sans', sans-serif;
-}
 </style>
