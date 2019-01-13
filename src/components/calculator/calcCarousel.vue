@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T11:21:39-08:00
+@Last modified time: 2019-01-13T12:02:21-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -15,6 +15,7 @@
       <el-card class="box-card" shadow="hover">
         <div slot="header" class="clearfix">
           <span>{{currentTitle == 0 ? 'Introduction' : categories[currentTitle - 1].title}}</span>
+          <el-progress :show-text="false" :stroke-width="18" :percentage="currentTitle / 7 * 100"></el-progress>
         </div>
         <div>
           <el-carousel v-loading="loading" ref="carousel" trigger="click" height="35em" :autoplay="false" arrow="never" indicator-position="none">
@@ -53,6 +54,7 @@
     <el-button v-if="lastSlide" v-on:click="prev()" type="primary" icon="el-icon-arrow-left"></el-button>
     <chartContainer ref="charts" :lastSlide="lastSlide" />
   </el-col>
+
 </div>
 </template>
 
