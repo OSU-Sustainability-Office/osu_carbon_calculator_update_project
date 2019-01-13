@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: historicalDataDialog.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-08T12:35:30-08:00
+@Last modified time: 2019-01-13T12:38:25-08:00
 @Copyright: 2018 Oregon State University
 -->
 <template>
@@ -29,7 +29,7 @@
       <el-table-column width="100" prop="date" label="Date"></el-table-column>
       <el-table-column width="100" label="Delete">
         <template slot-scope="scope">
-          <el-button @click="handleDelete(scope.row)" type="text" size="small">Delete</el-button>
+          <el-button @click="handleDelete(scope.$index)" type="text" size="small">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>

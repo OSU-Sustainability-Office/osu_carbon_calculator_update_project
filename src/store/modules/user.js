@@ -3,7 +3,7 @@
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
  * @Last modified by:   Jack Woods
- * @Last modified time: 2019-01-10T16:00:11-08:00
+ * @Last modified time: 2019-01-13T12:36:51-08:00
  * @Copyright: 2018 Oregon State University
  */
 
