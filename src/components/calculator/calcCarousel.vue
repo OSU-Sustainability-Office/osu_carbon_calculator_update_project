@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T12:02:21-08:00
+@Last modified time: 2019-01-13T12:18:59-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -52,7 +52,7 @@
   <!-- Begin Charts Div -->
   <el-col :span="chartsWidth" ref="results">
     <el-button v-if="lastSlide" v-on:click="prev()" type="primary" icon="el-icon-arrow-left"></el-button>
-    <chartContainer ref="charts" :lastSlide="lastSlide" />
+    <chartContainer ref="charts" :chartsWidth="chartsWidth" :lastSlide="lastSlide" />
   </el-col>
 
 </div>
@@ -80,7 +80,7 @@ export default {
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
     loading () { return (this.$store.getters['calculator/categories'].length < 1) },
-    chartsWidth () { return this.lastSlide ? 23 : 8 }
+    chartsWidth () { return this.lastSlide ? 24 : 8 }
   },
   data () {
     return {

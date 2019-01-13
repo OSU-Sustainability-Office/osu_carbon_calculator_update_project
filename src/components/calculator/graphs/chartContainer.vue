@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T11:33:01-08:00
+@Last modified time: 2019-01-13T12:19:58-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -13,25 +13,29 @@
 <div class="chartContainer">
 
   <!-- US Avg and Category Comparison Charts -->
-  <el-card class="box-card" shadow="hover">
-    <div slot="header" class="clearfix">
-      <span>Your Results</span>
-    </div>
-    <div>
-      <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
-      <el-switch v-model="resultsToggle" active-text="Percentages" inactive-text="Totals (CO2e)"></el-switch>
-    </div>
-  </el-card>
+  <el-col :span="barSpan">
+    <el-card class="box-card" shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>Your Results</span>
+      </div>
+      <div>
+        <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
+        <el-switch v-model="resultsToggle" active-text="Percentages" inactive-text="Totals (CO2e)"></el-switch>
+      </div>
+    </el-card>
+  </el-col>
 
-  <!-- Trend/Historical Data Chart -->
-  <el-card class="box-card" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide" shadow="hover">
-    <div slot="header" class="clearfix">
-      <span>Trend</span>
-    </div>
-    <div>
-      <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
-    </div>
-  </el-card>
+  <el-col :span="14" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
+    <!-- Trend/Historical Data Chart -->
+    <el-card class="box-card" shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>Trend</span>
+      </div>
+      <div>
+        <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
+      </div>
+    </el-card>
+  </el-col>
 
 </div>
 
@@ -52,6 +56,10 @@ export default {
     lastSlide: {
       type: Boolean,
       default: false
+    },
+    chartsWidth: {
+      type: Number,
+      default: 8
     }
   },
   data () {
@@ -184,7 +192,8 @@ export default {
     },
     todayDate () {
       return new Date().toLocaleDateString()
-    }
+    },
+    barSpan () { return this.chartsWidth === 8 ? 24 : 10 }
   },
   methods: {
     uploadTotals (totals) {
