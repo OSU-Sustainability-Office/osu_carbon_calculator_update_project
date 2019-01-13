@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: logo.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-10T15:52:36-08:00
+@Last modified time: 2019-01-12T19:15:52-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -44,6 +44,6 @@ export default {
 h1 {
   padding: 0px;
   margin: 0px;
-  font-size: 4em;
+  font-size: 3em;
 }
 </style>
