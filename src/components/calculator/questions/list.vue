@@ -1,9 +1,20 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-11-27T13:45:59-08:00
+@Filename: list.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2019-01-13T11:46:04-08:00
+@Copyright: 2018 Oregon State University
+-->
+
 <template>
 <div class="question">
 
   {{questionData.text}} <br />
 
-  <el-select v-model="value" @change="updateQuestionValue" placeholder="Select One">
+  <el-switch v-if="questionData.input.values.length <= 2" v-model="answer" @change="updateQuestionValue" :active-text="questionData.input.values[1].val" :inactive-text="questionData.input.values[0].val"></el-switch>
+
+  <el-select v-if="questionData.input.values.length > 2" v-model="value" @change="updateQuestionValue" placeholder="Select One">
     <el-option v-for="choice in questionData.input.values" :key="choice.val" :label="choice.val" :value="choice.val" :coef="choice.coef" />
   </el-select>
 
@@ -20,7 +31,8 @@ export default {
   },
   data () {
     return {
-      value: ''
+      value: '',
+      answer: false
     }
   },
   created () {
@@ -34,12 +46,24 @@ export default {
   },
   methods: {
     updateQuestionValue () {
-      this.$store.commit({
-        type: 'calculator/updateQuestionValue',
-        categoryID: this.categoryID,
-        questionIndex: this.index,
-        value: this.value
-      })
+      // Update VueX for list type
+      if (this.questionData.input.values.length > 2) {
+        this.$store.commit({
+          type: 'calculator/updateQuestionValue',
+          categoryID: this.categoryID,
+          questionIndex: this.index,
+          value: this.value
+        })
+      } else {
+        // Update VueX for switch type
+        this.$store.commit({
+          type: 'calculator/updateQuestionValue',
+          categoryID: this.categoryID,
+          questionIndex: this.index,
+          value: this.answer ? this.questionData.input.values[1].val : this.questionData.input.values[0].val
+        })
+        this.value = this.answer ? this.questionData.input.values[1].val : this.questionData.input.values[0].val
+      }
     }
   }
 }
