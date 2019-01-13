@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-12T19:27:10-08:00
+@Last modified time: 2019-01-13T11:33:01-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -16,10 +16,10 @@
   <el-card class="box-card" shadow="hover">
     <div slot="header" class="clearfix">
       <span>Your Results</span>
-      <el-button style="float: right; padding: 3px 0" type="info" @click="resultsToggle = !resultsToggle" plain><span v-if="resultsToggle">View Totals</span><span v-if="!resultsToggle">View Percentages</span></el-button>
     </div>
     <div>
       <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
+      <el-switch v-model="resultsToggle" active-text="Percentages" inactive-text="Totals (CO2e)"></el-switch>
     </div>
   </el-card>
 
