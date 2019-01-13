@@ -3,29 +3,21 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-10T14:55:24-08:00
+@Last modified time: 2019-01-12T17:43:53-08:00
 @Copyright: 2018 Oregon State University
+@Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
 
 <template>
 
 <div class="chartContainer">
 
-  <el-row v-if="!isIncomplete" :gutter="20">
-    <el-col :span="24">
-      <h3 class="centered">Your Results:</h3>
-      <bar-chart ref="resBar" :dataObj="dataObj" :styles="{height: chartHeight + 'em'}"/>
-    </el-col>
-  </el-row>
-
+  <!-- US Avg and Category Comparison Charts -->
   <el-row>
     <el-col :span="24">
-      <h3 class="centered">US Average:</h3>
-      <pie-chart :dataObj="usAvgDataObj" :styles="{height: chartHeight + 'em'}"/>
-    </el-col>
-    <el-col v-if="!isIncomplete" :span="8">
-      <h3 class="centered">Your Footprint:</h3>
-      <pie-chart ref="resPie" :dataObj="dataObj" :styles="{height: chartHeight + 'em'}"/>
+      <h3 class="centered">Your Results:</h3>
+      <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
+      <el-button type="info" @click="resultsToggle = !resultsToggle" plain><span v-if="resultsToggle">View Totals</span><span v-if="!resultsToggle">View Percentages</span></el-button>
     </el-col>
   </el-row>
 
@@ -49,14 +41,12 @@
 <script>
 import UserApi from '@/utils/api/user.js' // For uploading user data
 import barChart from '@/components/calculator/graphs/chartComponents/barChart'
-import pieChart from '@/components/calculator/graphs/chartComponents/pieChart'
 import trendChart from '@/components/calculator/graphs/chartComponents/trendChart'
 
 export default {
   name: 'chartContainer',
   components: {
     barChart,
-    pieChart,
     trendChart
   },
   data () {
@@ -64,7 +54,8 @@ export default {
       usAvgDataObj: {
         totals: [4808.4, 4979.9, 3692.1, 2404.2, 515.2]
       },
-      chartHeight: 30
+      chartHeight: 30,
+      resultsToggle: true
     }
   },
   computed: {
@@ -129,6 +120,57 @@ export default {
       if (this.$store.getters['user/isLoggedIn']) this.uploadTotals()
 
       return { totals }
+    },
+    resultsBarData () {
+      // Determine what data should be shown.
+      if (this.resultsToggle) {
+        // Show 0-100% category comparison vs US Average
+
+        // Sum all US data
+        let USDataSum = 0
+        this.usAvgDataObj.totals.forEach(d => {
+          USDataSum += d
+        })
+
+        // Compute percentages
+        let USData = []
+        this.usAvgDataObj.totals.forEach(d => {
+          USData.push(d / USDataSum * 100)
+        })
+
+        // Sum all user data
+        let userDataSum = 0
+        this.totals.forEach(d => {
+          userDataSum += d
+        })
+
+        // Compute Percentages
+        let userData = []
+        this.totals.forEach(d => {
+          userData.push(d / userDataSum * 100)
+        })
+
+        let finalDataObject = {
+          transportation: [USData[0], userData[0]],
+          consumption: [USData[1], userData[1]],
+          energyAndHeating: [USData[2], userData[2]],
+          food: [USData[3], userData[3]],
+          water: [USData[4], userData[4]],
+          waste: [USData[5], userData[5]]
+        }
+        return finalDataObject
+      } else {
+        // Show each category's totals
+        let finalDataObject = {
+          transportation: [this.usAvgDataObj.totals[0], this.totals[0]],
+          consumption: [this.usAvgDataObj.totals[1], this.totals[1]],
+          energyAndHeating: [this.usAvgDataObj.totals[2], this.totals[2]],
+          food: [this.usAvgDataObj.totals[3], this.totals[3]],
+          water: [this.usAvgDataObj.totals[4], this.totals[4]],
+          waste: [this.usAvgDataObj.totals[5], this.totals[5]]
+        }
+        return finalDataObject
+      }
     },
     isIncomplete () {
       // Returns true if no data has been entered into the calculator
