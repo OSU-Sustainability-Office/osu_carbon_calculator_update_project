@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-12T17:43:53-08:00
+@Last modified time: 2019-01-12T18:37:29-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -111,15 +111,10 @@ export default {
         totals.push(total)
       })
 
+      // Upload this data if the user is logged in
+      if (this.$store.getters['user/isLoggedIn']) this.uploadTotals(totals)
+
       return totals
-    },
-    dataObj () {
-      let totals = this.totals
-
-      // Trigger data upload when data changes
-      if (this.$store.getters['user/isLoggedIn']) this.uploadTotals()
-
-      return { totals }
     },
     resultsBarData () {
       // Determine what data should be shown.
@@ -182,17 +177,12 @@ export default {
 
       return incomplete
     },
-    avgOffset () {
-      // Always show the Us average, but make room for user's results if the
-      // data has been entered into the calculator
-      return this.isIncomplete ? 8 : 4
-    },
     todayDate () {
       return new Date().toLocaleDateString()
     }
   },
   methods: {
-    uploadTotals () {
+    uploadTotals (totals) {
       // Initialize user object for upload
       let userObject = {}
       userObject['onid'] = this.$store.getters['user/onid']
@@ -205,16 +195,17 @@ export default {
       userObject['data'].push({
         date: this.todayDate,
         location: UserApi.getLocation(),
-        totals: this.totals
+        totals: totals
       })
 
       // Upload userObject for DB entry
       UserApi.uploadUserData(userObject)
     },
     formatHistData (data) {
+      // An array that stores which day each data point is from.
       let dates = []
 
-      // Create a dataset for each category
+      // Initialize a dataset object
       let datasets = [
         {
           label: 'Transportation',
@@ -273,9 +264,6 @@ export default {
       })
 
       return { datasets, dates }
-    },
-    selectHistDataPointInCarousel (event) {
-      console.log(event)
     }
   }
 }
