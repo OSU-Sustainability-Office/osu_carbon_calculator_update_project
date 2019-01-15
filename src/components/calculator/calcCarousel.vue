@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T12:18:59-08:00
+@Last modified time: 2019-01-15T14:10:03-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -33,9 +33,8 @@
             <!-- Iterate over each category and render the questions -->
             <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
 
-              <component v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
+              <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
 
-              <br />
               <el-button-group>
                 <el-button v-on:click="prev()" type="primary" icon="el-icon-arrow-left"></el-button>
                 <el-button v-on:click="next()" type="primary"><i class="el-icon-arrow-right el-icon-right"></i></el-button>
@@ -120,5 +119,8 @@ export default {
 }
 .el-carousel__item {
   overflow-y: visible;
+}
+.extra-margin {
+  margin-bottom: 1.5em;
 }
 </style>
