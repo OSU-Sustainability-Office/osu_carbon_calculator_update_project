@@ -3,7 +3,7 @@
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
  * @Last modified by:   Jack Woods
- * @Last modified time: 2018-12-19T10:04:04-08:00
+ * @Last modified time: 2019-01-15T13:35:30-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -32,12 +32,17 @@ export default{
       })
   },
 
-  // Download's the user's previous data
+  // Downloads the user's previous data
   downloadHistData (onid) {
     return axios.get('carbon/download?UserID=' + onid, { withCredentials: true })
       .then(res => {
         return res.data
       })
+  },
+
+  // Deletes the user's previous data
+  deleteHistData (row) {
+    axios.get('carbon/delete/' + row, { withCredentials: true })
   },
 
   // Sends a request to the api route responsible for destroying user sessions. DOES NOT LOG OUT OF ONID!!!

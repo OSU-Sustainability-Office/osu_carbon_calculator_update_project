@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: historicalDataDialog.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T12:38:25-08:00
+@Last modified time: 2019-01-15T13:34:35-08:00
 @Copyright: 2018 Oregon State University
 -->
 <template>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import UserApi from '@/utils/api/user.js' // For deleting user data
 
 export default {
   name: 'historicalDataDialog',
@@ -69,6 +70,7 @@ export default {
   methods: {
     handleDelete (row) {
       this.$store.commit('user/removeHistData', row)
+      UserApi.deleteHistData(row)
     }
   }
 }
