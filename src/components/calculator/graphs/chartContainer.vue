@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T12:19:58-08:00
+@Last modified time: 2019-01-15T13:46:37-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -33,6 +33,19 @@
       </div>
       <div>
         <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
+      </div>
+    </el-card>
+  </el-col>
+
+  <el-col :span="14" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
+    <!-- Trend/Historical Data Chart -->
+    <el-card class="box-card" shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>Trend</span>
+      </div>
+      <div>
+        <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
+        <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
       </div>
     </el-card>
   </el-col>
@@ -278,6 +291,9 @@ export default {
       })
 
       return { datasets, dates }
+    },
+    redirectToLogin () {
+      window.location = 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location
     }
   }
 }
