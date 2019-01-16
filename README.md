@@ -7,17 +7,34 @@
 ## [Documentation](https://osusustainability.gitbook.io/energy-dashboard/frontend-documentation#carbon-calculator)
 
 ## Features timeline (box is checked if implemented):
-- [X] User login/logout (Completed on 11/10/18)
-- [X] Create modularized Element UI theme (Not anticipated - Completed on 11/18/18)
-- [X] Display questions from database (Completed on 11/29/18)
-- [X] Conditional question rendering (Completed on 11/29/18)
-- [X] Calculate totals for each category (Complete by 12/11/18)
-- [X] Store user totals in database (Complete by 12/17/18)
-- [X] Display graphs from database (Complete by 12/19/18)
-- [X] Update Brandon with project progress (Complete by 12/19/2018)
-- [ ] Implement new graphs, as discussed in 1/8/19 meeting minutes
-- [ ] Update UI, as discussed in 1/8/19 meeting minutes
-- [ ] Edit/add/remove questions with administrative privileges (Complete by 12/25/2018)
-- [ ] Conditional graph rendering (Complete by 12/25/18)
-- [ ] Deploy New Carbon Calculator to Production (Complete by 12/31/18)
-- [ ] Document API routes and VueJS systems in gitbook documentation link (Complete by 1/7/2019)
+- [ ] UI Updates: (1/15/19)
+    - [ ] Remove waste category
+    - Waste image
+    - [ ] Remove refillable water bottle question
+    - [ ] Change 'dorms' to 'residence halls' in energy/heating category
+    - [ ] US vs User vs Other Country graph comparison (make this primary instead of trend data)
+    - [ ] Add 'Total KgCO2e'
+- [ ] UI Updates (1/17/19)
+    - [ ] Move prev/back buttons to top right corner
+    - [ ] Resize chart category title text
+    - [ ] Make chart category text respond to hover interactions
+- [ ] UI Updates (1/20/19)
+    - [ ] Historical data deletion confirmation prompt
+    - [ ] Catch up on previous work
+    - [ ] Energy and Heating baseline data (Full time / Part Time / Commuter)
+    - [ ] Add units to question inputs
+- [ ] Feedback Collection during Staff Meeting (1/22/19)
+- [ ] Accurate Calculations + Sources (1/29/19)
+    - [ ] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
+    - [ ] Meet with Lety (Meet by 1/22/19)
+    - Notes:
+    ```
+    What is the US average?
+    What answers result in an 'Average' result?
+    Comparison for specific categories, such as travel and household energy use? (EIA as potential source for household data).
+
+    Data accuracy check.
+    ```
+    - [ ] Add to this list
+- [ ] Ragen's Small UI Tweaks (Complete by 1/29/19)
+- [ ] Push to production! (1/29/19)
