@@ -9,7 +9,7 @@
 ## Features timeline (box is checked if implemented):
 - [ ] UI Updates: (1/15/19)
     - [X] Remove waste category
-    - [ ] Waste image
+    - [X] Waste image
     - [X] Remove refillable water bottle question
     - [X] Change 'dorms' to 'residence halls' in energy/heating category
     - [ ] US vs User vs Other Country graph comparison (make this primary instead of trend data)

@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T23:16:38-08:00
+@Last modified time: 2019-01-15T23:17:56-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -35,7 +35,6 @@
             <!-- Intro Category -->
             <el-carousel-item name="About">
               <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
-              <p>This calculator is based on a calculator developed by Santa Clara University. For more information, please visit <a href="http://www.scu.edu/ethics/practicing/focusareas/environmental_ethics/carbon-footprint/create_calc.html">their website</a>.</p>
             </el-carousel-item>
 
             <!-- Iterate over each category and render the questions -->
