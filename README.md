@@ -26,7 +26,7 @@
 - [ ] **Feedback Collection during Staff Meeting (1/22/19)**
 - [ ] Accurate Calculations + Sources (1/29/19)
     - [ ] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
-    - [ ] Meet with Lety (Meet by 1/22/19)
+    - [ ] Meet with Lety (Meeting scheduled on 1/22/19)
     - Notes:
     ```
     What is the US average?
@@ -37,4 +37,4 @@
     ```
     - [ ] Add to this list
 - [ ] Ragen's Small UI Tweaks (Complete by 1/29/19)
-- [ ] Push to production! (1/29/19)
+- [ ] Push Version 1.0 to production! (1/29/19)
