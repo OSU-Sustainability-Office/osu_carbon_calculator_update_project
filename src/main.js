@@ -1,3 +1,12 @@
+/**
+ * @Author: Jack Woods
+ * @Date:   2018-11-27T13:45:59-08:00
+ * @Filename: main.js
+ * @Last modified by:   Jack Woods
+ * @Last modified time: 2019-01-15T22:56:05-08:00
+ * @Copyright: 2018 Oregon State University
+ */
+
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
@@ -9,10 +18,14 @@ import elm from 'element-ui'
 import Vuei18n from 'vue-i18n'
 import locale from 'element-ui/lib/locale/lang/en'
 import '@/assets/element-variables.scss'
+import Lightbox from 'vue-easy-lightbox'
 
 // For element UI
 Vue.use(Vuei18n)
 Vue.use(elm, { locale: locale })
+
+// For Vue-Easy-Lightbox
+Vue.use(Lightbox)
 
 Vue.config.productionTip = false
 

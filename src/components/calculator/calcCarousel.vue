@@ -3,12 +3,13 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T22:41:32-08:00
+@Last modified time: 2019-01-15T23:16:38-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
 <div>
+  <vue-easy-lightbox :visible="visible" :imgs="imgs" @hide="handleHide"></vue-easy-lightbox>
   <transition name="calculator">
     <el-col :span="16" v-show="!lastSlide">
       <el-card class="box-card" shadow="hover">
@@ -24,6 +25,7 @@
             <!-- Waste category -->
             <el-carousel-item name="Waste">
               <!-- No matter what I try, this category will render before any of the calculation question categories. Unfortunately, I combed through the Element UI code and could not find any way to re-arrange carousel items. This is now placed first as a workaround, since the carousel loops back to the beginning. -->
+              <img class="centered" @click="show" src="../../../public/static/images/landfill.jpg" />
               <p>Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
 
               <p>But what’s more important? While it’s great we have minimal waste disposal-related emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture, purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the "Next Steps" tab.</p>
@@ -93,7 +95,9 @@ export default {
   data () {
     return {
       lastSlide: false,
-      currentTitle: 0
+      currentTitle: 0,
+      visible: false,
+      imgs: 'http://comanco.com/wp-content/uploads/2013/07/IMAG0931.jpg'
     }
   },
   methods: {
@@ -108,11 +112,16 @@ export default {
     prev () {
       if (this.lastSlide) {
         this.lastSlide = false
-        this.$refs.carousel.setActiveItem(6)
       } else {
         this.$refs.carousel.prev()
         this.currentTitle--
       }
+    },
+    show () {
+      this.visible = true
+    },
+    handleHide () {
+      this.visible = false
     }
   }
 }
@@ -137,6 +146,29 @@ export default {
 }
 .el-progress-bar__inner {
   border: 2px solid #000;
+}
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+.img-wrapper {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+img {
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 2px;
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 h1 {
   padding: .2em;
