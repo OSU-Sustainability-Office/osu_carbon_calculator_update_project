@@ -11,7 +11,7 @@
     - [X] Remove waste category
     - [ ] Waste image
     - [X] Remove refillable water bottle question
-    - [ ] Change 'dorms' to 'residence halls' in energy/heating category
+    - [X] Change 'dorms' to 'residence halls' in energy/heating category
     - [ ] US vs User vs Other Country graph comparison (make this primary instead of trend data)
     - [ ] Add 'Total KgCO2e'
 - [ ] UI Updates (1/17/19)
