@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T22:01:02-08:00
+@Last modified time: 2019-01-15T23:20:30-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -20,7 +20,7 @@
       </div>
       <div>
         <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
-        <el-switch v-model="resultsToggle" active-text="Percentages" inactive-text="Totals (CO2e)"></el-switch>
+        <el-switch v-model="resultsToggle" active-text="Percentages" inactive-text="Totals (Kg CO2e)"></el-switch>
       </div>
     </el-card>
   </el-col>
