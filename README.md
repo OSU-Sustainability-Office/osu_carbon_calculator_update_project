@@ -23,7 +23,7 @@
     - [ ] Catch up on previous work
     - [ ] Energy and Heating baseline data (Full time / Part Time / Commuter)
     - [ ] Add units to question inputs
-- [ ] Feedback Collection during Staff Meeting (1/22/19)
+- [ ] *Feedback Collection during Staff Meeting (1/22/19)*
 - [ ] Accurate Calculations + Sources (1/29/19)
     - [ ] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
     - [ ] Meet with Lety (Meet by 1/22/19)
