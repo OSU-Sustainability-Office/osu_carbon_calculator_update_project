@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-12T19:10:17-08:00
+@Last modified time: 2019-01-15T22:00:02-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -77,30 +77,23 @@ export default {
             backgroundColor: '#006A8E',
             borderColor: '#000',
             borderWidth: 2
-          },
-          {
-            label: 'Waste',
-            data: [0, 0],
-            backgroundColor: '#7A6855',
-            borderColor: '#000',
-            borderWidth: 2
           }
         ]
       },
       chartdataSeperate: {
-        labels: ['Transportation', 'Consumption', 'Energy and Heating', 'Food', 'Water', 'Waste'],
+        labels: ['Transportation', 'Consumption', 'Energy and Heating', 'Food', 'Water'],
         datasets: [
           {
             label: 'USAverage',
             data: [0, 0, 0, 0, 0, 0],
-            backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#8E9089', '#006A8E', '#7A6855'],
+            backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#8E9089', '#006A8E'],
             borderColor: '#000',
             borderWidth: 2
           },
           {
             label: 'Your Result',
             data: [0, 0, 0, 0, 0, 0],
-            backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#8E9089', '#006A8E', '#7A6855'],
+            backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#8E9089', '#006A8E'],
             borderColor: '#000',
             borderWidth: 2
           }
@@ -116,7 +109,6 @@ export default {
       Object.assign(this.chartdata.datasets[2].data, this.dataObj.energyAndHeating)
       Object.assign(this.chartdata.datasets[3].data, this.dataObj.food)
       Object.assign(this.chartdata.datasets[4].data, this.dataObj.water)
-      Object.assign(this.chartdata.datasets[5].data, this.dataObj.waste)
     }
   },
   mounted () {

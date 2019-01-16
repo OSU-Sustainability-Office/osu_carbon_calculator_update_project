@@ -8,14 +8,14 @@
 
 ## Features timeline (box is checked if implemented):
 - [ ] UI Updates: (1/15/19)
-    - [ ] Remove waste category
+    - [X] Remove waste category
     - [ ] Waste image
     - [ ] Remove refillable water bottle question
     - [ ] Change 'dorms' to 'residence halls' in energy/heating category
     - [ ] US vs User vs Other Country graph comparison (make this primary instead of trend data)
     - [ ] Add 'Total KgCO2e'
 - [ ] UI Updates (1/17/19)
-    - [ ] Move prev/back buttons to top right corner
+    - [X] Move prev/back buttons to top right corner
     - [ ] Resize chart category title text
     - [ ] Make chart category text respond to hover interactions
 - [ ] UI Updates (1/20/19)

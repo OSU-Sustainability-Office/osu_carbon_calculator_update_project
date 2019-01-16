@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T13:46:37-08:00
+@Last modified time: 2019-01-15T22:01:02-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -176,8 +176,7 @@ export default {
           consumption: [USData[1], userData[1]],
           energyAndHeating: [USData[2], userData[2]],
           food: [USData[3], userData[3]],
-          water: [USData[4], userData[4]],
-          waste: [USData[5], userData[5]]
+          water: [USData[4], userData[4]]
         }
         return finalDataObject
       } else {
@@ -187,8 +186,7 @@ export default {
           consumption: [this.usAvgDataObj.totals[1], this.totals[1]],
           energyAndHeating: [this.usAvgDataObj.totals[2], this.totals[2]],
           food: [this.usAvgDataObj.totals[3], this.totals[3]],
-          water: [this.usAvgDataObj.totals[4], this.totals[4]],
-          waste: [this.usAvgDataObj.totals[5], this.totals[5]]
+          water: [this.usAvgDataObj.totals[4], this.totals[4]]
         }
         return finalDataObject
       }
@@ -257,11 +255,6 @@ export default {
         {
           label: 'Water',
           backgroundColor: '#006A8E',
-          borderColor: '#000'
-        },
-        {
-          label: 'Waste',
-          backgroundColor: '#7A6855',
           borderColor: '#000'
         }
       ]
