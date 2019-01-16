@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T21:55:27-08:00
+@Last modified time: 2019-01-15T22:41:32-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -20,7 +20,17 @@
           </el-row>
         </div>
         <div>
-          <el-carousel v-loading="loading" ref="carousel" trigger="click" height="35em" :autoplay="false" arrow="never" indicator-position="none">
+          <el-carousel v-loading="loading" ref="carousel" trigger="click" height="35em" :autoplay="false" arrow="never" :initial-index="1" indicator-position="none">
+            <!-- Waste category -->
+            <el-carousel-item name="Waste">
+              <!-- No matter what I try, this category will render before any of the calculation question categories. Unfortunately, I combed through the Element UI code and could not find any way to re-arrange carousel items. This is now placed first as a workaround, since the carousel loops back to the beginning. -->
+              <p>Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
+
+              <p>But what’s more important? While it’s great we have minimal waste disposal-related emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture, purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the "Next Steps" tab.</p>
+
+            </el-carousel-item>
+
+            <!-- Intro Category -->
             <el-carousel-item name="About">
               <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
               <p>This calculator is based on a calculator developed by Santa Clara University. For more information, please visit <a href="http://www.scu.edu/ethics/practicing/focusareas/environmental_ethics/carbon-footprint/create_calc.html">their website</a>.</p>
@@ -29,18 +39,7 @@
             <!-- Iterate over each category and render the questions -->
             <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
 
-              <!-- This div only exists to force these elements to render before the waste category -->
-              <div display="none">{{category.title}}</div>
-
               <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
-
-            </el-carousel-item>
-
-            <!-- Waste category -->
-            <el-carousel-item name="Waste">
-              <p>Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
-
-              <p>But what’s more important? While it’s great we have minimal waste disposal-related emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture, purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the "Next Steps" tab.</p>
 
             </el-carousel-item>
           </el-carousel>
@@ -99,7 +98,7 @@ export default {
   },
   methods: {
     next () {
-      if (this.$refs.carousel.activeIndex === 6) {
+      if (this.$refs.carousel.activeIndex === 0) {
         this.lastSlide = true
       } else {
         this.$refs.carousel.next()
