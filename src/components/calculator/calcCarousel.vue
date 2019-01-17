@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T23:17:56-08:00
+@Last modified time: 2019-01-17T10:14:55-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -27,8 +27,6 @@
               <!-- No matter what I try, this category will render before any of the calculation question categories. Unfortunately, I combed through the Element UI code and could not find any way to re-arrange carousel items. This is now placed first as a workaround, since the carousel loops back to the beginning. -->
               <img class="centered" @click="show" src="../../../public/static/images/landfill.jpg" />
               <p>Why are there no solid waste questions? Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
-
-              <p>But what’s more important? While it’s great we have minimal waste disposal-related emissions, what really matters is purchasing and consumption – they have a significantly larger impact on your carbon footprint. So focus on reducing how much you consume, which will in turn create less waste! Buy used clothes and furniture, purchase food in bulk, print less, etc! More tips on reducing your footprint can be found in the "Next Steps" tab.</p>
 
             </el-carousel-item>
 
