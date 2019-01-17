@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T11:09:32-08:00
+@Last modified time: 2019-01-17T11:10:48-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -38,7 +38,7 @@
   </el-row>
 
   <el-row v-if="lastSlide">
-    <el-col :span="14" :offset="4" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
+    <el-col :span="16" :offset="4" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
       <!-- Trend/Historical Data Chart -->
       <el-card class="box-card" shadow="hover">
         <div slot="header" class="clearfix">
@@ -50,7 +50,7 @@
       </el-card>
     </el-col>
 
-    <el-col :span="14" :offset="4" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
+    <el-col :span="16" :offset="4" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
       <!-- Trend/Historical Data Chart -->
       <el-card class="box-card" shadow="hover">
         <div slot="header" class="clearfix">
