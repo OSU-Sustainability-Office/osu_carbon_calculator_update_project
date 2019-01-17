@@ -21,7 +21,7 @@
 - [ ] UI Updates (1/20/19)
     - [X] Historical data deletion confirmation prompt
     - [X] Catch up on previous work
-    - [ ] Energy and Heating baseline data (Full time / Part Time / Commuter)
+    - [X] Energy and Heating baseline data (Full time / Part Time / Commuter)
     - [ ] Add units to question inputs
 - [ ] **Feedback Collection during Staff Meeting (1/22/19)**
 - [ ] Accurate Calculations + Sources (1/29/19)
