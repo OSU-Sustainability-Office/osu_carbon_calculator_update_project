@@ -19,8 +19,8 @@
     - [X] Resize chart category title text
     - [X] Make chart category text respond to hover interactions
 - [ ] UI Updates (1/20/19)
-    - [ ] Historical data deletion confirmation prompt
-    - [ ] Catch up on previous work
+    - [X] Historical data deletion confirmation prompt
+    - [X] Catch up on previous work
     - [ ] Energy and Heating baseline data (Full time / Part Time / Commuter)
     - [ ] Add units to question inputs
 - [ ] **Feedback Collection during Staff Meeting (1/22/19)**

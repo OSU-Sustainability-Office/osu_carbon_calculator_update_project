@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: historicalDataDialog.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T13:34:35-08:00
+@Last modified time: 2019-01-17T12:59:10-08:00
 @Copyright: 2018 Oregon State University
 -->
 <template>
@@ -29,7 +29,7 @@
       <el-table-column width="100" prop="date" label="Date"></el-table-column>
       <el-table-column width="100" label="Delete">
         <template slot-scope="scope">
-          <el-button @click="handleDelete(scope.$index)" type="text" size="small">Delete</el-button>
+          <el-button @click="confirmDeletion(scope.$index)" type="text" size="small">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -71,6 +71,24 @@ export default {
     handleDelete (row) {
       this.$store.commit('user/removeHistData', row)
       UserApi.deleteHistData(row)
+    },
+    confirmDeletion (row) {
+      this.$confirm('This will permanently delete your results from ' + this.$store.getters['user/data'][row].date + '. Continue?', 'Warning', {
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: 'Deleted data.'
+        })
+        this.handleDelete(row)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Delete canceled.'
+        })
+      })
     }
   }
 }
