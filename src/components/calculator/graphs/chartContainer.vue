@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T23:20:30-08:00
+@Last modified time: 2019-01-17T11:09:32-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -11,44 +11,58 @@
 <template>
 
 <div class="chartContainer">
+  <el-row>
+    <!-- US Avg and Category Comparison Charts -->
+    <el-col :span="barSpan">
+      <el-card class="box-card" shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>Your Results</span>
+        </div>
+        <div>
+          <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
+          <el-switch v-model="resultsToggle" active-text="Percentages" inactive-text="Totals (Kg CO2e)"></el-switch>
+        </div>
+      </el-card>
+    </el-col>
+    <el-col :span="14" v-if="lastSlide">
+      <!-- Trend/Historical Data Chart -->
+      <el-card class="box-card" shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>Country Comparison</span>
+        </div>
+        <div>
+          <countryComparisonChart :dataObj="countryComparisonChartData" />
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
 
-  <!-- US Avg and Category Comparison Charts -->
-  <el-col :span="barSpan">
-    <el-card class="box-card" shadow="hover">
-      <div slot="header" class="clearfix">
-        <span>Your Results</span>
-      </div>
-      <div>
-        <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
-        <el-switch v-model="resultsToggle" active-text="Percentages" inactive-text="Totals (Kg CO2e)"></el-switch>
-      </div>
-    </el-card>
-  </el-col>
+  <el-row v-if="lastSlide">
+    <el-col :span="14" :offset="4" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
+      <!-- Trend/Historical Data Chart -->
+      <el-card class="box-card" shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>Trend</span>
+        </div>
+        <div>
+          <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
+        </div>
+      </el-card>
+    </el-col>
 
-  <el-col :span="14" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
-    <!-- Trend/Historical Data Chart -->
-    <el-card class="box-card" shadow="hover">
-      <div slot="header" class="clearfix">
-        <span>Trend</span>
-      </div>
-      <div>
-        <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
-      </div>
-    </el-card>
-  </el-col>
-
-  <el-col :span="14" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
-    <!-- Trend/Historical Data Chart -->
-    <el-card class="box-card" shadow="hover">
-      <div slot="header" class="clearfix">
-        <span>Trend</span>
-      </div>
-      <div>
-        <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
-        <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
-      </div>
-    </el-card>
-  </el-col>
+    <el-col :span="14" :offset="4" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
+      <!-- Trend/Historical Data Chart -->
+      <el-card class="box-card" shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>Trend</span>
+        </div>
+        <div>
+          <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
+          <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
 
 </div>
 
@@ -58,12 +72,14 @@
 import UserApi from '@/utils/api/user.js' // For uploading user data
 import barChart from '@/components/calculator/graphs/chartComponents/barChart'
 import trendChart from '@/components/calculator/graphs/chartComponents/trendChart'
+import countryComparisonChart from '@/components/calculator/graphs/chartComponents/countryComparisonChart'
 
 export default {
   name: 'chartContainer',
   components: {
     barChart,
-    trendChart
+    trendChart,
+    countryComparisonChart
   },
   props: {
     lastSlide: {
@@ -204,7 +220,14 @@ export default {
     todayDate () {
       return new Date().toLocaleDateString()
     },
-    barSpan () { return this.chartsWidth === 8 ? 24 : 10 }
+    barSpan () { return this.chartsWidth === 8 ? 24 : 10 },
+    countryComparisonChartData () {
+      let sum = 0
+      this.totals.forEach(t => { sum += t })
+      let arr = []
+      arr.push(sum)
+      return arr
+    }
   },
   methods: {
     uploadTotals (totals) {
@@ -293,15 +316,17 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 .el-carousel__item {
   background: #fff;
 }
 .centered {
   text-align: center;
 }
-.el-row {
-  border: 2px solid #000;
+.el-card {
+  border: 1px solid #000;
+  margin: 1px;
   border-radius: 4px;
 }
+
 </style>

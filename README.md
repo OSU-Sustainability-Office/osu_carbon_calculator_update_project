@@ -13,7 +13,7 @@
     - [X] Remove refillable water bottle question
     - [X] Change 'dorms' to 'residence halls' in energy/heating category
     - [X] Add 'Total KgCO2e'
-- [ ] US vs User vs Other Country graph comparison (make this primary instead of trend data)
+- [X] US vs User vs Other Country graph comparison (make this primary instead of trend data)
 - [ ] UI Updates (1/17/19)
     - [X] Move prev/back buttons to top right corner
     - [ ] Resize chart category title text
