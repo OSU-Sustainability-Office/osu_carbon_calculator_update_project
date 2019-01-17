@@ -3,7 +3,7 @@
 @Date:   2019-01-17T10:21:54-08:00
 @Filename: countryComparisonChart.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T11:05:36-08:00
+@Last modified time: 2019-01-17T11:13:50-08:00
 @Copyright: 2018 Oregon State University
 -->
 <!--
@@ -11,7 +11,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T11:05:36-08:00
+@Last modified time: 2019-01-17T11:13:50-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -73,7 +73,7 @@ export default {
           },
           {
             label: 'US',
-            data: [3668.9],
+            data: [16399.8],
             backgroundColor: '#7A6855',
             borderColor: '#000',
             borderWidth: 2
