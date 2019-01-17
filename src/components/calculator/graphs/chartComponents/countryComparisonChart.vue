@@ -3,7 +3,7 @@
 @Date:   2019-01-17T10:21:54-08:00
 @Filename: countryComparisonChart.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T11:13:50-08:00
+@Last modified time: 2019-01-17T11:42:29-08:00
 @Copyright: 2018 Oregon State University
 -->
 <!--
@@ -11,7 +11,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T11:13:50-08:00
+@Last modified time: 2019-01-17T11:42:29-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -31,7 +31,56 @@ export default {
     return {
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                fontSize: 14,
+                fontColor: '#000',
+                fontFamily: 'Open Sans'
+              }
+            }
+          ],
+          yAxes: [
+            {
+              ticks: {
+                fontSize: 14,
+                fontColor: '#000',
+                fontFamily: 'Open Sans'
+              }
+            }
+          ]
+        },
+        legend: {
+          labels: {
+            fontSize: 14,
+            fontColor: '#000',
+            fontFamily: 'Open Sans'
+          },
+          onHover: function (e) {
+            e.target.style.cursor = 'pointer'
+          }
+        },
+        hover: {
+          onHover: function (e) {
+            var point = this.getElementAtEvent(e)
+            if (point.length) e.target.style.cursor = 'pointer'
+            else e.target.style.cursor = 'default'
+          }
+        },
+        tooltips: {
+          backgroundColor: '#fff',
+          borderColor: '#000',
+          borderWidth: 2,
+          titleFontSize: 16,
+          titleFontColor: '#000',
+          titleFontFamily: 'Open Sans',
+          bodyFontSize: 14,
+          bodyFontColor: '#000',
+          bodyFontFamily: 'Open Sans',
+          cornerRadius: 4
+        }
       },
       chartdata: {
         labels: ['Total Average Footprint (KgCO2e)'],

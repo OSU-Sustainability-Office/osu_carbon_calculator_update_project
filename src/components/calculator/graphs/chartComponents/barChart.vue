@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T22:00:02-08:00
+@Last modified time: 2019-01-17T11:43:56-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -30,14 +30,53 @@ export default {
         scales: {
           xAxes: [
             {
-              stacked: true
+              stacked: true,
+              ticks: {
+                fontSize: 14,
+                fontColor: '#000',
+                fontFamily: 'Open Sans'
+              }
             }
           ],
           yAxes: [
             {
-              stacked: true
+              stacked: true,
+              ticks: {
+                fontSize: 14,
+                fontColor: '#000',
+                fontFamily: 'Open Sans'
+              }
             }
           ]
+        },
+        legend: {
+          labels: {
+            fontSize: 14,
+            fontColor: '#000',
+            fontFamily: 'Open Sans'
+          },
+          onHover: function (e) {
+            e.target.style.cursor = 'pointer'
+          }
+        },
+        hover: {
+          onHover: function (e) {
+            var point = this.getElementAtEvent(e)
+            if (point.length) e.target.style.cursor = 'pointer'
+            else e.target.style.cursor = 'default'
+          }
+        },
+        tooltips: {
+          backgroundColor: '#fff',
+          borderColor: '#000',
+          borderWidth: 2,
+          titleFontSize: 16,
+          titleFontColor: '#000',
+          titleFontFamily: 'Open Sans',
+          bodyFontSize: 14,
+          bodyFontColor: '#000',
+          bodyFontFamily: 'Open Sans',
+          cornerRadius: 4
         }
       },
       chartdata: {
