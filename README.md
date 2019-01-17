@@ -16,8 +16,8 @@
 - [X] US vs User vs Other Country graph comparison (make this primary instead of trend data)
 - [ ] UI Updates (1/17/19)
     - [X] Move prev/back buttons to top right corner
-    - [ ] Resize chart category title text
-    - [ ] Make chart category text respond to hover interactions
+    - [X] Resize chart category title text
+    - [X] Make chart category text respond to hover interactions
 - [ ] UI Updates (1/20/19)
     - [ ] Historical data deletion confirmation prompt
     - [ ] Catch up on previous work
