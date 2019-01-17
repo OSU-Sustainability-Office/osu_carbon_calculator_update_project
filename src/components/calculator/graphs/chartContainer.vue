@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T11:10:48-08:00
+@Last modified time: 2019-01-17T13:23:34-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -89,6 +89,10 @@ export default {
     chartsWidth: {
       type: Number,
       default: 8
+    },
+    studentType: {
+      type: String,
+      default: 'On Campus'
     }
   },
   data () {
@@ -103,6 +107,18 @@ export default {
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
     historicalData () { return this.$store.getters['user/data'] },
+    studentBaseline () {
+      // eslint-disable-next-line
+      if (this.studentType == 'On Campus') {
+        return [3498.6, 170.2]
+      }
+      // eslint-disable-next-line
+      if (this.studentType == 'Off Campus Full-time Commuter Student or Staff') {
+        return [2624.6, 164.6]
+      }
+      // Otherwise, default to 'Part-time Commuter Student or Staff':
+      return [1750.5, 159.1]
+    },
     // Adds up the totals for each question and returns an array of category totals
     totals () {
       // Empty array of category totals (in order)
@@ -152,6 +168,10 @@ export default {
 
         totals.push(total)
       })
+
+      // Add baseline data for each student type to the calculator.
+      this.$set(totals, 2, this.studentBaseline[0] + totals[2])
+      this.$set(totals, 4, this.studentBaseline[1] + totals[4])
 
       // Upload this data if the user is logged in
       if (this.$store.getters['user/isLoggedIn']) this.uploadTotals(totals)

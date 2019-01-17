@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T12:43:03-08:00
+@Last modified time: 2019-01-17T13:13:29-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -35,6 +35,12 @@
             <!-- Intro Category -->
             <el-carousel-item name="About">
               <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
+              <p>To get started, please select which of the following best describes you:</p>
+              <el-radio-group v-model="studentType">
+                <el-radio-button label="On Campus"></el-radio-button>
+                <el-radio-button label="Off Campus Full-time Commuter Student or Staff"></el-radio-button>
+                <el-radio-button label="Part-time Commuter Student or Staff"></el-radio-button>
+              </el-radio-group>
             </el-carousel-item>
 
             <!-- Iterate over each category and render the questions -->
@@ -56,7 +62,7 @@
   <!-- Begin Charts Div -->
   <el-col :span="chartsWidth" ref="results">
     <el-button v-if="lastSlide" v-on:click="prev()" type="primary" icon="el-icon-arrow-left"></el-button>
-    <chartContainer ref="charts" :chartsWidth="chartsWidth" :lastSlide="lastSlide" />
+    <chartContainer ref="charts" :chartsWidth="chartsWidth" :lastSlide="lastSlide" :studentType="studentType" />
   </el-col>
 
 </div>
@@ -94,7 +100,8 @@ export default {
   data () {
     return {
       lastSlide: false,
-      currentTitle: 0
+      currentTitle: 0,
+      studentType: 'On Campus'
     }
   },
   methods: {
