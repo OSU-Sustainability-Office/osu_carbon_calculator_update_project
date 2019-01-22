@@ -27,7 +27,7 @@
     - [ ] Ragen's Small UI Tweaks
     - [ ] Tap & Hold
     - [ ] Add units to question inputs
-    - [ ] Add units to chart tooltips
+    - [X] Add units to chart tooltips
 - [ ] Accurate Calculations + Sources (1/29/19)
     - [X] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
     - [ ] Lety will provide updated PP&El grid mix kgco2e data
