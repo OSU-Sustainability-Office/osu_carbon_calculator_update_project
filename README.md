@@ -14,27 +14,23 @@
     - [X] Change 'dorms' to 'residence halls' in energy/heating category
     - [X] Add 'Total KgCO2e'
 - [X] US vs User vs Other Country graph comparison (make this primary instead of trend data)
-- [ ] UI Updates (1/17/19)
+- [X] UI Updates (1/17/19)
     - [X] Move prev/back buttons to top right corner
     - [X] Resize chart category title text
     - [X] Make chart category text respond to hover interactions
-- [ ] UI Updates (1/20/19)
+- [X] UI Updates (1/20/19)
     - [X] Historical data deletion confirmation prompt
     - [X] Catch up on previous work
     - [X] Energy and Heating baseline data (Full time / Part Time / Commuter)
-    - [ ] Add units to question inputs
 - [ ] **Feedback Collection during Staff Meeting (1/22/19)**
+- [ ] Final UI Tweaks (1/22/19)
+    - [ ] Ragen's Small UI Tweaks
+    - [ ] Tap & Hold
+    - [ ] Add units to question inputs
+    - [ ] Add units to chart tooltips
 - [ ] Accurate Calculations + Sources (1/29/19)
-    - [ ] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
-    - [ ] Meet with Lety (Meeting scheduled on 1/22/19)
-    - Notes:
-    ```
-    What is the US average?
-    What answers result in an 'Average' result?
-    Comparison for specific categories, such as travel and household energy use? (EIA as potential source for household data).
-
-    Data accuracy check.
-    ```
-    - [ ] Add to this list
-- [ ] Ragen's Small UI Tweaks (Complete by 1/29/19)
-- [ ] Push Version 1.0 to production! (1/29/19)
+    - [X] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
+    - [ ] Lety will provide updated PP&El grid mix kgco2e data
+    - [X] Add 10-20 MPG option to first question in Trans category
+    - [ ] Update US and OR Averages
+- [ ] Push Version 2.0 to production! (1/29/19)
