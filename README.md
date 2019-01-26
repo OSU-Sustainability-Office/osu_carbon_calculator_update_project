@@ -22,8 +22,7 @@
     - [X] Historical data deletion confirmation prompt
     - [X] Catch up on previous work
     - [X] Energy and Heating baseline data (Full time / Part Time / Commuter)
-- [ ] **Feedback Collection during Staff Meeting (1/22/19)**
-- [ ] Final UI Tweaks (1/22/19)
+- [ ] Final UI Tweaks (1/22/19) **Pushed back to 1/27/19 due to illness**
     - [ ] Ragen's Small UI Tweaks
     - [ ] Make the charts the same height
     - [ ] Change mouseover pointer on bar charts
