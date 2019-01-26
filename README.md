@@ -25,12 +25,17 @@
 - [ ] **Feedback Collection during Staff Meeting (1/22/19)**
 - [ ] Final UI Tweaks (1/22/19)
     - [ ] Ragen's Small UI Tweaks
-    - [ ] Tap & Hold
-    - [ ] Add units to question inputs
+    - [ ] Make the charts the same height
+    - [ ] Change mouseover pointer on bar charts
+    - [ ] Add padding to chart titles
+    - [ ] Disable tabs on non-active carousel cards
+    - [X] Tap & Hold
+    - [X] Add units to question inputs
     - [X] Add units to chart tooltips
 - [ ] Accurate Calculations + Sources (1/29/19)
     - [X] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
     - [ ] Lety will provide updated PP&El grid mix kgco2e data
     - [X] Add 10-20 MPG option to first question in Trans category
     - [ ] Update US and OR Averages
+- [ ] Cache question responses while user completes log in process
 - [ ] Push Version 2.0 to production! (1/29/19)
