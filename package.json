@@ -15,6 +15,7 @@
     "file-loader": "^2.0.0",
     "vue": "^2.5.17",
     "vue-chartjs": "^3.4.0",
+    "vue-directive-long-press": "^1.1.0",
     "vue-i18n": "^8.3.2",
     "vue-parallaxy": "^1.1.1",
     "vue-router": "^3.0.1",

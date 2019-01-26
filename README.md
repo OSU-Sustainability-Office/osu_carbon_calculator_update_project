@@ -36,5 +36,5 @@
     - [ ] Lety will provide updated PP&El grid mix kgco2e data
     - [X] Add 10-20 MPG option to first question in Trans category
     - [ ] Update US and OR Averages
-- [ ] Cache question responses while user completes log in process
+- [ ] Cache question responses while user completes log in process (1/27/19)
 - [ ] Push Version 2.0 to production! (1/29/19)
