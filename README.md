@@ -23,7 +23,15 @@
     - [X] Catch up on previous work
     - [X] Energy and Heating baseline data (Full time / Part Time / Commuter)
 - [ ] Final UI Tweaks (1/22/19) **Pushed back to 1/27/19 due to illness**
-    - [ ] Ragen's Small UI Tweaks
+    - [ ] Ragen's Small UI Tweaks (direct quotes)
+      - About the calculator – center the options
+      - Energy and heating – specify whether I should enter how much my total bills cost for my house, or enter how much my portion of the bill is after my roommates split it up amongst us
+      - All pages – page margins/padding or whatever. The left and right of the screen is cramped, give it about a centimeter more on each side? Will also help deal with some of the white space between the questions and the graphs
+      - All pages – those suggestions that Brogan made at the staff meeting about the graph title on the right matching the titles on the left side, centered and bolded, etc. And matching up the lines. Make both of the titles Stratum2 Bold
+      - Your results – in grey box -> Your Results > Live Results
+      - Progress bar – on first page, show just a circle so people become familiar with it on the first page
+      - Make the orange color a tad brighter, I don’t care what the brand says (shh) their orange is like two shades too dark and that specific shade is trash
+      - •	Colors: Orange: #FF4E00, Grey: #E0E0E0
     - [ ] Make the charts the same height
     - [ ] Change mouseover pointer on bar charts
     - [ ] Add padding to chart titles
