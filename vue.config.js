@@ -4,11 +4,9 @@
  * @Email:  jackrwoods@gmail.com
  * @Filename: vue.config.js
  * @Last modified by:   Jack Woods
- * @Last modified time: 2019-01-29T15:11:41-08:00
+ * @Last modified time: 2019-01-29T15:36:50-08:00
  * @Copyright: 2019 Oregon State University
  */
-
-// const { dependencies } = require('./package.json') can use this to transpile all dependencies
 
 // vue.config.js
 module.exports = {

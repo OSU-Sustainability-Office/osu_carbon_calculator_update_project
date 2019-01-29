@@ -3,8 +3,8 @@
 @Date:   2019-01-26T13:31:44-08:00
 @Email:  jackrwoods@gmail.com
 @Filename: numericalUnitInput.vue
-@Last modified by:   jackrwoods
-@Last modified time: 2019-01-26T15:16:08-08:00
+@Last modified by:   Jack Woods
+@Last modified time: 2019-01-29T15:36:33-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -12,7 +12,8 @@
     <el-input type="number" :min="min" v-model="value" @change="$emit('change', $event)" clearable>
        <template :slot="slot">{{ unit }}</template>
     </el-input>
-    <el-button-group>
+    <br />
+    <el-button-group class="padded">
       <el-button type="primary" @click="add(1)" v-long-press="350" @long-press-start="longPressStart(1)" @long-press-stop="longPressStop" icon="el-icon-plus"></el-button>
       <el-button type="primary" @click="add(-1)" v-long-press="350" @long-press-start="longPressStart(-1)" @long-press-stop="longPressStop" icon="el-icon-minus"></el-button>
     </el-button-group>
@@ -82,5 +83,8 @@ input[type=number]::-webkit-inner-spin-button {
 }
 input[type=number] {
     -moz-appearance:textfield;
+}
+.padded {
+  margin-top: .2em;
 }
 </style>
