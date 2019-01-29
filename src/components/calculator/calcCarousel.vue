@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-28T21:23:54-08:00
+@Last modified time: 2019-01-29T15:46:09-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -183,8 +183,8 @@ export default {
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 6px;
-  margin-left: 15em;
-  margin-right: 15em;
+  margin-left: 15%;
+  margin-right: 15%;
   top: 20%;
   padding: 1em;
 }
