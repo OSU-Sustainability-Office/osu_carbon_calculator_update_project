@@ -13,6 +13,7 @@
     "chart.js": "^2.7.3",
     "element-ui": "^2.4.10",
     "file-loader": "^2.0.0",
+    "query-string": "^5.1.1",
     "vue": "^2.5.17",
     "vue-chartjs": "^3.4.0",
     "vue-directive-long-press": "^1.1.0",
@@ -24,6 +25,7 @@
     "webpack-babel-env-deps": "^1.5.0"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.1.5",
     "@vue/cli-plugin-unit-jest": "^3.1.1",
     "@vue/cli-service": "^3.1.4",
@@ -35,6 +37,20 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
   },
   "description": "## [Production Build](https://myco2.sustainability.oregonstate.edu)",
   "main": ".eslintrc.js",
