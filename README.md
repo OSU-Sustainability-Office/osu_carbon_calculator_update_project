@@ -7,7 +7,7 @@
 ## [Documentation](https://osusustainability.gitbook.io/energy-dashboard/frontend-documentation#carbon-calculator)
 
 ## Features timeline (box is checked if implemented):
-- [ ] UI Updates: (1/15/19)
+- [X] UI Updates: (1/15/19)
     - [X] Remove waste category
     - [X] Waste image
     - [X] Remove refillable water bottle question
@@ -39,10 +39,10 @@
     - [X] Tap & Hold
     - [X] Add units to question inputs
     - [X] Add units to chart tooltips
-- [ ] Accurate Calculations + Sources (1/29/19)
+- [X] Accurate Calculations + Sources (1/29/19)
     - [X] Update calculations and sources using the [Spreadsheet](https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=135288076)
     - [X] Lety will provide updated PP&El grid mix kgco2e data
     - [X] Add 10-20 MPG option to first question in Trans category
-    - [ ] Update US and OR Averages
+    - [X] Update US and OR Averages
 - [ ] Cache question responses while user completes log in process (1/27/19)
 - [ ] Push Version 2.0 to production! (1/29/19)

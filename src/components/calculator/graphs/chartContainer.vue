@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-28T21:10:30-08:00
+@Last modified time: 2019-01-29T11:09:37-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -148,14 +148,19 @@ export default {
               location = valueMap.indexOf(parentQuestion.value)
             }
 
-            // Add to the total for this category
-            // If the parentQuestion has a 0 coefficient, the child question has the coefficient
-            if (parentQuestion.input.values[location].coef === 0) {
-              // Multiply the current question's value to the parent question's coefficient
-              total += question.value * question.input.values[0].coef
-            } else {
-              // Multiply the current question's value to the parent question's coefficient
-              if (!isNaN(question.value) && !isNaN(parentQuestion.input.values[location].coef)) total += question.value * parentQuestion.input.values[location].coef
+            // If the parentQuestion has not been rendered, its value will be incorrect. Ignore this question if it's parent is undefined.
+            if (typeof parentQuestion.input.values[location] !== 'undefined') {
+              // Add to the total for this category
+              // If the parentQuestion has a 0 coefficient, the child question has the coefficient
+              if (parentQuestion.input.values[location].coef === 0) {
+                // Multiply the current question's value to the child question's coefficient
+                total += question.value * question.input.values[0].coef
+              } else {
+                // Multiply the current question's value to the parent question's coefficient
+                console.log(total)
+                if (!isNaN(question.value) && !isNaN(parentQuestion.input.values[location].coef)) total += question.value * parentQuestion.input.values[location].coef
+                console.log(total + ',' + question.text)
+              }
             }
 
             // eslint-disable-next-line
