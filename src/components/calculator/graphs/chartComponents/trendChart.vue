@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: trendChart.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-22T15:20:03-08:00
+@Last modified time: 2019-01-28T21:32:01-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -49,7 +49,8 @@ export default {
           labels: {
             fontSize: 14,
             fontColor: '#000',
-            fontFamily: 'Open Sans'
+            fontFamily: 'Open Sans',
+            padding: 20
           },
           onHover: function (e) {
             e.target.style.cursor = 'pointer'
@@ -57,9 +58,7 @@ export default {
         },
         hover: {
           onHover: function (e) {
-            var point = this.getElementAtEvent(e)
-            if (point.length) e.target.style.cursor = 'pointer'
-            else e.target.style.cursor = 'default'
+            e.target.style.cursor = 'default'
           }
         },
         tooltips: {

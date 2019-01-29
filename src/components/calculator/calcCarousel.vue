@@ -3,20 +3,20 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-17T13:13:29-08:00
+@Last modified time: 2019-01-28T21:23:54-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
-<div>
+<div class="calculator">
   <transition name="calculator">
     <el-col :span="16" v-show="!lastSlide">
       <el-card class="box-card" shadow="hover">
         <div slot="header" class="clearfix">
           <el-row class="centerContent">
-            <el-col :span="2" centered><el-button v-on:click="prev()" type="primary" icon="el-icon-arrow-left" :disabled="currentTitle === 0"></el-button></el-col>
+            <el-col :span="2" centered><el-button class="headerButton" v-on:click="prev()" type="primary" icon="el-icon-arrow-left" :disabled="currentTitle === 0"></el-button></el-col>
             <el-col :span="20"><h1>{{determineTitle}}</h1></el-col>
-            <el-col :span="2"><el-button v-on:click="next()" type="primary"><i class="el-icon-arrow-right el-icon-right"></i></el-button></el-col>
+            <el-col :span="2"><el-button class="headerButton" v-on:click="next()" type="primary"><i class="el-icon-arrow-right el-icon-right"></i></el-button></el-col>
           </el-row>
         </div>
         <div>
@@ -36,7 +36,7 @@
             <el-carousel-item name="About">
               <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
               <p>To get started, please select which of the following best describes you:</p>
-              <el-radio-group v-model="studentType">
+              <el-radio-group v-model="studentType" class="centered">
                 <el-radio-button label="On Campus"></el-radio-button>
                 <el-radio-button label="Off Campus Full-time Commuter Student or Staff"></el-radio-button>
                 <el-radio-button label="Part-time Commuter Student or Staff"></el-radio-button>
@@ -46,14 +46,18 @@
             <!-- Iterate over each category and render the questions -->
             <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
 
-              <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
+              <transition name="el-fade-in-linear">
+                <div v-if="determineTitle == category.title">
+                  <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
+                </div>
+              </transition>
 
             </el-carousel-item>
           </el-carousel>
         </div>
       </el-card>
       <el-card>
-        <el-progress :show-text="false" :stroke-width="18" :percentage="currentTitle / 6 * 100"></el-progress>
+        <el-progress :show-text="false" :stroke-width="18" :percentage="progressPercentage > 0 ? progressPercentage : 2.5"></el-progress>
       </el-card>
 
     </el-col>
@@ -61,7 +65,7 @@
 
   <!-- Begin Charts Div -->
   <el-col :span="chartsWidth" ref="results">
-    <el-button v-if="lastSlide" v-on:click="prev()" type="primary" icon="el-icon-arrow-left"></el-button>
+    <el-button id="chartsBackButton" v-if="lastSlide" v-on:click="prev()" type="primary" icon="el-icon-arrow-left"> Back</el-button>
     <chartContainer ref="charts" :chartsWidth="chartsWidth" :lastSlide="lastSlide" :studentType="studentType" />
   </el-col>
 
@@ -95,6 +99,9 @@ export default {
       if (this.currentTitle === 0) return 'About the Calculator'
       else if (this.currentTitle === 6) return 'Waste'
       else return this.categories[this.currentTitle - 1].title // Subtract 1 to remove the Introduction from the calculation
+    },
+    progressPercentage () {
+      return this.currentTitle / 6 * 100
     }
   },
   data () {
@@ -149,7 +156,9 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+}
+.calculator {
+  margin: 1.5em;
 }
 .img-wrapper {
   -khtml-user-select: none;
@@ -166,6 +175,9 @@ export default {
   border: 2px solid #000;
   border-radius: 2px;
 }
+.headerButton {
+  height: 3em;
+}
 #waste-text {
   position: relative;
   background-color: #fff;
@@ -175,6 +187,9 @@ export default {
   margin-right: 15em;
   top: 20%;
   padding: 1em;
+}
+#chartsBackButton {
+  margin-bottom: 1em;
 }
 img {
   cursor: pointer;
@@ -187,7 +202,9 @@ img {
   user-select: none;
 }
 h1 {
-  padding: .2em;
+  padding: 0em;
   margin: 0;
+  font-family: 'StratumNo2';
+  font-size: 2.5em;
 }
 </style>

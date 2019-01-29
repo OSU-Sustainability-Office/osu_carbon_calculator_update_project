@@ -1,3 +1,11 @@
+// @Author: Jack Woods <jackrwoods>
+// @Date:   2018-11-27T13:45:58-08:00
+// @Email:  jackrwoods@gmail.com
+// @Filename: element-variables.scss
+// @Last modified by:   jackrwoods
+// @Last modified time: 2019-01-26T15:34:13-08:00
+// @Copyright: 2019 Oregon State University
+
 /* Element Chalk Variables */
 
 /* Transition
@@ -14,7 +22,7 @@ $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
 $--color-white: #fff !default;
 $--color-black: #000 !default;
 
-$--color-primary: #DC4405 !default;
+$--color-primary: #FF4E00 !default;
 $--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
 $--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
 $--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */

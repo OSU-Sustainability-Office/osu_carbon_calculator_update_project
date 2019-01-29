@@ -2,8 +2,8 @@
 @Author: Jack Woods
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: logo.vue
-@Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T11:05:01-08:00
+@Last modified by:   jackrwoods
+@Last modified time: 2019-01-26T15:36:22-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -30,14 +30,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .jumbotron_text_top {
-  background-color: #DC4405;
+  background-color: #FF4E00;
   color: #000000;
   text-align: right;
   font-family: 'StratumNo2';
 }
 .jumbotron_text_bottom {
   background-color: #000000;
-  color: #DC4405;
+  color: #FF4E00;
   text-align: left;
   font-family: 'StratumNo2';
 }

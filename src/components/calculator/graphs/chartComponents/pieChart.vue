@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-22T15:19:54-08:00
+@Last modified time: 2019-01-28T21:31:55-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -27,7 +27,8 @@ export default {
           labels: {
             fontSize: 14,
             fontColor: '#000',
-            fontFamily: 'Open Sans'
+            fontFamily: 'Open Sans',
+            padding: 20
           },
           onHover: function (e) {
             e.target.style.cursor = 'pointer'
@@ -35,11 +36,8 @@ export default {
         },
         hover: {
           onHover: function (e) {
-            var point = this.getElementAtEvent(e)
-            if (point.length) e.target.style.cursor = 'pointer'
-            else e.target.style.cursor = 'default'
+            e.target.style.cursor = 'default'
           }
-        },
         },
         tooltips: {
           backgroundColor: '#fff',
@@ -62,7 +60,7 @@ export default {
         datasets: [{
           label: 'Carbon Dioxide Equivalent Emissions by Category',
           data: [0, 0, 0, 0, 0, 0],
-          backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#8E9089', '#006A8E'],
+          backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#E0E0E0', '#006A8E'],
           borderColor: '#000',
           borderWidth: 2
         }]
