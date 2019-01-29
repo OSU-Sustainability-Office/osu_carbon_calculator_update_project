@@ -22,7 +22,7 @@
     - [X] Historical data deletion confirmation prompt
     - [X] Catch up on previous work
     - [X] Energy and Heating baseline data (Full time / Part Time / Commuter)
-- [ ] Final UI Tweaks (1/22/19) **Pushed back to 1/27/19 due to illness**
+- [X] Final UI Tweaks (1/22/19) **Pushed back to 1/27/19 due to illness**
     - [X] Ragen's Small UI Tweaks (direct quotes)
       - About the calculator – center the options
       - Energy and heating – specify whether I should enter how much my total bills cost for my house, or enter how much my portion of the bill is after my roommates split it up amongst us
