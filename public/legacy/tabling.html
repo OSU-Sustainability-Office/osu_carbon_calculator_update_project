@@ -1,0 +1,114 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Oregon State University Sustainability Office</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/tabling.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="inner cover">
+          <h1 class="cover-heading">OSU Sustainability Office</h1>
+        </div>
+        <p class="lead">Tap on a photo to learn more.
+        </p>
+
+      </div>
+
+      <div class="album">
+        <div class="container">
+
+          <div class="row">
+            <div class="card">
+              <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/annual-reports"><img class="img-rounded" src="img/sustainability_office.jpg" height="267" alt="Card image cap"><br />
+              <h4>Sustainability Office</h4></a>
+            </div>
+            <div class="card">
+              <a onclick="openOverlay('lucid')"><img class="img-rounded" src="img/metering.jpg" height="267" alt="Card image cap"><br />
+              <h4>Real Time Energy Usage</h4></a>
+              <div class="overlay" id="lucid">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('lucid')">X</a>
+                <div class="overlay-content">
+                  <iframe src="https://buildingos.com/s/oregonstate/storyboard252/?chapterId=1082" width="95%" height="85%" style="border:none"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <a onclick="openOverlay('carbon_calculator')"><img class="img-rounded" src="img/carbon_calc.jpg" height="267" alt="Card image cap"><br />
+              <h4>Carbon Calculator</h4></a>
+              <div class="overlay" id="carbon_calculator">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('carbon_calculator')">X</a>
+                <div class="overlay-content">
+                  <iframe src="./index.html" width="95%" height="85%" style="border:none"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <a onclick="openOverlay('kilowatt')"><img class="img-rounded" src="img/kc.jpg" height="267" alt="Card image cap"><br />
+              <h4>Kilowatt Crackdown</h4></a>
+              <div class="overlay" id="kilowatt">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('kilowatt')">X</a>
+                <div class="overlay-content">
+                  <iframe src="https://buildingos.com/s/oregonstate/storyboard212/?chapterId=848" width="95%" height="85%" style="border:none"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/green-office-certification"><img class="img-rounded" src="img/green_office.jpg" height="267" alt="Card image cap"><br />
+              <h4>Green Office Certification</h4></a>
+            </div>
+            <div class="card">
+              <a onclick="openOverlay('solar')"><img class="img-rounded" src="img/solar.jpg" height="267" alt="Card image cap"><br />
+              <h4>Solar Power Generation</h4></a>
+              <div class="overlay" id="solar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay('solar')">X</a>
+                <div class="overlay-content">
+                  <iframe src="http://fa.oregonstate.edu/sustainability/ground-mounted-photovoltaic-arrays" width="95%" height="85%" style="border:none"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="../../dist/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  <!-- Custom script for overlays -->
+  <script src="./js/tabling.js"></script>
+</body>
+
+</html>
