@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T20:58:41-08:00
+@Last modified time: 2019-01-29T22:08:56-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -20,11 +20,23 @@
           </el-row>
         </div>
         <div>
-          <el-carousel v-loading="loading" ref="carousel" loop="false" trigger="click" height="35em" :autoplay="false" arrow="never" :initial-index="0" indicator-position="none">
+          <el-carousel v-loading="loading" ref="carousel" trigger="click" height="35em" :autoplay="false" arrow="never" :initial-index="1" indicator-position="none" @change="setFocus">
+            <!-- Waste category -->
+            <el-carousel-item name="Waste">
+              <!-- The waste category is positioned first as a workaround. It refuses to render after the calculator categories, so I'm rendering it first and looping around to it. -->
+              <FocusLock :disabled="focus !== 6">
+                <div class="bg-image">
+                  <div id="waste-text">
+                    <h3 class="centered">Why are there no solid waste questions?</h3>
+                    <p>Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
+                  </div>
+                </div>
+              </FocusLock>
+            </el-carousel-item>
 
             <!-- Intro Category -->
-            <FocusLock :disabled="currentTitle !== 0">
-              <el-carousel-item name="About">
+            <el-carousel-item name="About">
+              <FocusLock :disabled="focus !== 0">
                 <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
                 <p>To get started, please select which of the following best describes you:</p>
                 <el-radio-group v-model="studentType" class="centered">
@@ -32,27 +44,15 @@
                   <el-radio-button label="Off Campus Full-time Commuter Student or Staff"></el-radio-button>
                   <el-radio-button label="Part-time Commuter Student or Staff"></el-radio-button>
                 </el-radio-group>
-              </el-carousel-item>
-            </focusLock>
+              </FocusLock>
+            </el-carousel-item>
 
             <!-- Iterate over each category and render the questions -->
-              <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
-                <FocusLock :disabled="currentTitle !== category.categoryID + 1">
-                  <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
-                </focusLock>
-              </el-carousel-item>
-
-            <!-- Waste category -->
-            <FocusLock :disabled="currentTitle !== 6">
-              <el-carousel-item name="Waste">
-                <div class="bg-image">
-                  <div id="waste-text">
-                    <h3 class="centered">Why are there no solid waste questions?</h3>
-                    <p>Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
-                  </div>
-                </div>
-              </el-carousel-item>
-            </focusLock>
+            <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
+              <FocusLock :disabled="focus !== (category.categoryID + 2)">
+                <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
+              </FocusLock>
+            </el-carousel-item>
 
           </el-carousel>
         </div>
@@ -113,26 +113,30 @@ export default {
     return {
       lastSlide: false,
       currentTitle: 0,
-      studentType: 'On Campus'
+      studentType: 'On Campus',
+      focus: 0
     }
   },
   methods: {
     next () {
-      if (this.$refs.carousel.activeIndex === 6) {
+      if (this.$refs.carousel.activeIndex === 0) {
         this.lastSlide = true
       } else {
-        this.$refs.carousel.next()
         this.currentTitle++
+        this.$refs.carousel.next()
       }
     },
     prev () {
       if (this.lastSlide) {
         this.lastSlide = false
       } else {
-        this.$refs.carousel.prev()
         this.currentTitle--
+        this.$refs.carousel.prev()
       }
     }
+  },
+  setFocus (newSlideIndex, oldSlideIndex) {
+    this.focus = newSlideIndex
   }
 }
 </script>
