@@ -1,3 +1,13 @@
+/**
+ * @Author: Jack Woods
+ * @Date:   2018-11-08T12:23:22-08:00
+ * @Email:  jackrwoods@gmail.com
+ * @Filename: carbon_calculator.js
+ * @Last modified by:   Jack Woods
+ * @Last modified time: 2019-01-29T16:01:12-08:00
+ * @Copyright: 2019 Oregon State University
+ */
+
 /*******************************************************************************
                                      Notes
                         --------------------------------
