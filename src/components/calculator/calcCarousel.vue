@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T15:46:09-08:00
+@Last modified time: 2019-01-29T20:58:41-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -20,39 +20,40 @@
           </el-row>
         </div>
         <div>
-          <el-carousel v-loading="loading" ref="carousel" trigger="click" height="35em" :autoplay="false" arrow="never" :initial-index="1" indicator-position="none">
-            <!-- Waste category -->
-            <el-carousel-item name="Waste">
-              <!-- No matter what I try, this category will render before any of the calculation question categories. Unfortunately, I combed through the Element UI code and could not find any way to re-arrange carousel items. This is now placed first as a workaround, since the carousel loops back to the beginning. -->
-              <div class="bg-image">
-                <div id="waste-text">
-                  <h3 class="centered">Why are there no solid waste questions?</h3>
-                  <p>Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
-                </div>
-              </div>
-            </el-carousel-item>
+          <el-carousel v-loading="loading" ref="carousel" loop="false" trigger="click" height="35em" :autoplay="false" arrow="never" :initial-index="0" indicator-position="none">
 
             <!-- Intro Category -->
-            <el-carousel-item name="About">
-              <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
-              <p>To get started, please select which of the following best describes you:</p>
-              <el-radio-group v-model="studentType" class="centered">
-                <el-radio-button label="On Campus"></el-radio-button>
-                <el-radio-button label="Off Campus Full-time Commuter Student or Staff"></el-radio-button>
-                <el-radio-button label="Part-time Commuter Student or Staff"></el-radio-button>
-              </el-radio-group>
-            </el-carousel-item>
+            <FocusLock :disabled="currentTitle !== 0">
+              <el-carousel-item name="About">
+                <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
+                <p>To get started, please select which of the following best describes you:</p>
+                <el-radio-group v-model="studentType" class="centered">
+                  <el-radio-button label="On Campus"></el-radio-button>
+                  <el-radio-button label="Off Campus Full-time Commuter Student or Staff"></el-radio-button>
+                  <el-radio-button label="Part-time Commuter Student or Staff"></el-radio-button>
+                </el-radio-group>
+              </el-carousel-item>
+            </focusLock>
 
             <!-- Iterate over each category and render the questions -->
-            <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
-
-              <transition name="el-fade-in-linear">
-                <div v-if="determineTitle == category.title">
+              <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
+                <FocusLock :disabled="currentTitle !== category.categoryID + 1">
                   <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
-                </div>
-              </transition>
+                </focusLock>
+              </el-carousel-item>
 
-            </el-carousel-item>
+            <!-- Waste category -->
+            <FocusLock :disabled="currentTitle !== 6">
+              <el-carousel-item name="Waste">
+                <div class="bg-image">
+                  <div id="waste-text">
+                    <h3 class="centered">Why are there no solid waste questions?</h3>
+                    <p>Direct disposal emissions from solid waste in Corvallis are negligible for a few reasons. About 10 miles North of Corvallis, the Coffin Butte landfill captures methane, which substantially reduces emissions associated with waste. Additionally, the OSU Corvallis campus composts and recycles enough tons of waste per year to counteract most of those emissions.</p>
+                  </div>
+                </div>
+              </el-carousel-item>
+            </focusLock>
+
           </el-carousel>
         </div>
       </el-card>
@@ -81,6 +82,9 @@ import paragraph from '@/components/calculator/questions/paragraph'
 import tableQuestion from '@/components/calculator/questions/tableQuestion'
 import chartContainer from '@/components/calculator/graphs/chartContainer'
 
+// Import tool for locking tab focusing
+import FocusLock from 'vue-focus-lock'
+
 export default {
   name: 'calcCarousel',
   components: {
@@ -89,7 +93,8 @@ export default {
     value,
     paragraph,
     tableQuestion,
-    chartContainer
+    chartContainer,
+    FocusLock
   },
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
@@ -113,7 +118,7 @@ export default {
   },
   methods: {
     next () {
-      if (this.$refs.carousel.activeIndex === 0) {
+      if (this.$refs.carousel.activeIndex === 6) {
         this.lastSlide = true
       } else {
         this.$refs.carousel.next()

@@ -4,18 +4,18 @@
 @Email:  jackrwoods@gmail.com
 @Filename: numericalUnitInput.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T15:36:33-08:00
+@Last modified time: 2019-01-29T20:09:28-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
   <div>
-    <el-input type="number" :min="min" v-model="value" @change="$emit('change', $event)" clearable>
+    <el-input type="number" :min="min" v-model="value" @change="$emit('change', $event)">
        <template :slot="slot">{{ unit }}</template>
     </el-input>
     <br />
     <el-button-group class="padded">
-      <el-button type="primary" @click="add(1)" v-long-press="350" @long-press-start="longPressStart(1)" @long-press-stop="longPressStop" icon="el-icon-plus"></el-button>
       <el-button type="primary" @click="add(-1)" v-long-press="350" @long-press-start="longPressStart(-1)" @long-press-stop="longPressStop" icon="el-icon-minus"></el-button>
+      <el-button type="primary" @click="add(1)" v-long-press="350" @long-press-start="longPressStart(1)" @long-press-stop="longPressStop" icon="el-icon-plus"></el-button>
     </el-button-group>
   </div>
 </template>
