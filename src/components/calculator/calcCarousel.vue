@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-31T10:47:35-08:00
+@Last modified time: 2019-01-31T10:53:22-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -135,7 +135,11 @@ export default {
       }
     },
     setFocus (newSlideIndex, oldSlideIndex) {
-      this.focus = newSlideIndex
+      let scope = this
+      // This timeout waits for the carousel animation to complete before shifting focus
+      setTimeout(function () {
+        scope.focus = newSlideIndex
+      }, 500)
     }
   }
 }
