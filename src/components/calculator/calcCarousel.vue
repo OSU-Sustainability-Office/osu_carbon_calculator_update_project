@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-31T10:53:22-08:00
+@Last modified time: 2019-01-31T12:18:45-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -24,7 +24,7 @@
             <!-- Waste category -->
             <el-carousel-item name="Waste">
               <!-- The waste category is positioned first as a workaround. It refuses to render after the calculator categories, so I'm rendering it first and looping around to it. -->
-              <FocusLock :disabled="focus !== 6">
+              <FocusLock :disabled="focus !== 0">
                 <div class="bg-image">
                   <div id="waste-text">
                     <h3 class="centered">Why are there no solid waste questions?</h3>
@@ -36,7 +36,7 @@
 
             <!-- Intro Category -->
             <el-carousel-item name="About">
-              <FocusLock :disabled="focus !== 0">
+              <FocusLock :disabled="focus !== 1">
                 <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
                 <p>To get started, please select which of the following best describes you:</p>
                 <el-radio-group v-model="studentType" class="centered">

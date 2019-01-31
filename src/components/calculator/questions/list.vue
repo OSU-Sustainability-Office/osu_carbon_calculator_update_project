@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: list.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-15T10:40:08-08:00
+@Last modified time: 2019-01-31T11:01:37-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -71,4 +71,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.el-select .el-input__inner {
+  width: 5em;
+}
 </style>

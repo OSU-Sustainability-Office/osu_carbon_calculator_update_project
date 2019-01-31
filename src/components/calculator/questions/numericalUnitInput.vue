@@ -4,12 +4,12 @@
 @Email:  jackrwoods@gmail.com
 @Filename: numericalUnitInput.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-31T10:56:52-08:00
+@Last modified time: 2019-01-31T11:00:24-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
   <div>
-    <el-input type="number" :min="min" v-model="value" @change="$emit('change', $event)">
+    <el-input type="number" maxlength="20" :min="min" v-model="value" @change="$emit('change', $event)">
        <template :slot="slot">{{ unit }}</template>
     </el-input>
     <br />
