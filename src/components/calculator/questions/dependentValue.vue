@@ -1,7 +1,17 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-11-27T13:45:59-08:00
+@Email:  jackrwoods@gmail.com
+@Filename: dependentValue.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2019-01-31T10:43:59-08:00
+@Copyright: 2019 Oregon State University
+-->
+
 <template>
 
   <!-- draw a value question if the question should be visible -->
-  <value v-if="showQuestion" v-bind:questionData="questionData" v-bind:index="index" v-bind:categoryID="categoryID" />
+  <value v-show="showQuestion" v-bind:questionData="questionData" v-bind:index="index" v-bind:categoryID="categoryID" />
 
 </template>
 

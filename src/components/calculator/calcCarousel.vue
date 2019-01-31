@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T22:08:56-08:00
+@Last modified time: 2019-01-31T10:47:35-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -133,10 +133,10 @@ export default {
         this.currentTitle--
         this.$refs.carousel.prev()
       }
+    },
+    setFocus (newSlideIndex, oldSlideIndex) {
+      this.focus = newSlideIndex
     }
-  },
-  setFocus (newSlideIndex, oldSlideIndex) {
-    this.focus = newSlideIndex
   }
 }
 </script>
