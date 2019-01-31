@@ -4,7 +4,7 @@
 @Email:  jackrwoods@gmail.com
 @Filename: numericalUnitInput.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T20:09:28-08:00
+@Last modified time: 2019-01-31T10:56:52-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -70,6 +70,7 @@ export default {
   watch: {
     value () {
       this.value = this.value < 0 ? 0 : this.value
+      this.value = isNaN(this.value) ? 0 : this.value
     }
   }
 }
