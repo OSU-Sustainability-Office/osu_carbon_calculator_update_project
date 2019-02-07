@@ -3,7 +3,7 @@
  * @Date:   2018-11-27T13:45:59-08:00
  * @Filename: user.js
  * @Last modified by:   Jack Woods
- * @Last modified time: 2019-01-13T12:36:51-08:00
+ * @Last modified time: 2019-02-05T13:10:18-08:00
  * @Copyright: 2018 Oregon State University
  */
 
@@ -13,6 +13,7 @@ export default {
   namespaced: true,
   state: {
     isLoggedIn: false, // Becomes true if the user logs in
+    studentType: 'On Campus',
     onid: '', // The current user's onid username. ie: woodjack
     firstName: '', // The current user's first name. ie: Jack
     primaryAffiliation: '', // The current user's primary affiliation. This is either 'student' or 'employee'
@@ -35,6 +36,9 @@ export default {
     isLoggedIn: state => {
       return state.isLoggedIn
     },
+    studentType: state => {
+      return state.studentType
+    },
     administrator: state => {
       return state.administrator
     }
@@ -54,6 +58,9 @@ export default {
     // Removes one historical data entry
     removeHistData (state, index) {
       state.data.splice(index, 1)
+    },
+    setStudentType (state, data) {
+      state.studentType = data.newType
     }
   },
   actions: {

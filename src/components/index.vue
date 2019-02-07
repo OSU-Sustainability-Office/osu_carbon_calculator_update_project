@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: index.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-13T12:22:03-08:00
+@Last modified time: 2019-02-05T16:05:54-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -12,15 +12,11 @@
   <!-- This div only exists to satisfy VueJS's 1 root element requirement -->
   <div id="calculator">
 
-    <!-- The part at the top that says OSU Carbon Calculator -->
-    <el-row>
-      <logo></logo>
-    </el-row>
-
     <!-- The actual calculator -->
     <el-row>
-      <calcCarousel></calcCarousel>
-      <historicalDataDialog></historicalDataDialog>
+      <calcMobile v-if="isMobile" />
+      <calcDesktop v-else />
+      <historicalDataDialog />
     </el-row>
 
   </div>
@@ -28,20 +24,31 @@
 </template>
 
 <script>
-import logo from '@/components/calculator/logo'
-import calcCarousel from '@/components/calculator/calcCarousel'
+import calcDesktop from '@/components/calculator/calcDesktop'
+import calcMobile from '@/components/calculator/calcMobile'
 import historicalDataDialog from '@/components/administration/historicalDataDialog'
 
 export default {
   name: 'index',
   components: {
-    logo,
-    calcCarousel,
+    calcDesktop,
+    calcMobile,
     historicalDataDialog
+  },
+  computed: {
+    isMobile () {
+      // Shout out to https://coderwall.com/p/i817wa/one-line-function-to-detect-mobile-devices-with-javascript
+      // eslint-disable-next-line
+      return true// (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)
+    }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+h1 {
+  padding: 0em;
+  margin: 0;
+  font-family: 'StratumNo2';
+  font-size: 6vh;
+}
 </style>

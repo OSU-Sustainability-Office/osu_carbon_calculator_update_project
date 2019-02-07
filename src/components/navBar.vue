@@ -3,15 +3,43 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-07T15:33:53-08:00
+@Last modified time: 2019-02-07T15:53:40-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
+  <el-row id="navbar">
+    <el-col class="centered" :span="4">
+      <svgLogo class="logo button"/>
+    </el-col>
+    <el-col class="centered" :span="16">
+      <h1>Carbon Calculator</h1>
+    </el-col>
+    <el-col class="centered" :span="4" v-if="loggedIn">
+      <el-dropdown>
+        <span class="button">
+          My Account
+          <i class="el-icon-arrow-down el-icon--right" />
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>Historical Data</el-dropdown-item>
+          <el-dropdown-item>Energy Dashboard</el-dropdown-item>
+          <el-dropdown-item>Logout</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </el-col>
+    <el-col class="centered" :span="4" v-else>
+      <span class="button">Sign In</span>
+    </el-col>
+  </el-row>
+</template>
+
+<!-- <template>
 <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
   <el-menu-item index="0"><svgLogo class="logo"/>
   </el-menu-item>
-  <el-menu-item index="1">Home
+  <el-menu-item index="1">
+    <h1>Carbon Calculator</h1>
   </el-menu-item>
   <el-menu-item v-if="loggedOut" index="2">Login</el-menu-item>
   <el-submenu v-else index="3">
@@ -22,7 +50,7 @@
     <el-menu-item index="3-4">Logout</el-menu-item>
   </el-submenu>
 </el-menu>
-</template>
+</template> -->
 
 <script>
 import svgLogo from '../../public/static/images/logo.svg'
@@ -40,8 +68,8 @@ export default {
     }
   },
   computed: {
-    loggedOut () {
-      return !this.$store.getters['user/isLoggedIn']
+    loggedIn () {
+      return this.$store.getters['user/isLoggedIn']
     }
   },
   methods: {
@@ -78,7 +106,56 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+@import '@/assets/element-variables.scss';
+
+// Mobile devices
+$screen-xs-min: 360px;
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+@media only screen and (max-width: $screen-md-min) {
+  h1 {
+    font-size: 4vw;
+  }
+}
+
+.button {
+  color: $--color-white;
+  display: inline-block;
+  font-size: 3vh;
+  line-height: 9.5vh;
+  transition: $--all-transition;
+}
+.button:hover {
+  border-bottom: 2px solid #000;
+  color: $--color-black;
+  cursor: pointer;
+}
+.button .active {
+  background-color: $--color-selected;
+}
+.centered {
+  text-align: center;
+}
 .logo {
-  height: 4em;
+  height: 9.5vh;
+}
+h1 {
+  line-height: 10vh;
+}
+#navbar {
+  background-color: $--color-primary;
+  color: $--color-white;
+  height: 10vh;
 }
 </style>

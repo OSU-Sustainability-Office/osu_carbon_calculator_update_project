@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T22:35:41-08:00
+@Last modified time: 2019-02-05T15:34:11-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -16,8 +16,7 @@
     <el-col :span="barSpan">
       <el-card class="box-card" shadow="hover">
         <div slot="header" class="clearfix">
-          <h1 v-if="barSpan === 10" class="centered">Your Results</h1>
-          <h1 v-else class="centered">Live Results</h1>
+          <h1 class="centered">Results</h1>
         </div>
         <div>
           <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
@@ -90,10 +89,6 @@ export default {
     chartsWidth: {
       type: Number,
       default: 8
-    },
-    studentType: {
-      type: String,
-      default: 'On Campus'
     }
   },
   data () {
@@ -110,11 +105,11 @@ export default {
     historicalData () { return this.$store.getters['user/data'] },
     studentBaseline () {
       // eslint-disable-next-line
-      if (this.studentType == 'On Campus') {
+      if (this.$store.getters['user/studentType'] == 'On Campus') {
         return [3498.6, 170.2]
       }
       // eslint-disable-next-line
-      if (this.studentType == 'Off Campus Full-time Commuter Student or Staff') {
+      if (this.$store.getters['user/studentType'] == 'Off Campus Full-time Commuter Student or Staff') {
         return [2624.6, 164.6]
       }
       // Otherwise, default to 'Part-time Commuter Student or Staff':
@@ -351,11 +346,5 @@ export default {
   border: 1px solid #000;
   margin: 1px;
   border-radius: 4px;
-}
-h1 {
-  padding: 0em;
-  margin: 0;
-  font-family: 'StratumNo2';
-  font-size: 2.5em;
 }
 </style>

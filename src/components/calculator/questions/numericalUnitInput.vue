@@ -4,7 +4,7 @@
 @Email:  jackrwoods@gmail.com
 @Filename: numericalUnitInput.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-31T11:00:24-08:00
+@Last modified time: 2019-02-04T13:44:31-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -87,5 +87,9 @@ input[type=number] {
 }
 .padded {
   margin-top: .2em;
+}
+.el-input-group__append {
+  min-width: 5em;
+  text-align: center;
 }
 </style>
