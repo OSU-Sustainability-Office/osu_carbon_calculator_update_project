@@ -4,11 +4,11 @@
 @Email:  jackrwoods@gmail.com
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-05T13:37:46-08:00
+@Last modified time: 2019-02-08T13:31:46-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
-  <el-carousel v-loading="loading" ref="carousel" trigger="click" height="80vh" :autoplay="false" arrow="never" :initial-index="1" indicator-position="none" @change="setFocus">
+  <el-carousel v-loading="loading" ref="carousel" trigger="click" height="77vh" :autoplay="false" arrow="never" :initial-index="1" indicator-position="none" @change="setFocus">
 
     <!-- Waste category -->
     <el-carousel-item name="Waste">

@@ -3,33 +3,33 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-07T15:53:40-08:00
+@Last modified time: 2019-02-08T14:02:15-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
   <el-row id="navbar">
-    <el-col class="centered" :span="4">
-      <svgLogo class="logo button"/>
+    <el-col v-if="windowWidth > 1000" class="centered" :span="4">
+      <svgLogo class="logo button" @click="handleClick('0')"/>
     </el-col>
     <el-col class="centered" :span="16">
       <h1>Carbon Calculator</h1>
     </el-col>
     <el-col class="centered" :span="4" v-if="loggedIn">
-      <el-dropdown>
+      <el-dropdown @command="handleClick">
         <span class="button">
           My Account
           <i class="el-icon-arrow-down el-icon--right" />
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>Historical Data</el-dropdown-item>
-          <el-dropdown-item>Energy Dashboard</el-dropdown-item>
-          <el-dropdown-item>Logout</el-dropdown-item>
+          <el-dropdown-item command="3-1">Historical Data</el-dropdown-item>
+          <el-dropdown-item command="3-2">Energy Dashboard</el-dropdown-item>
+          <el-dropdown-item command="3-4">Logout</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-col>
     <el-col class="centered" :span="4" v-else>
-      <span class="button">Sign In</span>
+      <span class="button" @click="handleClick('2')">Sign In</span>
     </el-col>
   </el-row>
 </template>
@@ -64,7 +64,8 @@ export default {
       loginLink: 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location,
       logoutLink: 'https://api.sustainability.oregonstate.edu/auth/logoutRedirect',
       officeHomepageLink: 'http://sustainability.oregonstate.edu/',
-      dashboardLink: 'https://dashboard.sustainability.oregonstate.edu/'
+      dashboardLink: 'https://dashboard.sustainability.oregonstate.edu/',
+      windowWidth: window.innerWidth
     }
   },
   computed: {
@@ -73,7 +74,7 @@ export default {
     }
   },
   methods: {
-    handleSelect (key, keyPath) {
+    handleClick (key) {
       switch (key) {
         case '0':
           window.location = this.officeHomepageLink
@@ -101,6 +102,11 @@ export default {
   },
   components: {
     svgLogo
+  },
+  mounted () {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth
+    }
   }
 }
 </script>
@@ -127,12 +133,17 @@ $screen-xl-min: 1200px;
   h1 {
     font-size: 4vw;
   }
+  .logo {
+    height: 5vw;
+  }
+  .button {
+    font-size: 3vw !important;
+  }
 }
 
 .button {
   color: $--color-white;
   display: inline-block;
-  font-size: 3vh;
   line-height: 9.5vh;
   transition: $--all-transition;
 }

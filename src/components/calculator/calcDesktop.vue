@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcDesktop.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-05T15:34:12-08:00
+@Last modified time: 2019-02-08T14:03:28-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -11,21 +11,18 @@
 <div class="calculator">
   <transition name="calculator">
     <el-col :span="16" v-show="!lastSlide">
-      <el-card class="box-card" shadow="hover">
-        <div slot="header" class="clearfix">
-          <el-row class="centerContent">
-            <el-col :span="2" centered><el-button class="headerButton" v-on:click="prev()" type="primary" icon="el-icon-arrow-left" :disabled="currentTitle === 0"></el-button></el-col>
-            <el-col :span="20"><h1>{{determineTitle}}</h1></el-col>
-            <el-col :span="2"><el-button class="headerButton" v-on:click="next()" type="primary"><i class="el-icon-arrow-right el-icon-right"></i></el-button></el-col>
-          </el-row>
-        </div>
-        <div>
+      <el-row class="centerContent">
+        <el-col :span="2" centered><el-button class="headerButton" v-on:click="prev()" type="primary" icon="el-icon-arrow-left" :disabled="currentTitle === 0"></el-button></el-col>
+        <el-col :span="20"><h1>{{determineTitle}}</h1></el-col>
+        <el-col :span="2"><el-button class="headerButton" v-on:click="next()" type="primary"><i class="el-icon-arrow-right"></i></el-button></el-col>
+      </el-row>
+      <el-row>
+        <el-col :offset="1" :span="22">
+          <br />
           <calcCarousel :currentTitle="currentTitle" ref="calcCarousel"/>
-        </div>
-      </el-card>
-      <el-card>
-        <el-progress :show-text="false" :stroke-width="18" :percentage="progressPercentage > 0 ? progressPercentage : 2.5"></el-progress>
-      </el-card>
+        </el-col>
+      </el-row>
+      <el-progress :show-text="false" :stroke-width="18" :percentage="progressPercentage > 0 ? progressPercentage : 2.5"></el-progress>
 
     </el-col>
   </transition>
@@ -109,9 +106,6 @@ export default {
 .el-carousel__item {
   overflow-y: visible;
 }
-.extra-margin {
-  margin-bottom: 1.5vh;
-}
 .centerContent {
   text-align: center;
 }
@@ -139,7 +133,12 @@ export default {
   border-radius: 2px;
 }
 .headerButton {
-  height: 3vh;
+  height: 6vh;
+  font-size: 3vh;
+  line-height: 6vh;
+  text-align: center;
+  padding: 0;
+  width: 6vh;
 }
 #waste-text {
   position: relative;

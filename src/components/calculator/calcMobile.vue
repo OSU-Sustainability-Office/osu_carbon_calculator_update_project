@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcMobile.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-05T13:44:15-08:00
+@Last modified time: 2019-02-08T13:39:34-08:00
 @Copyright: 2019 Oregon State University
 -->
 
@@ -131,7 +131,7 @@ export default {
   z-index: 999;
   padding-top: 0px;
   text-align: center;
-  font-size: 16px;
+  font-size: 1em;
   border: 1px solid $--color-black;
   border-top: 0px;
   border-radius: 4px;

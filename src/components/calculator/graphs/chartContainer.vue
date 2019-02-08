@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-05T15:34:11-08:00
+@Last modified time: 2019-02-08T13:49:29-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -14,53 +14,31 @@
   <el-row>
     <!-- US Avg and Category Comparison Charts -->
     <el-col :span="barSpan">
-      <el-card class="box-card" shadow="hover">
-        <div slot="header" class="clearfix">
-          <h1 class="centered">Results</h1>
-        </div>
-        <div>
-          <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: chartHeight + 'em'}" />
-          <el-switch v-model="resultsToggle" active-text="Totals (Kg CO2e)" inactive-text="Percentages"></el-switch>
-        </div>
-      </el-card>
+      <h1 class="centered">Results</h1>
+      <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: '77vh'}" />
+      <div class="centered">
+        <el-switch v-model="resultsToggle" active-text="Totals (Kg CO2e)" inactive-text="Percentages"></el-switch>
+      </div>
     </el-col>
-    <el-col :span="14" v-if="lastSlide">
+    <el-col :span="12" v-if="lastSlide">
       <!-- Trend/Historical Data Chart -->
-      <el-card class="box-card" shadow="hover">
-        <div slot="header" class="clearfix">
-          <h1 class="centered">Country Comparison</h1>
-        </div>
-        <div>
-          <countryComparisonChart :dataObj="countryComparisonChartData" :styles="{height: chartHeight + 1.4 + 'em'}"/>
-        </div>
-      </el-card>
+      <h1 class="centered">Country Comparison</h1>
+      <countryComparisonChart :dataObj="countryComparisonChartData" :styles="{height: '77vh'}"/>
     </el-col>
   </el-row>
 
   <el-row v-if="lastSlide">
     <el-col :span="16" :offset="4" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
       <!-- Trend/Historical Data Chart -->
-      <el-card class="box-card" shadow="hover">
-        <div slot="header" class="clearfix">
-          <h1 class="centered">Trend</h1>
-        </div>
-        <div>
-          <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
-        </div>
-      </el-card>
+      <h1 class="centered">Trend</h1>
+      <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
     </el-col>
 
-    <el-col :span="16" :offset="4" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
+    <el-col class="centered" :span="16" :offset="4" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
       <!-- Trend/Historical Data Chart -->
-      <el-card class="box-card" shadow="hover">
-        <div slot="header" class="clearfix">
-          <h1 class="centered">Trend</h1>
-        </div>
-        <div>
-          <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
-          <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
-        </div>
-      </el-card>
+      <h1 class="centered">Trend</h1>
+      <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
+      <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
     </el-col>
   </el-row>
 
@@ -96,7 +74,6 @@ export default {
       usAvgDataObj: {
         totals: [4808.4, 4979.9, 3692.1, 2404.2, 515.2]
       },
-      chartHeight: 37.4,
       resultsToggle: true
     }
   },
@@ -239,7 +216,7 @@ export default {
     todayDate () {
       return new Date().toLocaleDateString()
     },
-    barSpan () { return this.chartsWidth === 8 ? 24 : 10 },
+    barSpan () { return this.chartsWidth === 8 ? 24 : 12 },
     countryComparisonChartData () {
       let sum = 0
       this.totals.forEach(t => { sum += t })
