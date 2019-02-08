@@ -3,13 +3,13 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:02:15-08:00
+@Last modified time: 2019-02-08T14:27:31-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
   <el-row id="navbar">
-    <el-col v-if="windowWidth > 1000" class="centered" :span="4">
+    <el-col v-if="mobileWidth" class="centered" :span="4">
       <svgLogo class="logo button" @click="handleClick('0')"/>
     </el-col>
     <el-col class="centered" :span="16">
@@ -64,8 +64,13 @@ export default {
       loginLink: 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location,
       logoutLink: 'https://api.sustainability.oregonstate.edu/auth/logoutRedirect',
       officeHomepageLink: 'http://sustainability.oregonstate.edu/',
-      dashboardLink: 'https://dashboard.sustainability.oregonstate.edu/',
-      windowWidth: window.innerWidth
+      dashboardLink: 'https://dashboard.sustainability.oregonstate.edu/'
+    }
+  },
+  props: {
+    mobileWidth: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -102,11 +107,6 @@ export default {
   },
   components: {
     svgLogo
-  },
-  mounted () {
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth
-    }
   }
 }
 </script>

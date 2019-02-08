@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:58-08:00
 @Filename: App.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:12:24-08:00
+@Last modified time: 2019-02-08T14:26:59-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -12,11 +12,11 @@
     <el-container>
 
       <el-header height="10vh">
-        <navbar></navbar>
+        <navbar :mobileWidth="mobileWidth" ></navbar>
       </el-header>
 
       <el-main>
-        <router-view/>
+        <router-view :mobileWidth="mobileWidth" />
       </el-main>
 
     </el-container>
@@ -37,6 +37,16 @@ export default {
 
     // Download the cc categories and questions
     this.$store.dispatch('calculator/downloadCategories')
+  },
+  data () {
+    return {
+      mobileWidth: window.innerWidth < 700
+    }
+  },
+  mounted () {
+    window.onresize = () => {
+      this.mobileWidth = window.innerWidth < 700
+    }
   }
 }
 </script>

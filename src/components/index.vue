@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: index.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T13:46:52-08:00
+@Last modified time: 2019-02-08T14:27:45-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -35,21 +35,17 @@ export default {
     calcMobile,
     historicalDataDialog
   },
+  props: {
+    mobileWidth: {
+      type: Boolean,
+      default: true
+    }
+  },
   computed: {
     isMobile () {
       // Shout out to https://coderwall.com/p/i817wa/one-line-function-to-detect-mobile-devices-with-javascript
       // eslint-disable-next-line
       return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) || this.mobileWidth
-    }
-  },
-  data () {
-    return {
-      mobileWidth: window.innerWidth < 540
-    }
-  },
-  mounted () {
-    window.onresize = () => {
-      this.mobileWidth = window.innerWidth < 540
     }
   }
 }
