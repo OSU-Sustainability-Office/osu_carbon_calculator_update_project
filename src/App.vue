@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:58-08:00
 @Filename: App.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:06:08-08:00
+@Last modified time: 2019-02-08T14:12:24-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -52,7 +52,7 @@ export default {
     font-weight: bold;
     font-style: normal;
 }
-el-main {
+body {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
