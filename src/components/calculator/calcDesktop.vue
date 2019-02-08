@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcDesktop.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:03:28-08:00
+@Last modified time: 2019-02-08T14:31:50-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -49,6 +49,7 @@ export default {
   },
   computed: {
     chartsWidth () { return this.lastSlide ? 24 : 8 },
+    categories () { return this.$store.getters['calculator/categories'] },
     determineTitle () {
       if (this.currentTitle === 0) return 'About the Calculator'
       else if (this.currentTitle === 6) return 'Waste'
