@@ -3,13 +3,13 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:27:31-08:00
+@Last modified time: 2019-02-11T14:57:04-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
   <el-row id="navbar">
-    <el-col v-if="mobileWidth" class="centered" :span="4">
+    <el-col v-if="!mobileWidth" class="centered" :span="4">
       <svgLogo class="logo button" @click="handleClick('0')"/>
     </el-col>
     <el-col class="centered" :span="16">
@@ -131,7 +131,7 @@ $screen-xl-min: 1200px;
 
 @media only screen and (max-width: $screen-md-min) {
   h1 {
-    font-size: 4vw;
+    font-size: 6vw;
   }
   .logo {
     height: 5vw;
@@ -144,7 +144,8 @@ $screen-xl-min: 1200px;
 .button {
   color: $--color-white;
   display: inline-block;
-  line-height: 9.5vh;
+  font-size: 2vw;
+  line-height: 10vh;
   transition: $--all-transition;
 }
 .button:hover {
@@ -160,6 +161,7 @@ $screen-xl-min: 1200px;
 }
 .logo {
   height: 9.5vh;
+  margin: 0.5vh;
 }
 h1 {
   line-height: 10vh;
