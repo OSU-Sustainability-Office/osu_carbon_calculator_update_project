@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcDesktop.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T15:27:45-08:00
+@Last modified time: 2019-02-11T18:09:47-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -19,7 +19,7 @@
       <el-row>
         <el-col :offset="1" :span="22">
           <br />
-          <calcCarousel :currentTitle="currentTitle" ref="calcCarousel"/>
+          <calcCarousel :mobile="false" :currentTitle="currentTitle" ref="calcCarousel"/>
         </el-col>
       </el-row>
       <el-progress :show-text="false" :stroke-width="18" :percentage="progressPercentage > 0 ? progressPercentage : 2.5"></el-progress>

@@ -4,7 +4,7 @@
 @Email:  jackrwoods@gmail.com
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T17:54:12-08:00
+@Last modified time: 2019-02-11T18:09:19-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -26,6 +26,7 @@
     <!-- Intro Category -->
     <el-carousel-item name="About">
       <FocusLock :disabled="focus !== 1">
+        <h3 class="centered" v-if="mobile">About the Calculator</h3>
         <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
         <p>To get started, please select which of the following best describes you:</p>
         <el-radio-group v-model="studentType" class="centered">
@@ -40,6 +41,7 @@
     <!-- Iterate over each category and render the questions -->
     <el-carousel-item v-for="category in categories" :key="category.categoryID" :name="category.title">
       <FocusLock :disabled="focus !== (category.categoryID + 2)">
+        <h3 class="centered" v-if="mobile">{{ category.title }}</h3>
         <component class="extra-margin" v-for="(question, index) in category.questions" :key="index" v-bind:is="question.input.type" v-bind:questionData="question" v-bind:index="index" v-bind:categoryID="category.categoryID" v-model="question.value" />
       </FocusLock>
     </el-carousel-item>
@@ -72,6 +74,10 @@ export default {
     currentTitle: {
       type: Number,
       default: 0
+    },
+    mobile: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

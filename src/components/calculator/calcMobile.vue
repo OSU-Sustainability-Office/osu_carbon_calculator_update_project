@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcMobile.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T13:39:34-08:00
+@Last modified time: 2019-02-11T18:09:59-08:00
 @Copyright: 2019 Oregon State University
 -->
 
@@ -30,7 +30,7 @@
   <!-- Calculator Carousel -->
   <el-row>
     <el-col :offset="1" :span="22">
-      <calcCarousel :currentTitle="currentTitle" ref="calcCarousel"/>
+      <calcCarousel :mobile="true" :currentTitle="currentTitle" ref="calcCarousel"/>
     </el-col>
   </el-row>
 

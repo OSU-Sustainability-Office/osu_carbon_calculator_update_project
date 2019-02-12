@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T18:05:16-08:00
+@Last modified time: 2019-02-11T18:07:19-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -33,24 +33,6 @@
     </el-col>
   </el-row>
 </template>
-
-<!-- <template>
-<el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-  <el-menu-item index="0"><svgLogo class="logo"/>
-  </el-menu-item>
-  <el-menu-item index="1">
-    <h1>Carbon Calculator</h1>
-  </el-menu-item>
-  <el-menu-item v-if="loggedOut" index="2">Login</el-menu-item>
-  <el-submenu v-else index="3">
-    <template slot="title">My Account</template>
-    <el-menu-item index="3-1">Historical Data</el-menu-item>
-    <el-menu-item index="3-2">Energy Dashboard</el-menu-item>
-    <el-menu-item v-if="administrator" index="3-3">Edit Calculator</el-menu-item>
-    <el-menu-item index="3-4">Logout</el-menu-item>
-  </el-submenu>
-</el-menu>
-</template> -->
 
 <script>
 import svgLogo from '../../public/static/images/logo.svg'
