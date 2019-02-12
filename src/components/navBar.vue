@@ -3,14 +3,14 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T14:57:04-08:00
+@Last modified time: 2019-02-11T18:05:16-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
   <el-row id="navbar">
     <el-col v-if="!mobileWidth" class="centered" :span="4">
-      <svgLogo class="logo button" @click="handleClick('0')"/>
+      <svgLogo class="logo button" />
     </el-col>
     <el-col class="centered" :span="16">
       <h1>Carbon Calculator</h1>
@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     handleClick (key) {
+      console.log(key)
       switch (key) {
         case '0':
           window.location = this.officeHomepageLink
