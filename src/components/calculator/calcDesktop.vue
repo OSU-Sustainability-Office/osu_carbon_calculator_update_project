@@ -3,14 +3,14 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcDesktop.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T18:09:47-08:00
+@Last modified time: 2019-02-12T14:38:00-08:00
 @Copyright: 2018 Oregon State University
 -->
 
 <template>
 <div class="calculator">
   <transition name="calculator">
-    <el-col :span="16" v-show="!lastSlide">
+    <el-col id="rightBorder" :span="16" v-show="!lastSlide">
       <el-row class="centerContent">
         <el-col :span="2" centered><el-button class="headerButton" v-on:click="prev()" type="primary" icon="el-icon-arrow-left" :disabled="currentTitle === 0"></el-button></el-col>
         <el-col :span="20"><h1>{{determineTitle}}</h1></el-col>
@@ -22,7 +22,11 @@
           <calcCarousel :mobile="false" :currentTitle="currentTitle" ref="calcCarousel"/>
         </el-col>
       </el-row>
-      <el-progress :show-text="false" :stroke-width="18" :percentage="progressPercentage > 0 ? progressPercentage : 2.5"></el-progress>
+      <el-row>
+        <el-col :offset="1" :span="22">
+          <el-progress :show-text="false" :stroke-width="18" :percentage="progressPercentage > 0 ? progressPercentage : 2.5"></el-progress>
+        </el-col>
+      </el-row>
 
     </el-col>
   </transition>
@@ -163,5 +167,9 @@ img {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+h1 {
+  font-size: 4vh;
+  line-height: 6vh;
 }
 </style>

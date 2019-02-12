@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T17:50:22-08:00
+@Last modified time: 2019-02-12T14:33:03-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -287,9 +287,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.el-carousel__item {
-  background: #fff;
-}
 .centered {
   text-align: center;
 }
@@ -297,5 +294,9 @@ export default {
   border: 1px solid #000;
   margin: 1px;
   border-radius: 4px;
+}
+h1 {
+  font-size: 4vh;
+  line-height: 6vh;
 }
 </style>
