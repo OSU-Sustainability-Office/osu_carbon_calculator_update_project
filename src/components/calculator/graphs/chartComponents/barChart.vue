@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: barGraph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T21:05:31-08:00
+@Last modified time: 2019-02-12T15:03:22-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -77,7 +77,7 @@ export default {
           bodyFontFamily: 'Open Sans',
           cornerRadius: 4,
           callbacks: {
-            label: item => { return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e' }
+            label: item => { return this.resultsToggle ? parseFloat(item.yLabel).toFixed(1) + ' kgCO2e' : parseFloat(item.yLabel).toFixed(1) + '%' }
           }
         }
       },
@@ -158,6 +158,7 @@ export default {
   },
   watch: {
     dataObj () {
+      // Update graph data
       this.assignStackedData()
       this.$data._chart.update()
     }

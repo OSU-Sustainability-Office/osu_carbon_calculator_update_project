@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-12T14:33:03-08:00
+@Last modified time: 2019-02-12T15:03:07-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -15,7 +15,7 @@
     <!-- US Avg and Category Comparison Charts -->
     <el-col :span="barSpan">
       <h1 class="centered">Results</h1>
-      <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: '70vh'}" />
+      <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: '70vh'}" :resultsToggle="resultsToggle" />
       <div class="centered">
         <el-switch v-model="resultsToggle" active-text="Totals (Kg CO2e)" inactive-text="Percentages"></el-switch>
       </div>
