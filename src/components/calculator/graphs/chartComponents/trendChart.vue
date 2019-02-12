@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: trendChart.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T17:40:24-08:00
+@Last modified time: 2019-02-11T17:41:49-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -16,7 +16,7 @@ export default {
   props: {
     totals: {
       type: Array,
-      default: []
+      default: null
     }
   },
   data () {
