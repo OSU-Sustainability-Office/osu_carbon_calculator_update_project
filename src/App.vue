@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:58-08:00
 @Filename: App.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-12T13:37:44-08:00
+@Last modified time: 2019-02-12T14:41:07-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -40,12 +40,12 @@ export default {
   },
   data () {
     return {
-      mobileWidth: window.innerWidth < 700
+      mobileWidth: window.innerWidth < 760
     }
   },
   mounted () {
     window.onresize = () => {
-      this.mobileWidth = window.innerWidth < 700
+      this.mobileWidth = window.innerWidth < 760
     }
   }
 }
