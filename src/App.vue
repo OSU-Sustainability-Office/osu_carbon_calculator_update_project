@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:58-08:00
 @Filename: App.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:26:59-08:00
+@Last modified time: 2019-02-12T13:37:44-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -51,7 +51,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
+@import '@/assets/element-variables.scss';
+@import "@/assets/theme-chalk-custom/src/index.scss";
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @font-face {
     font-family: 'StratumNo2';

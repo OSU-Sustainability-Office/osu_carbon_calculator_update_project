@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: list.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T17:34:37-08:00
+@Last modified time: 2019-02-12T13:52:36-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -36,7 +36,19 @@ export default {
     }
   },
   created () {
-    this.value = this.questionData.value !== 0 ? this.questionData.value : this.questionData.input.values[0].val
+    if (this.questionData.value !== 0) {
+      this.value = this.questionData.value
+    } else {
+      this.value = this.questionData.input.values[0].val
+    }
+
+    // Update VueX for switch type
+    this.$store.commit({
+      type: 'calculator/updateQuestionValue',
+      categoryID: this.categoryID,
+      questionIndex: this.index,
+      value: this.answer ? this.questionData.input.values[1].val : this.questionData.input.values[0].val
+    })
   },
   methods: {
     updateQuestionValue () {

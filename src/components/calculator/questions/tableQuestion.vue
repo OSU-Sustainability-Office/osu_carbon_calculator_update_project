@@ -1,3 +1,12 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-12-13T09:48:35-08:00
+@Email:  jackrwoods@gmail.com
+@Filename: tableQuestion.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2019-02-12T14:12:21-08:00
+-->
+
 <template>
 <div class="question" v-if="showQuestion">
 
@@ -7,15 +16,13 @@
     <el-table-column v-for="(column, index) in this.questionData.input.values[0]" :key="index" :prop="column" :label="column">
 
       <template slot-scope="scope">
-        <editableCell @change="updateQuestionValue" :show-input="tableData[scope.$index][index]" v-model="questionData.input.values[scope.$index][index]">
-          <span slot="content">{{questionData.input.values[scope.$index][index]}}</span>
+        <editableCell @change="updateQuestionValue" v-model="questionData.input.values[scope.$index + 1][index]">
+          <span slot="content">{{ questionData.input.values[scope.$index + 1][index] }}</span>
         </editableCell>
       </template>
 
     </el-table-column>
   </el-table>
-
-  <!-- <el-input-number v-model="questionData.value" @change="updateQuestionValue" :min="0" /> -->
 
 </div>
 </template>
@@ -38,18 +45,9 @@ export default {
     editableCell
   },
   created () {
-    // Overwrite default data in vuex store
-    this.questionData.value = 0
-    this.$store.commit({
-      type: 'calculator/updateQuestionValue',
-      categoryID: this.categoryID,
-      questionIndex: this.index,
-      value: this.questionData.value
-    })
-
     // Dynamically build JSON object from 2D array to fit ElementUI specifications
     // JSON object data is stored in the first row of values
-    this.questionData.input.values.slice(1).forEach(row => {
+    this.questionData.input.values.forEach((row, index) => {
       let rowObj = {}
       row.forEach((data, index) => {
         // Create a property with variable title and assign data to it
@@ -60,7 +58,9 @@ export default {
       })
 
       // Add this row to tableData
-      this.tableData.push(rowObj)
+      if (index !== 0) {
+        this.tableData.push(rowObj)
+      }
     })
 
     // Disable the loading animation (enabled when component is rendered)
