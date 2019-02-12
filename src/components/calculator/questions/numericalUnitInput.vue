@@ -4,7 +4,7 @@
 @Email:  jackrwoods@gmail.com
 @Filename: numericalUnitInput.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-04T13:44:31-08:00
+@Last modified time: 2019-02-11T15:14:42-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -31,7 +31,8 @@ export default {
   props: {
     'unit': String,
     'prefix': Boolean,
-    'min': Number
+    'min': Number,
+    'value': Number
   },
   model: {
     prop: 'value',
@@ -62,7 +63,6 @@ export default {
   },
   data () {
     return {
-      value: 0,
       longPress: null,
       val: 1
     }

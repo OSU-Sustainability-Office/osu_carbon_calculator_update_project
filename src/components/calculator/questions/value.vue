@@ -2,8 +2,8 @@
 @Author: Jack Woods
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: value.vue
-@Last modified by:   jackrwoods
-@Last modified time: 2019-01-26T14:36:00-08:00
+@Last modified by:   Jack Woods
+@Last modified time: 2019-02-11T15:15:54-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -32,13 +32,8 @@ export default {
     'categoryID': Number
   },
   created () {
-    this.questionData.value = 0
-    this.$store.commit({
-      type: 'calculator/updateQuestionValue',
-      categoryID: this.categoryID,
-      questionIndex: this.index,
-      value: this.questionData.value
-    })
+    // Checks the vuex store for a value. If one is already present, load that value.
+    this.questionData.value = this.questionData.value
   },
   methods: {
     updateQuestionValue () {

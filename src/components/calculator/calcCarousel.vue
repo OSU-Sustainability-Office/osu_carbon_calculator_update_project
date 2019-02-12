@@ -4,7 +4,7 @@
 @Email:  jackrwoods@gmail.com
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:16:06-08:00
+@Last modified time: 2019-02-11T15:07:06-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -58,7 +58,7 @@ import tableQuestion from '@/components/calculator/questions/tableQuestion'
 import FocusLock from 'vue-focus-lock'
 
 export default {
-  name: 'calcMobile',
+  name: 'calcCarousel',
   components: {
     list,
     dependentValue,

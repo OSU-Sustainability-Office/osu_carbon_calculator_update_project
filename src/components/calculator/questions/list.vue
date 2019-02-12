@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: list.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-04T13:17:36-08:00
+@Last modified time: 2019-02-11T17:34:37-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -36,13 +36,7 @@ export default {
     }
   },
   created () {
-    this.value = this.questionData.input.values[0].val
-    this.$store.commit({
-      type: 'calculator/updateQuestionValue',
-      categoryID: this.categoryID,
-      questionIndex: this.index,
-      value: this.value
-    })
+    this.value = this.questionData.value !== 0 ? this.questionData.value : this.questionData.input.values[0].val
   },
   methods: {
     updateQuestionValue () {

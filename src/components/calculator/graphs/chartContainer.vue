@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T13:49:29-08:00
+@Last modified time: 2019-02-11T17:32:44-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -31,14 +31,19 @@
     <el-col :span="16" :offset="4" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
       <!-- Trend/Historical Data Chart -->
       <h1 class="centered">Trend</h1>
-      <trend-chart :dataObj="formatHistData(historicalData)" ref="trendBar" :styles="{height: chartHeight + 'em'}"/>
+      <trend-chart :totals="totals" ref="trendBar" :styles="{height: '77vh'}"/>
     </el-col>
 
-    <el-col class="centered" :span="16" :offset="4" v-if="!(this.$store.getters['user/isLoggedIn']) && lastSlide">
+    <el-col class="centered" :span="16" :offset="4" v-else>
       <!-- Trend/Historical Data Chart -->
       <h1 class="centered">Trend</h1>
-      <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
-      <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
+      <div v-if="!this.$store.getters['user/isLoggedIn']">
+        <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
+        <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
+      </div>
+      <div v-else>
+        <p>Viewing historical trends and user-specific historical data will be available next time you log in.</p>
+      </div>
     </el-col>
   </el-row>
 
@@ -63,10 +68,6 @@ export default {
     lastSlide: {
       type: Boolean,
       default: false
-    },
-    chartsWidth: {
-      type: Number,
-      default: 8
     }
   },
   data () {
@@ -74,12 +75,15 @@ export default {
       usAvgDataObj: {
         totals: [4808.4, 4979.9, 3692.1, 2404.2, 515.2]
       },
-      resultsToggle: true
+      resultsToggle: true,
+      historicalData: {
+        labels: [],
+        datasets: []
+      }
     }
   },
   computed: {
     categories () { return this.$store.getters['calculator/categories'] },
-    historicalData () { return this.$store.getters['user/data'] },
     studentBaseline () {
       // eslint-disable-next-line
       if (this.$store.getters['user/studentType'] == 'On Campus') {
@@ -149,9 +153,6 @@ export default {
       this.$set(totals, 2, this.studentBaseline[0] + totals[2])
       this.$set(totals, 4, this.studentBaseline[1] + totals[4])
 
-      // Upload this data if the user is logged in
-      if (this.$store.getters['user/isLoggedIn']) this.uploadTotals(totals)
-
       return totals
     },
     resultsBarData () {
@@ -216,7 +217,7 @@ export default {
     todayDate () {
       return new Date().toLocaleDateString()
     },
-    barSpan () { return this.chartsWidth === 8 ? 24 : 12 },
+    barSpan () { return this.lastSlide ? 12 : 24 },
     countryComparisonChartData () {
       let sum = 0
       this.totals.forEach(t => { sum += t })
@@ -226,6 +227,24 @@ export default {
     }
   },
   methods: {
+    confirmData () {
+      this.$confirm('We have collected multiple submissions from you today. Would you like to overwrite your previous results?', 'Warning', {
+        confirmButtonText: 'Save Newest Results',
+        cancelButtonText: 'Keep Previous Results',
+        type: 'warning'
+      }).then(() => {
+        this.uploadTotals(this.totals)
+        this.$message({
+          type: 'success',
+          message: 'Saved your most recent results!'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'success',
+          message: 'Kept your previous response!'
+        })
+      })
+    },
     uploadTotals (totals) {
       // Initialize user object for upload
       let userObject = {}
@@ -245,67 +264,22 @@ export default {
       // Upload userObject for DB entry
       UserApi.uploadUserData(userObject)
     },
-    formatHistData (data) {
-      // An array that stores which day each data point is from.
-      let dates = []
-
-      // Initialize a dataset object
-      let datasets = [
-        {
-          label: 'Transportation',
-          backgroundColor: '#D3832B',
-          borderColor: '#000'
-        },
-        {
-          label: 'Consumption',
-          backgroundColor: '#AA9D2E',
-          borderColor: '#000'
-        },
-        {
-          label: 'Energy and Heating',
-          backgroundColor: '#FFB500',
-          borderColor: '#000'
-        },
-        {
-          label: 'Food',
-          backgroundColor: '#8E9089',
-          borderColor: '#000'
-        },
-        {
-          label: 'Water',
-          backgroundColor: '#006A8E',
-          borderColor: '#000'
-        }
-      ]
-
-      // Iterate over each dataset, and add each historical data point
-      datasets.forEach((set, index) => {
-        set.data = []
-        set.fill = index === 0 ? 'origin' : index - 1
-        data.forEach(entry => {
-          set.data.push(entry.totals[index])
-          if (index === 1) dates.push(entry.date)
-        })
-
-        // Add current totals to dataset if data has been entered.
-        if (!this.isIncomplete) {
-          // Check to see if overwriting data is necessary.
-          // eslint-disable-next-line
-          if (data[data.length - 1].date == this.todayDate) {
-            // Update today's datapoint by overwriting
-            this.$set(set.data, set.data.length - 1, this.totals[index])
-          } else {
-            // Append a new datapoint
-            set.data.push(this.totals[index])
-            if (index === 1) dates.push(this.todayDate)
-          }
-        }
-      })
-
-      return { datasets, dates }
-    },
     redirectToLogin () {
       window.location = 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location
+    }
+  },
+  watch: {
+    lastSlide () {
+      // Get historical data from vuex store.
+      let data = this.$store.getters['user/data']
+
+      if (data[data.length - 1].date === this.todayDate && this.lastSlide) {
+        // Prompt the user for which data to keep (today's previous response, or today's new response).
+        this.confirmData()
+      } else {
+        // Upload this data if the user is logged in and has no historical data for today.
+        if (this.$store.getters['user/isLoggedIn']) this.uploadTotals(this.totals)
+      }
     }
   }
 }

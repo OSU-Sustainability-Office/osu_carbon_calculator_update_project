@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: calcDesktop.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-08T14:31:50-08:00
+@Last modified time: 2019-02-11T15:27:45-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -30,7 +30,7 @@
   <!-- Begin Charts Div -->
   <el-col :span="chartsWidth" ref="results">
     <el-button id="chartsBackButton" v-if="lastSlide" v-on:click="prev()" type="primary" icon="el-icon-arrow-left"> Back</el-button>
-    <chartContainer ref="charts" :chartsWidth="chartsWidth" :lastSlide="lastSlide" />
+    <chartContainer ref="charts" :lastSlide="lastSlide" />
   </el-col>
 
 </div>

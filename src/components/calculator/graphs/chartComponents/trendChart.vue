@@ -3,7 +3,7 @@
 @Date:   2018-12-19T18:36:52-08:00
 @Filename: trendChart.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-29T21:04:05-08:00
+@Last modified time: 2019-02-11T17:40:24-08:00
 @Copyright: 2018 Oregon State University
 -->
 <script>
@@ -14,9 +14,9 @@ export default {
   extends: Line,
   name: 'trend-chart',
   props: {
-    dataObj: {
-      type: Object,
-      default: null
+    totals: {
+      type: Array,
+      default: []
     }
   },
   data () {
@@ -78,20 +78,86 @@ export default {
         }
       },
       chartdata: {
-        labels: this.dataObj.dates,
+        labels: [],
         datasets: []
       }
+    }
+  },
+  computed: {
+    dataObj () {
+      // Get historical data
+      let data = this.$store.getters['user/data']
+
+      // An array that stores which day each data point is from.
+      let dates = []
+
+      // Initialize a dataset object
+      let datasets = [
+        {
+          label: 'Transportation',
+          backgroundColor: '#D3832B',
+          borderColor: '#000'
+        },
+        {
+          label: 'Consumption',
+          backgroundColor: '#AA9D2E',
+          borderColor: '#000'
+        },
+        {
+          label: 'Energy and Heating',
+          backgroundColor: '#FFB500',
+          borderColor: '#000'
+        },
+        {
+          label: 'Food',
+          backgroundColor: '#8E9089',
+          borderColor: '#000'
+        },
+        {
+          label: 'Water',
+          backgroundColor: '#006A8E',
+          borderColor: '#000'
+        }
+      ]
+
+      // Iterate over each dataset, and add each historical data point
+      datasets.forEach((set, index) => {
+        set.data = []
+        set.fill = index === 0 ? 'origin' : index - 1
+        data.forEach(entry => {
+          set.data.push(entry.totals[index])
+          if (index === 1) dates.push(entry.date) // Only push one date for each set of totals. I have arbitrarily chosen to do this on the 1st totals category.
+        })
+
+        // Add current totals to dataset if data has been entered.
+        if (!this.isIncomplete) {
+          // Append a new datapoint
+          set.data.push(this.totals[index])
+          if (index === 1) dates.push('Today')
+        }
+      })
+
+      // Check to see if data has already been collected for today.
+      // eslint-disable-next-line
+      if (dates[dates.length - 2] == new Date().toLocaleDateString()) {
+        // Update today's datapoint by overwriting
+        this.$set(dates, dates.length - 2, 'Earlier Today')
+      }
+
+      return { datasets, dates }
     }
   },
   mounted () {
     // Use Object.assign for vue reactivity
     Object.assign(this.chartdata.datasets, this.dataObj.datasets)
+    Object.assign(this.chartdata.labels, this.dataObj.dates)
     this.renderChart(this.chartdata, this.options)
   },
   watch: {
     dataObj () {
       // Use Object.assign for vue reactivity
       Object.assign(this.chartdata.datasets, this.dataObj.datasets)
+      Object.assign(this.chartdata.labels, this.dataObj.dates)
       this.$data._chart.update()
     }
   }
