@@ -1,0 +1,92 @@
+.pie {
+  margin: 0em;
+  min-height: 400px;
+}
+.bar {
+  margin: 1em;
+}
+.chartist-tooltip {
+  /* set me to make the tooltip for the point at 2 more visible */
+  position: relative;
+}
+.ct-bar {
+  fill: none;
+  stroke-width: 2em;
+}
+/* Pie Slice Colors */
+.ct-slice-pie {
+  stroke: #FFF;
+  stroke-width: 0.25em;
+}
+.ct-series-a {
+  fill: #AA9D2E;
+  stroke: #AA9D2E;
+}
+.ct-series-b {
+  fill: #0D5257;
+  stroke: #0D5257;
+}
+.ct-series-c {
+  fill: #D3832B;
+  stroke: #D3832B;
+}
+.ct-series-d {
+  fill: #003B5C;
+  stroke: #003B5C;
+}
+.ct-series-e {
+  fill: #7A6855;
+  stroke: #7A6855;
+}
+.ct-series-f {
+  fill: #4A773C;
+  stroke: #4A773C;
+}
+
+/* Pie Slice Hover Colors */
+.ct-series .ct-slice-pie:hover {
+  fill: #B7A99A;
+}
+/* Bar Chart Hover Colors */
+.ct-series .ct-bar:hover {
+  stroke: #B7A99A;
+}
+
+/* Tooltips */
+.chartist-tooltip {
+  position: absolute;
+  display: inline-block;
+  opacity: 0;
+  min-width: 5em;
+  min-height: 2em;
+  padding: .5em;
+  background: #000;
+  color: #FFF;
+  font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  -webkit-transition: opacity .2s linear;
+  -moz-transition: opacity .2s linear;
+  -o-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+}
+.chartist-tooltip:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-top-color: #000;
+}
+.chartist-tooltip.tooltip-show {
+  opacity: 1;
+}
+
+.ct-area, .ct-line {
+pointer-events: none;
+}
+
+/*# sourceMappingURL=chartist-plugin-tooltip.css.map */
