@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-12T15:03:07-08:00
+@Last modified time: 2019-02-14T17:54:22-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -93,8 +93,12 @@ export default {
       if (this.$store.getters['user/studentType'] == 'Off Campus Full-time Commuter Student or Staff') {
         return [2624.6, 164.6]
       }
-      // Otherwise, default to 'Part-time Commuter Student or Staff':
-      return [1750.5, 159.1]
+      // eslint-disable-next-line
+      if (this.$store.getters['user/studentType'] == 'Part-time Commuter Student or Staff') {
+        return [1750.5, 159.1]
+      }
+      // Otherwise, default to Not Affiliated:
+      return [0, 0]
     },
     // Adds up the totals for each question and returns an array of category totals
     totals () {

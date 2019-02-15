@@ -4,7 +4,7 @@
 @Email:  jackrwoods@gmail.com
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-11T18:09:19-08:00
+@Last modified time: 2019-02-14T17:46:43-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -33,6 +33,7 @@
           <el-radio-button label="On Campus"></el-radio-button>
           <el-radio-button label="Off Campus Full-time Commuter Student or Staff"></el-radio-button>
           <el-radio-button label="Part-time Commuter Student or Staff"></el-radio-button>
+          <el-radio-button label="Not Affiliated with OSU"></el-radio-button>
         </el-radio-group>
         <center><p><b>Hint</b>: You can use the arrow buttons at the top of the page to navigate between categories.</p></center>
       </FocusLock>

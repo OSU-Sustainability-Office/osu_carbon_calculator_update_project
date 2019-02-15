@@ -1,3 +1,12 @@
+<!--
+@Author: Jack Woods
+@Date:   2018-12-13T13:29:58-08:00
+@Email:  jackrwoods@gmail.com
+@Filename: editableCell.vue
+@Last modified by:   Jack Woods
+@Last modified time: 2019-02-14T18:00:36-08:00
+-->
+
 <template>
 <div @click='onFieldClick' class='edit-cell'>
   <el-tooltip v-if='!editMode && !showInput' :placement='toolTipPlacement' :open-delay='toolTipDelay' :content='toolTipContent'>
@@ -51,7 +60,8 @@ export default {
   },
   data () {
     return {
-      editMode: false
+      editMode: false,
+      numerical: false
     }
   },
   computed: {
@@ -85,6 +95,17 @@ export default {
     },
     onInputChange (val) {
       this.$emit('input', val)
+    }
+  },
+  mounted () {
+    if (!isNaN(parseInt(this.value))) this.numerical = true
+  },
+  watch: {
+    value () {
+      if (this.numerical && isNaN(this.value)) {
+        this.value = 0
+        this.$emit('input', this.value)
+      }
     }
   }
 }
