@@ -4,7 +4,7 @@
 @Email:  jackrwoods@gmail.com
 @Filename: calcCarousel.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-14T17:46:43-08:00
+@Last modified time: 2019-02-14T19:57:12-08:00
 @Copyright: 2019 Oregon State University
 -->
 <template>
@@ -29,12 +29,12 @@
         <h3 class="centered" v-if="mobile">About the Calculator</h3>
         <p>This carbon footprint calculator has been developed to help members of the Oregon State University community understand the connection between their everyday actions and their carbon emissions. This is an important step in <a href="http://fa.oregonstate.edu/sustainability/planning-policy-assessment/institutional-carbon-neutrality/osu-carbon-planning">Oregon State University’s initiative to be carbon neutral by 2025</a>.</p>
         <p>To get started, please select which of the following best describes you:</p>
-        <el-radio-group v-model="studentType" class="centered">
-          <el-radio-button label="On Campus"></el-radio-button>
-          <el-radio-button label="Off Campus Full-time Commuter Student or Staff"></el-radio-button>
-          <el-radio-button label="Part-time Commuter Student or Staff"></el-radio-button>
-          <el-radio-button label="Not Affiliated with OSU"></el-radio-button>
-        </el-radio-group>
+        <center>
+          <el-radio v-model="studentType" label="On Campus" border></el-radio>
+          <el-radio v-model="studentType" label="Off Campus Full-time Commuter Student or Staff" border></el-radio>
+          <el-radio v-model="studentType" label="Part-time Commuter Student or Staff" border></el-radio>
+          <el-radio v-model="studentType" label="Not Affiliated with OSU" border></el-radio>
+        </center>
         <center><p><b>Hint</b>: You can use the arrow buttons at the top of the page to navigate between categories.</p></center>
       </FocusLock>
     </el-carousel-item>
