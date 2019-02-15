@@ -3,7 +3,7 @@
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-14T17:54:22-08:00
+@Last modified time: 2019-02-14T18:59:52-08:00
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -147,6 +147,9 @@ export default {
             // eslint-disable-next-line
           } else if (question.input.type == 'tableQuestion') {
             total += question.value
+            // eslint-disable-next-line
+          } else if (question.input.type == 'list' && question.trigger.parentQuestion === -1) {
+            total += question.input.values[question.input.values.map(a => a.val).indexOf(question.value)].coef
           }
         })
 
