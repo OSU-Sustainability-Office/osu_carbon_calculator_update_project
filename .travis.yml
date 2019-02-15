@@ -17,6 +17,7 @@ deploy:
   keep-history: true
   on:
     branch: master
+  fqdn: myco2.sustainability.oregonstate.edu
 - provider: s3
   access_key_id: $S3_ACCESS_ID
   secret_access_key: $S3_ACCESS_KEY
