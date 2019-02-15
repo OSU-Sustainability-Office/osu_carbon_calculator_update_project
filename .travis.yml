@@ -10,7 +10,14 @@ script:
   - npm run build
 
 deploy:
-  provider: s3
+- provider: pages
+  local-dir: dist/
+  skip-cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  on:
+    branch: master
+- provider: s3
   access_key_id: $S3_ACCESS_ID
   secret_access_key: $S3_ACCESS_KEY
   bucket: "carbon-calculator"
@@ -18,3 +25,4 @@ deploy:
   local_dir: dist
   on:
     all_branches: true
+    condition: $TRAVIS_BRANCH != master
