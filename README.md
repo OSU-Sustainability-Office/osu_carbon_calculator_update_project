@@ -19,6 +19,7 @@ Benefits:
   - Webpack & Babel transpile ES5 and ES6 syntax into syntax compatible with older browsers.
 
 ### File Structure
+```
 osu_carbon_calculator_update_project/
 ├───docs
 ├───node_modules
@@ -28,7 +29,7 @@ osu_carbon_calculator_update_project/
 │   │   ├───BootFlat
 │   │   │   ├───css
 │   │   │   ├───js
-│   │   │   └───scss  
+│   │   │   └───scss
 │   │   │       └───bootflat
 │   │   ├───css
 │   │   ├───download
@@ -63,6 +64,6 @@ osu_carbon_calculator_update_project/
 │       └───api
 └───tests - Currently, there are no tests.
     └───unit
-
+```
 ### Component Diagram
 [Check it out!](docs/CarbonCalculatorDiagram.png)
