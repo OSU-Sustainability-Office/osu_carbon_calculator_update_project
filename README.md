@@ -19,50 +19,50 @@ Benefits:
   - Webpack & Babel transpile ES5 and ES6 syntax into syntax compatible with older browsers.
 
 ### File Structure
-osu_carbon_calculator_update_project/  \n
-├───docs  \n
-├───node_modules  \n
-│   └─── A lot of stuff...  \n
-├───public  \n
-│   ├───legacy - Contains the old calculator for compatibility with IE 8.  \n
-│   │   ├───BootFlat  \n
-│   │   │   ├───css  \n
-│   │   │   ├───js  \n
-│   │   │   └───scss  \n
-│   │   │       └───bootflat  \n
-│   │   ├───css  \n
-│   │   ├───download  \n
-│   │   ├───fonts  \n
-│   │   │   └───Stratum 1 & Stratum 2  \n
-│   │   ├───img  \n
-│   │   ├───js  \n
-│   │   └───php  \n
-│   └───static  \n
-│       ├───fonts  \n
-│       └───images  \n
-├───src  \n
-│   ├───assets  \n
-│   │   └───theme-chalk-custom - Custom Element UI Theme  \n
-│   │       ├───lib  \n
-│   │       │   └───fonts  \n
-│   │       └───src  \n
-│   │           ├───common  \n
-│   │           ├───date-picker  \n
-│   │           ├───fonts  \n
-│   │           └───mixins  \n
-│   ├───components - Vue Components  \n
-│   │   ├───administration  \n
-│   │   └───calculator  \n
-│   │       ├───graphs  \n
-│   │       │   └───chartComponents  \n
-│   │       └───questions  \n
-│   ├───router - This is a single page application, so the router isn't used.  \n
-│   ├───store  \n
-│   │   └───modules - The VueX store is modularized.  \n
-│   └───utils  \n
-│       └───api  \n
-└───tests - Currently, there are no tests.  \n
-    └───unit  \n
+osu_carbon_calculator_update_project/
+├───docs
+├───node_modules
+│   └─── A lot of stuff...
+├───public
+│   ├───legacy - Contains the old calculator for compatibility with IE 8.
+│   │   ├───BootFlat
+│   │   │   ├───css
+│   │   │   ├───js
+│   │   │   └───scss  
+│   │   │       └───bootflat
+│   │   ├───css
+│   │   ├───download
+│   │   ├───fonts
+│   │   │   └───Stratum 1 & Stratum 2
+│   │   ├───img
+│   │   ├───js
+│   │   └───php
+│   └───static
+│       ├───fonts
+│       └───images
+├───src
+│   ├───assets
+│   │   └───theme-chalk-custom - Custom Element UI Theme
+│   │       ├───lib
+│   │       │   └───fonts
+│   │       └───src
+│   │           ├───common
+│   │           ├───date-picker
+│   │           ├───fonts
+│   │           └───mixins
+│   ├───components - Vue Components
+│   │   ├───administration
+│   │   └───calculator
+│   │       ├───graphs
+│   │       │   └───chartComponents
+│   │       └───questions
+│   ├───router - This is a single page application, so the router isn't used.
+│   ├───store
+│   │   └───modules - The VueX store is modularized.
+│   └───utils
+│       └───api
+└───tests - Currently, there are no tests.
+    └───unit
 
 ### Component Diagram
 [Check it out!](docs/CarbonCalculatorDiagram.png)
