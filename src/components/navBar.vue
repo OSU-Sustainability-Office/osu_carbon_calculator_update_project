@@ -3,7 +3,7 @@
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-02-12T14:39:17-08:00
+@Last modified time: 2019-02-21T11:43:59-08:00
 @Copyright: 2018 Oregon State University
 -->
 
@@ -62,7 +62,6 @@ export default {
   },
   methods: {
     handleClick (key) {
-      console.log(key)
       switch (key) {
         case '0':
           window.location = this.officeHomepageLink
