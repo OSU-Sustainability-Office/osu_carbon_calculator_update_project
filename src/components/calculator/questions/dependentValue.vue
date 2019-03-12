@@ -4,14 +4,14 @@
 @Email:  jackrwoods@gmail.com
 @Filename: dependentValue.vue
 @Last modified by:   Jack Woods
-@Last modified time: 2019-01-31T10:43:59-08:00
+@Last modified time: 2019-03-12T10:31:08-07:00
 @Copyright: 2019 Oregon State University
 -->
 
 <template>
 
   <!-- draw a value question if the question should be visible -->
-  <value v-show="showQuestion" v-bind:questionData="questionData" v-bind:index="index" v-bind:categoryID="categoryID" />
+  <value v-show="showQuestion" v-bind:questionData="questionDataWithMeta" v-bind:index="index" v-bind:categoryID="categoryID" />
 
 </template>
 
@@ -32,6 +32,11 @@ export default {
     showQuestion () {
       // Return true if the trigger value matches the parent's value, or return true if the trigger value is 'any' and the parent's value is not the default
       return (this.triggerValue === 'any' && this.parentQuestion.value !== this.parentQuestion.input.values[0].val) || (this.parentQuestion.value === this.triggerValue)
+    },
+    questionDataWithMeta () {
+      let questionData = this.questionData
+      this.$set(questionData, 'metaData', this.parentQuestion.metaData)
+      return questionData
     }
   },
   data () {
