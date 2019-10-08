@@ -15,7 +15,7 @@
         padding-top: 10px;
         background-color: #8b2728;
         width: 100%;
-        height: 120px;
+        text-align: center;
       }
       h3.incompatible {
         color: #FFF;
@@ -70,9 +70,8 @@
   <script>
     if (!supportsES6) {
       var bod = document.body;
-      bod.innerHTML = "<h1 class='incompatible'>We're Sorry...</h1><h3 class='incompatible'>An incompatible browser was detected. Please update to a supported browser to use this application.</h3><div class='incompatible'><h4 class='incompatible'>Supported Browsers:</h4><ul class='incompatible'><li class='incompatible'><a href='https://www.google.com/chrome/'>Chrome</a> (version > 68)</li><li class='incompatible'><a href='https://www.mozilla.org/en-US/firefox/new/'>Firefox</a> (version > 54)</li><li class='incompatible'><a href='https://www.microsoft.com/en-us/windows/microsoft-edge'>Edge</a> (version > 14)</li><li class='incompatible'><a href='https://support.apple.com/downloads/safari'>Safari</a> (version > 10)</li><li class='incompatible'><a href='https://www.opera.com/download'>Opera</a> (version > 55)</li></ul></div>";
+      bod.innerHTML = "<h1 class='incompatible'>We're Sorry...</h1><h3 class='incompatible' style='text-align:center;'>An incompatible browser was detected.</h3><h3 class='incompatible'>We have recently stopped support for Internet Explorer, but most university-owned machines should come pre-installed with alternative web browsers. We recommend the latest version of Google Chrome or Firefox.</h3><div class='incompatible'><h3 class='incompatible' style='text-align:center;'>Supported Browsers:</h4><ul class='incompatible'><li class='incompatible'><a href='https://www.google.com/chrome/'>Chrome</a> (Version > 68)</li><li class='incompatible'><a href='https://www.mozilla.org/en-US/firefox/new/'>Firefox</a> (Version > 54)</li><li class='incompatible'><a href='https://www.microsoft.com/en-us/windows/microsoft-edge'>Edge</a> (Version > 14)</li><li class='incompatible'><a href='https://support.apple.com/downloads/safari'>Safari</a> (Version > 10)</li><li class='incompatible'><a href='https://www.opera.com/download'>Opera</a> (Version > 55)</li></ul></div>";
       bod.style.backgroundColor = "#c23737";
-      location.assign('https://myco2.sustainability.oregonstate.edu/legacy/calculator.html');
     }
   </script>
 </html>
