@@ -15,6 +15,23 @@ const DDB = require('/opt/nodejs/dynamo-access.js')
  *
  */
 
+// Carbon Calculator Question Retrieval
+exports.questions = async (event, context) => {
+  // Create empty response object from model
+  let response = new Response()
+
+  // Retrieve question data from ddb
+  DDB.initialize()
+  let data = await DDB.query('carbon-calculator-questions').scan({
+      'Select': 'ALL_ATTRIBUTES',
+    'Limit': 10
+  })
+
+  // Return question data
+  response.body = JSON.stringify(data.Items)
+  return response
+}
+
  // Retrieves's the current user's data from the database and includes it in the response
 exports.download = async (event, context) => {
   // Create empty response object from model
@@ -36,40 +53,22 @@ exports.download = async (event, context) => {
   })
 
   // Return user data
-  response.body = JSON.stringify(data.items[0])
+  response.body = JSON.stringify(data.Items[0].data)
   return response
 }
 
+// exports.upload = async (event, context) => {
+//   // Create empty response object from model
+//   let response = new Response()
+//
+//   // Create user object with current user's context (this gets user data from a JSON Web Token)
+//   let u = new User(event, response)
+//
+//   // Update user data in dynamodb
+//
+//
+// }
 
-
-//
-// // Carbon Calculator User Routes
-// // Download User Data
-// exports.download = (event, context) => {
-//   // Get user's id from session
-//
-//   // Query database for user's data using ddb file
-//   //return data.data
-//
-// 	// db.getUser(req.session.UserID).then(data => {
-// 	// 	res.status(200).send(data.data)
-// 	// }).catch((rej) => {
-// 	// 	res.status(404).send(rej)
-// 	// 	console.log(rej)
-// 	// })
-// })
-//
-// // Upload User Data
-// router.post('/upload', function (req, res) {
-// 	let usr = req.body
-// 	if (usr.UserID) {
-// 		usr.onid = usr.UserID // For compatibility with the old CC
-// 		delete usr['UserID']
-// 	}
-// 	db.updateUser(usr)
-// 	res.status(200).send('SCV good to go, sir.')
-// })
-//
 // // Deletes one historical data point, specified by id
 // router.get('/delete/:id', function (req, res) {
 // 	// The id specified in this route is the index of the data point in the user's data array.
@@ -80,33 +79,7 @@ exports.download = async (event, context) => {
 // 	})
 // })
 //
-// // Carbon Calculator Question Retrieval
-// // This variable caches the questions in between requests
-// var questionsCache = {
-// 	categories: null,
-// 	timestamp: null
-// }
-// router.get('/questions/download', function (req, res) {
-// 	// This route caches the questions on the nodeJS server, and makes a DB call
-// 	// once every 15 minutes at most. If multiple requests are made within a 15
-// 	// minute interval, the cached questions are served to the client.
-//
-// 	if (questionsCache.categories === null || questionsCache.timestamp - 900000 > 0) {
-// 		// The question cache is not populated, or more than 15 minutes has elapsed
-// 		// Update the questions cache.
-// 		db.getQuestions().then(categories => {
-// 			questionsCache.categories = JSON.stringify(categories)
-// 			questionsCache.timestamp = new Date()
-// 			res.status(200).send(questionsCache.categories) // We store a stringified version
-// 		}).catch(e => {
-// 			console.log(e)
-// 			res.status(404).send(e)
-// 		})
-// 	} else {
-// 		// Less than 15 minutes has elapsed since the last request. Serve the cached version.
-// 		res.status(200).send(questionsCache.categories) // We store a stringified version
-// 	}
-// })
+
 //
 // // Carbon Calculator Administration Routes
 //
