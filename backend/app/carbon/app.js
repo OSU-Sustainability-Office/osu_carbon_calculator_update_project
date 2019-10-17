@@ -57,6 +57,46 @@ exports.download = async (event, context) => {
   return response
 }
 
+// Deletes one historical data point, specified by id
+exports.delete = async (event, context) => {
+  // Create empty response object from model
+  let response = new Response()
+
+  // Create user object with current user's context (this gets user data from a JSON Web Token)
+  let u = new User(event, response)
+
+  // Get the data ID to be deleted
+  let id = event.queryStringParameters.id
+
+  // Delete the data
+  let data = await DDB.query('users').update({
+    'TableName': 'users',
+    'Key': {
+      'onid': u.onid
+    },
+    'ExpressionAttributeNames': {
+      '#attribute': 'data'
+    },
+    'UpdateExpression': 'REMOVE #attribute['+ id +']',
+    'ReturnValue': 'UPDATED_NEW'
+  })
+
+  // Return user data
+  response.body = JSON.stringify(data)
+  return response
+}
+
+// router.get('/delete/:id', function (req, res) {
+// 	// The id specified in this route is the index of the data point in the user's data array.
+// 	db.removeData(req.session.UserID, req.params.id).then(result => {
+// 		res.status(200).send(result)
+// 	}).catch(err => {
+// 		res.status(500).send(err)
+// 	})
+// })
+
+
+
 // exports.upload = async (event, context) => {
 //   // Create empty response object from model
 //   let response = new Response()
@@ -68,17 +108,6 @@ exports.download = async (event, context) => {
 //
 //
 // }
-
-// // Deletes one historical data point, specified by id
-// router.get('/delete/:id', function (req, res) {
-// 	// The id specified in this route is the index of the data point in the user's data array.
-// 	db.removeData(req.session.UserID, req.params.id).then(result => {
-// 		res.status(200).send(result)
-// 	}).catch(err => {
-// 		res.status(500).send(err)
-// 	})
-// })
-//
 
 //
 // // Carbon Calculator Administration Routes
