@@ -70,7 +70,6 @@ exports.delete = async (event, context) => {
 
   // Delete the data
   let data = await DDB.query('users').update({
-    'TableName': 'users',
     'Key': {
       'onid': u.onid
     },
@@ -86,30 +85,77 @@ exports.delete = async (event, context) => {
   return response
 }
 
-// router.get('/delete/:id', function (req, res) {
-// 	// The id specified in this route is the index of the data point in the user's data array.
-// 	db.removeData(req.session.UserID, req.params.id).then(result => {
-// 		res.status(200).send(result)
-// 	}).catch(err => {
-// 		res.status(500).send(err)
-// 	})
-// })
+// This function compares the user object specified to the corresponding user item
+// in the DynamoDB.
+//      - if the user does not exist, a new user is created with the given data.
+//      - if the user exists, then the function compares the user's data and
+//        updates data objects as necessary. Data objects in the database with
+//        the same date as new data objects will be updated.
+exports.upload = async (event, context) => {
+  // Create empty response object from model
+  let response = new Response()
 
+  // Create user object with current user's context (this gets user data from a JSON Web Token)
+  let u = new User(event, response)
 
+  // New user data
+  let newData = JSON.parse(event.body)
 
-// exports.upload = async (event, context) => {
-//   // Create empty response object from model
-//   let response = new Response()
-//
-//   // Create user object with current user's context (this gets user data from a JSON Web Token)
-//   let u = new User(event, response)
-//
-//   // Update user data in dynamodb
-//
-//
-// }
+  // Update user data in dynamodb
+  let data = null
+  let dbResponse = null
+  try {
+    // Attempt to get the current user's data
+    data = await DDB.query('users').select({
+      'Select': 'SPECIFIC_ATTRIBUTES',
+      'ProjectionExpression': '#reservedDWord',
+      'ExpressionAttributeNames': { '#reservedDWord':'data' },
+      'Limit': 1,
+      'ConsistentRead': true,
+      'KeyConditionExpression': 'onid = :onid',
+      'ExpressionAttributeValues': {
+        ':onid': u.onid
+      }
+    })
 
-//
-// // Carbon Calculator Administration Routes
-//
-// module.exports = router;
+    // Reduce the data variable to just the data needed
+    data = data.Items[0].data
+
+    // Search data for the current data's date
+    let i = data.map(d => d.date).indexOf(newData.date)
+
+    // If the date is found, replace the data object with the most recent
+    if (i > -1) data.splice(i, 1, newData)
+
+    // Otherwise, add the data to the list
+    else data.push(newData)
+
+    // Update the DDB User object with the new data attribute
+    dbResponse = await DDB.query('users').update({
+      'UpdateExpression': 'SET #reservedDWord = :newData',
+      'ExpressionAttributeNames': { '#reservedDWord':'data' },
+      'Key': {
+        'onid': u.onid
+      },
+      'ExpressionAttributeValues': {
+        ':newData': data
+      }
+    })
+
+  } catch(e) {
+
+    // Create user if the query throws an error
+    dbResponse = await DDB.query('users').put({
+      'Item': {
+        'onid': u.onid,
+        'firstName': u.firstName + 'Jack',
+        'primaryAffiliation': u.primaryAffiliation + 'student',
+        'data': [ newData ]
+      }
+    })
+  }
+
+  // Return user data
+  response.body = JSON.stringify(newData.date)
+  return response
+}
