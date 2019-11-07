@@ -1,0 +1,84 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  carbon-calculator
+
+  Contains the serverless api business logic for the Carbon Calculator.
+
+Globals:
+  Function:
+    Timeout: 3
+  Api:
+    Cors:
+      AllowOrigin: "'http://localhost:8080'"
+
+Parameters:
+  LambdaCommonLayer:
+    Type: String
+    Default: arn:aws:lambda:us-west-2:005937143026:layer:LambdaCommonLayer:29
+
+Resources:
+  ccUserDataDownload:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/carbon
+      Handler: app.download
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        test:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /download
+            Method: get
+  ccUserDataUpload:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/carbon
+      Handler: app.upload
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        test:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /upload
+            Method: post
+  ccUserDeleteData:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/carbon
+      Handler: app.delete
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        test:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /delete
+            Method: get
+  ccQuestionDataDownload:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/carbon
+      Handler: app.questions
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        test:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /questions
+            Method: get

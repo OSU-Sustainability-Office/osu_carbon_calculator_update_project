@@ -26,7 +26,7 @@ Vue.use(elm, { locale: locale })
 Vue.config.productionTip = false
 
 // Configure axios with sustainability api base url
-axios.defaults.baseURL = 'https://api.sustainability.oregonstate.edu'
+axios.defaults.baseURL = 'https://api.sustainability.oregonstate.edu/v2/carbon-calculator'
 
 /* eslint-disable no-new */
 new Vue({

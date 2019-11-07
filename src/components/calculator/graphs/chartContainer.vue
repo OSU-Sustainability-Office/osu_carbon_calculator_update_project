@@ -261,15 +261,14 @@ export default {
       userObject['administrator'] = this.$store.getters['user/administratior']
 
       // Initialize data array with current data only
-      userObject['data'] = []
-      userObject['data'].push({
+      let data = {
         date: this.todayDate,
         location: UserApi.getLocation(),
         totals: totals
-      })
+      }
 
       // Upload userObject for DB entry
-      UserApi.uploadUserData(userObject)
+      UserApi.uploadUserData(data)
     },
     redirectToLogin () {
       window.location = 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location
@@ -279,13 +278,14 @@ export default {
     lastSlide () {
       // Get historical data from vuex store.
       let data = this.$store.getters['user/data']
-
-      if (data[data.length - 1].date === this.todayDate && this.lastSlide) {
-        // Prompt the user for which data to keep (today's previous response, or today's new response).
-        this.confirmData()
-      } else {
-        // Upload this data if the user is logged in and has no historical data for today.
-        if (this.$store.getters['user/isLoggedIn']) this.uploadTotals(this.totals)
+      if (this.lastSlide) {
+        if (data.map(d => d.date).indexOf(this.todayDate) !== -1) {
+          // Prompt the user for which data to keep (today's previous response, or today's new response).
+          this.confirmData()
+        } else {
+          // Upload this data if the user is logged in and has no historical data for today.
+          if (this.$store.getters['user/isLoggedIn']) this.uploadTotals(this.totals)
+        }
       }
     }
   }
