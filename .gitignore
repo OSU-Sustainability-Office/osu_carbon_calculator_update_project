@@ -14,5 +14,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-# Legacy Carbon Calculator Files
-/old_carbon_calculator/*
+# SAM Package Files
+package.yaml

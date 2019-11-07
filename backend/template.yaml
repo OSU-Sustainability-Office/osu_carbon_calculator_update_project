@@ -3,11 +3,14 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   carbon-calculator
 
-  Contains the serverless api business logic for the carbon calculator.
+  Contains the serverless api business logic for the Carbon Calculator.
 
 Globals:
   Function:
     Timeout: 3
+  Api:
+    Cors:
+      AllowOrigin: "'http://localhost:8080'"
 
 Parameters:
   LambdaCommonLayer:
@@ -18,6 +21,8 @@ Resources:
   ccUserDataDownload:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.download
       Runtime: nodejs10.x
@@ -32,6 +37,8 @@ Resources:
   ccUserDataUpload:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.upload
       Runtime: nodejs10.x
@@ -46,6 +53,8 @@ Resources:
   ccUserDeleteData:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.delete
       Runtime: nodejs10.x
@@ -60,6 +69,8 @@ Resources:
   ccQuestionDataDownload:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.questions
       Runtime: nodejs10.x
@@ -71,17 +82,3 @@ Resources:
           Properties:
             Path: /questions
             Method: get
-
-Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn

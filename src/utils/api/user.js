@@ -12,7 +12,7 @@ import axios from 'axios'
 export default{
   // Returns true/false if the user has completed the ONID CAS login process.
   isLoggedIn () {
-    return axios.get('auth/userData/onid', { withCredentials: true })
+    return axios.get('/download', { withCredentials: true })
       .then(res => {
         if (res.status === 200) {
           return true
@@ -26,7 +26,7 @@ export default{
 
   // Downloads the user's onid, firstName, primaryAffiliation
   downloadUserData () {
-    return axios.get('auth/userData/allData', { withCredentials: true })
+    return axios.get('/download', { withCredentials: true })
       .then(res => {
         return res.data
       })
@@ -34,7 +34,7 @@ export default{
 
   // Downloads the user's previous data
   downloadHistData (onid) {
-    return axios.get('carbon/download?UserID=' + onid, { withCredentials: true })
+    return axios.get('/download', { withCredentials: true })
       .then(res => {
         return res.data
       })
@@ -42,7 +42,7 @@ export default{
 
   // Deletes the user's previous data
   deleteHistData (row) {
-    axios.get('carbon/delete/' + row, { withCredentials: true })
+    axios.get('/delete?id=' + row, { withCredentials: true })
   },
 
   // Sends a request to the api route responsible for destroying user sessions. DOES NOT LOG OUT OF ONID!!!
@@ -52,7 +52,7 @@ export default{
 
   // Uploads the user's onid, firstName, primaryAffiliation, and data.
   uploadUserData (usr) {
-    axios.post('carbon/upload', usr, {
+    axios.post('/upload', usr, {
       withCredentials: true
     })
   },
