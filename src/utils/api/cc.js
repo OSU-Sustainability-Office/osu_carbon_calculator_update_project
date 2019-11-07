@@ -5,7 +5,6 @@ export default{
   downloadCategories () {
     return axios.get('/questions', { withCredentials: true })
       .then(res => {
-        console.log(res)
         return res.data
       }).catch(e => {
         return []

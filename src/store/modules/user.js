@@ -51,9 +51,7 @@ export default {
       state.primaryAffiliation = userObject.primaryAffiliation
       state.isLoggedIn = true
       state.administrator = userObject.administrator ? userObject.administrator : false
-    },
-    histData (state, histData) {
-      state.data = histData
+      state.data = userObject.data
     },
     // Removes one historical data entry
     removeHistData (state, index) {
@@ -66,14 +64,9 @@ export default {
   actions: {
     setUserVars (context) {
       // Download user data using the user api
-      if (UserApi.isLoggedIn()) {
-        UserApi.downloadUserData().then(userObject => {
-          context.commit('update', userObject)
-        })
-        UserApi.downloadHistData(context.getters['user/onid']).then(histData => {
-          context.commit('histData', histData)
-        })
-      }
+      UserApi.downloadUserData().then(userObject => {
+        context.commit('update', userObject)
+      })
     }
   }
 }

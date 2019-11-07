@@ -10,30 +10,9 @@
 import axios from 'axios'
 
 export default{
-  // Returns true/false if the user has completed the ONID CAS login process.
-  isLoggedIn () {
-    return axios.get('/download', { withCredentials: true })
-      .then(res => {
-        if (res.status === 200) {
-          return true
-        } else {
-          return false
-        }
-      }).catch(function () {
-        return false
-      })
-  },
 
-  // Downloads the user's onid, firstName, primaryAffiliation
+  // Downloads the user's onid, firstName, primaryAffiliation, and historical data
   downloadUserData () {
-    return axios.get('/download', { withCredentials: true })
-      .then(res => {
-        return res.data
-      })
-  },
-
-  // Downloads the user's previous data
-  downloadHistData (onid) {
     return axios.get('/download', { withCredentials: true })
       .then(res => {
         return res.data
@@ -46,13 +25,16 @@ export default{
   },
 
   // Sends a request to the api route responsible for destroying user sessions. DOES NOT LOG OUT OF ONID!!!
+  // 11/7/2019 - Need to create logout route & verify that it works.
   logout () {
     axios.get('auth/logout', { withCredentials: true })
   },
 
-  // Uploads the user's onid, firstName, primaryAffiliation, and data.
-  uploadUserData (usr) {
-    axios.post('/upload', usr, {
+  // Uploads the user's data.
+  // This data contains the totals for each category of the calculator
+  uploadUserData (data) {
+    console.log(data)
+    axios.post('/upload', data, {
       withCredentials: true
     })
   },

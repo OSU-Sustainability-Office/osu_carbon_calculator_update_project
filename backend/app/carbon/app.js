@@ -57,7 +57,13 @@ exports.download = async (event, context) => {
   })
 
   // Return user data
-  response.body = JSON.stringify(data.Items[0].data)
+  response.body = JSON.stringify({
+    data: data.Items[0].data,
+    onid: u.onid,
+    firstName: u.firstName,
+    primaryAffiliation: u.primaryAffiliation,
+    administrator: u.privilege === 0 ? false : true
+  })
   response.headers = {
     'Access-Control-Allow-Origin': 'http://localhost:8080',
     'Access-Control-Allow-Credentials': 'true'
