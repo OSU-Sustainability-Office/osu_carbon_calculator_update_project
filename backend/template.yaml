@@ -8,9 +8,6 @@ Description: >
 Globals:
   Function:
     Timeout: 3
-  Api:
-    Cors:
-      AllowOrigin: "'http://localhost:8080'"
 
 Parameters:
   LambdaCommonLayer:
@@ -29,7 +26,7 @@ Resources:
       Layers:
         - !Ref LambdaCommonLayer
       Events:
-        test:
+        cc:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /download
@@ -45,7 +42,7 @@ Resources:
       Layers:
         - !Ref LambdaCommonLayer
       Events:
-        test:
+        cc:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /upload
@@ -61,7 +58,7 @@ Resources:
       Layers:
         - !Ref LambdaCommonLayer
       Events:
-        test:
+        cc:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /delete
@@ -77,7 +74,7 @@ Resources:
       Layers:
         - !Ref LambdaCommonLayer
       Events:
-        test:
+        cc:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /questions

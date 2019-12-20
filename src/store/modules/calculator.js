@@ -9,6 +9,13 @@
 
 import ccApi from '@/utils/api/cc.js'
 
+// Import classes for data
+import Category from '../classes/category.js'
+import Question from '../classes/questions/question.js'
+import Input from '../classes/questions/input.js'
+import Unit from '../classes/questions/unit.js'
+import Trigger from '../classes/questions/trigger.js'
+
 export default {
   namespaced: true,
   state: {
@@ -45,9 +52,38 @@ export default {
   actions: {
     // Downloads all of the questions and categories
     downloadCategories (context) {
+      let formattedCategories = [] // The array of categories that will be committed to the VueX store
+
+      // Download and format each category
       ccApi.downloadCategories().then(categories => {
-        context.commit('initializeCategories', categories.sort((a, b) => {
-          return a.categoryID > b.categoryID ? 1 : -1
+        // Sort in ascending order by categoryID
+        categories.forEach(category => {
+          let questions = [] // An array of question objects for this category
+
+          // Build a question object for each question
+          category.questions.forEach(question => {
+            questions.push(new Question(
+              new Input(
+                question.input.type,
+                new Unit(question.input.units.prefix, question.input.units.unit),
+                question.input.values ? question.input.values : question.input.value
+              ),
+              question.metaData,
+              question.text,
+              new Trigger(
+                question.trigger.parentQuestion,
+                question.trigger.triggerValue
+              ),
+              question.initiallyVisible
+            ))
+          })
+
+          // Create the category
+          formattedCategories.push(new Category(category.id, category.color, category.title, questions))
+        })
+
+        context.commit('initializeCategories', formattedCategories.sort((a, b) => {
+          return a.id > b.id ? 1 : -1
         }))
       })
     }
