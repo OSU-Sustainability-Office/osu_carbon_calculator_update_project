@@ -1,14 +1,11 @@
 language: node_js
 node_js:
-    - "10"
-
+- '10'
 cache:
   directories:
-      - node_modules
-
+  - node_modules
 script:
-  - npm run build
-
+- npm run build
 deploy:
 - provider: pages
   local-dir: dist/
@@ -19,20 +16,20 @@ deploy:
     branch: master
   fqdn: myco2.sustainability.oregonstate.edu
 - provider: s3
-  access_key_id: $S3_ACCESS_ID
-  secret_access_key: $S3_ACCESS_KEY
-  bucket: "carbon-calculator"
+  access_key_id: "$S3_ACCESS_ID"
+  secret_access_key: "$S3_ACCESS_KEY"
+  bucket: carbon-calculator
   skip_cleanup: true
   local_dir: dist
   on:
     all_branches: true
-    condition: $TRAVIS_BRANCH != master
+    condition: "$TRAVIS_BRANCH != master"
 - provider: lambda
-  function_name: "lambda-test"
-  region: "us-east-1"
-  role: "arn:aws:iam::0123456789012:role/lambda_basic_execution"
-  runtime: "nodejs4.3"
-  handler_name: "handler"
+  function_name: lambda-test
+  region: us-east-1
+  role: arn:aws:iam::0123456789012:role/lambda_basic_execution
+  runtime: nodejs4.3
+  handler_name: handler
 - provider: script
   script:
   - |
@@ -43,3 +40,8 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
+env:
+  global:
+  - secure: BlUpBmPBIoYBAaPTedW6t4uMhRkfgXRVQ64CHbYzqglcbOc6w0CsAyzS9MerZ2s2wKS9PdNS8beVypwErvb9/0ZUx8tF3vq5RfJ3gPTB5blfAf0WRwbSo3dXhhy24A6vFyQnHLl2eNwX5KAeDUNUsBb+AYALRhuoZxRU9Vs6NdjUOFG8NcR3kwWtn56VPJVS212qZWo5MZ9JmsnsxzxO1HD1S/sEF06LvG92lLXYT005GHibrTKB+xiet3pprqaZqshacTfi3MWl34acb3pQC8BkPhIxebo4b17TOswhZ+r5zrIyEbhvCNmPgjBx/JOS6y/mrtYeLkvMVTA27bWM/+6dsUQC5N/m+rCOCS5wrPLQsBkjPW8usXYztBHDvRXi7YHOSMf0OEf3SrzeGZm37n473QkyMN4bEhagsH7JQt6JZFys9ltDSzX9LR3jpx8IH4laPT8kTZa/0oomjsTekjwxMC9dDBowvHjyZLItCkC82l+LPckkFsMer/C2DwcVufZsYRh59ORtp7l/IccOkGcj4EEUP0qCgDzv0zV0+SGMhNt5ad93z+vUFus1oOCgTq08jM2a4EAKppjSi+zwXS2m5TXeBh9Ia//r1p5o6KkpRXwsDRVjtx6zcfl2qcVkYk4MxJRDfjEIVQUv2VOcvWZ8kWlpeRJJs/pIZpqRkf4=
+  - secure: ZOdO8nJbLiNcZR1pHTnPOsBGVCQ2aKbGNNcLHHzbOGauAYfaLfLsx/U0nJ2/Znk7sh+2HiTF75EVO7R+TKsDq/KTFCwJihB1SDqVW9NIB53wdqZiEUTE6EWDUlg8fF57ZeUgf7Dg9X3C82A0yHv2UIKneP1JttY6nsvQ3GDqm6F3WUTVNhshNNshE3+34aONPMs1NVDwXudYcdXV1/6Wpbc+Gi01j4Yg+MwhZER+LKvlWbFPYDmFccVOHKHlkcgMffy1jjniZ/XWPALXOZu6CDGS5hwlueqS/V1/4CvKm7JsbZ8yyJCMssBCW0WMTlbgr5IotHDvuSw60F+8vmgsVtiGbvhapky9Sc6h1qlLMyZuHKuUg3qVbbE0sdt4M/QZOLP1ey1NBVpF0npqtFw/QPtKbL/HvQ0nRSsJwfCMN2QmClnxoENmwlcKPbfUafk0iFVvHfVoVbLdt9ysphxVVCJb+pJerHtdCWC2gnsgw0rPmowQ1X+Z3uY8+sC+d6geyhCpEYT9nbRnu+O5xQqEMNSXnae8KH420NQmO5KElmPVF9evKsTRxVM6/hR0GF3/f6r6lUjCoGFAhfHxdV5NuHX1Ejnv1ef1sepFlLtJstahcUrkF4dida1O9xdSjOawT4XNxEFB1yaqPRh7pi8KOId+t0uUf75QrXaflan93lg=
+  - AWS_DEFAULT_REGION=us-west-2
