@@ -1,4 +1,6 @@
-CREATE DATABASE carbonCalculator;
+CREATE DATABASE carbonCalculator; /* DB RDS cluster identifier is Carbon-Calculator */
+
+USE carbonCalculator;
 
 /* These tables are designed according to the *rough* specifications outlined here: https://www.lucidchart.com/documents/edit/ced0e9f2-9ad2-41f6-a23f-637ca598e609/0_0 */
 CREATE TABLE Categories(
