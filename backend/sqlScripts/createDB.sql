@@ -70,7 +70,7 @@ CREATE TABLE ValuesTable( /* 'Values' is reserved in mysql */
 CREATE TABLE UserData(
   ID int NOT NULL,
   ONID varchar(32),
-  Created DATETIME,
+  Created DATETIME DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (ID)
 );
 
