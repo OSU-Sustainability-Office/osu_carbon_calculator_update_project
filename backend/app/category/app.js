@@ -1,6 +1,7 @@
 const User = require('/opt/nodejs/user.js')
 const Response = require('/opt/nodejs/response.js')
-const DDB = require('/opt/nodejs/dynamo-access.js')
+const DB = require('/opt/nodejs/sql-access.js')
+const mysql = require('mysql') // for formatting mysql queries
 
 /**
  *
@@ -15,86 +16,17 @@ const DDB = require('/opt/nodejs/dynamo-access.js')
  *
  */
 
-// Carbon Calculator Question Retrieval
-exports.questions = async (event, context) => {
+// Retrieves one or more categories from the database
+exports.getCategory = async (event, context) => {
   // Create empty response object from model
   let response = new Response()
 
   // Retrieve question data from ddb
-  DDB.initialize()
-  let data = await DDB.query('carbon-calculator-questions').scan({
-      'Select': 'ALL_ATTRIBUTES',
-    'Limit': 10
-  })
+  DB.connect('carbonCalculator')
+  let ID = parseInt(event.queryStringParameters.ID)
+  let data = await DB.query(ID == null ? 'SELECT * FROM Categories' : mysql.format('SELECT * FROM Categories WHERE ID = ?', [ID]))
 
   // Return question data
-  response.body = JSON.stringify(data.Items)
-  response.headers = {
-    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
-    'Access-Control-Allow-Credentials': 'true'
-  }
-  return response
-}
-
- // Retrieves's the current user's data from the database and includes it in the response
-exports.download = async (event, context) => {
-  // Create empty response object from model
-  let response = new Response()
-
-  // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-
-  // Retrieve that user's data from the db
-  DDB.initialize()
-  let data = await DDB.query('users').select({
-    'Select': 'ALL_ATTRIBUTES',
-    'Limit': 1,
-    'ConsistentRead': true,
-    'KeyConditionExpression': 'onid = :onid',
-    'ExpressionAttributeValues': {
-      ':onid': u.onid
-    }
-  })
-
-  // Return user data
-  response.body = JSON.stringify({
-    data: data.Items[0].data,
-    onid: u.onid,
-    firstName: u.firstName,
-    primaryAffiliation: u.primaryAffiliation,
-    administrator: u.privilege === 0 ? false : true
-  })
-  response.headers = {
-    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
-    'Access-Control-Allow-Credentials': 'true'
-  }
-  return response
-}
-
-// Deletes one historical data point, specified by id
-exports.delete = async (event, context) => {
-  // Create empty response object from model
-  let response = new Response()
-
-  // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-
-  // Get the data ID to be deleted
-  let id = event.queryStringParameters.id
-
-  // Delete the data
-  let data = await DDB.query('users').update({
-    'Key': {
-      'onid': u.onid
-    },
-    'ExpressionAttributeNames': {
-      '#attribute': 'data'
-    },
-    'UpdateExpression': 'REMOVE #attribute['+ id +']',
-    'ReturnValue': 'UPDATED_NEW'
-  })
-
-  // Return user data
   response.body = JSON.stringify(data)
   response.headers = {
     'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
@@ -103,78 +35,41 @@ exports.delete = async (event, context) => {
   return response
 }
 
-// This function compares the user object specified to the corresponding user item
-// in the DynamoDB.
-//      - if the user does not exist, a new user is created with the given data.
-//      - if the user exists, then the function compares the user's data and
-//        updates data objects as necessary. Data objects in the database with
-//        the same date as new data objects will be updated.
-exports.upload = async (event, context) => {
+// Creates a new category
+exports.postCategory = async (event, context) => {
   // Create empty response object from model
   let response = new Response()
 
-  // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
+  // Initiate database connection
+  DB.connect('carbonCalculator')
 
-  // New user data
-  let newData = JSON.parse(event.body)
+  // Parse JSON post data
+  let category = JSON.parse(event.body)
 
-  // Update user data in dynamodb
-  let data = null
-  let dbResponse = null
-  try {
-    // Attempt to get the current user's data
-    data = await DDB.query('users').select({
-      'Select': 'SPECIFIC_ATTRIBUTES',
-      'ProjectionExpression': '#reservedDWord',
-      'ExpressionAttributeNames': { '#reservedDWord':'data' },
-      'Limit': 1,
-      'ConsistentRead': true,
-      'KeyConditionExpression': 'onid = :onid',
-      'ExpressionAttributeValues': {
-        ':onid': u.onid
-      }
+  // Verify all required fields are present.
+  // If they are not, send an error response.
+  if (category.color == null | category.title == null | category.ignoreResults == null) {
+    response.body = JSON.stringify({
+      status: 400,
+      message: 'color, title, and ignoreResults are required fields. One or more was not supplied with your request.'
     })
-
-    // Reduce the data variable to just the data needed
-    data = data.Items[0].data
-
-    // Search data for the current data's date
-    let i = data.map(d => d.date).indexOf(newData.date)
-
-    // If the date is found, replace the data object with the most recent
-    if (i > -1) data.splice(i, 1, newData)
-
-    // Otherwise, add the data to the list
-    else data.push(newData)
-
-    // Update the DDB User object with the new data attribute
-    dbResponse = await DDB.query('users').update({
-      'UpdateExpression': 'SET #reservedDWord = :newData',
-      'ExpressionAttributeNames': { '#reservedDWord':'data' },
-      'Key': {
-        'onid': u.onid
-      },
-      'ExpressionAttributeValues': {
-        ':newData': data
-      }
-    })
-
-  } catch(e) {
-
-    // Create user if the query throws an error
-    dbResponse = await DDB.query('users').put({
-      'Item': {
-        'onid': u.onid,
-        'firstName': u.firstName + 'Jack',
-        'primaryAffiliation': u.primaryAffiliation + 'student',
-        'data': [ newData ]
-      }
-    })
+    response.headers = {
+      'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+    return response
   }
 
-  // Return user data
-  response.body = JSON.stringify(newData.date)
+  // Add category to database
+  let ID = parseInt(event.queryStringParameters.ID)
+  let data = await DB.query(mysql.format("INSERT INTO Categories (Color, Title, IgnoreResults) VALUES (?, ?, ?);", [category.color, category.title, category.ignoreResults ? 1 : 0]))
+
+  // Build response data
+  category.id = data.insertId
+
+
+  // Return question data
+  response.body = JSON.stringify([category])
   response.headers = {
     'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'

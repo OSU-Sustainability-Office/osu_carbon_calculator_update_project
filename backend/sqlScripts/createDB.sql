@@ -4,7 +4,7 @@ USE carbonCalculator;
 
 /* These tables are designed according to the *rough* specifications outlined here: https://www.lucidchart.com/documents/edit/ced0e9f2-9ad2-41f6-a23f-637ca598e609/0_0 */
 CREATE TABLE Categories(
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   Color varchar(6),
   Title varchar(32),
   IgnoreResults BIT,
