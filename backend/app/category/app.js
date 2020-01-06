@@ -72,7 +72,6 @@ exports.postCategory = async (event, context) => {
   }
 
   // Add category to database
-  let ID = parseInt(event.queryStringParameters.ID)
   let data = await DB.query(mysql.format("INSERT INTO Categories (Color, Title, IgnoreResults) VALUES (?, ?, ?);", [category.color, category.title, category.ignoreResults ? 1 : 0]))
 
   // Build response data
