@@ -12,7 +12,7 @@ CREATE TABLE Categories(
 );
 
 CREATE TABLE Triggers(
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   TriggerValue varchar(256),
   ParentQuestion int NOT NULL, /* Not a foreign key, but kind of. To prevent circular foreign keys, this just) REFERENCES the parent questions "OrderIndex" number. This) REFERENCES the question in this question's category with the specified OrderIndex. */
   Visible BIT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE Triggers(
 );
 
 CREATE TABLE Questions(
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   OrderIndex int NOT NULL, /* The questions are all ordered 1, 2, etc. This is the order they appear in on the frontend. Multiple questions can exist with the same order, as long as they're in different categories. within each category, each question has a unique order index*/
   QuestionText varchar(256) NOT NULL,
   MetaData varchar(512),
@@ -33,7 +33,7 @@ CREATE TABLE Questions(
 
 /* Each type of input subclass is implemented in this table. */
 CREATE TABLE Inputs(
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   Question int NOT NULL,
   IsTable bit NOT NULL, /* 0 - Numerical or List (Determined by number of values referencing this), 1 - Table */
   /* One or more values can reference this input. */
@@ -46,7 +46,7 @@ CREATE TABLE Inputs(
 );
 
 CREATE TABLE Units(
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   Prefix BIT NOT NULL,
   Chars varchar(32) NOT NULL,
   PRIMARY KEY (ID)
@@ -54,7 +54,7 @@ CREATE TABLE Units(
 
 /* Array of values for list questions */
 CREATE TABLE ValuesTable( /* 'Values' is reserved in mysql */
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   Type int NOT NULL, /* 1 - SingleValue (there is only one type right now, but this is here for later expansion if necessary) */
   SingleValue int,
   Coef float NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE ValuesTable( /* 'Values' is reserved in mysql */
 /* User data is split into two tables*/
 /* This stores the metadata describing the results from completing the carbon calculator */
 CREATE TABLE UserData(
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   ONID varchar(32),
   Created DATETIME DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (ID)
@@ -76,7 +76,7 @@ CREATE TABLE UserData(
 
 /* This table stores totals for each category per UserData entry. */
 CREATE TABLE Totals(
-  ID int NOT NULL,
+  ID int NOT NULL AUTO_INCREMENT,
   HistDataRef int NOT NULL,
   Category int NOT NULL,
   Total float NOT NULL,

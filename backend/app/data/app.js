@@ -1,6 +1,7 @@
 const User = require('/opt/nodejs/user.js')
 const Response = require('/opt/nodejs/response.js')
-const DDB = require('/opt/nodejs/dynamo-access.js')
+const DB = require('/opt/nodejs/sql-access.js')
+const mysql = require('mysql') // for formatting mysql queries
 
 /**
  *
@@ -15,86 +16,38 @@ const DDB = require('/opt/nodejs/dynamo-access.js')
  *
  */
 
-// Carbon Calculator Question Retrieval
-exports.questions = async (event, context) => {
+// Retrieves one or more data points from the database
+exports.getData = async (event, context) => {
   // Create empty response object from model
   let response = new Response()
 
-  // Retrieve question data from ddb
-  DDB.initialize()
-  let data = await DDB.query('carbon-calculator-questions').scan({
-      'Select': 'ALL_ATTRIBUTES',
-    'Limit': 10
-  })
+  // Retrieve the User's onid via their JWT
+  if (event.headers.Cookie == null || event.headers.Cookie.indexOf('token') === -1) {
+    response.body = JSON.stringify({
+      status: 400,
+      message: 'Bad request. No authentication token cookie was included with the request.'
+    })
+    response.headers = {
+      'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+    return response
+  }
+  let user = new User(event, response)
+
+
+  // Retrieve data for this user from the database
+  DB.connect('carbonCalculator')
+  const ID = event.queryStringParameters != null && event.queryStringParameters.ID != null ? mysql.format(' AND ID = ?', [parseInt(event.queryStringParameters.ID)]) : ''
+  const sql = mysql.format('SELECT * FROM UserData WHERE ONID = ?' + ID, [user.onid])
+  let data = await DB.query(sql)
+
+  // Retrieve totals for each data point
+  for (let index = 0; index < data.length; index++) {
+    data[index].Totals = await DB.query(mysql.format('SELECT * FROM Totals WHERE HistDataRef = ?', [data[index].ID]))
+  }
 
   // Return question data
-  response.body = JSON.stringify(data.Items)
-  response.headers = {
-    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
-    'Access-Control-Allow-Credentials': 'true'
-  }
-  return response
-}
-
- // Retrieves's the current user's data from the database and includes it in the response
-exports.download = async (event, context) => {
-  // Create empty response object from model
-  let response = new Response()
-
-  // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-
-  // Retrieve that user's data from the db
-  DDB.initialize()
-  let data = await DDB.query('users').select({
-    'Select': 'ALL_ATTRIBUTES',
-    'Limit': 1,
-    'ConsistentRead': true,
-    'KeyConditionExpression': 'onid = :onid',
-    'ExpressionAttributeValues': {
-      ':onid': u.onid
-    }
-  })
-
-  // Return user data
-  response.body = JSON.stringify({
-    data: data.Items[0].data,
-    onid: u.onid,
-    firstName: u.firstName,
-    primaryAffiliation: u.primaryAffiliation,
-    administrator: u.privilege === 0 ? false : true
-  })
-  response.headers = {
-    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
-    'Access-Control-Allow-Credentials': 'true'
-  }
-  return response
-}
-
-// Deletes one historical data point, specified by id
-exports.delete = async (event, context) => {
-  // Create empty response object from model
-  let response = new Response()
-
-  // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-
-  // Get the data ID to be deleted
-  let id = event.queryStringParameters.id
-
-  // Delete the data
-  let data = await DDB.query('users').update({
-    'Key': {
-      'onid': u.onid
-    },
-    'ExpressionAttributeNames': {
-      '#attribute': 'data'
-    },
-    'UpdateExpression': 'REMOVE #attribute['+ id +']',
-    'ReturnValue': 'UPDATED_NEW'
-  })
-
-  // Return user data
   response.body = JSON.stringify(data)
   response.headers = {
     'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
@@ -103,78 +56,99 @@ exports.delete = async (event, context) => {
   return response
 }
 
-// This function compares the user object specified to the corresponding user item
-// in the DynamoDB.
-//      - if the user does not exist, a new user is created with the given data.
-//      - if the user exists, then the function compares the user's data and
-//        updates data objects as necessary. Data objects in the database with
-//        the same date as new data objects will be updated.
-exports.upload = async (event, context) => {
+// Creates a new historical data point
+exports.postData = async (event, context) => {
   // Create empty response object from model
   let response = new Response()
 
-  // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-
-  // New user data
-  let newData = JSON.parse(event.body)
-
-  // Update user data in dynamodb
-  let data = null
-  let dbResponse = null
-  try {
-    // Attempt to get the current user's data
-    data = await DDB.query('users').select({
-      'Select': 'SPECIFIC_ATTRIBUTES',
-      'ProjectionExpression': '#reservedDWord',
-      'ExpressionAttributeNames': { '#reservedDWord':'data' },
-      'Limit': 1,
-      'ConsistentRead': true,
-      'KeyConditionExpression': 'onid = :onid',
-      'ExpressionAttributeValues': {
-        ':onid': u.onid
-      }
+  // Retrieve the User's onid via their JWT
+  if (event.headers.Cookie == null || event.headers.Cookie.indexOf('token') === -1) {
+    response.body = JSON.stringify({
+      status: 400,
+      message: 'Bad request. No authentication token cookie was included with the request.'
     })
+    response.headers = {
+      'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+    return response
+  }
+  let user = new User(event, response)
 
-    // Reduce the data variable to just the data needed
-    data = data.Items[0].data
+  // Retrieve array of totals
+  let totals = JSON.parse(event.body).totals
 
-    // Search data for the current data's date
-    let i = data.map(d => d.date).indexOf(newData.date)
+  // Create the historical data point
+  DB.connect('carbonCalculator')
+  const ID = (await DB.query(mysql.format('INSERT INTO UserData (ONID) VALUES (?)', [user.onid]))).insertId
 
-    // If the date is found, replace the data object with the most recent
-    if (i > -1) data.splice(i, 1, newData)
-
-    // Otherwise, add the data to the list
-    else data.push(newData)
-
-    // Update the DDB User object with the new data attribute
-    dbResponse = await DDB.query('users').update({
-      'UpdateExpression': 'SET #reservedDWord = :newData',
-      'ExpressionAttributeNames': { '#reservedDWord':'data' },
-      'Key': {
-        'onid': u.onid
-      },
-      'ExpressionAttributeValues': {
-        ':newData': data
-      }
-    })
-
-  } catch(e) {
-
-    // Create user if the query throws an error
-    dbResponse = await DDB.query('users').put({
-      'Item': {
-        'onid': u.onid,
-        'firstName': u.firstName + 'Jack',
-        'primaryAffiliation': u.primaryAffiliation + 'student',
-        'data': [ newData ]
-      }
-    })
+  // Create each total
+  for (let index = 0; index < totals.length; index++) {
+    await DB.query(mysql.format('INSERT INTO Totals (HistDataRef, Category, Total) VALUES (?, ?, ?)', [ID, totals[index].categoryID, totals[index].total]))
   }
 
-  // Return user data
-  response.body = JSON.stringify(newData.date)
+  // Retrieve this historical data point
+  let data = await DB.query(mysql.format('SELECT * FROM UserData WHERE ONID = ? AND ID = ?', [user.onid, ID]))
+
+  // Retrieve totals for each data point
+  for (let index = 0; index < data.length; index++) {
+    data[index].Totals = await DB.query(mysql.format('SELECT * FROM Totals WHERE HistDataRef = ?', [data[index].ID]))
+  }
+
+  // Return question data
+  response.body = JSON.stringify(data[0])
+  response.headers = {
+    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
+    'Access-Control-Allow-Credentials': 'true'
+  }
+  return response
+}
+
+// Deletes a historical data point
+exports.deleteData = async (event, context) => {
+  // Create empty response object from model
+  let response = new Response()
+
+  // Retrieve the data point id
+  if (event.queryStringParameters == null || event.queryStringParameters.ID == null) {
+    response.body = JSON.stringify({
+      status: 400,
+      message: 'Bad request. No ID provided.'
+    })
+    response.headers = {
+      'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+    return response
+  }
+  const ID = event.queryStringParameters.ID
+
+  // Retrieve the User's onid via their JWT
+  if (event.headers.Cookie == null || event.headers.Cookie.indexOf('token') === -1) {
+    response.body = JSON.stringify({
+      status: 400,
+      message: 'Bad request. No authentication token cookie was included with the request.'
+    })
+    response.headers = {
+      'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+    return response
+  }
+  let user = new User(event, response)
+
+  // Delete all of the totals associated with this data point
+  DB.connect('carbonCalculator')
+  await DB.query(mysql.format('DELETE FROM Totals WHERE HistDataRef = ?', [ID]))
+
+  // Delete the data point
+  await DB.query(mysql.format('DELETE FROM UserData WHERE ID = ?', [ID]))
+
+  // Return question data
+  response.body = JSON.stringify({
+    status: 200,
+    message: 'Data point deleted.'
+  })
   response.headers = {
     'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'

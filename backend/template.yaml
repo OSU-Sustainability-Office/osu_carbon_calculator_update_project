@@ -47,3 +47,51 @@ Resources:
           Properties:
             Path: /category
             Method: post
+  getData:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/data
+      Handler: app.getData
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        cc:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /data
+            Method: get
+  postData:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/data
+      Handler: app.postData
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        cc:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /data
+            Method: post
+  deleteData:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/data
+      Handler: app.deleteData
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        cc:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /data
+            Method: delete
