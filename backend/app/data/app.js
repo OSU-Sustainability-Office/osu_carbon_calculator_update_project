@@ -137,8 +137,22 @@ exports.deleteData = async (event, context) => {
   }
   let user = new User(event, response)
 
-  // Delete all of the totals associated with this data point
+  // Assert that the current user is the "owner" of this historical data point
   DB.connect('carbonCalculator')
+  let dataPointsTest = await DB.query(mysql.format('SELECT ID FROM UserData WHERE ID = ? AND ONID = ?', [ID, user.onid]))
+  if (dataPointsTest.length < 1) { // If the current user is not the owner, reject the request.
+    response.body = JSON.stringify({
+      status: 401,
+      message: 'Unauthorized. The data point requested does not belong to your ONID account, or it does not exist.'
+    })
+    response.headers = {
+      'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+    return response
+  }
+
+  // Delete all of the totals associated with this data point
   await DB.query(mysql.format('DELETE FROM Totals WHERE HistDataRef = ?', [ID]))
 
   // Delete the data point
