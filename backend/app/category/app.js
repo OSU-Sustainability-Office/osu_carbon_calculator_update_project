@@ -21,13 +21,24 @@ exports.getCategory = async (event, context) => {
   // Create empty response object from model
   let response = new Response()
 
-  // Retrieve question data from ddb
+  // Retrieve question data from db
   DB.connect('carbonCalculator')
-  let ID = parseInt(event.queryStringParameters.ID)
-  let data = await DB.query(ID == null ? 'SELECT * FROM Categories' : mysql.format('SELECT * FROM Categories WHERE ID = ?', [ID]))
+  const ID = event.queryStringParameters != null && event.queryStringParameters.ID != null ? mysql.format(' WHERE ID = ?', [parseInt(event.queryStringParameters.ID)]) : ''
+  let data = await DB.query('SELECT * FROM Categories' + ID)
+
+  // Parse the ignoreResults column into a boolean value (instead of a mysql bit stream)
+  res = []
+  data.forEach(category => {
+    res.push({
+      "ID": category.ID,
+      "Title": category.Title,
+      "Color": category.Color,
+      "IgnoreResults": category.IgnoreResults[0] === 1
+    })
+  })
 
   // Return question data
-  response.body = JSON.stringify(data)
+  response.body = JSON.stringify(res)
   response.headers = {
     'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'
@@ -65,11 +76,13 @@ exports.postCategory = async (event, context) => {
   let data = await DB.query(mysql.format("INSERT INTO Categories (Color, Title, IgnoreResults) VALUES (?, ?, ?);", [category.color, category.title, category.ignoreResults ? 1 : 0]))
 
   // Build response data
-  category.id = data.insertId
-
-
   // Return question data
-  response.body = JSON.stringify([category])
+  response.body = JSON.stringify([{
+    "ID": data.insertId,
+    "Title": category.title,
+    "Color": category.color,
+    "IgnoreResults": category.ignoreResults
+  }])
   response.headers = {
     'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'
