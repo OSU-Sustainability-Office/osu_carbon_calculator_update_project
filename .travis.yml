@@ -4,7 +4,6 @@ python:
 node_js:
 - '10'
 install:
-- nvm install 8.10
 - pip install --user awscli
 - pip install --user aws-sam-cli
 - npm --prefix dependencies/nodejs install
