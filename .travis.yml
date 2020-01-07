@@ -24,12 +24,6 @@ deploy:
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH != master"
-- provider: lambda
-  function_name: lambda-test
-  region: us-east-1
-  role: arn:aws:iam::0123456789012:role/lambda_basic_execution
-  runtime: nodejs4.3
-  handler_name: handler
 - provider: script
   script:
   - |
