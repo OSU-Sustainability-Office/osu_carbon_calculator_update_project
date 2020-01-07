@@ -4,11 +4,6 @@ node_js:
 cache:
   directories:
   - node_modules
-install:
-- nvm install 8.10
-- pip install awscli
-- pip install aws-sam-cli
-- npm --prefix dependencies/nodejs install
 script:
 - npm run build
 deploy:
