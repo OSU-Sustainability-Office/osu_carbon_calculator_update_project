@@ -32,9 +32,11 @@ install:
 - pip install awscli
 - pip install aws-sam-cli
 - npm --prefix dependencies/nodejs install
+script:
+- sam validate
+- sam package --template-file backend/template.yaml --s3-bucket osu-so-serverless-builds --output-template-file packaged.yaml
 - provider: script
-  script:
-  - sam package --template-file backend/template.yaml --s3-bucket osu-so-serverless-builds --output-template-file packaged.yaml
+  script: >-
   - sam deploy --template-file packaged.yaml --stack-name carbon-calculator --capabilities CAPABILITY_IAM
   skip_cleanup: true
   on:
