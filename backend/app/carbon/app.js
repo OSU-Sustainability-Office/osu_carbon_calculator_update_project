@@ -30,7 +30,7 @@ exports.questions = async (event, context) => {
   // Return question data
   response.body = JSON.stringify(data.Items)
   response.headers = {
-    'Access-Control-Allow-Origin': 'http://localhost:8080',
+    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'
   }
   return response
@@ -65,7 +65,7 @@ exports.download = async (event, context) => {
     administrator: u.privilege === 0 ? false : true
   })
   response.headers = {
-    'Access-Control-Allow-Origin': 'http://localhost:8080',
+    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'
   }
   return response
@@ -97,7 +97,7 @@ exports.delete = async (event, context) => {
   // Return user data
   response.body = JSON.stringify(data)
   response.headers = {
-    'Access-Control-Allow-Origin': 'http://localhost:8080',
+    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'
   }
   return response
@@ -176,7 +176,7 @@ exports.upload = async (event, context) => {
   // Return user data
   response.body = JSON.stringify(newData.date)
   response.headers = {
-    'Access-Control-Allow-Origin': 'http://localhost:8080',
+    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : 'https://myco2.sustainability.oregonstate.edu',
     'Access-Control-Allow-Credentials': 'true'
   }
   return response
