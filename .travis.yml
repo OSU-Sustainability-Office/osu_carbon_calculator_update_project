@@ -24,6 +24,14 @@ deploy:
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH != master"
+language: python
+python:
+- '2.7'
+install:
+- nvm install 8.10
+- pip install awscli
+- pip install aws-sam-cli
+- npm --prefix dependencies/nodejs install
 - provider: script
   script:
   - sam package --template-file backend/template.yaml --s3-bucket osu-so-serverless-builds --output-template-file packaged.yaml
