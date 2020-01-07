@@ -2,8 +2,8 @@ language: python
 python: '2.7'
 install:
 - nvm install 8.10
-- pip install --user awscli
-- pip install --user aws-sam-cli
+- pip install awscli
+- pip install aws-sam-cli
 - npm --prefix dependencies/nodejs install
 cache:
   directories:
