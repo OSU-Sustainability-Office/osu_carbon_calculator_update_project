@@ -1,6 +1,13 @@
-language: node_js
+language: generic
 node_js:
 - '10'
+python:
+- '2.7'
+install:
+- nvm install 8.10
+- pip install awscli
+- pip install aws-sam-cli
+- npm --prefix dependencies/nodejs install
 cache:
   directories:
   - node_modules
@@ -24,14 +31,6 @@ deploy:
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH != master"
-language: python
-python:
-- '2.7'
-install:
-- nvm install 8.10
-- pip install awscli
-- pip install aws-sam-cli
-- npm --prefix dependencies/nodejs install
 deploy:
 - provider: script
   script: >-
