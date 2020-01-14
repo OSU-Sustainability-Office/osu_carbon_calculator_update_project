@@ -11,58 +11,38 @@ CREATE TABLE Categories(
   PRIMARY KEY (ID)
 );
 
-CREATE TABLE Triggers(
-  ID int NOT NULL AUTO_INCREMENT,
-  TriggerValue varchar(256),
-  ParentQuestion int NOT NULL, /* Not a foreign key, but kind of. To prevent circular foreign keys, this just) REFERENCES the parent questions "OrderIndex" number. This) REFERENCES the question in this question's category with the specified OrderIndex. */
-  Visible BIT NOT NULL,
-  PRIMARY KEY (ID)
-);
-
 CREATE TABLE Questions(
   ID int NOT NULL AUTO_INCREMENT,
+  Category int NOT NULL,
   OrderIndex int NOT NULL, /* The questions are all ordered 1, 2, etc. This is the order they appear in on the frontend. Multiple questions can exist with the same order, as long as they're in different categories. within each category, each question has a unique order index*/
+  Type int NOT NULL, /* 0 - Paragraph, 1 - Value, 2 - List, 3 - Table */
+  Title varchar(128),
   QuestionText varchar(256) NOT NULL,
   MetaData varchar(512),
-  TriggerRef int,
-  Category int NOT NULL,
+  TriggerValue varchar(256),
+  ParentQuestion int NOT NULL,
+  Visible BIT NOT NULL,
+  ResultFormula varchar(256),
+  UnitChars varchar(16),
+  UnitIsPrefix BIT NOT NULL,
   PRIMARY KEY (ID),
   FOREIGN KEY (Category) REFERENCES Categories(ID),
-  FOREIGN KEY (TriggerRef) REFERENCES Triggers(ID)
+  FOREIGN KEY (ParentQuestion) REFERENCES Questions(ID)
 );
 
-/* Each type of input subclass is implemented in this table. */
-CREATE TABLE Inputs(
-  ID int NOT NULL AUTO_INCREMENT,
-  Question int NOT NULL,
-  IsTable bit NOT NULL, /* 0 - Numerical or List (Determined by number of values referencing this), 1 - Table */
-  /* One or more values can reference this input. */
-  /* The remaining columns in this table are for "Table" input types */
-  PrimaryColumn int,
-  QuantityColumn int,
-  resultFormula varchar(512), /* An excel formula describing how to calculate a single result from this table */
-  PRIMARY KEY (ID),
-  FOREIGN KEY (Question) REFERENCES Questions(ID)
-);
-
-CREATE TABLE Units(
-  ID int NOT NULL AUTO_INCREMENT,
-  Prefix BIT NOT NULL,
-  Chars varchar(32) NOT NULL,
-  PRIMARY KEY (ID)
-);
-
-/* Array of values for list questions */
+/* Array of values for value, list, and table questions */
 CREATE TABLE ValuesTable( /* 'Values' is reserved in mysql */
   ID int NOT NULL AUTO_INCREMENT,
-  Type int NOT NULL, /* 1 - SingleValue (there is only one type right now, but this is here for later expansion if necessary) */
-  SingleValue int,
+  Question int NOT NULL,
+  R int,
+  C int,
+  Val int,
+  Str varchar(256),
   Coef float NOT NULL,
   Unit int,
   Input int,
   PRIMARY KEY (ID),
-  FOREIGN KEY (Unit) REFERENCES Units(ID),
-  FOREIGN KEY (Input) REFERENCES Inputs(ID)
+  FOREIGN KEY (Question) REFERENCES Questions(ID)
 );
 
 /* User data is split into two tables*/
