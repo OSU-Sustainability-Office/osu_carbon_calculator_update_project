@@ -33,7 +33,6 @@ export default{
   // Uploads the user's data.
   // This data contains the totals for each category of the calculator
   uploadUserData (data) {
-    console.log(data)
     axios.post('/upload', data, {
       withCredentials: true
     })
