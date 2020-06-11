@@ -6,7 +6,7 @@ node_js:
 install:
 - pip install --user awscli
 - pip install --user aws-sam-cli
-- npm --prefix dependencies/nodejs install
+- npm install
 cache:
   directories:
   - node_modules
@@ -36,7 +36,7 @@ deploy:
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH != master"
-    
+
 env:
   global:
   - AWS_DEFAULT_REGION=us-west-2
