@@ -7,8 +7,8 @@
 @Last modified time: 2019-03-12T10:36:52-07:00
 -->
 <template>
-  <el-tooltip tabindex="-1" class="item" effect="dark" :content="metadata" placement="top">
-    <i class="el-icon-info"></i>
+  <el-tooltip :value="!disabled" class="item" effect="light" :content="metadata" placement="top" manual>
+    <i class="el-icon-info mouseover" @click="toggleDisabled()"></i>
   </el-tooltip>
 </template>
 
@@ -16,6 +16,21 @@
 export default {
   props: {
     'metadata': String
+  },
+  data () {
+    return {
+      disabled: true
+    }
+  },
+  methods: {
+    toggleDisabled: function () {
+      this.disabled = !this.disabled
+    }
   }
 }
 </script>
+<style>
+.mouseover {
+  cursor: pointer;
+}
+</style>
