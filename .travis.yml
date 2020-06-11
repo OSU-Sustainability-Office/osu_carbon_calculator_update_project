@@ -12,6 +12,7 @@ cache:
   - node_modules
 script:
 - npm run build
+- sam package --template-file backend/template.yaml --s3-bucket osu-so-serverless-builds --output-template-file packaged.yaml
 deploy:
 - provider: pages
   local-dir: dist/
@@ -21,6 +22,11 @@ deploy:
   on:
     branch: master
   fqdn: myco2.sustainability.oregonstate.edu
+- provider: script
+  script: sam deploy --template-file packaged.yaml --stack-name carbon-calculator --capabilities CAPABILITY_IAM
+  skip_cleanup: true
+  on:
+    branch: master
 - provider: s3
   access_key_id: "$S3_ACCESS_ID"
   secret_access_key: "$S3_ACCESS_KEY"
@@ -30,14 +36,7 @@ deploy:
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH != master"
-script:
-- sam package --template-file backend/template.yaml --s3-bucket osu-so-serverless-builds --output-template-file packaged.yaml
-deploy:
-- provider: script
-  script: sam deploy --template-file packaged.yaml --stack-name carbon-calculator --capabilities CAPABILITY_IAM
-  skip_cleanup: true
-  on:
-    branch: master
+    
 env:
   global:
   - AWS_DEFAULT_REGION=us-west-2
