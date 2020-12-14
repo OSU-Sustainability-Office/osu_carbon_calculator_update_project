@@ -2,8 +2,8 @@
 @Author: Jack Woods <jackrwoods>
 @Date:   2018-12-12T12:28:53-08:00
 @Filename: graph.vue
-@Last modified by:   Jack Woods
-@Last modified time: 2019-02-18T14:56:00-08:00
+@Last modified by: Kristina Lee
+@Last modified time: 2020-12-12, 3:12 PM
 @Copyright: 2018 Oregon State University
 @Note: The code in this container is pretty awful, in my opinion. This is because the vision for the charts section continues to change. In beta builds, this will be refactored and optimized.
 -->
@@ -14,7 +14,7 @@
   <el-row>
     <!-- US Avg and Category Comparison Charts -->
     <el-col :span="barSpan">
-      <h1 class="centered">Results</h1>
+      <h1 class="centered chartHeader">Results</h1>
       <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: '70vh'}" :resultsToggle="resultsToggle" />
       <div class="centered">
         <el-switch v-model="resultsToggle" active-text="Totals (Kg CO2e)" inactive-text="Percentages"></el-switch>
@@ -22,7 +22,7 @@
     </el-col>
     <el-col :span="12" v-if="lastSlide">
       <!-- Trend/Historical Data Chart -->
-      <h1 class="centered">Country Comparison</h1>
+      <h1 class="centered chartHeader">Country Comparison</h1>
       <countryComparisonChart :dataObj="countryComparisonChartData" :styles="{height: '70vh'}"/>
     </el-col>
   </el-row>
@@ -36,7 +36,7 @@
 
     <el-col class="centered" :span="16" :offset="4" v-else>
       <!-- Trend/Historical Data Chart -->
-      <h1 class="centered">Trend</h1>
+      <h1 class="centered chartHeader">Trend</h1>
       <div v-if="!this.$store.getters['user/isLoggedIn']">
         <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
         <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
@@ -294,16 +294,26 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+
 .centered {
   text-align: center;
 }
+
 .el-card {
   border: 1px solid #000;
   margin: 1px;
   border-radius: 4px;
 }
+
 h1 {
-  font-size: 4vh;
   line-height: 6vh;
+}
+
+.chartHeader {
+  font-size: 3vw;
+}
+
+.el-button {
+  margin-bottom: 20px;
 }
 </style>

@@ -2,8 +2,8 @@
 @Author: Jack Woods
 @Date:   2018-11-27T13:45:59-08:00
 @Filename: navBar.vue
-@Last modified by:   Jack Woods
-@Last modified time: 2019-02-21T11:43:59-08:00
+@Last modified by: Kristina Lee
+@Last modified time: 2020-12-12, 3:12 PM
 @Copyright: 2018 Oregon State University
 -->
 
@@ -111,22 +111,10 @@ $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
 
-@media only screen and (max-width: $screen-md-min) {
-  h1 {
-    font-size: 6vw;
-  }
-  .logo {
-    height: 5vw;
-  }
-  .button {
-    font-size: 3vw !important;
-  }
-}
-
 .button {
   color: $--color-white;
   display: inline-block;
-  font-size: 2vw;
+  font-size: 20px;
   line-height: 10vh;
   transition: $--all-transition;
 }
@@ -147,10 +135,35 @@ $screen-xl-min: 1200px;
 }
 h1 {
   line-height: 10vh;
+  font-size: 3vw;
 }
 #navbar {
   background-color: $--color-primary;
   color: $--color-white;
   height: 10vh;
 }
+
+@media only screen and (max-width: $screen-lg-min) {
+  h1 {
+    font-size: 40px;
+  }
+  .logo {
+    height: 10vh;
+    max-width: 95%;
+  }
+  .button {
+    font-size: 15px !important;
+  }
+}
+
+@media only screen and (max-width: $screen-md-min) {
+  h1 {
+    font-size: 30px;
+  }
+  .logo {
+    height: 10vw;
+  }
+  
+}
+
 </style>
