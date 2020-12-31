@@ -95,3 +95,19 @@ Resources:
           Properties:
             Path: /data
             Method: delete
+  getQuestion:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Policies:
+        - AmazonDynamoDBFullAccess
+      CodeUri: app/question
+      Handler: app.question
+      Runtime: nodejs10.x
+      Layers:
+        - !Ref LambdaCommonLayer
+      Events:
+        cc:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /question
+            Method: get

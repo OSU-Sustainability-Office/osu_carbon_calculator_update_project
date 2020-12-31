@@ -1,6 +1,8 @@
 const User = require('/opt/nodejs/user.js')
 const Response = require('/opt/nodejs/response.js')
 const DDB = require('/opt/nodejs/dynamo-access.js')
+const DB = require('/opt/nodejs/sql-access.js')
+const mysql = require('mysql') // for formatting mysql queries
 
 /**
  *
@@ -14,6 +16,75 @@ const DDB = require('/opt/nodejs/dynamo-access.js')
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
  *
  */
+
+// Create Question(s)
+exports.question = async (event, context) => {
+  // Create empty response object from model
+  let response = new Response()
+  
+  DB.connect()
+
+  if (event.queryStringParameters) {
+    // As required by the API documentation, either an ID or categoryID parameter must be provided with this GET request.
+    let query = mysql.format('SELECT * FROM QUESTIONS WHERE ? = ?', [
+      event.queryStringParameters.ID ? 'ID' : 'Category',
+      event.queryStringParameters.ID ? event.queryStringParameters.ID : event.queryStringParameters.categoryID
+    ])
+
+    const questions = await DB.query(query)
+
+    // {
+    //   "questions": [
+    //     {
+    //       "ID": 999,
+    //       "questionText": "How many miles do you drive each day?",
+    //       "orderIndex": 3,
+    //       "metaData": "This question is not real.",
+    //       "input": {
+    //         "type": "numerical",
+    //         "value": 0, // this is the initial value that appears before the user modifies the input box on the calculator.
+    //         "coef": 0.533,
+    //         "unit": "mi",
+    //         "isPrefix": false
+    //       },
+    //       "trigger": {
+    //         "triggerValue": "Gasoline",
+    //         "parentQuestion": 2,
+    //         "visible": false
+    //       },
+    //       "categoryID": 0
+    //     },
+    //     ...
+    //   ]
+    // }
+
+    let responseBody = {
+      "questions": []
+    }
+
+    questions.forEach(question => {
+      responseBody.questions.push(question)
+    })
+
+    response.body = JSON.stringify(responseBody)
+
+  } else {
+    // No parameters were provided.
+    response.body = JSON.stringify({
+      status: 400,
+      message: 'Invalid parameters. An "ID" or "categoryID" must be provided.'
+    })
+  }
+
+  return response
+}
+
+// Get Question(s)
+
+// Delete Question(s)
+
+
+
 
 // Carbon Calculator Question Retrieval
 exports.questions = async (event, context) => {
