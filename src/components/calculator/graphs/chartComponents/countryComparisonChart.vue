@@ -85,7 +85,7 @@ export default {
         }
       },
       chartdata: {
-        labels: ['Average Footprint (KgCO2e)'],
+        labels: ['Average Footprint (Kg CO2e/year)'],
         datasets: [
           {
             label: 'Brazil',
