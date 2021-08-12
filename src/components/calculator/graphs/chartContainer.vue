@@ -17,7 +17,7 @@
       <h1 class="centered chartHeader">Results</h1>
       <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: '70vh'}" :resultsToggle="resultsToggle" />
       <div class="centered">
-        <el-switch v-model="resultsToggle" active-text="Totals (Kg CO2e)" inactive-text="Percentages"></el-switch>
+        <el-switch v-model="resultsToggle" active-text="Totals (Kg CO2e/year)" inactive-text="Percentages"></el-switch>
       </div>
     </el-col>
     <el-col :span="12" v-if="lastSlide">
