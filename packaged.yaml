@@ -21,7 +21,7 @@ Resources:
     Properties:
       Policies:
       - AmazonDynamoDBFullAccess
-      CodeUri: s3://osu-so-serverless-builds/f1dfd6a4863b36f25384e92ae6eabb59
+      CodeUri: s3://osu-so-serverless-builds/3df2e338874ddf59b215bd09b8ae6bbc
       Handler: app.download
       Runtime: nodejs12.x
       Layers:
@@ -37,7 +37,7 @@ Resources:
     Properties:
       Policies:
       - AmazonDynamoDBFullAccess
-      CodeUri: s3://osu-so-serverless-builds/f1dfd6a4863b36f25384e92ae6eabb59
+      CodeUri: s3://osu-so-serverless-builds/3df2e338874ddf59b215bd09b8ae6bbc
       Handler: app.upload
       Runtime: nodejs12.x
       Layers:
@@ -53,7 +53,7 @@ Resources:
     Properties:
       Policies:
       - AmazonDynamoDBFullAccess
-      CodeUri: s3://osu-so-serverless-builds/f1dfd6a4863b36f25384e92ae6eabb59
+      CodeUri: s3://osu-so-serverless-builds/3df2e338874ddf59b215bd09b8ae6bbc
       Handler: app.delete
       Runtime: nodejs12.x
       Layers:
@@ -69,7 +69,7 @@ Resources:
     Properties:
       Policies:
       - AmazonDynamoDBFullAccess
-      CodeUri: s3://osu-so-serverless-builds/f1dfd6a4863b36f25384e92ae6eabb59
+      CodeUri: s3://osu-so-serverless-builds/3df2e338874ddf59b215bd09b8ae6bbc
       Handler: app.questions
       Runtime: nodejs12.x
       Layers:
