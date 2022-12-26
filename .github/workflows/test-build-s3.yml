@@ -1,12 +1,9 @@
 name: S3 Test Build
 on:
   push:
-    branches:
-      - gh-actions-test ## comment out later
+    branches-ignore:
       - master
-   # branches-ignore:
-   #   - master
-   #   - gh-pages
+      - gh-pages
 
 jobs:          
   build-deploy-s3:
