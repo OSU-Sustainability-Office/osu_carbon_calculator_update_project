@@ -10,11 +10,7 @@ Globals:
     Timeout: 3
   Api:
     Cors:
-        AllowMethods: "'POST, GET'"
-        AllowHeaders: "'X-Forwarded-For'"
-        AllowOrigin: "'oregonstate.edu'"
-        MaxAge: "'600'"
-        AllowCredentials: True
+      AllowOrigin: '''http://localhost:8080'''
 Parameters:
   LambdaCommonLayer:
     Type: String
