@@ -15,7 +15,7 @@ Globals:
 Parameters:
   LambdaCommonLayer:
     Type: String
-    Default: arn:aws:lambda:us-west-2:005937143026:layer:LambdaCommonLayer:67
+    Default: arn:aws:lambda:us-west-2:005937143026:layer:LambdaCommonLayer:97
 
 Resources:
   ccUserDataDownload:
@@ -25,7 +25,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.download
-      Runtime: nodejs10.x
+      Runtime: nodejs12.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:
@@ -41,7 +41,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.upload
-      Runtime: nodejs10.x
+      Runtime: nodejs12.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:
@@ -57,7 +57,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.delete
-      Runtime: nodejs10.x
+      Runtime: nodejs12.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:
@@ -73,7 +73,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.questions
-      Runtime: nodejs10.x
+      Runtime: nodejs12.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:
