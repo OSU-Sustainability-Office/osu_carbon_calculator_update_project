@@ -58,22 +58,22 @@ export default {
     calcCarousel
   },
   computed: {
-    chartsWidth() {
+    chartsWidth () {
       return this.lastSlide ? 24 : 8
     },
-    categories() {
+    categories () {
       return this.$store.getters['calculator/categories']
     },
-    determineTitle() {
+    determineTitle () {
       if (this.currentTitle === 0) return 'About the Calculator'
       else if (this.currentTitle === 6) return 'Waste'
       else return this.categories[this.currentTitle - 1].title // Subtract 1 to remove the Introduction from the calculation
     },
-    progressPercentage() {
+    progressPercentage () {
       return this.currentTitle / 6 * 100
     }
   },
-  data() {
+  data () {
     return {
       lastSlide: false,
       currentTitle: 0,
@@ -81,7 +81,7 @@ export default {
     }
   },
   methods: {
-    next() {
+    next () {
       if (this.$refs.calcCarousel.$refs.carousel.activeIndex === 0) {
         this.lastSlide = true
         this.openOffsetsDialog()
@@ -90,7 +90,7 @@ export default {
         this.$refs.calcCarousel.$refs.carousel.next()
       }
     },
-    prev() {
+    prev () {
       if (this.lastSlide) {
         this.lastSlide = false
       } else {
@@ -98,10 +98,13 @@ export default {
         this.$refs.calcCarousel.$refs.carousel.prev()
       }
     },
-    setFocus(newSlideIndex, oldSlideIndex) {
+    setFocus (newSlideIndex, oldSlideIndex) {
       let scope = this
       // This timeout waits for the carousel animation to complete before shifting focus
-      setTimeout(function() {
+
+      // disable annoying "unexpected newline linting warning" idk how to fix
+      // eslint-disable-next-line
+      setTimeout (function () {
         scope.focus = newSlideIndex
       }, 500)
     },

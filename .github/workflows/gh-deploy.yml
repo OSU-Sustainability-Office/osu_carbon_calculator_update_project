@@ -1,0 +1,31 @@
+name: gh pages
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy-gh-pages:
+    name: Build / Deploy to gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set-up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: npm install
+        run: |
+          npm install
+      - name: npm build frontend
+        run: |
+          npm run build
+      - name: deploy frontend to gh pages
+        uses: crazy-max/ghaction-github-pages@v3     # https://github.com/crazy-max/ghaction-github-pages
+        with:
+          target_branch: gh-pages
+          build_dir: dist
+          fqdn: myco2.sustainability.oregonstate.edu
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

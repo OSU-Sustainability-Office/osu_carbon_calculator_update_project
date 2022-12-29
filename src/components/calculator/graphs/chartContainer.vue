@@ -76,6 +76,7 @@ export default {
         totals: [4808.4, 4979.9, 3692.1, 2404.2, 515.2]
       },
       resultsToggle: true,
+      loginLink: 'https://api.sustainability.oregonstate.edu/v2/auth/login?returnURI=' + window.location,
       historicalData: {
         labels: [],
         datasets: []
@@ -271,7 +272,7 @@ export default {
       UserApi.uploadUserData(data)
     },
     redirectToLogin () {
-      window.location = 'https://api.sustainability.oregonstate.edu/auth/login?returnURI=' + window.location
+      window.location = this.loginLink
     }
   },
   watch: {
