@@ -10,12 +10,12 @@ Globals:
     Timeout: 3
   Api:
     Cors:
-      AllowOrigin: "'http://localhost:8080'"
+      AllowOrigin: "'https://api.sustainability.oregonstate.edu/v2/carbon-calculator'"
 
 Parameters:
   LambdaCommonLayer:
     Type: String
-    Default: arn:aws:lambda:us-west-2:005937143026:layer:LambdaCommonLayer:67
+    Default: arn:aws:lambda:us-west-2:005937143026:layer:LambdaCommonLayer:97
 
 Resources:
   ccUserDataDownload:
