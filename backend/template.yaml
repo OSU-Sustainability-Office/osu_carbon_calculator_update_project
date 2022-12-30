@@ -10,7 +10,7 @@ Globals:
     Timeout: 3
   Api:
     Cors:
-      AllowOrigin: "'http://localhost:8080'"
+      AllowOrigin: "'https://api.sustainability.oregonstate.edu/v2/carbon-calculator'"
 
 Parameters:
   LambdaCommonLayer:

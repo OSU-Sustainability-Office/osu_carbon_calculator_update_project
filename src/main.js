@@ -29,6 +29,9 @@ Vue.config.devtools = false
 // Configure axios with sustainability api base url
 axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
 
+Vue.config.debug = false
+Vue.config.devtools = false
+
 /* eslint-disable no-new */
 window.vue = new Vue({
   el: '#app',

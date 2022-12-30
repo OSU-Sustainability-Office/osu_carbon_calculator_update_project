@@ -163,7 +163,6 @@ h1 {
   .logo {
     height: 10vw;
   }
-  
 }
 
 </style>
