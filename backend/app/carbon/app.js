@@ -40,9 +40,9 @@ exports.questions = async (event, context) => {
 exports.download = async (event, context) => {
   // Create empty response object from model
   let response = new Response()
-
   // Create user object with current user's context (this gets user data from a JSON Web Token)
   let u = new User(event, response)
+  await u.resolve
 
   // Retrieve that user's data from the db
   DDB.initialize()
@@ -58,7 +58,7 @@ exports.download = async (event, context) => {
 
   // Return user data
   response.body = JSON.stringify({
-    data: data.Items[0].data,
+    data: (data.Items[0]) ?  data.Items[0].data : [],
     onid: u.onid,
     firstName: u.firstName,
     primaryAffiliation: u.primaryAffiliation,
