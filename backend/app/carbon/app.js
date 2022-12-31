@@ -78,6 +78,7 @@ exports.delete = async (event, context) => {
 
   // Create user object with current user's context (this gets user data from a JSON Web Token)
   let u = new User(event, response)
+  await u.resolve
 
   // Get the data ID to be deleted
   let id = event.queryStringParameters.id
@@ -115,6 +116,7 @@ exports.upload = async (event, context) => {
 
   // Create user object with current user's context (this gets user data from a JSON Web Token)
   let u = new User(event, response)
+  await u.resolve
 
   // New user data
   let newData = JSON.parse(event.body)
