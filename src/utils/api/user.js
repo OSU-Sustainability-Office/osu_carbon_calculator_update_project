@@ -36,5 +36,5 @@ export default{
     axios.post('/upload', data, {
       withCredentials: true
     })
-  },
+  }
 }
