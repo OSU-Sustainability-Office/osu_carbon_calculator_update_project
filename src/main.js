@@ -24,15 +24,16 @@ Vue.use(Vuei18n)
 Vue.use(elm, { locale: locale })
 
 Vue.config.productionTip = false
-
+Vue.config.debug = false
+Vue.config.devtools = false
 // Configure axios with sustainability api base url
-axios.defaults.baseURL = 'https://api.sustainability.oregonstate.edu/v2/carbon-calculator'
+axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
 
 Vue.config.debug = false
 Vue.config.devtools = false
 
 /* eslint-disable no-new */
-var v = new Vue({
+window.vue = new Vue({
   el: '#app',
   router,
   store,
@@ -40,4 +41,3 @@ var v = new Vue({
   template: '<App/>',
   render: h => h(App)
 })
-window.vue = v
