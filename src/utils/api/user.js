@@ -40,7 +40,7 @@ export default{
 
   // Calls an Extreme IP Lookup free API route and returns the JSON object
   getLocation () {
-    return axios.get('https://extreme-ip-lookup.com/json/?key=demo2', { withCredentials: true, headers: {"Access-Control-Allow-Origin": "https://myco2.sustainability.oregonstate.edu"}, })
+    return axios.get('https://extreme-ip-lookup.com/json/?key=4XYqDsiy9nBKlWsIlbWG', { withCredentials: false})
       .then(res => {
         return res.data
       })
