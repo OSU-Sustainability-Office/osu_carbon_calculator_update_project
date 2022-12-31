@@ -264,7 +264,6 @@ export default {
       // Initialize data array with current data only
       let data = {
         date: this.todayDate,
-        location: UserApi.getLocation(),
         totals: totals
       }
 
