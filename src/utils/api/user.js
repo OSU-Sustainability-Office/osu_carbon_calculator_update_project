@@ -34,13 +34,13 @@ export default{
   // This data contains the totals for each category of the calculator
   uploadUserData (data) {
     axios.post('/upload', data, {
-      withCredentials: false
+      withCredentials: true
     })
   },
 
   // Calls an Extreme IP Lookup free API route and returns the JSON object
   getLocation () {
-    return axios.get('https://extreme-ip-lookup.com/json/?key=4XYqDsiy9nBKlWsIlbWG', { withCredentials: false})
+    return axios.get('https://extreme-ip-lookup.com/json/?key=4XYqDsiy9nBKlWsIlbWG', { withCredentials: false })
       .then(res => {
         return res.data
       })
