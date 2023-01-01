@@ -12,10 +12,10 @@ import UserApi from '@/utils/api/user.js'
 export default {
   namespaced: true,
   state: {
-    isLoggedIn: false, // Becomes true if the user logs in
+    isLoggedIn: true, // Becomes true if the user logs in
     studentType: 'On Campus',
-    onid: '', // The current user's onid username. ie: woodjack
-    firstName: '', // The current user's first name. ie: Jack
+    onid: 'huangjef', // The current user's onid username. ie: woodjack
+    firstName: 'Jeff', // The current user's first name. ie: Jack
     primaryAffiliation: '', // The current user's primary affiliation. This is either 'student' or 'employee'
     data: [], // An array containing all of the user's dataObjects, including the current one.
     administrator: false
