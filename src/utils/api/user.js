@@ -34,7 +34,10 @@ export default{
   // This data contains the totals for each category of the calculator
   uploadUserData (data) {
     axios.post('/upload', data, {
-      withCredentials: true
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'text/plain'
+      }
     })
   }
 }
