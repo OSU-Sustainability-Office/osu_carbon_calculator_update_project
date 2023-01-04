@@ -10,7 +10,11 @@ Globals:
     Timeout: 3
   Api:
     Cors:
+      AllowMethods: "'POST, GET'"
+      AllowHeaders: "'X-Forwarded-For'"
       AllowOrigin: "'http://localhost:8080'"
+      MaxAge: "'600'"
+      AllowCredentials: True
 
 Parameters:
   LambdaCommonLayer:
