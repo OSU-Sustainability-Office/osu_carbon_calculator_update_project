@@ -36,8 +36,8 @@ export default{
     axios.post('/upload', data, {
       withCredentials: true,
       headers: {
-        'Content-Type': 'text/plain',
-    }
+        'Content-Type': 'text/plain'
+      }
     })
   },
 
