@@ -1,4 +1,5 @@
-# Carbon Calculator - [![Build Status](https://api.travis-ci.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project.svg?branch=VueJS-Migration)](https://travis-ci.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project)
+# Carbon Calculator
+![Frontend Status](https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project/actions/workflows/gh-deploy.yml/badge.svg)![API Status](https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project/actions/workflows/API-deploy.yml/badge.svg) ![Test Build Status](https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project/actions/workflows/test-build-s3.yml/badge.svg)
 
 ## [Production Build](https://myco2.sustainability.oregonstate.edu)
 
