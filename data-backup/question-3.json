@@ -1,0 +1,313 @@
+{
+    "categoryID": 3,
+    "color": "#003B5C",
+    "questions": [
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "4.5oz Servings"
+       },
+       "values": [
+        {
+         "coef": 75.212,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 1/2 lbs of ground beef, or 4-5 ounces of cooked steak.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of red meat do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "4.5oz Servings"
+       },
+       "values": [
+        {
+         "coef": 49.888,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 3 eggs, 1 cup of yogurt or milk, or 4 slices of cheese.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of dairy products or eggs do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "Servings"
+       },
+       "values": [
+        {
+         "coef": 14.9682,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 1 apple, orange or banana; 1 cup of diced fruit; 2 apricots, kiwis, or plums; 1 potato or tomatol; 1/2 cup of marinara sauce; 3/4 cup of cooked vegetables; 1 cup of salad.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of fruits and vegetables do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "Servings"
+       },
+       "values": [
+        {
+         "coef": 12.07752,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 2 slices of bread; 1 bagel, roll, or english muffin, 1/2 cup of rice, pasta, quinoa, or oatmeal; 1 cup of dry cereal; 1 slice of cake; 2 medium chocolate chip cookies.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of grains and baked products do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "4.5oz Servings"
+       },
+       "values": [
+        {
+         "coef": 32.6196,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 4-5 ounces of cooked chicken/turkey; 7 chicken nuggets; 4 chicken wings; 5 slices of deli turkey.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of poultry do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "4.5oz Servings"
+       },
+       "values": [
+        {
+         "coef": 75.212,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 4-5 ounces of cooked pork.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of pork do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "4.5oz Servings"
+       },
+       "values": [
+        {
+         "coef": 16.8142,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 4-5 ounces of cooked fish; 8 pieces of sushi/sashimi; 10 pieces of shrimp; 4-5 large scallops or 6-8 clams.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of seafood do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "Servings"
+       },
+       "values": [
+        {
+         "coef": 64.55904,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 24 almonds; 18 cashews; 35 peanuts; 12 macadamia nuts; 7 walnuts.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "On average, how many portions of nuts do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "4.5oz Servings"
+       },
+       "values": [
+        {
+         "coef": 56.48916,
+         "val": "0"
+        }
+       ]
+      },
+      "metaData": "A portion consists of: 4-5 ounces of processed food.\nSource: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
+      "text": "How many portions of processed food do you eat in a week?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": true,
+        "unit": "$"
+       },
+       "values": [
+        {
+         "coef": 2.8756,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "Source: http://www.carbonfootprint.com/calculatorfaqs.html",
+      "text": "On average, how much do you spend while eating out each month?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "list",
+       "units": {
+        "prefix": false,
+        "unit": "NONE"
+       },
+       "values": [
+        {
+         "coef": 0,
+         "val": "None"
+        },
+        {
+         "coef": 1.092,
+         "val": "Black Coffee"
+        },
+        {
+         "coef": 3.692,
+         "val": "Coffee with Cream or Sugar"
+        },
+        {
+         "coef": 17.68,
+         "val": "Lattes or Cappuccinos"
+        },
+        {
+         "coef": 0,
+         "val": "Tea"
+        }
+       ]
+      },
+      "metaData": "Source: http://www.takepart.com/article/2016/02/14/perennial-coffee-climate-change/",
+      "text": "If you drink coffee or tea, please select from the following options:",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "dependentValue",
+       "units": {
+        "prefix": false,
+        "unit": "Cups"
+       },
+       "values": [
+        {
+         "coef": 0.052,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "This question was added from the previous carbon calculator, but has no source attributed. Metadata will be updated when a source is found.",
+      "text": "How many cups do you drink in a week?",
+      "trigger": {
+       "parentQuestion": 10,
+       "triggerValue": null
+      },
+      "visible": false
+     },
+     {
+      "input": {
+       "type": "list",
+       "units": {
+        "prefix": true,
+        "unit": "NONE"
+       },
+       "values": [
+        {
+         "coef": 0.06826625,
+         "val": "No"
+        },
+        {
+         "coef": 0.06826625,
+         "val": "Yes"
+        }
+       ]
+      },
+      "metaData": "This question is not factored into your final score.",
+      "text": "Do you purchase food from farmers markets?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     }
+    ],
+    "title": "Food"
+   }

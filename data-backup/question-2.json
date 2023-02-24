@@ -1,0 +1,292 @@
+{
+    "categoryID": 2,
+    "color": "#D3832B",
+    "questions": [
+     {
+      "input": {
+       "type": "list",
+       "units": {
+        "prefix": true,
+        "unit": "NONE"
+       },
+       "values": [
+        {
+         "coef": 0,
+         "val": "None"
+        },
+        {
+         "coef": 1154,
+         "val": "Bloss"
+        },
+        {
+         "coef": 1343.37,
+         "val": "Buxton"
+        },
+        {
+         "coef": 576,
+         "val": "Callahan"
+        },
+        {
+         "coef": 703.2,
+         "val": "Cauthorn"
+        },
+        {
+         "coef": 1448,
+         "val": "Finley"
+        },
+        {
+         "coef": 1345.87,
+         "val": "Halsell"
+        },
+        {
+         "coef": 1394.51,
+         "val": "Hawley"
+        },
+        {
+         "coef": 4525.11,
+         "val": "ILLC"
+        },
+        {
+         "coef": 3759.93,
+         "val": "McNary"
+        },
+        {
+         "coef": 225.43,
+         "val": "Poling"
+        },
+        {
+         "coef": 1097.95,
+         "val": "Sackett"
+        },
+        {
+         "coef": 2297.6,
+         "val": "Weatherford"
+        },
+        {
+         "coef": 2096.4,
+         "val": "West"
+        },
+        {
+         "coef": 568.8,
+         "val": "Wilson"
+        },
+        {
+         "coef": 1745.24,
+         "val": "Tebeau"
+        }
+       ]
+      },
+      "metaData": "Baseline for residence halls only counts heating and lighting of each building. Data provided by OSU Sustainability Office & updated on 1/28/17 to reflect FY16 school year.",
+      "text": "If you're an on campus resident, choose from the following residence halls:",
+      "trigger": {
+       "parentQuestion": -1,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "list",
+       "units": {
+        "prefix": true,
+        "unit": "NONE"
+       },
+       "values": [
+        {
+         "coef": 0,
+         "val": "Off-Campus"
+        },
+        {
+         "coef": 0,
+         "val": "On-Campus"
+        }
+       ]
+      },
+      "metaData": "Baseline for dorms only counts heating and lighting of each building. Data provided by OSU Sustainability Office & updated on 1/28/17 to reflect FY16 school year.",
+      "text": "If you live on-campus, select \"On-Campus\":",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "dependentValue",
+       "units": {
+        "prefix": true,
+        "unit": "$"
+       },
+       "values": [
+        {
+         "coef": 7.338709677419355,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "Sources: https://www.pacificpower.net/about/rr/rpc.html - val * 1/.1116 * .819 (Provided internally) = 7.338709677419355",
+      "text": "How much do you usually pay for electricity each month (in Dollars)?",
+      "trigger": {
+       "parentQuestion": 1,
+       "triggerValue": "Off-Campus"
+      },
+      "visible": false
+     },
+     {
+      "input": {
+       "type": "dependentValue",
+       "units": {
+        "prefix": true,
+        "unit": "$"
+       },
+       "values": [
+        {
+         "coef": 52.01208,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "Sources: https://www.nwnatural.com/uploadedFiles/OR_Summary_of_Sales_Updated.pdf, https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references",
+      "text": "How much do you usually pay for natural gas each month (in Dollars)?",
+      "trigger": {
+       "parentQuestion": 1,
+       "triggerValue": "Off-Campus"
+      },
+      "visible": false
+     },
+     {
+      "input": {
+       "coefficient": 0.003821,
+       "coefficients": [
+        0,
+        1,
+        1,
+        1,
+        0.1
+       ],
+       "primaryColumn": "2",
+       "quantityColumn": "1",
+       "sumColumns": [
+        3,
+        4
+       ],
+       "type": "tableQuestion",
+       "values": [
+        [
+         "Item",
+         "Quantity",
+         "Watts",
+         "Active Use (Hours/Day)",
+         "Standby Use (Hours/Day)"
+        ],
+        [
+         "Refrigerator",
+         "1",
+         "160",
+         "24",
+         "0"
+        ],
+        [
+         "Microwave",
+         "1",
+         "1000",
+         "0",
+         "0"
+        ],
+        [
+         "Clock Radio",
+         "1",
+         "10",
+         "0",
+         "0"
+        ],
+        [
+         "iPod Dock",
+         "1",
+         "100",
+         "0",
+         "0"
+        ],
+        [
+         "Stereo Sound System",
+         "1",
+         "150",
+         "0",
+         "0"
+        ],
+        [
+         "Desktop Computer",
+         "1",
+         "400",
+         "0",
+         "0"
+        ],
+        [
+         "Computer Monitor",
+         "1",
+         "35",
+         "0",
+         "0"
+        ],
+        [
+         "Laptop Computer",
+         "1",
+         "60",
+         "0",
+         "0"
+        ],
+        [
+         "Printer",
+         "1",
+         "100",
+         "0",
+         "0"
+        ],
+        [
+         "TV",
+         "1",
+         "115",
+         "0",
+         "0"
+        ],
+        [
+         "Portable Fan",
+         "1",
+         "115",
+         "0",
+         "0"
+        ],
+        [
+         "Floor Lamp",
+         "1",
+         "300",
+         "0",
+         "0"
+        ],
+        [
+         "Game Console",
+         "1",
+         "140",
+         "0",
+         "0"
+        ],
+        [
+         "Other",
+         "1",
+         "0",
+         "0",
+         "0"
+        ]
+       ]
+      },
+      "metaData": "Source: https://www.epa.gov/sites/production/files/2015-07/documents/emission-factors_2014.pdf",
+      "text": "From the following list of appliances, electronics, lighting, etc, input how many of each item are in your room and how many hours a day each item is in use or plugged in. If you own an item not listed below please be sure to fill in extra fields: What is the item and wattage? You can find the wattage on the bottom of most appliances. Be sure to multiply by 1000 if the wattage is given in kilowatts.",
+      "trigger": {
+       "parentQuestion": 1,
+       "triggerValue": "On-Campus"
+      },
+      "visible": false
+     }
+    ],
+    "title": "Energy and Heating"
+   }

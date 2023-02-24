@@ -1,0 +1,95 @@
+{
+    "categoryID": 4,
+    "color": "#7A6855",
+    "questions": [
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "Minutes"
+       },
+       "values": [
+        {
+         "coef": 2.17686,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "This question is not factored into your final score, but will be once we find a source for CO2e conversions.",
+      "text": "On average, how long are your showers?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "Loads"
+       },
+       "values": [
+        {
+         "coef": 1.0366,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "This question is not factored into your final score, but will be once we find a source for CO2e conversions.",
+      "text": "On average, how many loads of laundry do you wash each month?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "Flushes"
+       },
+       "values": [
+        {
+         "coef": 3.73176,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "This question is not factored into your final score, but will be once we find a source for CO2e conversions.",
+      "text": "On average, how many times do you flush a toilet each day?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     },
+     {
+      "input": {
+       "type": "value",
+       "units": {
+        "prefix": false,
+        "unit": "Cups"
+       },
+       "values": [
+        {
+         "coef": 0.0647875,
+         "val": 0
+        }
+       ]
+      },
+      "metaData": "This question is not factored into your final score, but will be once we find a source for CO2e conversions.",
+      "text": "On average, how many cups of water do you drink every day (from the tap or a water fountain)?",
+      "trigger": {
+       "parentQuestion": null,
+       "triggerValue": null
+      },
+      "visible": true
+     }
+    ],
+    "title": "Water"
+   }
