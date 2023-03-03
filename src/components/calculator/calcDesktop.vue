@@ -106,18 +106,18 @@ export default {
       // eslint-disable-next-line
       setTimeout (function () {
         scope.focus = newSlideIndex
-      }, 500)
-    },
-    // This method opens the "carbon offsets" dialog when the calculator reaches its final page.
-    openOffsetsDialog () {
-      this.$confirm('One way to <b>decrease your carbon footprint</b> is to purchase carbon offsets! Offsets fund projects that reduce carbon emissions elsewhere, such as a wind farm or forestry project. The OSU Sustainability Office has a new voluntary carbon offsets program for OSU-funded travel. For personal travel, individuals are able to purchase offsets from multiple vendors.', 'Carbon Offsets Available!', {
-        confirmButtonText: 'Learn More',
-        cancelButtonText: 'No Thanks',
-        dangerouslyUseHTMLString: true
-      }).then(() => {
-        window.open('https://fa.oregonstate.edu/sustainability/carbon-offsets-osu-funded-travel', '_blank')
-      })
+      }, 5)
     }
+    // This method opens the "carbon offsets" dialog when the calculator reaches its final page.
+    // openOffsetsDialog () {
+    //   this.$confirm('One way to <b>decrease your carbon footprint</b> is to purchase carbon offsets! Offsets fund projects that reduce carbon emissions elsewhere, such as a wind farm or forestry project. The OSU Sustainability Office has a new voluntary carbon offsets program for OSU-funded travel. For personal travel, individuals are able to purchase offsets from multiple vendors.', 'Carbon Offsets Available!', {
+    //     confirmButtonText: 'Learn More',
+    //     cancelButtonText: 'No Thanks',
+    //     dangerouslyUseHTMLString: true
+    //   }).then(() => {
+    //     window.open('https://fa.oregonstate.edu/sustainability/carbon-offsets-osu-funded-travel', '_blank')
+    //   })
+    // }
   }
 }
 </script>
