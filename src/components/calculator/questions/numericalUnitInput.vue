@@ -57,25 +57,21 @@ export default {
     }
   },
   computed: {
-    slot ()
-    {
+    slot () {
       return this.prefix === true ? 'prepend' : 'append'
     },
-    isDecrementDisabled()
-    {
-      return this.value < 1;
+    isDecrementDisabled () {
+      return this.value < 1
     }
   },
-  data ()
-  {
+  data () {
     return {
       longPress: null,
       val: 1
     }
   },
   watch: {
-    value ()
-    {
+    value () {
       this.value = this.value < 0 ? 0 : this.value
       this.value = isNaN(this.value) ? 0 : this.value
     }
