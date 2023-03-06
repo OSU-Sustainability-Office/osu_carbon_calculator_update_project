@@ -93,10 +93,16 @@ export default {
       }
     },
     setFocus (newSlideIndex, oldSlideIndex) {
-      let scope = this
+      this.isTimeoutRunning = true
+
+      if (this.isTimeoutRunning) {
+        return
+      }
+
       // This timeout waits for the carousel animation to complete before shifting focus
-      setTimeout(function () {
-        scope.focus = newSlideIndex
+      setTimeout(() => {
+        this.focus = newSlideIndex
+        this.isTimeoutRunning = false
       }, 500)
     }
   }
