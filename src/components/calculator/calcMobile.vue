@@ -93,17 +93,18 @@ export default {
       }
     },
     setFocus (newSlideIndex, oldSlideIndex) {
-      this.isTimeoutRunning = true
+      let scope = this
+      let carousel = document.querySelector('.carousel')
 
-      if (this.isTimeoutRunning) {
-        return
-      }
+      // Listen for the "transitioned" event on the carousel element
+      carousel.addEventListener('transitioned', function () {
+        scope.focus = newSlideIndex
+      }, { once: true })
 
-      // This timeout waits for the carousel animation to complete before shifting focus
-      setTimeout(() => {
-        this.focus = newSlideIndex
-        this.isTimeoutRunning = false
-      }, 500)
+      // Update the carousel index
+      this.$nextTick(() => {
+        this.$refs.carousel.setSlide(newSlideIndex)
+      })
     }
   }
 }

@@ -99,28 +99,29 @@ export default {
       }
     },
     setFocus (newSlideIndex, oldSlideIndex) {
-      this.isTimeoutRunning = true
+      let scope = this
+      let carousel = document.querySelector('.carousel')
 
-      if (this.isTimeoutRunning) {
-        return
-      }
+      // Listen for the "transitioned" event on the carousel element
+      carousel.addEventListener('transitioned', function () {
+        scope.focus = newSlideIndex
+      }, { once: true })
 
-      // This timeout waits for the carousel animation to complete before shifting focus
-      setTimeout(() => {
-        this.focus = newSlideIndex
-        this.isTimeoutRunning = false
-      }, 500)
-    }
+      // Update the carousel index
+      this.$nextTick(() => {
+        this.$refs.carousel.setSlide(newSlideIndex)
+      })
+    },
     // This method opens the "carbon offsets" dialog when the calculator reaches its final page.
-    // openOffsetsDialog () {
-    //   this.$confirm('One way to <b>decrease your carbon footprint</b> is to purchase carbon offsets! Offsets fund projects that reduce carbon emissions elsewhere, such as a wind farm or forestry project. The OSU Sustainability Office has a new voluntary carbon offsets program for OSU-funded travel. For personal travel, individuals are able to purchase offsets from multiple vendors.', 'Carbon Offsets Available!', {
-    //     confirmButtonText: 'Learn More',
-    //     cancelButtonText: 'No Thanks',
-    //     dangerouslyUseHTMLString: true
-    //   }).then(() => {
-    //     window.open('https://fa.oregonstate.edu/sustainability/carbon-offsets-osu-funded-travel', '_blank')
-    //   })
-    // }
+    openOffsetsDialog () {
+      this.$confirm('One way to <b>decrease your carbon footprint</b> is to purchase carbon offsets! Offsets fund projects that reduce carbon emissions elsewhere, such as a wind farm or forestry project. The OSU Sustainability Office has a new voluntary carbon offsets program for OSU-funded travel. For personal travel, individuals are able to purchase offsets from multiple vendors.', 'Carbon Offsets Available!', {
+        confirmButtonText: 'Learn More',
+        cancelButtonText: 'No Thanks',
+        dangerouslyUseHTMLString: true
+      }).then(() => {
+        window.open('https://fa.oregonstate.edu/sustainability/carbon-offsets-osu-funded-travel', '_blank')
+      })
+    }
   }
 }
 </script>
