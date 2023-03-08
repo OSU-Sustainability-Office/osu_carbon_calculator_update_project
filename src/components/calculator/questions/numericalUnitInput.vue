@@ -14,7 +14,7 @@
     </el-input>
     <br />
     <el-button-group class="padded">
-      <el-button type="primary" @click="add(-1)" v-long-press="350" @long-press-start="longPressStart(-1)" @long-press-stop="longPressStop" icon="el-icon-minus"></el-button>
+      <el-button type="primary" @click="add(-1)" v-long-press="350" @long-press-start="longPressStart(-1)" @long-press-stop="longPressStop" icon="el-icon-minus" :disabled="isDecrementDisabled"></el-button>
       <el-button type="primary" @click="add(1)" v-long-press="350" @long-press-start="longPressStart(1)" @long-press-stop="longPressStop" icon="el-icon-plus"></el-button>
     </el-button-group>
   </div>
@@ -59,6 +59,9 @@ export default {
   computed: {
     slot () {
       return this.prefix === true ? 'prepend' : 'append'
+    },
+    isDecrementDisabled () {
+      return this.value < 1
     }
   },
   data () {
@@ -75,7 +78,6 @@ export default {
   }
 }
 </script>
-
 <style>
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {

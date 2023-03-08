@@ -100,13 +100,17 @@ export default {
     },
     setFocus (newSlideIndex, oldSlideIndex) {
       let scope = this
-      // This timeout waits for the carousel animation to complete before shifting focus
+      let carousel = document.querySelector('.carousel')
 
-      // disable annoying "unexpected newline linting warning" idk how to fix
-      // eslint-disable-next-line
-      setTimeout (function () {
+      // Listen for the "transitioned" event on the carousel element
+      carousel.addEventListener('transitioned', function () {
         scope.focus = newSlideIndex
-      }, 500)
+      }, { once: true })
+
+      // Update the carousel index
+      this.$nextTick(() => {
+        this.$refs.carousel.setSlide(newSlideIndex)
+      })
     },
     // This method opens the "carbon offsets" dialog when the calculator reaches its final page.
     openOffsetsDialog () {
