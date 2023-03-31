@@ -96,15 +96,17 @@ export default {
       let scope = this
       let carousel = document.querySelector('.carousel')
 
-      // Listen for the "transitioned" event on the carousel element
-      carousel.addEventListener('transitioned', function () {
-        scope.focus = newSlideIndex
-      }, { once: true })
+      if (carousel) {
+        // Listen for the "transitioned" event on the carousel element
+        carousel.addEventListener('transitioned', function () {
+          scope.focus = newSlideIndex
+        }, { once: true })
 
-      // Update the carousel index
-      this.$nextTick(() => {
-        this.$refs.carousel.setSlide(newSlideIndex)
-      })
+        // Update the carousel index
+        this.$nextTick(() => {
+          this.$refs.carousel.setSlide(newSlideIndex)
+        })
+      }
     }
   }
 }

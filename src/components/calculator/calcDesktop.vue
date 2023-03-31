@@ -101,16 +101,17 @@ export default {
     setFocus (newSlideIndex, oldSlideIndex) {
       let scope = this
       let carousel = document.querySelector('.carousel')
+      if (carousel) {
+        // Listen for the "transitioned" event on the carousel element
+        carousel.addEventListener('transitioned', function () {
+          scope.focus = newSlideIndex
+        }, { once: true })
 
-      // Listen for the "transitioned" event on the carousel element
-      carousel.addEventListener('transitioned', function () {
-        scope.focus = newSlideIndex
-      }, { once: true })
-
-      // Update the carousel index
-      this.$nextTick(() => {
-        this.$refs.carousel.setSlide(newSlideIndex)
-      })
+        // Update the carousel index
+        this.$nextTick(() => {
+          this.$refs.carousel.setSlide(newSlideIndex)
+        })
+      }
     },
     // This method opens the "carbon offsets" dialog when the calculator reaches its final page.
     openOffsetsDialog () {
