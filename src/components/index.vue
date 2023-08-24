@@ -8,19 +8,15 @@
 -->
 
 <template>
-
   <!-- This div only exists to satisfy VueJS's 1 root element requirement -->
   <div id="calculator">
-
     <!-- The actual calculator -->
     <el-row>
       <calcMobile v-if="isMobile" />
       <calcDesktop v-else />
       <historicalDataDialog />
     </el-row>
-
   </div>
-
 </template>
 
 <script>
@@ -45,7 +41,11 @@ export default {
     isMobile () {
       // Shout out to https://coderwall.com/p/i817wa/one-line-function-to-detect-mobile-devices-with-javascript
       // eslint-disable-next-line
-      return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) || this.mobileWidth
+      return (
+        typeof window.orientation !== 'undefined' ||
+        navigator.userAgent.indexOf('IEMobile') !== -1 ||
+        this.mobileWidth
+      )
     }
   }
 }
@@ -54,7 +54,7 @@ export default {
 h1 {
   padding: 0em;
   margin: 0;
-  font-family: 'StratumNo2';
+  font-family: "StratumNo2";
   font-size: 6vh;
 }
 </style>

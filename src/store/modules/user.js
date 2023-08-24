@@ -21,25 +21,25 @@ export default {
     administrator: false
   },
   getters: {
-    onid: state => {
+    onid: (state) => {
       return state.onid
     },
-    firstName: state => {
+    firstName: (state) => {
       return state.firstName
     },
-    primaryAffiliation: state => {
+    primaryAffiliation: (state) => {
       return state.primaryAffiliation
     },
-    data: state => {
+    data: (state) => {
       return state.data
     },
-    isLoggedIn: state => {
+    isLoggedIn: (state) => {
       return state.isLoggedIn
     },
-    studentType: state => {
+    studentType: (state) => {
       return state.studentType
     },
-    administrator: state => {
+    administrator: (state) => {
       return state.administrator
     }
   },
@@ -50,7 +50,9 @@ export default {
       state.firstName = userObject.firstName
       state.primaryAffiliation = userObject.primaryAffiliation
       state.isLoggedIn = true
-      state.administrator = userObject.administrator ? userObject.administrator : false
+      state.administrator = userObject.administrator
+        ? userObject.administrator
+        : false
       state.data = userObject.data
     },
     // Removes one historical data entry
@@ -64,7 +66,7 @@ export default {
   actions: {
     setUserVars (context) {
       // Download user data using the user api
-      UserApi.downloadUserData().then(userObject => {
+      UserApi.downloadUserData().then((userObject) => {
         context.commit('update', userObject)
       })
     }

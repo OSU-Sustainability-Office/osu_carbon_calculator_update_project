@@ -9,10 +9,13 @@
 -->
 
 <template>
-
   <!-- draw a value question if the question should be visible -->
-  <value v-show="showQuestion" v-bind:questionData="questionDataWithMeta" v-bind:index="index" v-bind:categoryID="categoryID" />
-
+  <value
+    v-show="showQuestion"
+    v-bind:questionData="questionDataWithMeta"
+    v-bind:index="index"
+    v-bind:categoryID="categoryID"
+  />
 </template>
 
 <script>
@@ -21,17 +24,24 @@ import value from '@/components/calculator/questions/value'
 export default {
   name: 'dependentValue',
   props: {
-    'questionData': Object,
-    'index': Number,
-    'categoryID': Number
+    questionData: Object,
+    index: Number,
+    categoryID: Number
   },
   computed: {
     parentQuestion () {
-      return this.$store.state.calculator.categories[this.categoryID].questions[this.questionData.trigger.parentQuestion]
+      return this.$store.state.calculator.categories[this.categoryID].questions[
+        this.questionData.trigger.parentQuestion
+      ]
     },
     showQuestion () {
       // Return true if the trigger value matches the parent's value, or return true if the trigger value is 'any' and the parent's value is not the default
-      return (this.triggerValue === 'any' && this.parentQuestion.value !== this.parentQuestion.input.values[0].val) || (this.parentQuestion.value === this.triggerValue)
+      return (
+        (this.triggerValue === 'any' &&
+          this.parentQuestion.value !==
+            this.parentQuestion.input.values[0].val) ||
+        this.parentQuestion.value === this.triggerValue
+      )
     },
     questionDataWithMeta () {
       let questionData = this.questionData
@@ -51,5 +61,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

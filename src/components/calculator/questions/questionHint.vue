@@ -7,7 +7,14 @@
 @Last modified time: 2019-03-12T10:36:52-07:00
 -->
 <template>
-  <el-tooltip :value="!disabled" class="item" effect="light" :content="metadata" placement="top" manual>
+  <el-tooltip
+    :value="!disabled"
+    class="item"
+    effect="light"
+    :content="metadata"
+    placement="top"
+    manual
+  >
     <i class="el-icon-info mouseover" @click="toggleDisabled()"></i>
   </el-tooltip>
 </template>
@@ -15,7 +22,7 @@
 <script>
 export default {
   props: {
-    'metadata': String
+    metadata: String
   },
   data () {
     return {

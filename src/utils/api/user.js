@@ -9,14 +9,12 @@
 
 import axios from 'axios'
 
-export default{
-
+export default {
   // Downloads the user's onid, firstName, primaryAffiliation, and historical data
   downloadUserData () {
-    return axios.get('/download', { withCredentials: true })
-      .then(res => {
-        return res.data
-      })
+    return axios.get('/download', { withCredentials: true }).then((res) => {
+      return res.data
+    })
   },
 
   // Deletes the user's previous data

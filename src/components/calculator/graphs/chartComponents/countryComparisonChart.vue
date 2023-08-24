@@ -15,7 +15,6 @@
 @Copyright: 2018 Oregon State University
 -->
 <script>
-
 import { Bar } from 'vue-chartjs'
 
 export default {
@@ -80,7 +79,9 @@ export default {
           bodyFontFamily: 'Open Sans',
           cornerRadius: 4,
           callbacks: {
-            label: item => { return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e' }
+            label: (item) => {
+              return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e'
+            }
           }
         }
       },
@@ -159,5 +160,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -8,7 +8,5 @@
  * @Copyright: 2019 Oregon State University
  */
 module.exports = {
-  presets: [
-    '@vue/app'
-  ]
+  presets: ['@vue/app']
 }

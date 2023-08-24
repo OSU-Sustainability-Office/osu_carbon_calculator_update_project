@@ -23,7 +23,7 @@
   }
 
   .el-icon-arrow-down {
-    transition: transform .3s;
+    transition: transform 0.3s;
     font-size: 14px;
 
     @include when(reverse) {
@@ -131,7 +131,7 @@
     outline: none;
     @include m(extensible) {
       &:after {
-        font-family: 'element-icons';
+        font-family: "element-icons";
         content: "\e604";
         font-size: 14px;
         color: rgb(191, 203, 217);
@@ -154,7 +154,8 @@
       color: $--select-option-selected;
     }
 
-    &:hover, &:focus:not(:active) {
+    &:hover,
+    &:focus:not(:active) {
       background-color: $--select-option-hover-background;
     }
 

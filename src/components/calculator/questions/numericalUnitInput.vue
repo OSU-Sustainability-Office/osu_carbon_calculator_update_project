@@ -9,30 +9,51 @@
 -->
 <template>
   <div>
-    <el-input type="number" maxlength="20" :min="min" v-model="value" @change="$emit('change', $event)">
-       <template :slot="slot">{{ unit }}</template>
+    <el-input
+      type="number"
+      maxlength="20"
+      :min="min"
+      v-model="value"
+      @change="$emit('change', $event)"
+    >
+      <template :slot="slot">{{ unit }}</template>
     </el-input>
     <br />
     <el-button-group class="padded">
-      <el-button type="primary" @click="add(-1)" v-long-press="350" @long-press-start="longPressStart(-1)" @long-press-stop="longPressStop" icon="el-icon-minus" :disabled="isDecrementDisabled"></el-button>
-      <el-button type="primary" @click="add(1)" v-long-press="350" @long-press-start="longPressStart(1)" @long-press-stop="longPressStop" icon="el-icon-plus"></el-button>
+      <el-button
+        type="primary"
+        @click="add(-1)"
+        v-long-press="350"
+        @long-press-start="longPressStart(-1)"
+        @long-press-stop="longPressStop"
+        icon="el-icon-minus"
+        :disabled="isDecrementDisabled"
+      ></el-button>
+      <el-button
+        type="primary"
+        @click="add(1)"
+        v-long-press="350"
+        @long-press-start="longPressStart(1)"
+        @long-press-stop="longPressStop"
+        icon="el-icon-plus"
+      ></el-button>
     </el-button-group>
   </div>
 </template>
 
 <script>
 // eslint-disable-next-line
-import LongPress from 'vue-directive-long-press'
+import LongPress from "vue-directive-long-press";
 
 export default {
   directives: {
     'long-press': LongPress
   },
   props: {
-    'unit': String,
-    'prefix': Boolean,
-    'min': Number,
-    'value': Number
+    unit: String,
+    prefix: Boolean,
+    min: Number,
+    value: Number
   },
   model: {
     prop: 'value',
@@ -50,7 +71,9 @@ export default {
           return function () {
             scope.value += 5 * scope.val
           }
-        })(this), 50)
+        })(this),
+        50
+      )
     },
     longPressStop () {
       clearInterval(this.longPress)
@@ -79,16 +102,16 @@ export default {
 }
 </script>
 <style>
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-input[type=number] {
-    -moz-appearance:textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 .padded {
-  margin-top: .2em;
+  margin-top: 0.2em;
 }
 .el-input-group__append {
   min-width: 5em;

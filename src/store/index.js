@@ -23,18 +23,10 @@ import UIModule from './modules/ui.js'
 Vue.use(Vuex) // Use Vuex as central data store
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  getters: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  },
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
   modules: {
     user: UserModule,
     calculator: CalculatorModule,
