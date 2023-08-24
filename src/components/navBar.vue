@@ -43,7 +43,9 @@ export default {
     return {
       activeIndex: '1',
       administrator: this.$store.getters['user/administrator'],
-      loginLink: 'https://api.sustainability.oregonstate.edu/v2/auth/login?returnURI=' + window.location,
+      loginLink:
+        'https://api.sustainability.oregonstate.edu/v2/auth/login?returnURI=' +
+        window.location,
       logoutLink: 'https://api.sustainability.oregonstate.edu/v2/auth/logout',
       officeHomepageLink: 'http://sustainability.oregonstate.edu/',
       dashboardLink: 'https://dashboard.sustainability.oregonstate.edu/'
@@ -93,8 +95,8 @@ export default {
 }
 </script>
 
-<style scoped lang='scss'>
-@import '@/assets/element-variables.scss';
+<style scoped lang="scss">
+@import "@/assets/element-variables.scss";
 
 // Mobile devices
 $screen-xs-min: 360px;
@@ -164,5 +166,4 @@ h1 {
     height: 10vw;
   }
 }
-
 </style>

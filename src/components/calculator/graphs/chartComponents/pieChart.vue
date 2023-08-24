@@ -7,7 +7,6 @@
 @Copyright: 2018 Oregon State University
 -->
 <script>
-
 import { Pie } from 'vue-chartjs'
 
 export default {
@@ -51,19 +50,35 @@ export default {
           bodyFontFamily: 'Open Sans',
           cornerRadius: 4,
           callbacks: {
-            label: item => { return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e' }
+            label: (item) => {
+              return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e'
+            }
           }
         }
       },
       chartdata: {
-        labels: ['Transportation', 'Consumption', 'Energy and Heating', 'Food', 'Water'],
-        datasets: [{
-          label: 'Carbon Dioxide Equivalent Emissions by Category',
-          data: [0, 0, 0, 0, 0, 0],
-          backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#E0E0E0', '#006A8E'],
-          borderColor: '#000',
-          borderWidth: 2
-        }]
+        labels: [
+          'Transportation',
+          'Consumption',
+          'Energy and Heating',
+          'Food',
+          'Water'
+        ],
+        datasets: [
+          {
+            label: 'Carbon Dioxide Equivalent Emissions by Category',
+            data: [0, 0, 0, 0, 0, 0],
+            backgroundColor: [
+              '#D3832B',
+              '#AA9D2E',
+              '#FFB500',
+              '#E0E0E0',
+              '#006A8E'
+            ],
+            borderColor: '#000',
+            borderWidth: 2
+          }
+        ]
       }
     }
   },
@@ -82,5 +97,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

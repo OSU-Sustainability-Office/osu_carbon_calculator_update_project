@@ -9,46 +9,75 @@
 -->
 
 <template>
+  <div class="chartContainer">
+    <el-row>
+      <!-- US Avg and Category Comparison Charts -->
+      <el-col :span="barSpan">
+        <h1 class="centered chartHeader">Results</h1>
+        <bar-chart
+          ref="resultsBarChart"
+          :dataObj="resultsBarData"
+          :styles="{ height: '70vh' }"
+          :resultsToggle="resultsToggle"
+        />
+        <div class="centered">
+          <el-switch
+            v-model="resultsToggle"
+            active-text="Totals (kg CO2e/year)"
+            inactive-text="Percentages"
+          ></el-switch>
+        </div>
+      </el-col>
+      <el-col :span="12" v-if="lastSlide">
+        <!-- Trend/Historical Data Chart -->
+        <h1 class="centered chartHeader">Country Comparison</h1>
+        <countryComparisonChart
+          :dataObj="countryComparisonChartData"
+          :styles="{ height: '70vh' }"
+        />
+      </el-col>
+    </el-row>
 
-<div class="chartContainer">
-  <el-row>
-    <!-- US Avg and Category Comparison Charts -->
-    <el-col :span="barSpan">
-      <h1 class="centered chartHeader">Results</h1>
-      <bar-chart ref="resultsBarChart" :dataObj="resultsBarData" :styles="{height: '70vh'}" :resultsToggle="resultsToggle" />
-      <div class="centered">
-        <el-switch v-model="resultsToggle" active-text="Totals (kg CO2e/year)" inactive-text="Percentages"></el-switch>
-      </div>
-    </el-col>
-    <el-col :span="12" v-if="lastSlide">
-      <!-- Trend/Historical Data Chart -->
-      <h1 class="centered chartHeader">Country Comparison</h1>
-      <countryComparisonChart :dataObj="countryComparisonChartData" :styles="{height: '70vh'}"/>
-    </el-col>
-  </el-row>
+    <el-row v-if="lastSlide">
+      <el-col
+        :span="16"
+        :offset="4"
+        v-if="
+          this.$store.getters['user/isLoggedIn'] &&
+          this.$store.getters['user/data'].length > 0 &&
+          lastSlide
+        "
+      >
+        <!-- Trend/Historical Data Chart -->
+        <h1 class="centered">Trend</h1>
+        <trend-chart
+          :totals="totals"
+          ref="trendBar"
+          :styles="{ height: '70vh' }"
+        />
+      </el-col>
 
-  <el-row v-if="lastSlide">
-    <el-col :span="16" :offset="4" v-if="this.$store.getters['user/isLoggedIn'] && this.$store.getters['user/data'].length > 0 && lastSlide">
-      <!-- Trend/Historical Data Chart -->
-      <h1 class="centered">Trend</h1>
-      <trend-chart :totals="totals" ref="trendBar" :styles="{height: '70vh'}"/>
-    </el-col>
-
-    <el-col class="centered" :span="16" :offset="4" v-else>
-      <!-- Trend/Historical Data Chart -->
-      <h1 class="centered chartHeader">Trend</h1>
-      <div v-if="!this.$store.getters['user/isLoggedIn']">
-        <p>Viewing historical trends and user-specific historical data is currently available for users who log in with ONID.</p>
-        <el-button type="primary" plain @click="redirectToLogin">Login</el-button>
-      </div>
-      <div v-else>
-        <p>Viewing historical trends and user-specific historical data will be available next time you log in.</p>
-      </div>
-    </el-col>
-  </el-row>
-
-</div>
-
+      <el-col class="centered" :span="16" :offset="4" v-else>
+        <!-- Trend/Historical Data Chart -->
+        <h1 class="centered chartHeader">Trend</h1>
+        <div v-if="!this.$store.getters['user/isLoggedIn']">
+          <p>
+            Viewing historical trends and user-specific historical data is
+            currently available for users who log in with ONID.
+          </p>
+          <el-button type="primary" plain @click="redirectToLogin"
+            >Login</el-button
+          >
+        </div>
+        <div v-else>
+          <p>
+            Viewing historical trends and user-specific historical data will be
+            available next time you log in.
+          </p>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -76,7 +105,9 @@ export default {
         totals: [4808.4, 4979.9, 3692.1, 2404.2, 515.2]
       },
       resultsToggle: true,
-      loginLink: 'https://api.sustainability.oregonstate.edu/v2/auth/login?returnURI=' + window.location,
+      loginLink:
+        'https://api.sustainability.oregonstate.edu/v2/auth/login?returnURI=' +
+        window.location,
       historicalData: {
         labels: [],
         datasets: []
@@ -84,18 +115,28 @@ export default {
     }
   },
   computed: {
-    categories () { return this.$store.getters['calculator/categories'] },
+    categories () {
+      return this.$store.getters['calculator/categories']
+    },
     studentBaseline () {
       // eslint-disable-next-line
-      if (this.$store.getters['user/studentType'] == 'On Campus Resident Student') {
+      if (
+        this.$store.getters['user/studentType'] == 'On Campus Resident Student'
+      ) {
         return [3498.6, 170.2]
       }
       // eslint-disable-next-line
-      if (this.$store.getters['user/studentType'] == 'Full Time Commuter Student, Staff, or Faculty') {
+      if (
+        this.$store.getters['user/studentType'] ==
+        'Full Time Commuter Student, Staff, or Faculty'
+      ) {
         return [2624.6, 164.6]
       }
       // eslint-disable-next-line
-      if (this.$store.getters['user/studentType'] == 'Part-time Commuter Student, Staff, or Faculty') {
+      if (
+        this.$store.getters['user/studentType'] ==
+        'Part-time Commuter Student, Staff, or Faculty'
+      ) {
         return [1750.5, 159.1]
       }
       // Otherwise, default to Not Affiliated:
@@ -106,14 +147,15 @@ export default {
       // Empty array of category totals (in order)
       let totals = []
 
-      this.categories.forEach(category => {
+      this.categories.forEach((category) => {
         let total = 0
-        category.questions.forEach(question => {
+        category.questions.forEach((question) => {
           // Multiply this value by parent question's coefficient
           // eslint-disable-next-line
-          if (question.input.type == 'dependentValue') {
+          if (question.input.type == "dependentValue") {
             let triggerValue = question.trigger.triggerValue
-            let parentQuestion = category.questions[question.trigger.parentQuestion]
+            let parentQuestion =
+              category.questions[question.trigger.parentQuestion]
 
             // Check if the parent question has the correct value, activating 'question'
             let valueMap = null
@@ -121,11 +163,12 @@ export default {
             // eslint-disable-next-line
             if (triggerValue == parentQuestion.value) {
               // Find the location of the correct coefficient in parentQuestion's value list by mapping and linear searching array
-              valueMap = parentQuestion.input.values.map(obj => obj.val)
+              valueMap = parentQuestion.input.values.map((obj) => obj.val)
               location = valueMap.indexOf(triggerValue)
-            } else { // if (triggerValue == 'any')
+            } else {
+              // if (triggerValue == 'any')
               // Find the location of the correct coefficient in parentQuestion's value list by mapping and linear searching array
-              valueMap = parentQuestion.input.values.map(obj => obj.val)
+              valueMap = parentQuestion.input.values.map((obj) => obj.val)
               location = valueMap.indexOf(parentQuestion.value)
             }
 
@@ -138,19 +181,31 @@ export default {
                 total += question.value * question.input.values[0].coef
               } else {
                 // Multiply the current question's value to the parent question's coefficient
-                if (!isNaN(question.value) && !isNaN(parentQuestion.input.values[location].coef)) total += question.value * parentQuestion.input.values[location].coef
+                if (
+                  !isNaN(question.value) &&
+                  !isNaN(parentQuestion.input.values[location].coef)
+                ) {
+                  total +=
+                    question.value * parentQuestion.input.values[location].coef
+                }
               }
             }
 
             // eslint-disable-next-line
-          } else if (question.input.type == 'value') {
+          } else if (question.input.type == "value") {
             total += question.value * question.input.values[0].coef
             // eslint-disable-next-line
-          } else if (question.input.type == 'tableQuestion') {
+          } else if (question.input.type == "tableQuestion") {
             total += question.value
             // eslint-disable-next-line
-          } else if (question.input.type == 'list' && question.trigger.parentQuestion === -1) {
-            total += question.input.values[question.input.values.map(a => a.val).indexOf(question.value)].coef
+          } else if (
+            question.input.type == 'list' &&
+            question.trigger.parentQuestion === -1
+          ) {
+            total +=
+              question.input.values[
+                question.input.values.map((a) => a.val).indexOf(question.value)
+              ].coef
           }
         })
 
@@ -170,26 +225,26 @@ export default {
 
         // Sum all US data
         let USDataSum = 0
-        this.usAvgDataObj.totals.forEach(d => {
+        this.usAvgDataObj.totals.forEach((d) => {
           USDataSum += d
         })
 
         // Compute percentages
         let USData = []
-        this.usAvgDataObj.totals.forEach(d => {
-          USData.push(d / USDataSum * 100)
+        this.usAvgDataObj.totals.forEach((d) => {
+          USData.push((d / USDataSum) * 100)
         })
 
         // Sum all user data
         let userDataSum = 0
-        this.totals.forEach(d => {
+        this.totals.forEach((d) => {
           userDataSum += d
         })
 
         // Compute Percentages
         let userData = []
-        this.totals.forEach(d => {
-          userData.push(d / userDataSum * 100)
+        this.totals.forEach((d) => {
+          userData.push((d / userDataSum) * 100)
         })
 
         let finalDataObject = {
@@ -216,7 +271,7 @@ export default {
       // Returns true if no data has been entered into the calculator
       let incomplete = true
 
-      this.totals.forEach(t => {
+      this.totals.forEach((t) => {
         if (t !== 0) incomplete = false
       })
 
@@ -225,10 +280,14 @@ export default {
     todayDate () {
       return new Date().toLocaleDateString()
     },
-    barSpan () { return this.lastSlide ? 12 : 24 },
+    barSpan () {
+      return this.lastSlide ? 12 : 24
+    },
     countryComparisonChartData () {
       let sum = 0
-      this.totals.forEach(t => { sum += t })
+      this.totals.forEach((t) => {
+        sum += t
+      })
       let arr = []
       arr.push(sum)
       return arr
@@ -236,29 +295,36 @@ export default {
   },
   methods: {
     confirmData () {
-      this.$confirm('We have collected multiple submissions from you today. Would you like to overwrite your previous results?', 'Warning', {
-        confirmButtonText: 'Save Newest Results',
-        cancelButtonText: 'Keep Previous Results',
-        type: 'warning'
-      }).then(() => {
-        this.uploadTotals(this.totals)
-        this.$message({
-          type: 'success',
-          message: 'Saved your most recent results!'
+      this.$confirm(
+        'We have collected multiple submissions from you today. Would you like to overwrite your previous results?',
+        'Warning',
+        {
+          confirmButtonText: 'Save Newest Results',
+          cancelButtonText: 'Keep Previous Results',
+          type: 'warning'
+        }
+      )
+        .then(() => {
+          this.uploadTotals(this.totals)
+          this.$message({
+            type: 'success',
+            message: 'Saved your most recent results!'
+          })
         })
-      }).catch(() => {
-        this.$message({
-          type: 'success',
-          message: 'Kept your previous response!'
+        .catch(() => {
+          this.$message({
+            type: 'success',
+            message: 'Kept your previous response!'
+          })
         })
-      })
     },
     uploadTotals (totals) {
       // Initialize user object for upload
       let userObject = {}
       userObject['onid'] = this.$store.getters['user/onid']
       userObject['firstName'] = this.$store.getters['user/firstName']
-      userObject['primaryAffiliation'] = this.$store.getters['user/primaryAffiliation']
+      userObject['primaryAffiliation'] =
+        this.$store.getters['user/primaryAffiliation']
       userObject['administrator'] = this.$store.getters['user/administratior']
 
       // Initialize data array with current data only
@@ -279,12 +345,14 @@ export default {
       // Get historical data from vuex store.
       let data = this.$store.getters['user/data']
       if (this.lastSlide) {
-        if (data.map(d => d.date).indexOf(this.todayDate) !== -1) {
+        if (data.map((d) => d.date).indexOf(this.todayDate) !== -1) {
           // Prompt the user for which data to keep (today's previous response, or today's new response).
           this.confirmData()
         } else {
           // Upload this data if the user is logged in and has no historical data for today.
-          if (this.$store.getters['user/isLoggedIn']) this.uploadTotals(this.totals)
+          if (this.$store.getters['user/isLoggedIn']) {
+            this.uploadTotals(this.totals)
+          }
         }
       }
     }
@@ -294,7 +362,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
 .centered {
   text-align: center;
 }

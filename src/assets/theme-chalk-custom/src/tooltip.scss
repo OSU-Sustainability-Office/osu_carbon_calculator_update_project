@@ -2,7 +2,8 @@
 @import "common/var";
 
 @include b(tooltip) {
-  &:focus:not(.focusing), &:focus:hover {
+  &:focus:not(.focusing),
+  &:focus:hover {
     outline-width: 0;
   }
   @include e(popper) {

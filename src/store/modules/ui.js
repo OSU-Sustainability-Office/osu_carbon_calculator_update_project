@@ -14,10 +14,10 @@ export default {
     oldDataDialog: false
   },
   getters: {
-    historicalDataDialog: state => {
+    historicalDataDialog: (state) => {
       return state.historicalDataDialog
     },
-    oldDataDialog: state => {
+    oldDataDialog: (state) => {
       return state.oldDataDialog
     }
   },

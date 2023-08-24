@@ -8,17 +8,30 @@
 -->
 
 <template>
-<div @click='onFieldClick' class='edit-cell'>
-  <el-tooltip v-if='!editMode && !showInput' :placement='toolTipPlacement' :open-delay='toolTipDelay' :content='toolTipContent'>
-    <div tabindex='0' @keyup.enter='onFieldClick'>
-      <slot name='content'></slot>
-    </div>
-
-  </el-tooltip>
-  <component :is='editableComponent' v-if='editMode || showInput' ref='input' @focus='onFieldClick' @keyup.enter.native='onInputExit' v-on='listeners' v-bind='$attrs' v-model='model'>
-    <slot name='edit-component-slot'></slot>
-  </component>
-</div>
+  <div @click="onFieldClick" class="edit-cell">
+    <el-tooltip
+      v-if="!editMode && !showInput"
+      :placement="toolTipPlacement"
+      :open-delay="toolTipDelay"
+      :content="toolTipContent"
+    >
+      <div tabindex="0" @keyup.enter="onFieldClick">
+        <slot name="content"></slot>
+      </div>
+    </el-tooltip>
+    <component
+      :is="editableComponent"
+      v-if="editMode || showInput"
+      ref="input"
+      @focus="onFieldClick"
+      @keyup.enter.native="onInputExit"
+      v-on="listeners"
+      v-bind="$attrs"
+      v-model="model"
+    >
+      <slot name="edit-component-slot"></slot>
+    </component>
+  </div>
 </template>
 
 <script>
@@ -111,6 +124,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

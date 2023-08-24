@@ -16,10 +16,10 @@ export default {
     graphs: []
   },
   getters: {
-    categories: state => {
+    categories: (state) => {
       return state.categories
     },
-    graphs: state => {
+    graphs: (state) => {
       return state.graphs
     }
   },
@@ -30,12 +30,14 @@ export default {
     },
     // Updates the value input by the user
     updateQuestionValue (state, payload) {
-      state.categories[payload.categoryID].questions[payload.questionIndex].value = payload.value
+      state.categories[payload.categoryID].questions[
+        payload.questionIndex
+      ].value = payload.value
     },
     initializeCategories (state, categories) {
       // Initialize value endpoint for computed property reactivity
-      categories.forEach(c => {
-        c.questions.forEach(q => {
+      categories.forEach((c) => {
+        c.questions.forEach((q) => {
           q.value = 0
         })
       })
@@ -45,10 +47,13 @@ export default {
   actions: {
     // Downloads all of the questions and categories
     downloadCategories (context) {
-      ccApi.downloadCategories().then(categories => {
-        context.commit('initializeCategories', categories.sort((a, b) => {
-          return a.categoryID > b.categoryID ? 1 : -1
-        }))
+      ccApi.downloadCategories().then((categories) => {
+        context.commit(
+          'initializeCategories',
+          categories.sort((a, b) => {
+            return a.categoryID > b.categoryID ? 1 : -1
+          })
+        )
       })
     }
   }

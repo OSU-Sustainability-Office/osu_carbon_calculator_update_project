@@ -64,12 +64,12 @@
       color: $--color-info;
     }
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
       .el-message-box__close {
         color: $--color-primary;
       }
     }
-
   }
 
   @include e(content) {
@@ -193,11 +193,11 @@
 }
 
 .msgbox-fade-enter-active {
-  animation: msgbox-fade-in .3s;
+  animation: msgbox-fade-in 0.3s;
 }
 
 .msgbox-fade-leave-active {
-  animation: msgbox-fade-out .3s;
+  animation: msgbox-fade-out 0.3s;
 }
 
 @keyframes msgbox-fade-in {

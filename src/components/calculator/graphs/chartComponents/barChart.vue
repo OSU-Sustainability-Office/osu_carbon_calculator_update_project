@@ -7,7 +7,6 @@
 @Copyright: 2018 Oregon State University
 -->
 <script>
-
 import { Bar } from 'vue-chartjs'
 
 export default {
@@ -77,7 +76,11 @@ export default {
           bodyFontFamily: 'Open Sans',
           cornerRadius: 4,
           callbacks: {
-            label: item => { return this.resultsToggle ? parseFloat(item.yLabel).toFixed(1) + ' kgCO2e' : parseFloat(item.yLabel).toFixed(1) + '%' }
+            label: (item) => {
+              return this.resultsToggle
+                ? parseFloat(item.yLabel).toFixed(1) + ' kgCO2e'
+                : parseFloat(item.yLabel).toFixed(1) + '%'
+            }
           }
         }
       },
@@ -122,19 +125,37 @@ export default {
         ]
       },
       chartdataSeperate: {
-        labels: ['Transportation', 'Consumption', 'Energy and Heating', 'Food', 'Water'],
+        labels: [
+          'Transportation',
+          'Consumption',
+          'Energy and Heating',
+          'Food',
+          'Water'
+        ],
         datasets: [
           {
             label: 'USAverage',
             data: [0, 0, 0, 0, 0, 0],
-            backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#E0E0E0', '#006A8E'],
+            backgroundColor: [
+              '#D3832B',
+              '#AA9D2E',
+              '#FFB500',
+              '#E0E0E0',
+              '#006A8E'
+            ],
             borderColor: '#000',
             borderWidth: 2
           },
           {
             label: 'Your Result',
             data: [0, 0, 0, 0, 0, 0],
-            backgroundColor: ['#D3832B', '#AA9D2E', '#FFB500', '#E0E0E0', '#006A8E'],
+            backgroundColor: [
+              '#D3832B',
+              '#AA9D2E',
+              '#FFB500',
+              '#E0E0E0',
+              '#006A8E'
+            ],
             borderColor: '#000',
             borderWidth: 2
           }
@@ -145,9 +166,15 @@ export default {
   methods: {
     assignStackedData () {
       // Use Object.assign for vue reactivity
-      Object.assign(this.chartdata.datasets[0].data, this.dataObj.transportation)
+      Object.assign(
+        this.chartdata.datasets[0].data,
+        this.dataObj.transportation
+      )
       Object.assign(this.chartdata.datasets[1].data, this.dataObj.consumption)
-      Object.assign(this.chartdata.datasets[2].data, this.dataObj.energyAndHeating)
+      Object.assign(
+        this.chartdata.datasets[2].data,
+        this.dataObj.energyAndHeating
+      )
       Object.assign(this.chartdata.datasets[3].data, this.dataObj.food)
       Object.assign(this.chartdata.datasets[4].data, this.dataObj.water)
     }
@@ -166,5 +193,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -25,7 +25,7 @@
     &::before {
       $gap: 5px;
 
-      content: '';
+      content: "";
       position: absolute;
       display: block;
       width: 1px;
@@ -51,8 +51,10 @@
     margin: 0 3px;
   }
 
-  .el-dropdown-selfdefine { // 自定义
-    &:focus:active, &:focus:not(.focusing) {
+  .el-dropdown-selfdefine {
+    // 自定义
+    &:focus:active,
+    &:focus:not(.focusing) {
       outline-width: 0;
     }
   }
@@ -79,7 +81,8 @@
     color: $--color-text-regular;
     cursor: pointer;
     outline: none;
-    &:not(.is-disabled):hover, &:focus {
+    &:not(.is-disabled):hover,
+    &:focus {
       background-color: $--dropdown-menuItem-hover-fill;
       color: $--dropdown-menuItem-hover-color;
     }
@@ -92,7 +95,7 @@
       border-top: 1px solid $--border-color-lighter;
 
       &:before {
-        content: '';
+        content: "";
         height: $divided-offset;
         display: block;
         margin: 0 -20px;

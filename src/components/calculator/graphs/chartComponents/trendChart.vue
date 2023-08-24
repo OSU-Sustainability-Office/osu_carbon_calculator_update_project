@@ -7,7 +7,6 @@
 @Copyright: 2018 Oregon State University
 -->
 <script>
-
 import { Line } from 'vue-chartjs'
 
 export default {
@@ -73,7 +72,9 @@ export default {
           bodyFontFamily: 'Open Sans',
           cornerRadius: 4,
           callbacks: {
-            label: item => { return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e' }
+            label: (item) => {
+              return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e'
+            }
           }
         }
       },
@@ -124,7 +125,7 @@ export default {
       datasets.forEach((set, index) => {
         set.data = []
         set.fill = index === 0 ? 'origin' : index - 1
-        data.forEach(entry => {
+        data.forEach((entry) => {
           set.data.push(entry.totals[index])
           if (index === 1) dates.push(entry.date) // Only push one date for each set of totals. I have arbitrarily chosen to do this on the 1st totals category.
         })
@@ -164,5 +165,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>
