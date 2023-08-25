@@ -25,7 +25,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.download
-      Runtime: nodejs12.x
+      Runtime: nodejs18.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:
@@ -41,7 +41,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.upload
-      Runtime: nodejs12.x
+      Runtime: nodejs18.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:
@@ -57,7 +57,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.delete
-      Runtime: nodejs12.x
+      Runtime: nodejs18.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:
@@ -73,7 +73,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       CodeUri: app/carbon
       Handler: app.questions
-      Runtime: nodejs12.x
+      Runtime: nodejs18.x
       Layers:
         - !Ref LambdaCommonLayer
       Events:

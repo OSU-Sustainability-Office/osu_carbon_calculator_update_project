@@ -1,4 +1,5 @@
 # Carbon Calculator
+
 ![Frontend Status](https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project/actions/workflows/gh-deploy.yml/badge.svg)![API Status](https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project/actions/workflows/API-deploy.yml/badge.svg) ![Test Build Status](https://github.com/OSU-Sustainability-Office/osu_carbon_calculator_update_project/actions/workflows/test-build-s3.yml/badge.svg)
 
 ## [Production Build](https://myco2.sustainability.oregonstate.edu)
@@ -10,16 +11,19 @@
 ### [API Documentation](https://osusustainability.gitbook.io/energy-dashboard/frontend-documentation#carbon-calculator)
 
 ### Introduction
+
 Version 2.x of the Carbon Calculator is a complete redesign of Version 1.x from the ground-up. It features a new look in addition to a completely new component-based approach to frontend development. In an effort to improve maintainability, ease-of-development, and legacy browser compatibility, we migrated the calculator from plain-old HTML/CSS/JS to a standard VueJS software stack configured with Vue CLI Version 3.
 
 Benefits:
-  - Libraries and dependencies are now managed with NPM.
-  - Component-based VueJS framework facilitates easy bug fixing and allows for the application to scale.
-  - VueX provides a convenient central data store.
-  - Element UI is included, allowing (supposedly) effortless UI design with a unified custom theme.
-  - Webpack & Babel transpile ES5 and ES6 syntax into syntax compatible with older browsers.
+
+- Libraries and dependencies are now managed with NPM.
+- Component-based VueJS framework facilitates easy bug fixing and allows for the application to scale.
+- VueX provides a convenient central data store.
+- Element UI is included, allowing (supposedly) effortless UI design with a unified custom theme.
+- Webpack & Babel transpile ES5 and ES6 syntax into syntax compatible with older browsers.
 
 ### File Structure
+
 ```
 osu_carbon_calculator_update_project/
 ├───docs
@@ -66,5 +70,7 @@ osu_carbon_calculator_update_project/
 └───tests - Currently, there are no tests.
     └───unit
 ```
+
 ### Component Diagram
+
 [Check it out!](docs/CarbonCalculatorDiagram.png)

@@ -1,9 +1,8 @@
 name: S3 Test Build
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - master
-      - gh-pages
 
 jobs:          
   build-deploy-s3:
@@ -15,7 +14,7 @@ jobs:
       - name: Set-up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 18
       - name: AWS Creds
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -26,6 +25,8 @@ jobs:
         run: |
           npm install
       - name: npm build frontend
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
         run: |
           npm run build
       - name: deploy frontend to s3

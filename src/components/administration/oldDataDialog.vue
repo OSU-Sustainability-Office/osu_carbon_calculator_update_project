@@ -13,8 +13,11 @@
     :show-close="false"
     :close-on-press-escape="false"
     :close-on-click-modal="false"
-    center>
-    <span v-if="!(histData.length > 0)">You currently have no historical data.</span>
+    center
+  >
+    <span v-if="!(histData.length > 0)"
+      >You currently have no historical data.</span
+    >
     <el-table v-if="histData.length > 0" :data="tableData" align="center">
       <el-table-column type="expand">
         <template slot-scope="props">
@@ -29,12 +32,19 @@
       <el-table-column width="100" prop="date" label="Date"></el-table-column>
       <el-table-column width="100" label="Delete">
         <template slot-scope="scope">
-          <el-button @click="confirmDeletion(scope.$index)" type="text" size="small">Delete</el-button>
+          <el-button
+            @click="confirmDeletion(scope.$index)"
+            type="text"
+            size="small"
+            >Delete</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="$store.commit('ui/toggleOldDataDialog')">Close</el-button>
+      <el-button @click="$store.commit('ui/toggleOldDataDialog')"
+        >Close</el-button
+      >
     </span>
   </el-dialog>
 </template>
@@ -96,5 +106,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

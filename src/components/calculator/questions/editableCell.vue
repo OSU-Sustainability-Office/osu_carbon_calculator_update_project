@@ -8,17 +8,30 @@
 -->
 
 <template>
-<div @click='onFieldClick' class='edit-cell'>
-  <el-tooltip v-if='!editMode && !showInput' :placement='toolTipPlacement' :open-delay='toolTipDelay' :content='toolTipContent'>
-    <div tabindex='0' @keyup.enter='onFieldClick'>
-      <slot name='content'></slot>
-    </div>
-
-  </el-tooltip>
-  <component :is='editableComponent' v-if='editMode || showInput' ref='input' @focus='onFieldClick' @keyup.enter.native='onInputExit' v-on='listeners' v-bind='$attrs' v-model='model'>
-    <slot name='edit-component-slot'></slot>
-  </component>
-</div>
+  <div @click="onFieldClick" class="edit-cell">
+    <el-tooltip
+      v-if="!editMode && !showInput"
+      :placement="toolTipPlacement"
+      :open-delay="toolTipDelay"
+      :content="toolTipContent"
+    >
+      <div tabindex="0" @keyup.enter="onFieldClick">
+        <slot name="content"></slot>
+      </div>
+    </el-tooltip>
+    <component
+      :is="editableComponent"
+      v-if="editMode || showInput"
+      ref="input"
+      @focus="onFieldClick"
+      @keyup.enter.native="onInputExit"
+      v-on="listeners"
+      v-bind="$attrs"
+      v-model="model"
+    >
+      <slot name="edit-component-slot"></slot>
+    </component>
+  </div>
 </template>
 
 <script>
@@ -69,8 +82,8 @@ export default {
       get () {
         return this.value
       },
-      set (val) {
-        this.$emit('input', val)
+      set ( val ) {
+        this.$emit( 'input', val )
       }
     },
     listeners () {
@@ -83,34 +96,32 @@ export default {
   methods: {
     onFieldClick () {
       this.editMode = true
-      this.$nextTick(() => {
+      this.$nextTick( () => {
         let inputRef = this.$refs.input
-        if (inputRef) {
+        if ( inputRef ) {
           inputRef.focus()
         }
-      })
+      } )
     },
     onInputExit () {
       this.editMode = false
     },
-    onInputChange (val) {
-      this.$emit('input', val)
+    onInputChange ( val ) {
+      this.$emit( 'input', val )
     }
   },
   mounted () {
-    if (!isNaN(parseInt(this.value))) this.numerical = true
+    if ( !isNaN( parseInt( this.value ) ) ) this.numerical = true
   },
   watch: {
     value () {
-      if (this.numerical && isNaN(this.value)) {
+      if ( this.numerical && isNaN( this.value ) ) {
         this.value = 0
-        this.$emit('input', this.value)
+        this.$emit( 'input', this.value )
       }
     }
   }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

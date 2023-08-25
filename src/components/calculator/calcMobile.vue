@@ -8,42 +8,66 @@
 -->
 
 <template>
-<div class="calculator">
+  <div class="calculator">
+    <!-- "Floating" Progress Bar and Next/Prev Buttons -->
+    <el-row>
+      <el-col :span="24">
+        <el-card class="box-card" shadow="always">
+          <!-- Buttons will be layered over el-progress -->
+          <el-col :span="24" id="buttonsContainer">
+            <div id="leftButton">
+              <el-button
+                class="button"
+                v-on:click="prev()"
+                :disabled="currentTitle === 0"
+                icon="el-icon-arrow-left"
+              ></el-button>
+            </div>
+            <div id="rightButton">
+              <el-button
+                class="button"
+                v-on:click="next()"
+                icon="el-icon-arrow-right"
+              ></el-button>
+            </div>
+          </el-col>
+          <div class="expandButton" @click="chartsVisible = !chartsVisible">
+            Show Results <i class="el-icon-arrow-down"></i>
+          </div>
+          <el-progress
+            :show-text="false"
+            :stroke-width="24"
+            :percentage="progressPercentage > 0 ? progressPercentage : 2.5"
+          ></el-progress>
+        </el-card>
+      </el-col>
+    </el-row>
 
-  <!-- "Floating" Progress Bar and Next/Prev Buttons -->
-  <el-row>
-    <el-col :span="24">
-      <el-card class="box-card" shadow="always">
-        <!-- Buttons will be layered over el-progress -->
-        <el-col :span="24" id="buttonsContainer">
-          <div id="leftButton"><el-button class="button" v-on:click="prev()" :disabled="currentTitle === 0" icon="el-icon-arrow-left"></el-button></div>
-          <div id="rightButton"><el-button class="button" v-on:click="next()" icon="el-icon-arrow-right"></el-button></div>
-        </el-col>
+    <!-- Calculator Carousel -->
+    <el-row>
+      <el-col :offset="1" :span="22">
+        <calcCarousel
+          :mobile="true"
+          :currentTitle="currentTitle"
+          ref="calcCarousel"
+        />
+      </el-col>
+    </el-row>
+
+    <!-- "Real time" graph overlay -->
+    <el-collapse-transition>
+      <el-card id="chartsCard" v-if="chartsVisible" shadow="always">
         <div class="expandButton" @click="chartsVisible = !chartsVisible">
-          Show Results <i class="el-icon-arrow-down"></i>
+          Close <i class="el-icon-arrow-up"></i>
         </div>
-        <el-progress :show-text="false" :stroke-width="24" :percentage="progressPercentage > 0 ? progressPercentage : 2.5"></el-progress>
+        <chartContainer
+          ref="charts"
+          :chartsWidth="chartsWidth"
+          :lastSlide="false"
+        />
       </el-card>
-    </el-col>
-  </el-row>
-
-  <!-- Calculator Carousel -->
-  <el-row>
-    <el-col :offset="1" :span="22">
-      <calcCarousel :mobile="true" :currentTitle="currentTitle" ref="calcCarousel"/>
-    </el-col>
-  </el-row>
-
-  <!-- "Real time" graph overlay -->
-  <el-collapse-transition>
-    <el-card id="chartsCard" v-if="chartsVisible" shadow="always">
-      <div class="expandButton" @click="chartsVisible = !chartsVisible">
-        Close <i class="el-icon-arrow-up"></i>
-      </div>
-      <chartContainer ref="charts" :chartsWidth="chartsWidth" :lastSlide="false" />
-    </el-card>
-  </el-collapse-transition>
-</div>
+    </el-collapse-transition>
+  </div>
 </template>
 
 <script>
@@ -58,15 +82,19 @@ export default {
     chartContainer
   },
   computed: {
-    categories () { return this.$store.getters['calculator/categories'] },
-    loading () { return (this.$store.getters['calculator/categories'].length < 1) },
+    categories () {
+      return this.$store.getters['calculator/categories']
+    },
+    loading () {
+      return this.$store.getters['calculator/categories'].length < 1
+    },
     determineTitle () {
-      if (this.currentTitle === 0) return 'About the Calculator'
-      else if (this.currentTitle === 6) return 'Waste'
+      if ( this.currentTitle === 0 ) return 'About the Calculator'
+      else if ( this.currentTitle === 6 ) return 'Waste'
       else return this.categories[this.currentTitle - 1].title // Subtract 1 to remove the Introduction from the calculation
     },
     progressPercentage () {
-      return this.currentTitle / 6 * 100
+      return ( this.currentTitle / 6 ) * 100
     }
   },
   data () {
@@ -77,7 +105,7 @@ export default {
   },
   methods: {
     next () {
-      if (this.$refs.calcCarousel.$refs.carousel.activeIndex === 0) {
+      if ( this.$refs.calcCarousel.$refs.carousel.activeIndex === 0 ) {
         this.chartsVisible = true
       } else {
         this.currentTitle++
@@ -85,27 +113,40 @@ export default {
       }
     },
     prev () {
-      if (this.chartsVisible) {
+      if ( this.chartsVisible ) {
         this.chartsVisible = false
       } else {
         this.currentTitle--
         this.$refs.calcCarousel.$refs.carousel.prev()
       }
     },
-    setFocus (newSlideIndex, oldSlideIndex) {
+    setFocus ( newSlideIndex, oldSlideIndex ) {
       let scope = this
-      // This timeout waits for the carousel animation to complete before shifting focus
-      setTimeout(function () {
-        scope.focus = newSlideIndex
-      }, 500)
+      let carousel = document.querySelector( '.carousel' )
+
+      if ( carousel ) {
+        // Listen for the "transitioned" event on the carousel element
+        carousel.addEventListener(
+          'transitioned',
+          function () {
+            scope.focus = newSlideIndex
+          },
+          { once: true }
+        )
+
+        // Update the carousel index
+        this.$nextTick( () => {
+          this.$refs.carousel.setSlide( newSlideIndex )
+        } )
+      }
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang='scss'>
-@import '@/assets/element-variables.scss';
+<style scoped lang="scss">
+@import "@/assets/element-variables.scss";
 
 .el-carousel__item {
   overflow-y: visible;

@@ -1,7 +1,7 @@
-const User = require('/opt/nodejs/user.js')
-const Response = require('/opt/nodejs/response.js')
-const DDB = require('/opt/nodejs/dynamo-access.js')
-const Origin = 'http://localhost:8080'
+const User = require("/opt/nodejs/user.js");
+const Response = require("/opt/nodejs/response.js");
+const DDB = require("/opt/nodejs/dynamo-access.js");
+const Origin = "http://localhost:8080";
 
 /**
  *
@@ -17,8 +17,8 @@ const Origin = 'http://localhost:8080'
  */
 
 // Carbon Calculator Question Retrieval
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // original export.questions code
 
@@ -50,97 +50,97 @@ export default {
 // Testing with local JSON files - edit the "coefficients" in the JSON files in data-backup to test
 exports.questions = async (event, context) => {
   // Create empty response object from model
-  let response = new Response()
+  let response = new Response();
 
-  try {
-    // Read the data-backup directory and filter the files by extension
-    let files = fs.readdirSync(path.join(__dirname, 'data-backup'))
-      .filter(file => path.extname(file) === '.json');
+  // Retrieve question data from ddb
+  DDB.initialize();
+  let data = await DDB.query("carbon-calculator-questions").scan({
+    Select: "ALL_ATTRIBUTES",
+    Limit: 10,
+  });
 
-    // Parse the JSON files and return the data
-    let data = files.map(file => JSON.parse(fs.readFileSync(path.join(__dirname, 'data-backup', file))));
-    response.body = JSON.stringify(data)
-    response.headers = {
-      'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : Origin,
-      'Access-Control-Allow-Credentials': 'true'
-    }
-    return response
-  } catch (error) {
-    // Handle errors reading the files
-    console.error(error);
-    response.body = JSON.stringify({error: 'Failed to load data from data-backup folder'})
-    response.status = 500;
-    return response;
-  }
-}
+  // Return question data
+  response.body = JSON.stringify(data.Items);
+  response.headers = {
+    "Access-Control-Allow-Origin": event.headers.origin
+      ? event.headers.origin
+      : Origin,
+    "Access-Control-Allow-Credentials": "true",
+  };
+  return response;
+};
 
- // Retrieves's the current user's data from the database and includes it in the response
+// Retrieves's the current user's data from the database and includes it in the response
 exports.download = async (event, context) => {
   // Create empty response object from model
-  let response = new Response()
+  let response = new Response();
   // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-  await u.resolve
+  let u = new User(event, response);
+  await u.resolve;
 
   // Retrieve that user's data from the db
-  DDB.initialize()
-  let data = await DDB.query('users').select({
-    'Select': 'ALL_ATTRIBUTES',
-    'Limit': 1,
-    'ConsistentRead': true,
-    'KeyConditionExpression': 'onid = :onid',
-    'ExpressionAttributeValues': {
-      ':onid': u.onid
-    }
-  })
+  DDB.initialize();
+  let data = await DDB.query("users").select({
+    Select: "ALL_ATTRIBUTES",
+    Limit: 1,
+    ConsistentRead: true,
+    KeyConditionExpression: "onid = :onid",
+    ExpressionAttributeValues: {
+      ":onid": u.onid,
+    },
+  });
 
   // Return user data
   response.body = JSON.stringify({
-    data: (data.Items[0]) ?  data.Items[0].data : [],
+    data: data.Items[0] ? data.Items[0].data : [],
     onid: u.onid,
     firstName: u.firstName,
     primaryAffiliation: u.primaryAffiliation,
-    administrator: u.privilege === 0 ? false : true
-  })
+    administrator: u.privilege === 0 ? false : true,
+  });
   response.headers = {
-    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : Origin,
-    'Access-Control-Allow-Credentials': 'true'
-  }
-  return response
-}
+    "Access-Control-Allow-Origin": event.headers.origin
+      ? event.headers.origin
+      : Origin,
+    "Access-Control-Allow-Credentials": "true",
+  };
+  return response;
+};
 
 // Deletes one historical data point, specified by id
 exports.delete = async (event, context) => {
   // Create empty response object from model
-  let response = new Response()
+  let response = new Response();
 
   // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-  await u.resolve
+  let u = new User(event, response);
+  await u.resolve;
 
   // Get the data ID to be deleted
-  let id = event.queryStringParameters.id
+  let id = event.queryStringParameters.id;
 
   // Delete the data
-  let data = await DDB.query('users').update({
-    'Key': {
-      'onid': u.onid
+  let data = await DDB.query("users").update({
+    Key: {
+      onid: u.onid,
     },
-    'ExpressionAttributeNames': {
-      '#attribute': 'data'
+    ExpressionAttributeNames: {
+      "#attribute": "data",
     },
-    'UpdateExpression': 'REMOVE #attribute['+ id +']',
-    'ReturnValue': 'UPDATED_NEW'
-  })
+    UpdateExpression: "REMOVE #attribute[" + id + "]",
+    ReturnValue: "UPDATED_NEW",
+  });
 
   // Return user data
-  response.body = JSON.stringify(data)
+  response.body = JSON.stringify(data);
   response.headers = {
-    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : Origin,
-    'Access-Control-Allow-Credentials': 'true'
-  }
-  return response
-}
+    "Access-Control-Allow-Origin": event.headers.origin
+      ? event.headers.origin
+      : Origin,
+    "Access-Control-Allow-Credentials": "true",
+  };
+  return response;
+};
 
 // This function compares the user object specified to the corresponding user item
 // in the DynamoDB.
@@ -150,74 +150,73 @@ exports.delete = async (event, context) => {
 //        the same date as new data objects will be updated.
 exports.upload = async (event, context) => {
   // Create empty response object from model
-  let response = new Response()
+  let response = new Response();
 
   // Create user object with current user's context (this gets user data from a JSON Web Token)
-  let u = new User(event, response)
-  await u.resolve
+  let u = new User(event, response);
+  await u.resolve;
 
   // New user data
-  let newData = JSON.parse(event.body)
+  let newData = JSON.parse(event.body);
 
   // Update user data in dynamodb
-  let data = null
-  let dbResponse = null
+  let data = null;
+  let dbResponse = null;
   try {
     // Attempt to get the current user's data
-    data = await DDB.query('users').select({
-      'Select': 'SPECIFIC_ATTRIBUTES',
-      'ProjectionExpression': '#reservedDWord',
-      'ExpressionAttributeNames': { '#reservedDWord':'data' },
-      'Limit': 1,
-      'ConsistentRead': true,
-      'KeyConditionExpression': 'onid = :onid',
-      'ExpressionAttributeValues': {
-        ':onid': u.onid
-      }
-    })
+    data = await DDB.query("users").select({
+      Select: "SPECIFIC_ATTRIBUTES",
+      ProjectionExpression: "#reservedDWord",
+      ExpressionAttributeNames: { "#reservedDWord": "data" },
+      Limit: 1,
+      ConsistentRead: true,
+      KeyConditionExpression: "onid = :onid",
+      ExpressionAttributeValues: {
+        ":onid": u.onid,
+      },
+    });
 
     // Reduce the data variable to just the data needed
-    data = data.Items[0].data
+    data = data.Items[0].data;
 
     // Search data for the current data's date
-    let i = data.map(d => d.date).indexOf(newData.date)
+    let i = data.map((d) => d.date).indexOf(newData.date);
 
     // If the date is found, replace the data object with the most recent
-    if (i > -1) data.splice(i, 1, newData)
-
+    if (i > -1) data.splice(i, 1, newData);
     // Otherwise, add the data to the list
-    else data.push(newData)
+    else data.push(newData);
 
     // Update the DDB User object with the new data attribute
-    dbResponse = await DDB.query('users').update({
-      'UpdateExpression': 'SET #reservedDWord = :newData',
-      'ExpressionAttributeNames': { '#reservedDWord':'data' },
-      'Key': {
-        'onid': u.onid
+    dbResponse = await DDB.query("users").update({
+      UpdateExpression: "SET #reservedDWord = :newData",
+      ExpressionAttributeNames: { "#reservedDWord": "data" },
+      Key: {
+        onid: u.onid,
       },
-      'ExpressionAttributeValues': {
-        ':newData': data
-      }
-    })
-
-  } catch(e) {
-
+      ExpressionAttributeValues: {
+        ":newData": data,
+      },
+    });
+  } catch (e) {
     // Create user if the query throws an error
-    dbResponse = await DDB.query('users').put({
-      'Item': {
-        'onid': u.onid,
-        'firstName': u.firstName + 'Jack',
-        'primaryAffiliation': u.primaryAffiliation + 'student',
-        'data': [ newData ]
-      }
-    })
+    dbResponse = await DDB.query("users").put({
+      Item: {
+        onid: u.onid,
+        firstName: u.firstName + "Jack",
+        primaryAffiliation: u.primaryAffiliation + "student",
+        data: [newData],
+      },
+    });
   }
 
   // Return user data
-  response.body = JSON.stringify(newData.date)
+  response.body = JSON.stringify(newData.date);
   response.headers = {
-    'Access-Control-Allow-Origin': event.headers.origin ? event.headers.origin : Origin,
-    'Access-Control-Allow-Credentials': 'true'
-  }
-  return response
-}
+    "Access-Control-Allow-Origin": event.headers.origin
+      ? event.headers.origin
+      : Origin,
+    "Access-Control-Allow-Credentials": "true",
+  };
+  return response;
+};

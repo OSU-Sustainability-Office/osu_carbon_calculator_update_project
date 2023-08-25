@@ -8,15 +8,18 @@
 -->
 
 <template>
-
   <div class="question">
+    {{ questionData.text }}
+    <questionHint :metadata="questionData.metaData" /><br />
 
-    {{questionData.text}} <questionHint :metadata="questionData.metaData" /><br />
-
-    <unitInput :unit="questionData.input.units.unit" :prefix="questionData.input.units.prefix" v-model="questionData.value" @change="updateQuestionValue" :min="0" />
-
+    <unitInput
+      :unit="questionData.input.units.unit"
+      :prefix="questionData.input.units.prefix"
+      v-model="questionData.value"
+      @change="updateQuestionValue"
+      :min="0"
+    />
   </div>
-
 </template>
 
 <script>
@@ -29,9 +32,9 @@ export default {
     questionHint
   },
   props: {
-    'questionData': Object,
-    'index': Number,
-    'categoryID': Number
+    questionData: Object,
+    index: Number,
+    categoryID: Number
   },
   created () {
     // Checks the vuex store for a value. If one is already present, load that value.
@@ -39,12 +42,12 @@ export default {
   },
   methods: {
     updateQuestionValue () {
-      this.$store.commit({
+      this.$store.commit( {
         type: 'calculator/updateQuestionValue',
         categoryID: this.categoryID,
         questionIndex: this.index,
         value: this.questionData.value
-      })
+      } )
     }
   },
   data () {
@@ -56,5 +59,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

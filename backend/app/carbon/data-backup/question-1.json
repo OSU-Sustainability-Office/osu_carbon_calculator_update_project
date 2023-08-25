@@ -1,161 +1,161 @@
 {
-    "categoryID": 1,
-    "color": "#0D5257",
-    "questions": [
-     {
+  "categoryID": 1,
+  "color": "#0D5257",
+  "questions": [
+    {
       "input": {
-       "type": "value",
-       "units": {
-        "prefix": true,
-        "unit": "$"
-       },
-       "values": [
-        {
-         "coef": 0.614,
-         "val": 0
-        }
-       ]
+        "type": "value",
+        "units": {
+          "prefix": true,
+          "unit": "$"
+        },
+        "values": [
+          {
+            "coef": 0.614,
+            "val": 0
+          }
+        ]
       },
       "metaData": "Source: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon Footprint Reduction Opportunities for U.S. Households and Communities. Supporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp 4088–4095.",
       "text": "How much do you spend on furniture and appliances each year?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "value",
-       "units": {
-        "prefix": true,
-        "unit": "$"
-       },
-       "values": [
-        {
-         "coef": 2.1,
-         "val": 0
-        }
-       ]
+        "type": "value",
+        "units": {
+          "prefix": true,
+          "unit": "$"
+        },
+        "values": [
+          {
+            "coef": 2.1,
+            "val": 0
+          }
+        ]
       },
       "metaData": "Source: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
       "text": "How much do you spend on paper products (newspapers, books, textbooks, magazines etc.) each month?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "value",
-       "units": {
-        "prefix": true,
-        "unit": "$"
-       },
-       "values": [
-        {
-         "coef": 0.954,
-         "val": 0
-        }
-       ]
+        "type": "value",
+        "units": {
+          "prefix": true,
+          "unit": "$"
+        },
+        "values": [
+          {
+            "coef": 0.954,
+            "val": 0
+          }
+        ]
       },
       "metaData": "Source: Carbon Calculator Spreadsheet: https://docs.google.com/spreadsheets/d/1FbkcWkPXmCwyWeBAtjH0eaR_kPtbDcLa3SFdK2iswAY/edit#gid=1428571633",
       "text": "How much do you spend on personal care and cleaning supplies each month?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "value",
-       "units": {
-        "prefix": true,
-        "unit": "$"
-       },
-       "values": [
-        {
-         "coef": 0.396,
-         "val": 0
-        }
-       ]
+        "type": "value",
+        "units": {
+          "prefix": true,
+          "unit": "$"
+        },
+        "values": [
+          {
+            "coef": 0.396,
+            "val": 0
+          }
+        ]
       },
       "metaData": "Source: Christopher M. Jones and Daniel M. Kammen,  Quantifying Carbon \nFootprint Reduction Opportunities for U.S. Households and Communities. \nSupporting Materials. Environ. Sci. Technol., 2011, 45 (9), pp \n4088–4095.",
       "text": "How much do you spend on computers, tablets, phones, and other electronics in a year?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "value",
-       "units": {
-        "prefix": true,
-        "unit": "$"
-       },
-       "values": [
-        {
-         "coef": 2.772,
-         "val": 0
-        }
-       ]
+        "type": "value",
+        "units": {
+          "prefix": true,
+          "unit": "$"
+        },
+        "values": [
+          {
+            "coef": 2.772,
+            "val": 0
+          }
+        ]
       },
       "metaData": "Source: http://www.carbonfootprint.com/calculatorfaqs.html Dollars * 0.3kg/english pound * conversion rate (updated 5.5.17) * 12 months.",
       "text": "How much do you spend on new clothing in a given month?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "value",
-       "units": {
-        "prefix": true,
-        "unit": "$"
-       },
-       "values": [
-        {
-         "coef": 5.0323,
-         "val": 0
-        }
-       ]
+        "type": "value",
+        "units": {
+          "prefix": true,
+          "unit": "$"
+        },
+        "values": [
+          {
+            "coef": 5.0323,
+            "val": 0
+          }
+        ]
       },
       "metaData": "Source: http://www.carbonfootprint.com/calculatorfaqs.html",
       "text": "How much do you spend on entertainment and other recreational activities per month?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "value",
-       "units": {
-        "prefix": true,
-        "unit": "$"
-       },
-       "values": [
-        {
-         "coef": 0.06826625,
-         "val": 0
-        }
-       ]
+        "type": "value",
+        "units": {
+          "prefix": true,
+          "unit": "$"
+        },
+        "values": [
+          {
+            "coef": 0.06826625,
+            "val": 0
+          }
+        ]
       },
       "metaData": "Source: http://www.carbonfootprint.com/calculatorfaqs.html",
       "text": "If you drink your water from nonrefillable plastic bottles, how many do you buy per week?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     }
-    ],
-    "title": "Consumption"
-   }
+    }
+  ],
+  "title": "Consumption"
+}

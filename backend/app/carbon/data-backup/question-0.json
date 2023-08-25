@@ -1,267 +1,267 @@
 {
-    "categoryID": 0,
-    "color": "#AA9D2E",
-    "questions": [
-     {
+  "categoryID": 0,
+  "color": "#AA9D2E",
+  "questions": [
+    {
       "input": {
-       "type": "list",
-       "units": {
-        "prefix": true,
-        "unit": "NONE"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": "No, I walk, bike, or stakeboard etc."
+        "type": "list",
+        "units": {
+          "prefix": true,
+          "unit": "NONE"
         },
-        {
-         "coef": 2.323,
-         "val": "Motorcycle"
-        },
-        {
-         "coef": 3.86964,
-         "val": "40+ MPG Car"
-        },
-        {
-         "coef": 4.326,
-         "val": "30-40 MPG Car"
-        },
-        {
-         "coef": 5.786424,
-         "val": "20-30 MPG Car"
-        },
-        {
-         "coef": 9.19404,
-         "val": "10-20 MPG Car"
-        },
-        {
-         "coef": 2.323,
-         "val": "Hybrid or Electric Car"
-        }
-       ]
+        "values": [
+          {
+            "coef": 0,
+            "val": "No, I walk, bike, or stakeboard etc."
+          },
+          {
+            "coef": 2.323,
+            "val": "Motorcycle"
+          },
+          {
+            "coef": 3.86964,
+            "val": "40+ MPG Car"
+          },
+          {
+            "coef": 4.326,
+            "val": "30-40 MPG Car"
+          },
+          {
+            "coef": 5.786424,
+            "val": "20-30 MPG Car"
+          },
+          {
+            "coef": 9.19404,
+            "val": "10-20 MPG Car"
+          },
+          {
+            "coef": 2.323,
+            "val": "Hybrid or Electric Car"
+          }
+        ]
       },
       "metaData": "Source: http://shrinkthatfootprint.com/calculate-your-driving-emissions\nCalculation: (8874 gCO2e/gal (direct emissions) * 1774.8 gCO2e (well-to-pump) / mpg + 56 gCO2e/mile (manufacturing emissions assuming 160,000 miles per car)) * 12 months",
       "text": "Do you own a car or motorcycle?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "dependentValue",
-       "units": {
-        "prefix": false,
-        "unit": "Miles"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": 0
-        }
-       ]
+        "type": "dependentValue",
+        "units": {
+          "prefix": false,
+          "unit": "Miles"
+        },
+        "values": [
+          {
+            "coef": 0,
+            "val": 0
+          }
+        ]
       },
       "metaData": null,
       "text": "Approximately how many miles do you drive per month?",
       "trigger": {
-       "parentQuestion": 0,
-       "triggerValue": "any"
+        "parentQuestion": 0,
+        "triggerValue": "any"
       },
       "visible": false
-     },
-     {
+    },
+    {
       "input": {
-       "type": "list",
-       "units": {
-        "prefix": true,
-        "unit": "NONE"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": "No"
+        "type": "list",
+        "units": {
+          "prefix": true,
+          "unit": "NONE"
         },
-        {
-         "coef": 20.08524590163935,
-         "val": "Yes"
-        }
-       ]
+        "values": [
+          {
+            "coef": 0,
+            "val": "No"
+          },
+          {
+            "coef": 20.08524590163935,
+            "val": "Yes"
+          }
+        ]
       },
       "metaData": "Source: https://www.buses.org/assets/images/uploads/general/Report%20-%20Energy%20Use%20and%20Emissions.pdf, https://www.epa.gov/sites/production/files/2015-07/documents/emission-factors_2014.pdf",
       "text": "Do you commute using the Corvallis or Albany Transit?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "dependentValue",
-       "units": {
-        "prefix": false,
-        "unit": "Miles"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": 0
-        }
-       ]
+        "type": "dependentValue",
+        "units": {
+          "prefix": false,
+          "unit": "Miles"
+        },
+        "values": [
+          {
+            "coef": 0,
+            "val": 0
+          }
+        ]
       },
       "metaData": null,
       "text": "Approximately how many miles per month do you travel on Corvallis or Albany Transit?",
       "trigger": {
-       "parentQuestion": 2,
-       "triggerValue": "Yes"
+        "parentQuestion": 2,
+        "triggerValue": "Yes"
       },
       "visible": false
-     },
-     {
+    },
+    {
       "input": {
-       "type": "list",
-       "units": {
-        "prefix": true,
-        "unit": "NONE"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": "No"
+        "type": "list",
+        "units": {
+          "prefix": true,
+          "unit": "NONE"
         },
-        {
-         "coef": 0.144822695035461,
-         "val": "Yes"
-        }
-       ]
+        "values": [
+          {
+            "coef": 0,
+            "val": "No"
+          },
+          {
+            "coef": 0.144822695035461,
+            "val": "Yes"
+          }
+        ]
       },
       "metaData": "Source: https://www.buses.org/assets/images/uploads/general/Report%20-%20Energy%20Use%20and%20Emissions.pdf - 1/70.5 * 10.21 kgCO2e per Gal of diesel",
       "text": "Do you use the Greyhound, Bolt, Hut Shuttle, or Amtrak buses?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "dependentValue",
-       "units": {
-        "prefix": false,
-        "unit": "Miles"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": 0
-        }
-       ]
+        "type": "dependentValue",
+        "units": {
+          "prefix": false,
+          "unit": "Miles"
+        },
+        "values": [
+          {
+            "coef": 0,
+            "val": 0
+          }
+        ]
       },
       "metaData": null,
       "text": "Approximately how many miles/month do you travel on these buses?",
       "trigger": {
-       "parentQuestion": 4,
-       "triggerValue": "Yes"
+        "parentQuestion": 4,
+        "triggerValue": "Yes"
       },
       "visible": false
-     },
-     {
+    },
+    {
       "input": {
-       "type": "list",
-       "units": {
-        "prefix": true,
-        "unit": "NONE"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": "No"
+        "type": "list",
+        "units": {
+          "prefix": true,
+          "unit": "NONE"
         },
-        {
-         "coef": 2.076610169491525,
-         "val": "Yes"
-        }
-       ]
+        "values": [
+          {
+            "coef": 0,
+            "val": "No"
+          },
+          {
+            "coef": 2.076610169491525,
+            "val": "Yes"
+          }
+        ]
       },
       "metaData": "Source: https://www.buses.org/assets/images/uploads/general/Report%20-%20Energy%20Use%20and%20Emissions.pdf",
       "text": "Do you travel by train?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "dependentValue",
-       "units": {
-        "prefix": false,
-        "unit": "Miles"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": 0
-        }
-       ]
+        "type": "dependentValue",
+        "units": {
+          "prefix": false,
+          "unit": "Miles"
+        },
+        "values": [
+          {
+            "coef": 0,
+            "val": 0
+          }
+        ]
       },
       "metaData": null,
       "text": "Approximately how many miles/month do you travel on train?",
       "trigger": {
-       "parentQuestion": 6,
-       "triggerValue": "Yes"
+        "parentQuestion": 6,
+        "triggerValue": "Yes"
       },
       "visible": false
-     },
-     {
+    },
+    {
       "input": {
-       "type": "list",
-       "units": {
-        "prefix": true,
-        "unit": "NONE"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": "No"
+        "type": "list",
+        "units": {
+          "prefix": true,
+          "unit": "NONE"
         },
-        {
-         "coef": 0.2281697,
-         "val": "Yes"
-        }
-       ]
+        "values": [
+          {
+            "coef": 0,
+            "val": "No"
+          },
+          {
+            "coef": 0.2281697,
+            "val": "Yes"
+          }
+        ]
       },
       "metaData": "Source: https://www.epa.gov/sites/production/files/2015-07/documents/emission-factors_2014.pdf",
       "text": "Have you traveled or do you plan to travel by airplane this year?",
       "trigger": {
-       "parentQuestion": null,
-       "triggerValue": null
+        "parentQuestion": null,
+        "triggerValue": null
       },
       "visible": true
-     },
-     {
+    },
+    {
       "input": {
-       "type": "dependentValue",
-       "units": {
-        "prefix": false,
-        "unit": "Miles"
-       },
-       "values": [
-        {
-         "coef": 0,
-         "val": 0
-        }
-       ]
+        "type": "dependentValue",
+        "units": {
+          "prefix": false,
+          "unit": "Miles"
+        },
+        "values": [
+          {
+            "coef": 0,
+            "val": 0
+          }
+        ]
       },
       "metaData": "None",
       "text": "How many miles have you traveled or do you plan to fly this year?",
       "trigger": {
-       "parentQuestion": 8,
-       "triggerValue": "Yes"
+        "parentQuestion": 8,
+        "triggerValue": "Yes"
       },
       "visible": false
-     }
-    ],
-    "title": "Transportation"
-   }
+    }
+  ],
+  "title": "Transportation"
+}

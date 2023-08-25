@@ -13,8 +13,11 @@
     :show-close="false"
     :close-on-press-escape="false"
     :close-on-click-modal="false"
-    center>
-    <span v-if="!(histData.length > 0)">You currently have no historical data.</span>
+    center
+  >
+    <span v-if="!(histData.length > 0)"
+      >You currently have no historical data.</span
+    >
     <el-table v-if="histData.length > 0" :data="tableData" align="center">
       <el-table-column type="expand">
         <template slot-scope="props">
@@ -29,12 +32,19 @@
       <el-table-column width="100" prop="date" label="Date"></el-table-column>
       <el-table-column width="100" label="Delete">
         <template slot-scope="scope">
-          <el-button @click="confirmDeletion(scope.$index)" type="text" size="small">Delete</el-button>
+          <el-button
+            @click="confirmDeletion(scope.$index)"
+            type="text"
+            size="small"
+            >Delete</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="$store.commit('ui/toggleHistoricalDataDialog')">Close</el-button>
+      <el-button @click="$store.commit('ui/toggleHistoricalDataDialog')"
+        >Close</el-button
+      >
     </span>
   </el-dialog>
 </template>
@@ -53,8 +63,8 @@ export default {
     },
     tableData () {
       let data = []
-      this.histData.forEach(entry => {
-        data.push({
+      this.histData.forEach( ( entry ) => {
+        data.push( {
           date: entry.date,
           transportation: entry.totals[0],
           consumption: entry.totals[1],
@@ -62,37 +72,44 @@ export default {
           food: entry.totals[3],
           water: entry.totals[4],
           waste: entry.totals[5]
-        })
-      })
+        } )
+      } )
       return data
     }
   },
   methods: {
-    handleDelete (row) {
-      this.$store.commit('user/removeHistData', row)
-      UserApi.deleteHistData(row)
+    handleDelete ( row ) {
+      this.$store.commit( 'user/removeHistData', row )
+      UserApi.deleteHistData( row )
     },
-    confirmDeletion (row) {
-      this.$confirm('This will permanently delete your results from ' + this.$store.getters['user/data'][row].date + '. Continue?', 'Warning', {
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(() => {
-        this.$message({
-          type: 'success',
-          message: 'Deleted data.'
-        })
-        this.handleDelete(row)
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: 'Delete canceled.'
-        })
-      })
+    confirmDeletion ( row ) {
+      this.$confirm(
+        'This will permanently delete your results from ' +
+          this.$store.getters['user/data'][row].date +
+          '. Continue?',
+        'Warning',
+        {
+          confirmButtonText: 'Delete',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        }
+      )
+        .then( () => {
+          this.$message( {
+            type: 'success',
+            message: 'Deleted data.'
+          } )
+          this.handleDelete( row )
+        } )
+        .catch( () => {
+          this.$message( {
+            type: 'info',
+            message: 'Delete canceled.'
+          } )
+        } )
     }
   }
 }
 </script>
 
-<style>
-</style>
+<style></style>
