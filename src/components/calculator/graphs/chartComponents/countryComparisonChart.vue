@@ -58,12 +58,12 @@ export default {
             fontFamily: 'Open Sans',
             padding: 20
           },
-          onHover: function (e) {
+          onHover: function ( e ) {
             e.target.style.cursor = 'pointer'
           }
         },
         hover: {
-          onHover: function (e) {
+          onHover: function ( e ) {
             e.target.style.cursor = 'default'
           }
         },
@@ -79,8 +79,8 @@ export default {
           bodyFontFamily: 'Open Sans',
           cornerRadius: 4,
           callbacks: {
-            label: (item) => {
-              return parseFloat(item.yLabel).toFixed(1) + ' kgCO2e'
+            label: ( item ) => {
+              return parseFloat( item.yLabel ).toFixed( 1 ) + ' kgCO2e'
             }
           }
         }
@@ -144,12 +144,12 @@ export default {
   methods: {
     assignStackedData () {
       // Use Object.assign for vue reactivity
-      Object.assign(this.chartdata.datasets[6].data, this.dataObj)
+      Object.assign( this.chartdata.datasets[6].data, this.dataObj )
     }
   },
   mounted () {
     this.assignStackedData()
-    this.renderChart(this.chartdata, this.options)
+    this.renderChart( this.chartdata, this.options )
   },
   watch: {
     dataObj () {

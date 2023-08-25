@@ -87,12 +87,12 @@ export default {
       return this.$store.getters['calculator/categories']
     },
     determineTitle () {
-      if (this.currentTitle === 0) return 'About the Calculator'
-      else if (this.currentTitle === 6) return 'Waste'
+      if ( this.currentTitle === 0 ) return 'About the Calculator'
+      else if ( this.currentTitle === 6 ) return 'Waste'
       else return this.categories[this.currentTitle - 1].title // Subtract 1 to remove the Introduction from the calculation
     },
     progressPercentage () {
-      return (this.currentTitle / 6) * 100
+      return ( this.currentTitle / 6 ) * 100
     }
   },
   data () {
@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     next () {
-      if (this.$refs.calcCarousel.$refs.carousel.activeIndex === 0) {
+      if ( this.$refs.calcCarousel.$refs.carousel.activeIndex === 0 ) {
         this.lastSlide = true
         this.openOffsetsDialog()
       } else {
@@ -113,17 +113,17 @@ export default {
       }
     },
     prev () {
-      if (this.lastSlide) {
+      if ( this.lastSlide ) {
         this.lastSlide = false
       } else {
         this.currentTitle--
         this.$refs.calcCarousel.$refs.carousel.prev()
       }
     },
-    setFocus (newSlideIndex, oldSlideIndex) {
+    setFocus ( newSlideIndex, oldSlideIndex ) {
       let scope = this
-      let carousel = document.querySelector('.carousel')
-      if (carousel) {
+      let carousel = document.querySelector( '.carousel' )
+      if ( carousel ) {
         // Listen for the "transitioned" event on the carousel element
         carousel.addEventListener(
           'transitioned',
@@ -134,9 +134,9 @@ export default {
         )
 
         // Update the carousel index
-        this.$nextTick(() => {
-          this.$refs.carousel.setSlide(newSlideIndex)
-        })
+        this.$nextTick( () => {
+          this.$refs.carousel.setSlide( newSlideIndex )
+        } )
       }
     },
     // This method opens the "carbon offsets" dialog when the calculator reaches its final page.
@@ -149,12 +149,12 @@ export default {
           cancelButtonText: 'No Thanks',
           dangerouslyUseHTMLString: true
         }
-      ).then(() => {
+      ).then( () => {
         window.open(
           'https://fa.oregonstate.edu/sustainability/carbon-offsets-osu-funded-travel',
           '_blank'
         )
-      })
+      } )
     }
   }
 }

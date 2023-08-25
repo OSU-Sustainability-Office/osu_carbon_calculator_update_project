@@ -63,8 +63,8 @@ export default {
     },
     tableData () {
       let data = []
-      this.histData.forEach((entry) => {
-        data.push({
+      this.histData.forEach( ( entry ) => {
+        data.push( {
           date: entry.date,
           transportation: entry.totals[0],
           consumption: entry.totals[1],
@@ -72,17 +72,17 @@ export default {
           food: entry.totals[3],
           water: entry.totals[4],
           waste: entry.totals[5]
-        })
-      })
+        } )
+      } )
       return data
     }
   },
   methods: {
-    handleDelete (row) {
-      this.$store.commit('user/removeHistData', row)
-      UserApi.deleteHistData(row)
+    handleDelete ( row ) {
+      this.$store.commit( 'user/removeHistData', row )
+      UserApi.deleteHistData( row )
     },
-    confirmDeletion (row) {
+    confirmDeletion ( row ) {
       this.$confirm(
         'This will permanently delete your results from ' +
           this.$store.getters['user/data'][row].date +
@@ -94,19 +94,19 @@ export default {
           type: 'warning'
         }
       )
-        .then(() => {
-          this.$message({
+        .then( () => {
+          this.$message( {
             type: 'success',
             message: 'Deleted data.'
-          })
-          this.handleDelete(row)
-        })
-        .catch(() => {
-          this.$message({
+          } )
+          this.handleDelete( row )
+        } )
+        .catch( () => {
+          this.$message( {
             type: 'info',
             message: 'Delete canceled.'
-          })
-        })
+          } )
+        } )
     }
   }
 }

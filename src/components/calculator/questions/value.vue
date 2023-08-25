@@ -42,12 +42,12 @@ export default {
   },
   methods: {
     updateQuestionValue () {
-      this.$store.commit({
+      this.$store.commit( {
         type: 'calculator/updateQuestionValue',
         categoryID: this.categoryID,
         questionIndex: this.index,
         value: this.questionData.value
-      })
+      } )
     }
   },
   data () {

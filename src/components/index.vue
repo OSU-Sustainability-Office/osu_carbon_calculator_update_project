@@ -43,7 +43,7 @@ export default {
       // eslint-disable-next-line
       return (
         typeof window.orientation !== 'undefined' ||
-        navigator.userAgent.indexOf('IEMobile') !== -1 ||
+        navigator.userAgent.indexOf( 'IEMobile' ) !== -1 ||
         this.mobileWidth
       )
     }

@@ -63,26 +63,26 @@ export default {
     }
   },
   methods: {
-    handleClick (key) {
-      switch (key) {
+    handleClick ( key ) {
+      switch ( key ) {
         case '0':
           window.location = this.officeHomepageLink
           break
         case '1':
-          this.router.go('#')
+          this.router.go( '#' )
           break
         case '2':
           window.location = this.loginLink
           break
         case '3-1':
-          this.$store.commit('ui/toggleHistoricalDataDialog')
+          this.$store.commit( 'ui/toggleHistoricalDataDialog' )
           break
         case '3-2':
           window.location = this.dashboardLink
           break
         case '3-4':
           window.location = this.logoutLink
-          this.$store.commit('user/logout')
+          this.$store.commit( 'user/logout' )
           break
         default:
           break

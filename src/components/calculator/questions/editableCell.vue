@@ -82,8 +82,8 @@ export default {
       get () {
         return this.value
       },
-      set (val) {
-        this.$emit('input', val)
+      set ( val ) {
+        this.$emit( 'input', val )
       }
     },
     listeners () {
@@ -96,28 +96,28 @@ export default {
   methods: {
     onFieldClick () {
       this.editMode = true
-      this.$nextTick(() => {
+      this.$nextTick( () => {
         let inputRef = this.$refs.input
-        if (inputRef) {
+        if ( inputRef ) {
           inputRef.focus()
         }
-      })
+      } )
     },
     onInputExit () {
       this.editMode = false
     },
-    onInputChange (val) {
-      this.$emit('input', val)
+    onInputChange ( val ) {
+      this.$emit( 'input', val )
     }
   },
   mounted () {
-    if (!isNaN(parseInt(this.value))) this.numerical = true
+    if ( !isNaN( parseInt( this.value ) ) ) this.numerical = true
   },
   watch: {
     value () {
-      if (this.numerical && isNaN(this.value)) {
+      if ( this.numerical && isNaN( this.value ) ) {
         this.value = 0
-        this.$emit('input', this.value)
+        this.$emit( 'input', this.value )
       }
     }
   }

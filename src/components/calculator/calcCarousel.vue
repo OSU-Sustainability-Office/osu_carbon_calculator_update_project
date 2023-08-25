@@ -161,12 +161,12 @@ export default {
     }
   },
   methods: {
-    setFocus (newSlideIndex, oldSlideIndex) {
+    setFocus ( newSlideIndex, oldSlideIndex ) {
       let scope = this
-      let carousel = document.querySelector('.carousel')
+      let carousel = document.querySelector( '.carousel' )
 
       // Listen for the "transitioned" event on the carousel element
-      if (carousel) {
+      if ( carousel ) {
         carousel.addEventListener(
           'transitioned',
           function () {
@@ -176,18 +176,18 @@ export default {
         )
 
         // Update the carousel index
-        this.$nextTick(() => {
-          this.$refs.carousel.setSlide(newSlideIndex)
-        })
+        this.$nextTick( () => {
+          this.$refs.carousel.setSlide( newSlideIndex )
+        } )
       }
     }
   },
   watch: {
     studentType () {
-      this.$store.commit({
+      this.$store.commit( {
         type: 'user/setStudentType',
         newType: this.studentType
-      })
+      } )
     }
   }
 }

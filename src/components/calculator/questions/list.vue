@@ -51,42 +51,42 @@ export default {
     }
   },
   created () {
-    if (this.questionData.value !== 0) {
+    if ( this.questionData.value !== 0 ) {
       this.value = this.questionData.value
     } else {
       this.value = this.questionData.input.values[0].val
     }
 
     // Update VueX for switch type
-    this.$store.commit({
+    this.$store.commit( {
       type: 'calculator/updateQuestionValue',
       categoryID: this.categoryID,
       questionIndex: this.index,
       value: this.answer
         ? this.questionData.input.values[1].val
         : this.questionData.input.values[0].val
-    })
+    } )
   },
   methods: {
     updateQuestionValue () {
       // Update VueX for list type
-      if (this.questionData.input.values.length > 2) {
-        this.$store.commit({
+      if ( this.questionData.input.values.length > 2 ) {
+        this.$store.commit( {
           type: 'calculator/updateQuestionValue',
           categoryID: this.categoryID,
           questionIndex: this.index,
           value: this.value
-        })
+        } )
       } else {
         // Update VueX for switch type
-        this.$store.commit({
+        this.$store.commit( {
           type: 'calculator/updateQuestionValue',
           categoryID: this.categoryID,
           questionIndex: this.index,
           value: this.answer
             ? this.questionData.input.values[1].val
             : this.questionData.input.values[0].val
-        })
+        } )
         this.value = this.answer
           ? this.questionData.input.values[1].val
           : this.questionData.input.values[0].val

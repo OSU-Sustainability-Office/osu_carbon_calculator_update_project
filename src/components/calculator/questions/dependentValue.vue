@@ -37,15 +37,15 @@ export default {
     showQuestion () {
       // Return true if the trigger value matches the parent's value, or return true if the trigger value is 'any' and the parent's value is not the default
       return (
-        (this.triggerValue === 'any' &&
+        ( this.triggerValue === 'any' &&
           this.parentQuestion.value !==
-            this.parentQuestion.input.values[0].val) ||
+            this.parentQuestion.input.values[0].val ) ||
         this.parentQuestion.value === this.triggerValue
       )
     },
     questionDataWithMeta () {
       let questionData = this.questionData
-      this.$set(questionData, 'metaData', this.parentQuestion.metaData)
+      this.$set( questionData, 'metaData', this.parentQuestion.metaData )
       return questionData
     }
   },
