@@ -64,7 +64,7 @@ export default {
     tableData () {
       let data = []
       this.histData.forEach((entry, index) => {
-        if (index >== data.length - 2) {
+        if (index >= data.length - 2) {
           data.push({
             date: entry.date,
             transportation: entry.totals[0],
@@ -85,22 +85,30 @@ export default {
       UserApi.deleteHistData(row)
     },
     confirmDeletion (row) {
-      this.$confirm('This will permanently delete your results from ' + this.$store.getters['user/data'][row].date + '. Continue?', 'Warning', {
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(() => {
-        this.$message({
-          type: 'success',
-          message: 'Deleted data.'
+      this.$confirm(
+        'This will permanently delete your results from ' +
+          this.$store.getters['user/data'][row].date +
+          '. Continue?',
+        'Warning',
+        {
+          confirmButtonText: 'Delete',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        }
+      )
+        .then(() => {
+          this.$message({
+            type: 'success',
+            message: 'Deleted data.'
+          })
+          this.handleDelete(row)
         })
-        this.handleDelete(row)
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: 'Delete canceled.'
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: 'Delete canceled.'
+          })
         })
-      })
     }
   }
 }

@@ -12,7 +12,7 @@ module.exports = {
     'generator-star-spacing': 'off',
     camelcase: [0, { properties: 'never' }],
     'vue/no-use-v-if-with-v-for': 'off',
-    'space-in-parens': [1, 'always']
+    'space-in-parens': [1, 'never']
   },
   parserOptions: {
     parser: 'babel-eslint'

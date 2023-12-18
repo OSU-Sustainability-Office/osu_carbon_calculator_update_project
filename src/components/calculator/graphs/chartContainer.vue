@@ -147,9 +147,9 @@ export default {
       // Empty array of category totals (in order)
       let totals = []
 
-      this.categories.forEach( ( category ) => {
+      this.categories.forEach((category) => {
         let total = 0
-        category.questions.forEach( ( question ) => {
+        category.questions.forEach((question) => {
           // Multiply this value by parent question's coefficient
           // eslint-disable-next-line
           if (question.input.type == "dependentValue") {
@@ -163,27 +163,27 @@ export default {
             // eslint-disable-next-line
             if (triggerValue == parentQuestion.value) {
               // Find the location of the correct coefficient in parentQuestion's value list by mapping and linear searching array
-              valueMap = parentQuestion.input.values.map( ( obj ) => obj.val )
-              location = valueMap.indexOf( triggerValue )
+              valueMap = parentQuestion.input.values.map((obj) => obj.val)
+              location = valueMap.indexOf(triggerValue)
             } else {
               // if (triggerValue == 'any')
               // Find the location of the correct coefficient in parentQuestion's value list by mapping and linear searching array
-              valueMap = parentQuestion.input.values.map( ( obj ) => obj.val )
-              location = valueMap.indexOf( parentQuestion.value )
+              valueMap = parentQuestion.input.values.map((obj) => obj.val)
+              location = valueMap.indexOf(parentQuestion.value)
             }
 
             // If the parentQuestion has not been rendered, its value will be incorrect. Ignore this question if it's parent is undefined.
-            if ( typeof parentQuestion.input.values[location] !== 'undefined' ) {
+            if (typeof parentQuestion.input.values[location] !== 'undefined') {
               // Add to the total for this category
               // If the parentQuestion has a 0 coefficient, the child question has the coefficient
-              if ( parentQuestion.input.values[location].coef === 0 ) {
+              if (parentQuestion.input.values[location].coef === 0) {
                 // Multiply the current question's value to the child question's coefficient
                 total += question.value * question.input.values[0].coef
               } else {
                 // Multiply the current question's value to the parent question's coefficient
                 if (
-                  !isNaN( question.value ) &&
-                  !isNaN( parentQuestion.input.values[location].coef )
+                  !isNaN(question.value) &&
+                  !isNaN(parentQuestion.input.values[location].coef)
                 ) {
                   total +=
                     question.value * parentQuestion.input.values[location].coef
@@ -204,48 +204,48 @@ export default {
           ) {
             total +=
               question.input.values[
-                question.input.values.map( ( a ) => a.val ).indexOf( question.value )
+                question.input.values.map((a) => a.val).indexOf(question.value)
               ].coef
           }
-        } )
+        })
 
-        totals.push( total )
-      } )
+        totals.push(total)
+      })
 
       // Add baseline data for each student type to the calculator.
-      this.$set( totals, 2, this.studentBaseline[0] + totals[2] )
-      this.$set( totals, 4, this.studentBaseline[1] + totals[4] )
+      this.$set(totals, 2, this.studentBaseline[0] + totals[2])
+      this.$set(totals, 4, this.studentBaseline[1] + totals[4])
 
       return totals
     },
     resultsBarData () {
       // Determine what data should be shown.
-      if ( !this.resultsToggle ) {
+      if (!this.resultsToggle) {
         // Show 0-100% category comparison vs US Average
 
         // Sum all US data
         let USDataSum = 0
-        this.usAvgDataObj.totals.forEach( ( d ) => {
+        this.usAvgDataObj.totals.forEach((d) => {
           USDataSum += d
-        } )
+        })
 
         // Compute percentages
         let USData = []
-        this.usAvgDataObj.totals.forEach( ( d ) => {
-          USData.push( ( d / USDataSum ) * 100 )
-        } )
+        this.usAvgDataObj.totals.forEach((d) => {
+          USData.push((d / USDataSum) * 100)
+        })
 
         // Sum all user data
         let userDataSum = 0
-        this.totals.forEach( ( d ) => {
+        this.totals.forEach((d) => {
           userDataSum += d
-        } )
+        })
 
         // Compute Percentages
         let userData = []
-        this.totals.forEach( ( d ) => {
-          userData.push( ( d / userDataSum ) * 100 )
-        } )
+        this.totals.forEach((d) => {
+          userData.push((d / userDataSum) * 100)
+        })
 
         let finalDataObject = {
           transportation: [USData[0], userData[0]],
@@ -271,9 +271,9 @@ export default {
       // Returns true if no data has been entered into the calculator
       let incomplete = true
 
-      this.totals.forEach( ( t ) => {
-        if ( t !== 0 ) incomplete = false
-      } )
+      this.totals.forEach((t) => {
+        if (t !== 0) incomplete = false
+      })
 
       return incomplete
     },
@@ -285,11 +285,11 @@ export default {
     },
     countryComparisonChartData () {
       let sum = 0
-      this.totals.forEach( ( t ) => {
+      this.totals.forEach((t) => {
         sum += t
-      } )
+      })
       let arr = []
-      arr.push( sum )
+      arr.push(sum)
       return arr
     }
   },
@@ -304,21 +304,21 @@ export default {
           type: 'warning'
         }
       )
-        .then( () => {
-          this.uploadTotals( this.totals )
-          this.$message( {
+        .then(() => {
+          this.uploadTotals(this.totals)
+          this.$message({
             type: 'success',
             message: 'Saved your most recent results!'
-          } )
-        } )
-        .catch( () => {
-          this.$message( {
+          })
+        })
+        .catch(() => {
+          this.$message({
             type: 'success',
             message: 'Kept your previous response!'
-          } )
-        } )
+          })
+        })
     },
-    uploadTotals ( totals ) {
+    uploadTotals (totals) {
       // Initialize user object for upload
       let userObject = {}
       userObject['onid'] = this.$store.getters['user/onid']
@@ -334,7 +334,7 @@ export default {
       }
 
       // Upload userObject for DB entry
-      UserApi.uploadUserData( data )
+      UserApi.uploadUserData(data)
     },
     redirectToLogin () {
       window.location = this.loginLink
@@ -344,14 +344,14 @@ export default {
     lastSlide () {
       // Get historical data from vuex store.
       let data = this.$store.getters['user/data']
-      if ( this.lastSlide ) {
-        if ( data.map( ( d ) => d.date ).indexOf( this.todayDate ) !== -1 ) {
+      if (this.lastSlide) {
+        if (data.map((d) => d.date).indexOf(this.todayDate) !== -1) {
           // Prompt the user for which data to keep (today's previous response, or today's new response).
           this.confirmData()
         } else {
           // Upload this data if the user is logged in and has no historical data for today.
-          if ( this.$store.getters['user/isLoggedIn'] ) {
-            this.uploadTotals( this.totals )
+          if (this.$store.getters['user/isLoggedIn']) {
+            this.uploadTotals(this.totals)
           }
         }
       }

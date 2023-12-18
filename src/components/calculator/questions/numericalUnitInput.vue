@@ -60,23 +60,23 @@ export default {
     event: 'change'
   },
   methods: {
-    add ( val ) {
-      this.value = parseInt( this.value ) + val
-      this.$emit( 'change', this.value )
+    add (val) {
+      this.value = parseInt(this.value) + val
+      this.$emit('change', this.value)
     },
-    longPressStart ( val ) {
+    longPressStart (val) {
       this.val = val
       this.longPress = setInterval(
-        ( function ( scope ) {
+        (function (scope) {
           return function () {
             scope.value += 5 * scope.val
           }
-        } )( this ),
+        })(this),
         50
       )
     },
     longPressStop () {
-      clearInterval( this.longPress )
+      clearInterval(this.longPress)
     }
   },
   computed: {
@@ -96,7 +96,7 @@ export default {
   watch: {
     value () {
       this.value = this.value < 0 ? 0 : this.value
-      this.value = isNaN( this.value ) ? 0 : this.value
+      this.value = isNaN(this.value) ? 0 : this.value
     }
   }
 }
