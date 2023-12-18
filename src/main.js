@@ -20,8 +20,8 @@ import locale from 'element-ui/lib/locale/lang/en'
 import '@/assets/element-variables.scss'
 
 // For element UI
-Vue.use( Vuei18n )
-Vue.use( elm, { locale: locale } )
+Vue.use(Vuei18n)
+Vue.use(elm, { locale: locale })
 
 Vue.config.productionTip = false
 Vue.config.debug = false
@@ -33,11 +33,11 @@ Vue.config.debug = false
 Vue.config.devtools = false
 
 /* eslint-disable no-new */
-window.vue = new Vue( {
+window.vue = new Vue({
   el: '#app',
   router,
   store,
   components: { App },
   template: '<App/>',
-  render: ( h ) => h( App )
-} )
+  render: (h) => h(App)
+})
