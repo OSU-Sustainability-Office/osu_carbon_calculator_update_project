@@ -20,9 +20,9 @@ import UIModule from './modules/ui.js'
 //   storage: localStorage
 // })
 
-Vue.use( Vuex ) // Use Vuex as central data store
+Vue.use(Vuex) // Use Vuex as central data store
 
-export default new Vuex.Store( {
+export default new Vuex.Store({
   state: {},
   getters: {},
   mutations: {},
@@ -32,6 +32,6 @@ export default new Vuex.Store( {
     calculator: CalculatorModule,
     ui: UIModule
   }
-} )
+})
 // Add for vuex-persist: ,
 // plugins: [vuexPersist.plugin]

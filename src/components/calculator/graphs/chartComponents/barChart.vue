@@ -55,12 +55,12 @@ export default {
             fontFamily: 'Open Sans',
             padding: 20
           },
-          onHover: function ( e ) {
+          onHover: function (e) {
             e.target.style.cursor = 'pointer'
           }
         },
         hover: {
-          onHover: function ( e ) {
+          onHover: function (e) {
             e.target.style.cursor = 'default'
           }
         },
@@ -76,10 +76,10 @@ export default {
           bodyFontFamily: 'Open Sans',
           cornerRadius: 4,
           callbacks: {
-            label: ( item ) => {
+            label: (item) => {
               return this.resultsToggle
-                ? parseFloat( item.yLabel ).toFixed( 1 ) + ' kgCO2e'
-                : parseFloat( item.yLabel ).toFixed( 1 ) + '%'
+                ? parseFloat(item.yLabel).toFixed(1) + ' kgCO2e'
+                : parseFloat(item.yLabel).toFixed(1) + '%'
             }
           }
         }
@@ -170,18 +170,18 @@ export default {
         this.chartdata.datasets[0].data,
         this.dataObj.transportation
       )
-      Object.assign( this.chartdata.datasets[1].data, this.dataObj.consumption )
+      Object.assign(this.chartdata.datasets[1].data, this.dataObj.consumption)
       Object.assign(
         this.chartdata.datasets[2].data,
         this.dataObj.energyAndHeating
       )
-      Object.assign( this.chartdata.datasets[3].data, this.dataObj.food )
-      Object.assign( this.chartdata.datasets[4].data, this.dataObj.water )
+      Object.assign(this.chartdata.datasets[3].data, this.dataObj.food)
+      Object.assign(this.chartdata.datasets[4].data, this.dataObj.water)
     }
   },
   mounted () {
     this.assignStackedData()
-    this.renderChart( this.chartdata, this.options )
+    this.renderChart(this.chartdata, this.options)
   },
   watch: {
     dataObj () {

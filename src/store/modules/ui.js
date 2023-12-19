@@ -14,20 +14,20 @@ export default {
     oldDataDialog: false
   },
   getters: {
-    historicalDataDialog: ( state ) => {
+    historicalDataDialog: (state) => {
       return state.historicalDataDialog
     },
-    oldDataDialog: ( state ) => {
+    oldDataDialog: (state) => {
       return state.oldDataDialog
     }
   },
   mutations: {
     // Initializes/updates all of the user variables.
-    toggleHistoricalDataDialog ( state ) {
+    toggleHistoricalDataDialog (state) {
       state.historicalDataDialog = !state.historicalDataDialog
     },
     // Initializes/updates all of the user variables.
-    toggleOldDataDialog ( state ) {
+    toggleOldDataDialog (state) {
       state.oldDataDialog = !state.oldDataDialog
     }
   }

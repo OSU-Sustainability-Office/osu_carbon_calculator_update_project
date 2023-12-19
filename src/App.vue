@@ -31,10 +31,10 @@ export default {
   },
   created () {
     // Update user variables (if logged in)
-    this.$store.dispatch( 'user/setUserVars' )
+    this.$store.dispatch('user/setUserVars')
 
     // Download the cc categories and questions
-    this.$store.dispatch( 'calculator/downloadCategories' )
+    this.$store.dispatch('calculator/downloadCategories')
   },
   data () {
     return {

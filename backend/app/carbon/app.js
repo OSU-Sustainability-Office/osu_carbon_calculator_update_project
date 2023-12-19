@@ -21,33 +21,7 @@ const fs = require("fs");
 const path = require("path");
 
 // original export.questions code
-
 /*
-export default {
-  // Returns a JSON object containing the Carbon Calculator questions
-  downloadCategories () {
-    return new Promise((resolve, reject) => {
-      // Load the JSON file using the fetch API
-      fetch('./data-backup/questions.json')
-        .then(response => {
-          if (response.ok) {
-            // Parse the response as JSON and return it
-            response.json().then(data => {
-              resolve(data);
-            });
-          } else {
-            reject(new Error('Failed to load questions.json'));
-          }
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
-  }
-}
-*/
-
-// Testing with local JSON files - edit the "coefficients" in the JSON files in data-backup to test
 exports.questions = async (event, context) => {
   // Create empty response object from model
   let response = new Response();
@@ -68,6 +42,41 @@ exports.questions = async (event, context) => {
     "Access-Control-Allow-Credentials": "true",
   };
   return response;
+};
+*/
+
+// Testing with local JSON files - edit the "coefficients" in the JSON files in data-backup to test
+exports.questions = async (event, context) => {
+  // Create empty response object from model
+  let response = new Response();
+
+  try {
+    // Read the data-backup directory and filter the files by extension
+    let files = fs
+      .readdirSync(path.join(__dirname, "data-backup"))
+      .filter((file) => path.extname(file) === ".json");
+
+    // Parse the JSON files and return the data
+    let data = files.map((file) =>
+      JSON.parse(fs.readFileSync(path.join(__dirname, "data-backup", file))),
+    );
+    response.body = JSON.stringify(data);
+    response.headers = {
+      "Access-Control-Allow-Origin": event.headers.origin
+        ? event.headers.origin
+        : Origin,
+      "Access-Control-Allow-Credentials": "true",
+    };
+    return response;
+  } catch (error) {
+    // Handle errors reading the files
+    console.error(error);
+    response.body = JSON.stringify({
+      error: "Failed to load data from data-backup folder",
+    });
+    response.status = 500;
+    return response;
+  }
 };
 
 // Retrieves's the current user's data from the database and includes it in the response

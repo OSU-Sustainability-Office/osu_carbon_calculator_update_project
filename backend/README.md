@@ -17,7 +17,7 @@ To use the SAM CLI, you need the following tools.
 
 - AWS CLI - [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configure it with your AWS credentials].
 - SAM CLI - [Install the SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-- Node.js - [Install Node.js 10](https://nodejs.org/en/), including the NPM package management tool.
+- Node.js - [Install Node.js 18](https://nodejs.org/en/), including the NPM package management tool.
 - Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community)
 
 The SAM CLI uses an Amazon S3 bucket to store your application's deployment artifacts. If you don't have a bucket suitable for this purpose, create one. Replace `BUCKET_NAME` in the commands in this section with a unique bucket name.
